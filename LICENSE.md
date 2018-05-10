@@ -1,6 +1,8 @@
 MIT License
 
-Copyright (c) 2018 Carson
+Copyright (c) 2018 Carson Boden
+Copyright (c) 2017 Kevin Yang
+Copyright (c) Zach Holman, http://zachholman.com
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

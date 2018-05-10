@@ -1,0 +1,5 @@
+[user]
+        name = Carson Boden
+        email = cwboden@umich.edu
+[credential]
+        helper = cache
