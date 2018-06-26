@@ -38,6 +38,9 @@ syntax enable
 
 set background=dark
 colorscheme gruvbox
+
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+set list
 " }}}
 
 " Indentation {{{
