@@ -32,6 +32,13 @@ set wildmenu
 set ttimeoutlen=10
 " }}}
 
+" Centralized swap files and undo directory {{{
+set directory^=$HOME/.vim/swapfiles//
+
+set undodir=~/.vim/undodir
+set undofile
+}}}
+
 " Appearance {{{
 syntax on
 syntax enable
@@ -50,8 +57,8 @@ set softtabstop=2
 set expandtab
 set smarttab
 set autoindent
-set smartindent
 set shiftround
+filetype plugin indent on
 
 set backspace=eol,start,indent
 
