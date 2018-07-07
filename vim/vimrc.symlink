@@ -37,7 +37,7 @@ set directory^=$HOME/.vim/swapfiles//
 
 set undodir=~/.vim/undodir
 set undofile
-}}}
+" }}}
 
 " Appearance {{{
 syntax on
