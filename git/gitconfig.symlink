@@ -1,6 +1,6 @@
 [user]
-    name = Carson Boden
-    email = cwboden@umich.edu
+	name = Carson Boden
+	email = cwboden@umich.edu
 
 [include]
     path = ~/.gitconfig.local
