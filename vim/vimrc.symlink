@@ -179,4 +179,29 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <C-d> :ALEGoToDefinition
 " }}}
 
+" VimTeX {{{
+let g:vimtex_compiler_method='latexmk'
+let g:vimtex_compiler_latexmk = {
+    \ 'background' : 1,
+    \ 'build_dir' : '',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
+    \ 'options' : [
+    \   '-pdf',
+    \   '-verbose',
+    \   '-file-line-error',
+    \   '-synctex=1',
+    \   '-interaction=nonstopmode',
+    \ ],
+    \}
+let g:vimtex_matchparen_enabled = 0
+let g:vimtex_complete_enabled = 0
+let g:vimtex_fold_enabled = 0
+
+let g:livedown_browser = "firefox"
+
+set wildignore+=*.aux,*.fdb_latexmk,*.fls,*.gz
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
