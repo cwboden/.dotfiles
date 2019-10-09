@@ -2,26 +2,24 @@ set nocompatible
 
 filetype plugin indent on
 
-" Vundle Options {{{
-" Set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Vim-Plug Options {{{
+call plug#begin('~/.vim/plugged')
 
-" Let Vundle manage Vundle
-Plugin 'VundleVim/Vundle.vim'
-
-" Vundle management for other apps
-Plugin 'morhetz/gruvbox'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline'
-Plugin 'dense-analysis/ale'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'lervag/vimtex'
+" Vim-Plug management for other apps
+Plug 'airblade/vim-gitgutter'
+Plug 'dense-analysis/ale'
+Plug 'ervandew/supertab'
+Plug 'lervag/vimtex'
+Plug 'morhetz/gruvbox'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
 
 " Finish the call, all plugins must be before this
-call vundle#end()
+call plug#end()
 
 " }}}
 
@@ -160,7 +158,7 @@ let NERDTreeDirArrows = 1
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 map <C-n> : NERDTreeToggle<CR>
-map <Leader>nf : NERDTreeFind<CR>
+map <leader>nf : NERDTreeFind<CR>
 " }}}
 
 " NERD Commenter {{{
