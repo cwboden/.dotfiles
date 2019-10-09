@@ -1,7 +1,30 @@
 set nocompatible
-execute pathogen#infect()
 
 filetype plugin indent on
+
+" Vundle Options {{{
+" Set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Let Vundle manage Vundle
+Plugin 'VundleVim/Vundle.vim'
+
+" Vundle management for other apps
+Plugin 'morhetz/gruvbox'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'vim-airline/vim-airline'
+Plugin 'ycm-core/YouCompleteMe'
+Plugin 'dense-analysis/ale'
+Plugin 'octol/vim-cpp-enhanced-highlight'
+Plugin 'lervag/vimtex'
+
+" Finish the call, all plugins must be before this
+call vundle#end()
+
+" }}}
 
 " Language and Encoding {{{
 set encoding=utf-8

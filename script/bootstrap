@@ -132,8 +132,22 @@ install_dotfiles () {
   done
 }
 
+setup_vim () {
+  info 'setting up vim'
+
+  mkdir ~/.vim
+  mkdir ~/.vim/swapfiles
+  mkdir ~/.vim/backups
+  mkdir ~/.vim/undodir
+
+  # Install Vundle
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  vim +PluginInstall +qall
+}
+
 setup_gitconfig
 install_dotfiles
+setup_vim
 
 echo ''
 echo '  All installed!'
