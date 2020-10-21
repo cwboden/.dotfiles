@@ -10,7 +10,7 @@ set -e
 echo ''
 
 info () {
-    printf "\r    [ \033[00;34m..\033[0m ] $1\n"
+    printf "\r    \033[00;34m==>\033[0m $1\n"
 }
 
 user () {
@@ -121,7 +121,7 @@ link_file () {
 }
 
 install_dotfiles () {
-    info 'installing dotfiles'
+    info 'Installing Dotfiles'
 
     local overwrite_all=false backup_all=false skip_all=false
 
@@ -133,11 +133,12 @@ install_dotfiles () {
 }
 
 setup_vim () {
-    info 'setting up vim'
+    info 'Setting Up Vim'
 
     mkdir -p ~/.vim/swapfiles
     mkdir -p ~/.vim/backups
     mkdir -p ~/.vim/undodir
+    success 'created .vim/ directory'
 
     # Install Vim-Plug
     curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -145,10 +146,11 @@ setup_vim () {
         &>/dev/null
 
     vim +PlugInstall +qall
+    success 'vim-plug installed'
 }
 
 setup_zsh() {
-    info 'setting up zsh'
+    info 'Setting Up Zsh'
 
     if [[ ! -d ~/.oh-my-zsh ]]; then
         zsh_installer=/tmp/zsh_install.sh
@@ -156,22 +158,22 @@ setup_zsh() {
             https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh \
             &>/dev/null
         sh $zsh_installer --unattended --keep-zshrc &>/dev/null
-        success 'oh-my-zsh installed'
     fi
+    success 'oh-my-zsh installed'
 
-    if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10 ]];    then
+    if [[ ! -d ~/.oh-my-zsh/custom/themes/powerlevel10k ]]; then
         git clone --depth=1 \
             https://github.com/romkatv/powerlevel10k.git \
             ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k \
             &>/dev/null
-        success 'powerlevel10k installed'
     fi
+    success 'powerlevel10k installed'
 
     if [[ $SHELL != "/bin/zsh" ]]; then
         echo "Changing shell to Zsh. Password required."
         chsh -s $(which zsh)
-        success 'changed shell'
     fi
+    success 'shell set to zsh'
 }
 
 setup_gitconfig
