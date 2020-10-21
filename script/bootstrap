@@ -140,7 +140,7 @@ setup_vim () {
   mkdir ~/.vim/backups
   mkdir ~/.vim/undodir
 
-  # Install Vundle
+  # Install Vim-Plug
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 

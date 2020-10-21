@@ -6,17 +6,17 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " Vim-Plug management for other apps
-Plug 'airblade/vim-gitgutter'
-Plug 'dense-analysis/ale'
-Plug 'ervandew/supertab'
-Plug 'lervag/vimtex'
 Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
+Plug 'itchyny/lightline.vim'
+Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
+Plug 'jremmen/vim-ripgrep'
+Plug 'FooSoft/vim-argwrap'
 
 " Finish the call, all plugins must be before this
 call plug#end()
@@ -50,37 +50,54 @@ set wildmode=list:longest,list:full
 
 set ttimeoutlen=10
 
+" Ignore specific files
 set wildignore=*.o,*~,*.pyc
 if has("win16") || has("win32")
   set wildignore+=.git\*,.hg\*,.svn\*
 else
   set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 endif
+
+" Automatic switching of relative numbers
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
+augroup END
 " }}}
 
 " Swap Files and Backups {{{
 set autowrite
+set nobackup
+set noswapfile
 
-set directory=$HOME/.vim/swapfiles//
-set backupdir=$HOME/.vim/backups//
 set undodir=$HOME/.vim/undodir//
 set undofile
+
+" Automatically remove extra whitespace
+autocmd BufWritePre * :%s/\s\+$//e
 " }}}
 
 " Appearance {{{
+if !has('gui_running')
+  set t_Co=256
+endif
+
 syntax on
 syntax enable
 
 set background=dark
 colorscheme gruvbox
 
+set colorcolumn=80
+
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 " }}}
 
 " Indentation {{{
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 
 set expandtab
 set smarttab
@@ -124,17 +141,10 @@ set splitright
 let mapleader = " "
 let maplocalleader = " "
 
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
 nnoremap j gj
 nnoremap k gk
 
 nmap <silent> // :nohlsearch<CR>
-
-noremap <leader>m : silent make\|redraw!\|cw<CR>
-
-command! Bd bp | sp | bn | bd
 
 inoremap <S-Tab> <C-V><Tab>
 
@@ -143,10 +153,63 @@ imap jk <Esc>
 set mouse=a
 " }}}
 
-" Airline {{{
-let g:airline_powerline_fonts=1
-let g:airline_inactive_collapse=1
-let g:airline_theme="gruvbox"
+" Custom Functions {{{
+"   Toggle Between Test Files {{{
+function GoToTestFile()
+    let test_file = expand('%:r') . '_test.' . expand('%:e')
+    execute "e " . fnameescape(l:test_file)
+endfunc
+function GoFromTestFile()
+    let source_file = substitute(expand('%:r'), '_test$', '.' . expand('%:e'), '')
+    execute "e " . fnameescape(l:source_file)
+endfunc
+function ToggleTestFile()
+    let base = expand('%:r')
+    if base =~ '.*_test'
+        call GoFromTestFile()
+    else
+        call GoToTestFile()
+    end
+endfunc
+
+command T call ToggleTestFile()
+"   }}}
+
+"   Toggle Between Source / Header {{{
+function GoToHeaderFile()
+    let header_file = expand('%:r') . '.h'
+    execute "e " . fnameescape(l:header_file)
+endfunc
+function GoToSourceFile()
+    let source_file = expand('%:r') . '.c'
+    execute "e " . fnameescape(l:source_file)
+endfunc
+
+command H call GoToHeaderFile()
+command C call GoToSourceFile()
+"   }}}
+
+"   Jump to Generated Code {{{
+function JumpToGeneratedCode()
+    let generated_file = 'build/debug/' . expand('%') . '.gen.h'
+    execute "e " . fnameescape(l:generated_file)
+endfunc
+
+command G call JumpToGeneratedCode()
+"   }}}
+" }}}
+
+" Lightline {{{
+let g:lightline = {
+    \   'colorscheme': 'gruvbox',
+    \   'active': {
+    \       'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'absolutepath', 'modified' ] ],
+    \   },
+    \   'inactive': {
+    \       'left': [ [ 'filename', 'modified' ] ],
+    \   }
+    \ }
 " }}}
 
 " NERD Tree {{{
@@ -175,42 +238,11 @@ let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 " }}}
 
-" Asynchronous Linter (ALE) {{{
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-let g:airline#extensions#ale#enabled = 1
-let g:ale_completion_enabled = 1
-let g:ale_linters = {'cpp': ['g++']}
-let g:ale_c_parse_makefile = 1
+" Arg Wrap {{{
+let g:argwrap_padded_braces = '[{'
+let g:argwrap_closing_brace = 0
 
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <C-d> :ALEGoToDefinition
-" }}}
-
-" VimTeX {{{
-let g:vimtex_compiler_method='latexmk'
-let g:vimtex_compiler_latexmk = {
-    \ 'background' : 1,
-    \ 'build_dir' : '',
-    \ 'callback' : 1,
-    \ 'continuous' : 1,
-    \ 'executable' : 'latexmk',
-    \ 'options' : [
-    \   '-pdf',
-    \   '-verbose',
-    \   '-file-line-error',
-    \   '-synctex=1',
-    \   '-interaction=nonstopmode',
-    \ ],
-    \}
-let g:vimtex_matchparen_enabled = 0
-let g:vimtex_complete_enabled = 0
-let g:vimtex_fold_enabled = 0
-
-let g:livedown_browser = "firefox"
-
-set wildignore+=*.aux,*.fdb_latexmk,*.fls,*.gz
+nnoremap <silent> <leader>a :ArgWrap<CR>
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
