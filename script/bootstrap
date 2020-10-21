@@ -135,14 +135,14 @@ install_dotfiles () {
 setup_vim () {
   info 'setting up vim'
 
-  mkdir ~/.vim
-  mkdir ~/.vim/swapfiles
-  mkdir ~/.vim/backups
-  mkdir ~/.vim/undodir
+  mkdir -p ~/.vim/swapfiles
+  mkdir -p ~/.vim/backups
+  mkdir -p ~/.vim/undodir
 
   # Install Vim-Plug
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim \
+    &>/dev/null
 
   vim +PlugInstall +qall
 }
