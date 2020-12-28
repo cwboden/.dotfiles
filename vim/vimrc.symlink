@@ -6,17 +6,18 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " Vim-Plug management for other apps
-Plug 'morhetz/gruvbox'
-Plug 'ryanoasis/vim-devicons'
-Plug 'itchyny/lightline.vim'
-Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'ervandew/supertab'
+Plug 'FooSoft/vim-argwrap'
+Plug 'itchyny/lightline.vim'
+Plug 'jremmen/vim-ripgrep'
+Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rust-lang/rust.vim'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'jremmen/vim-ripgrep'
-Plug 'FooSoft/vim-argwrap'
+Plug 'shinchu/lightline-gruvbox.vim'
 
 " Finish the call, all plugins must be before this
 call plug#end()
