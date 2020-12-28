@@ -246,4 +246,8 @@ let g:argwrap_closing_brace = 0
 nnoremap <silent> <leader>a :ArgWrap<CR>
 " }}}
 
+" Rust Fmt {{{
+let g:rustfmt_autosave = 1
+" }}}
+
 " vim:foldmethod=marker:foldlevel=0
