@@ -17,6 +17,10 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'jremmen/vim-ripgrep'
 Plug 'FooSoft/vim-argwrap'
+Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 " Finish the call, all plugins must be before this
 call plug#end()
@@ -138,8 +142,8 @@ set splitright
 " }}}
 
 " Keybindings {{{
-let mapleader = " "
-let maplocalleader = " "
+let mapleader = "\\"
+let maplocalleader = "\\"
 
 nnoremap j gj
 nnoremap k gk
@@ -220,7 +224,7 @@ let NERDTreeDirArrows = 1
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-map <C-n> : NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle %<CR>
 map <leader>nf : NERDTreeFind<CR>
 " }}}
 
@@ -243,6 +247,15 @@ let g:argwrap_padded_braces = '[{'
 let g:argwrap_closing_brace = 0
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
+" }}}
+
+" Rust Formatter {{{
+let g:rustfmt_autosave_if_config_present = 1
+" }}}
+
+" File-Specific Commands {{{
+" strip 'qinternal' for python gf
+autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
