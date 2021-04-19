@@ -69,6 +69,12 @@ set-window-option -g clock-mode-colour colour109 #blue
 # bell
 set-window-option -g window-status-bell-style bg=colour167,fg=colour235 # bg=red, fg=bg
 
+# Vim-like pane navigation
+bind h select-pane -L
+bind j select-pane -D
+bind k select-pane -U
+bind l select-pane -R
+
 ## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
 set-option -g status-justify "left"
 set-option -g status-left-style none
