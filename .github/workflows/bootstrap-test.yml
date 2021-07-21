@@ -1,0 +1,23 @@
+name: Bootstrap Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+  jobs:
+    build:
+      runs-on: ubuntu-latest
+      steps:
+        # Checks out repository under $GITHUB_WORKSPACE
+        - uses: actions/checkout@v2
+
+        - name: Set up Python
+          run: actions/setup-python@v2
+
+        - name: Bootstrap
+          run: ./build/bootstrap.py
+
+        - name: Run bootstrap tests
+          run: ./build/bootstrap_test.py
