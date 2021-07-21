@@ -6,9 +6,11 @@ filetype plugin indent on
 call plug#begin('~/.vim/plugged')
 
 " Vim-Plug management for other apps
-Plug 'airblade/vim-gitgutter'
-Plug 'ervandew/supertab'
 Plug 'FooSoft/vim-argwrap'
+Plug 'airblade/vim-gitgutter'
+Plug 'dense-analysis/ale'
+Plug 'ervandew/supertab'
+Plug 'fadein/vim-FIGlet'
 Plug 'itchyny/lightline.vim'
 Plug 'jremmen/vim-ripgrep'
 Plug 'morhetz/gruvbox'
@@ -259,6 +261,11 @@ let g:rustfmt_autosave_if_config_present = 1
 " File-Specific Commands {{{
 " strip 'qinternal' for python gf
 autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
+" }}}
+
+
+" ALE {{{
+let g:ale_linters = {'rust': ['analyzer']}
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
