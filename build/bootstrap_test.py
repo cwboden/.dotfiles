@@ -134,14 +134,19 @@ class BootstrapIntegrationTest(unittest.TestCase):
     dependencies are available.
     """
 
+    def setUp(self) -> None:
+        self.home_dir = os.path.expanduser("~")
+
     def test_pre_commit_git_hook_installed(self) -> None:
         subprocess.check_call(["pre-commit", "run", "--all-files"])
 
     def test_vim_folders_are_created(self) -> None:
-        home_dir = os.path.expanduser("~")
-        self.assertTrue(os.path.isdir(f"{home_dir}/.vim/swapfiles"))
-        self.assertTrue(os.path.isdir(f"{home_dir}/.vim/backups"))
-        self.assertTrue(os.path.isdir(f"{home_dir}/.vim/undodir"))
+        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/swapfiles"))
+        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/backups"))
+        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/undodir"))
+
+    def test_vim_plug_installed(self) -> None:
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/autoload/plug.vim"))
 
 
 if __name__ == "__main__":

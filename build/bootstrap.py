@@ -120,6 +120,22 @@ def main() -> None:
     for folder in ["swapfiles", "backups", "undodir"]:
         builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.vim/{folder}"))
 
+    # Install VimPlug
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate(f"{home_dir}/.vim/autoload/plug.vim"),
+            RunShellCommandBuildAction(
+                [
+                    "curl",
+                    "-fLo",
+                    f"{home_dir}/.vim/autoload/plug.vim",
+                    "--create-dirs",
+                    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+                ]
+            ),
+        ),
+    )
+
     builder.build()
 
 
