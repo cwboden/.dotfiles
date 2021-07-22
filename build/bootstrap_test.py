@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import subprocess
 import unittest
 
 from bootstrap import AlwaysTrueBuildPredicate
@@ -118,7 +119,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
     """
 
     def test_pre_commit_git_hook_installed(self) -> None:
-        self.assertTrue(os.path.exists(".git/hooks/pre-commit"))
+        subprocess.check_call(["pre-commit", "run"])
 
 
 if __name__ == "__main__":
