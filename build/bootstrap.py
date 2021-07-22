@@ -47,7 +47,7 @@ class RunShellCommandBuildAction(BuildAction):
         self.command = command
 
     def execute(self) -> None:
-        subprocess.run(self.command)
+        subprocess.check_call(self.command)
 
 
 class BuildUnit:
