@@ -135,6 +135,18 @@ def main() -> None:
             ),
         ),
     )
+    builder.add_unit(
+        BuildUnit(
+            DirectoryExistsBuildPredicate(f"{home_dir}/.vim/plugged"),
+            RunShellCommandBuildAction(
+                [
+                    "vim",
+                    "+PlugInstall",
+                    "+qall",
+                ]
+            ),
+        ),
+    )
 
     builder.build()
 

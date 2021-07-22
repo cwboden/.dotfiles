@@ -147,6 +147,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
 
     def test_vim_plug_installed(self) -> None:
         self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/autoload/plug.vim"))
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/plugged"))
 
 
 if __name__ == "__main__":
