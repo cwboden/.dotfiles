@@ -183,6 +183,24 @@ def install_zsh(builder: Builder) -> None:
         ),
     )
 
+    # Install powerlevel10k theme
+    builder.add_unit(
+        BuildUnit(
+            DirectoryExistsBuildPredicate(
+                f"{home_dir}/.oh-my-zsh/custom/themes/powerlevel10k"
+            ),
+            RunShellCommandBuildAction(
+                [
+                    "git",
+                    "clone",
+                    "--depth=1",
+                    "https://github.com/romkatv/powerlevel10k.git",
+                    f"{home_dir}/.oh-my-zsh/custom/themes/powerlevel10k",
+                ]
+            ),
+        ),
+    )
+
 
 def main() -> None:
     builder = Builder()
