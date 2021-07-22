@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import os
 import sys
 
 from typing import Protocol
@@ -9,6 +10,15 @@ class BuildPredicate(Protocol):
     """Used by a BuildUnit to check if it should build"""
     def check(self) -> bool:
         return False
+
+
+class FileExistsBuildPredicate(BuildPredicate):
+    """Checks whether the given file exists"""
+    def __init__(self, path: str):
+        self.path = path
+
+    def check(self) -> bool:
+        return os.path.exists(self.path)
 
 
 class BuildAction(Protocol):

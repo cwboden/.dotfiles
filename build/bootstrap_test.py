@@ -1,13 +1,29 @@
 #!/usr/bin/python3
 
+import os
 import unittest
 
-from bootstrap import BuildAction, BuildPredicate, BuildUnit
-
+from bootstrap import BuildAction, BuildPredicate, BuildUnit, FileExistsBuildPredicate
 
 class AlwaysTrueBuildPredicate(BuildPredicate):
     def check(self) -> bool:
         return True
+
+
+class FileExistsBuildPredicateTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.path = "./foobar.txt"
+
+    def test_false_if_file_does_not_exist(self) -> None:
+        predicate = FileExistsBuildPredicate(self.path)
+        self.assertFalse(predicate.check())
+
+    def test_true_if_file_exists(self) -> None:
+        predicate = FileExistsBuildPredicate(self.path)
+        open(self.path, "w").close()
+        self.assertTrue(predicate.check())
+        os.remove(self.path)
+
 
 class SpyBuildAction(BuildAction):
     def __init__(self):
