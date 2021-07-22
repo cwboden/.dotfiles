@@ -119,7 +119,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
     """
 
     def test_pre_commit_git_hook_installed(self) -> None:
-        subprocess.check_call(["pre-commit", "run"])
+        subprocess.check_call(["pre-commit", "run", "--all-files"])
 
 
 if __name__ == "__main__":
