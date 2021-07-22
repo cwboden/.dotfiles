@@ -3,6 +3,7 @@ import os
 import unittest
 
 from bootstrap import BuildAction
+from bootstrap import Builder
 from bootstrap import BuildPredicate
 from bootstrap import BuildUnit
 from bootstrap import FileExistsBuildPredicate
@@ -91,6 +92,27 @@ class BuildUnitTest(unittest.TestCase):
         unit.build()
 
         spy_action.assert_called()
+
+
+class BuilderTest(unittest.TestCase):
+    def test_all_build_units_complete(self) -> None:
+        builder = Builder()
+        spy_actions = []
+
+        for _ in range(3):
+            spy_action = SpyBuildAction()
+            spy_actions.append(spy_action)
+            builder.add_unit(
+                BuildUnit(
+                    AlwaysTrueBuildPredicate(),
+                    spy_action,
+                ),
+            )
+
+        builder.build()
+
+        for spy_action in spy_actions:
+            spy_action.assert_called()
 
 
 if __name__ == "__main__":

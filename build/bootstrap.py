@@ -60,6 +60,18 @@ class BuildUnit:
             self.action.execute()
 
 
+class Builder:
+    def __init__(self):
+        self.units = []
+
+    def add_unit(self, unit: BuildUnit) -> None:
+        self.units.append(unit)
+
+    def build(self) -> None:
+        for unit in self.units:
+            unit.build()
+
+
 def main() -> None:
     pass
 
