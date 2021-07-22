@@ -1,13 +1,54 @@
 #!/usr/bin/python3
-
+import os
+import subprocess
 import unittest
 
-from bootstrap import BuildAction, BuildPredicate, BuildUnit
+from bootstrap import AlwaysTrueBuildPredicate
+from bootstrap import BuildAction
+from bootstrap import Builder
+from bootstrap import BuildPredicate
+from bootstrap import BuildUnit
+from bootstrap import FileExistsBuildPredicate
+from bootstrap import MakeDirectoryBuildAction
+from bootstrap import RunShellCommandBuildAction
 
 
-class AlwaysTrueBuildPredicate(BuildPredicate):
-    def check(self) -> bool:
-        return True
+class FileExistsBuildPredicateTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.path = "./foobar.txt"
+
+    def test_false_if_file_does_not_exist(self) -> None:
+        predicate = FileExistsBuildPredicate(self.path)
+        self.assertFalse(predicate.check())
+
+    def test_true_if_file_exists(self) -> None:
+        predicate = FileExistsBuildPredicate(self.path)
+        open(self.path, "w").close()
+        self.assertTrue(predicate.check())
+        os.remove(self.path)
+
+
+class MakeDirectoryBuildActionTest(unittest.TestCase):
+    def test_creates_directory(self) -> None:
+        path = "foobar"
+        action = MakeDirectoryBuildAction(path)
+        action.execute()
+
+        self.assertTrue(os.path.exists(path))
+
+        os.rmdir(path)
+
+
+class RunShellCommandBuildActionTest(unittest.TestCase):
+    def test_shell_command_runs(self) -> None:
+        path = "foobar"
+        action = RunShellCommandBuildAction(["touch", path])
+        action.execute()
+
+        self.assertTrue(os.path.exists(path))
+
+        os.remove(path)
+
 
 class SpyBuildAction(BuildAction):
     def __init__(self):
@@ -48,6 +89,37 @@ class BuildUnitTest(unittest.TestCase):
         unit.build()
 
         spy_action.assert_called()
+
+
+class BuilderTest(unittest.TestCase):
+    def test_all_build_units_complete(self) -> None:
+        builder = Builder()
+        spy_actions = []
+
+        for _ in range(3):
+            spy_action = SpyBuildAction()
+            spy_actions.append(spy_action)
+            builder.add_unit(
+                BuildUnit(
+                    AlwaysTrueBuildPredicate(),
+                    spy_action,
+                ),
+            )
+
+        builder.build()
+
+        for spy_action in spy_actions:
+            spy_action.assert_called()
+
+
+class BootstrapIntegrationTest(unittest.TestCase):
+    """
+    Assumes Bootstrap has been run on the system. Will check to ensure certain
+    dependencies are available.
+    """
+
+    def test_pre_commit_git_hook_installed(self) -> None:
+        subprocess.check_call(["pre-commit", "run", "--all-files"])
 
 
 if __name__ == "__main__":

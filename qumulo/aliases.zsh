@@ -15,4 +15,3 @@ alias tags='build all_tests; build tags cscope'
 alias fetch-all='ssha; hg qpop -a; hg fetch; ./prebuild'
 alias clean-me='qpkg sweep; rm -rf build/tmp/; ./tools/rm_merge_remnants.sh'
 alias hello='fetch-all; clean-me; tags'
-
