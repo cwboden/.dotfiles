@@ -27,4 +27,3 @@ function start_ssh_agent() {
         ssh-add -t 4h
     fi
 }
-
