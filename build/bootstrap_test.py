@@ -8,6 +8,7 @@ from bootstrap import BuildAction
 from bootstrap import Builder
 from bootstrap import BuildPredicate
 from bootstrap import BuildUnit
+from bootstrap import DirectoryExistsBuildPredicate
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
 from bootstrap import RunShellCommandBuildAction
@@ -26,6 +27,21 @@ class FileExistsBuildPredicateTest(unittest.TestCase):
         open(self.path, "w").close()
         self.assertTrue(predicate.check())
         os.remove(self.path)
+
+
+class DirectoryExistsBuildPredicateTest(unittest.TestCase):
+    def setUp(self) -> None:
+        self.path = "foobar/"
+
+    def test_false_if_file_does_not_exist(self) -> None:
+        predicate = DirectoryExistsBuildPredicate(self.path)
+        self.assertFalse(predicate.check())
+
+    def test_true_if_file_exists(self) -> None:
+        predicate = DirectoryExistsBuildPredicate(self.path)
+        os.mkdir(self.path)
+        self.assertTrue(predicate.check())
+        os.rmdir(self.path)
 
 
 class MakeDirectoryBuildActionTest(unittest.TestCase):
@@ -120,6 +136,12 @@ class BootstrapIntegrationTest(unittest.TestCase):
 
     def test_pre_commit_git_hook_installed(self) -> None:
         subprocess.check_call(["pre-commit", "run", "--all-files"])
+
+    def test_vim_folders_are_created(self) -> None:
+        home_dir = os.path.expanduser("~")
+        self.assertTrue(os.path.isdir(f"{home_dir}/.vim/swapfiles"))
+        self.assertTrue(os.path.isdir(f"{home_dir}/.vim/backups"))
+        self.assertTrue(os.path.isdir(f"{home_dir}/.vim/undodir"))
 
 
 if __name__ == "__main__":

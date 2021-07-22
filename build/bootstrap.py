@@ -28,6 +28,16 @@ class FileExistsBuildPredicate(BuildPredicate):
         return os.path.exists(self.path)
 
 
+class DirectoryExistsBuildPredicate(BuildPredicate):
+    """Checks whether the given directory exists"""
+
+    def __init__(self, path: str):
+        self.path = path
+
+    def check(self) -> bool:
+        return os.path.isdir(self.path)
+
+
 class BuildAction(Protocol):
     """Used by a BuildUnit to run some code, create some files, etc. """
 
@@ -65,6 +75,14 @@ class BuildUnit:
             self.action.execute()
 
 
+class MakeDirectoryBuildUnit(BuildUnit):
+    """Creates the given directory if it does not exist"""
+
+    def __init__(self, path: str):
+        self.predicate = DirectoryExistsBuildPredicate(path)
+        self.action = MakeDirectoryBuildAction(path)
+
+
 class Builder:
     def __init__(self):
         self.units = []
@@ -95,6 +113,12 @@ def main() -> None:
             RunShellCommandBuildAction(["pre-commit", "install"]),
         ),
     )
+
+    # Create Vim folders
+    home_dir = os.path.expanduser("~")
+    builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.vim/"))
+    for folder in ["swapfiles", "backups", "undodir"]:
+        builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.vim/{folder}"))
 
     builder.build()
 
