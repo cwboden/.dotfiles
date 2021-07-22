@@ -1,9 +1,13 @@
 #!/usr/bin/python3
-
 import os
 import unittest
 
-from bootstrap import BuildAction, BuildPredicate, BuildUnit, FileExistsBuildPredicate, MakeDirectoryBuildAction
+from bootstrap import BuildAction
+from bootstrap import BuildPredicate
+from bootstrap import BuildUnit
+from bootstrap import FileExistsBuildPredicate
+from bootstrap import MakeDirectoryBuildAction
+
 
 class AlwaysTrueBuildPredicate(BuildPredicate):
     def check(self) -> bool:
