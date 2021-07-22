@@ -115,5 +115,15 @@ class BuilderTest(unittest.TestCase):
             spy_action.assert_called()
 
 
+class BootstrapIntegrationTest(unittest.TestCase):
+    """
+    Assumes Bootstrap has been run on the system. Will check to ensure certain
+    dependencies are available.
+    """
+
+    def test_pre_commit_git_hook_installed(self) -> None:
+        self.assertTrue(os.path.exists(".git/hooks/pre-commit"))
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -73,7 +73,17 @@ class Builder:
 
 
 def main() -> None:
-    pass
+    builder = Builder()
+
+    # Install Git Hook for pre-commit
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate(".git/hooks/pre-commit"),
+            RunShellCommandBuildAction(["pre-commit", "install"]),
+        ),
+    )
+
+    builder.build()
 
 
 if __name__ == "__main__":
