@@ -149,6 +149,10 @@ class BootstrapIntegrationTest(unittest.TestCase):
         self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/autoload/plug.vim"))
         self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/plugged"))
 
+    def test_zsh_installed(self) -> None:
+        self.assertTrue(os.path.exists("/tmp/zsh_installer.sh"))
+        self.assertTrue(os.path.isdir(f"{self.home_dir}/.oh-my-zsh"))
+
 
 if __name__ == "__main__":
     unittest.main()

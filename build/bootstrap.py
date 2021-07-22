@@ -149,11 +149,47 @@ def install_vim(builder: Builder) -> None:
     )
 
 
+def install_zsh(builder: Builder) -> None:
+    zsh_installer_path = "/tmp/zsh_installer.sh"
+
+    # Download installer
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate(zsh_installer_path),
+            RunShellCommandBuildAction(
+                [
+                    "wget",
+                    "-O",
+                    zsh_installer_path,
+                    "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
+                ]
+            ),
+        ),
+    )
+
+    # Run installer
+    home_dir = os.path.expanduser("~")
+    builder.add_unit(
+        BuildUnit(
+            DirectoryExistsBuildPredicate(f"{home_dir}/.oh-my-zsh"),
+            RunShellCommandBuildAction(
+                [
+                    "sh",
+                    zsh_installer_path,
+                    "--unattended",
+                    "--keep-zshrc",
+                ]
+            ),
+        ),
+    )
+
+
 def main() -> None:
     builder = Builder()
 
     install_common_dependencies(builder)
     install_vim(builder)
+    install_zsh(builder)
 
     builder.build()
 
