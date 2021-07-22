@@ -113,11 +113,7 @@ def install_common_dependencies(builder: Builder) -> None:
     )
 
 
-def main() -> None:
-    builder = Builder()
-
-    install_common_dependencies(builder)
-
+def install_vim(builder: Builder) -> None:
     # Create Vim folders
     home_dir = os.path.expanduser("~")
     builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.vim/"))
@@ -151,6 +147,13 @@ def main() -> None:
             ),
         ),
     )
+
+
+def main() -> None:
+    builder = Builder()
+
+    install_common_dependencies(builder)
+    install_vim(builder)
 
     builder.build()
 
