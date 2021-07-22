@@ -7,6 +7,7 @@ from bootstrap import BuildPredicate
 from bootstrap import BuildUnit
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
+from bootstrap import RunShellCommandBuildAction
 
 
 class AlwaysTrueBuildPredicate(BuildPredicate):
@@ -38,6 +39,17 @@ class MakeDirectoryBuildActionTest(unittest.TestCase):
         self.assertTrue(os.path.exists(path))
 
         os.rmdir(path)
+
+
+class RunShellCommandBuildActionTest(unittest.TestCase):
+    def test_shell_command_runs(self) -> None:
+        path = "foobar"
+        action = RunShellCommandBuildAction(["touch", path])
+        action.execute()
+
+        self.assertTrue(os.path.exists(path))
+
+        os.remove(path)
 
 
 class SpyBuildAction(BuildAction):

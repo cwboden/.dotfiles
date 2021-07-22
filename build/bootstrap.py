@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 import os
+import subprocess
 import sys
+from typing import List
 from typing import Protocol
 
 
@@ -36,6 +38,16 @@ class MakeDirectoryBuildAction(BuildAction):
 
     def execute(self) -> None:
         os.mkdir(self.path)
+
+
+class RunShellCommandBuildAction(BuildAction):
+    """Runs a command in the console"""
+
+    def __init__(self, command: List[str]):
+        self.command = command
+
+    def execute(self) -> None:
+        subprocess.run(self.command)
 
 
 class BuildUnit:
