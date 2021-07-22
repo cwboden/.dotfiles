@@ -2,6 +2,7 @@
 import os
 import unittest
 
+from bootstrap import AlwaysTrueBuildPredicate
 from bootstrap import BuildAction
 from bootstrap import Builder
 from bootstrap import BuildPredicate
@@ -9,11 +10,6 @@ from bootstrap import BuildUnit
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
 from bootstrap import RunShellCommandBuildAction
-
-
-class AlwaysTrueBuildPredicate(BuildPredicate):
-    def check(self) -> bool:
-        return True
 
 
 class FileExistsBuildPredicateTest(unittest.TestCase):

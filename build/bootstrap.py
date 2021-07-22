@@ -13,6 +13,11 @@ class BuildPredicate(Protocol):
         return False
 
 
+class AlwaysTrueBuildPredicate(BuildPredicate):
+    def check(self) -> bool:
+        return True
+
+
 class FileExistsBuildPredicate(BuildPredicate):
     """Checks whether the given file exists"""
 
@@ -74,6 +79,14 @@ class Builder:
 
 def main() -> None:
     builder = Builder()
+
+    # Install Python dependencies
+    builder.add_unit(
+        BuildUnit(
+            AlwaysTrueBuildPredicate(),
+            RunShellCommandBuildAction(["pip", "install", "pre-commit"]),
+        ),
+    )
 
     # Install Git Hook for pre-commit
     builder.add_unit(
