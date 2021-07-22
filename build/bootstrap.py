@@ -95,9 +95,7 @@ class Builder:
             unit.build()
 
 
-def main() -> None:
-    builder = Builder()
-
+def install_common_dependencies(builder: Builder) -> None:
     # Install Python dependencies
     builder.add_unit(
         BuildUnit(
@@ -113,6 +111,12 @@ def main() -> None:
             RunShellCommandBuildAction(["pre-commit", "install"]),
         ),
     )
+
+
+def main() -> None:
+    builder = Builder()
+
+    install_common_dependencies(builder)
 
     # Create Vim folders
     home_dir = os.path.expanduser("~")
