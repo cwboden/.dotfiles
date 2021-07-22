@@ -3,7 +3,7 @@
 import os
 import unittest
 
-from bootstrap import BuildAction, BuildPredicate, BuildUnit, FileExistsBuildPredicate
+from bootstrap import BuildAction, BuildPredicate, BuildUnit, FileExistsBuildPredicate, MakeDirectoryBuildAction
 
 class AlwaysTrueBuildPredicate(BuildPredicate):
     def check(self) -> bool:
@@ -23,6 +23,17 @@ class FileExistsBuildPredicateTest(unittest.TestCase):
         open(self.path, "w").close()
         self.assertTrue(predicate.check())
         os.remove(self.path)
+
+
+class MakeDirectoryBuildActionTest(unittest.TestCase):
+    def test_creates_directory(self) -> None:
+        path = "foobar"
+        action = MakeDirectoryBuildAction(path)
+        action.execute()
+
+        self.assertTrue(os.path.exists(path))
+
+        os.rmdir(path)
 
 
 class SpyBuildAction(BuildAction):

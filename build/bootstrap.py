@@ -27,6 +27,15 @@ class BuildAction(Protocol):
         return
 
 
+class MakeDirectoryBuildAction(BuildAction):
+    """Creates a directory with the given path"""
+    def __init__(self, path: str):
+        self.path = path
+
+    def execute(self) -> None:
+        os.mkdir(self.path)
+
+
 class BuildUnit:
     def __init__(self, predicate: BuildPredicate, action: BuildAction):
         self.predicate = predicate
