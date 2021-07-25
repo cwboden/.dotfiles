@@ -202,6 +202,21 @@ def install_zsh(builder: Builder) -> None:
     )
 
 
+def crawl_for_symlink_sources(start_directory: str) -> List[str]:
+    """
+    Crawls through the start directory and all subdirectories for files that
+    end with `.symlink`
+    """
+
+    sources = list()
+    for root, dirs, files in os.walk(start_directory):
+        for name in files:
+            if name.endswith(".symlink"):
+                sources.append(os.path.join(root, name))
+
+    return sources
+
+
 def main() -> None:
     builder = Builder()
 

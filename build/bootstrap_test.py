@@ -1,13 +1,16 @@
 #!/usr/bin/python3
 import os
+import shutil
 import subprocess
 import unittest
+from pathlib import Path
 
 from bootstrap import AlwaysTrueBuildPredicate
 from bootstrap import BuildAction
 from bootstrap import Builder
 from bootstrap import BuildPredicate
 from bootstrap import BuildUnit
+from bootstrap import crawl_for_symlink_sources
 from bootstrap import DirectoryExistsBuildPredicate
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
@@ -126,6 +129,28 @@ class BuilderTest(unittest.TestCase):
 
         for spy_action in spy_actions:
             spy_action.assert_called()
+
+
+class SymlinkDotFilesTest(unittest.TestCase):
+    def test_crawl_for_symlink_sources(self) -> None:
+        os.mkdir("foo")
+        Path("foo/bar.symlink").touch()
+        Path("foo/baz.txt").touch()
+        Path("foo/bat.wav").touch()
+
+        os.mkdir("foo/fah")
+        Path("foo/fah/bir.symlink").touch()
+
+        actual_sources = crawl_for_symlink_sources("foo")
+        self.assertEqual(
+            [
+                "foo/bar.symlink",
+                "foo/fah/bir.symlink",
+            ],
+            actual_sources,
+        )
+
+        shutil.rmtree("foo")
 
 
 class BootstrapIntegrationTest(unittest.TestCase):
