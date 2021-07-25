@@ -123,6 +123,15 @@ def install_common_dependencies(builder: Builder) -> None:
         ),
     )
 
+    # Install zsh
+    # XXX: assumes Debian based distro
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate("/usr/bin/zsh"),
+            RunShellCommandBuildAction(["apt", "install", "zsh"]),
+        )
+    )
+
 
 def install_vim(builder: Builder) -> None:
     # Create Vim folders
