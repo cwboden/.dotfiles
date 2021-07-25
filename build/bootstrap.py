@@ -152,8 +152,8 @@ def install_vim(builder: Builder) -> None:
             RunShellCommandBuildAction(
                 [
                     "vim",
-                    "-c",
-                    "PlugInstall",
+                    "+PlugInstall",
+                    "+qa",
                 ]
             ),
         ),
@@ -266,11 +266,12 @@ def main() -> None:
     builder = Builder()
 
     install_common_dependencies(builder)
-    install_vim(builder)
     install_zsh(builder)
 
     home_dir = os.path.expanduser("~")
     create_symlinks(builder, "./", home_dir)
+
+    install_vim(builder)
 
     builder.build()
 
