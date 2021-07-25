@@ -15,6 +15,7 @@ from bootstrap import DirectoryExistsBuildPredicate
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
 from bootstrap import RunShellCommandBuildAction
+from bootstrap import translate_symlink_to_destination
 
 
 class FileExistsBuildPredicateTest(unittest.TestCase):
@@ -151,6 +152,13 @@ class SymlinkDotFilesTest(unittest.TestCase):
         )
 
         shutil.rmtree("foo")
+
+    def test_translate_symlink_to_destination(self) -> None:
+        home_dir = os.path.expanduser("~")
+        self.assertEqual(
+            translate_symlink_to_destination("/home/user/file.symlink"),
+            f"{home_dir}/.file",
+        )
 
 
 class BootstrapIntegrationTest(unittest.TestCase):

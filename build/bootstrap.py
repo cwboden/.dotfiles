@@ -217,6 +217,21 @@ def crawl_for_symlink_sources(start_directory: str) -> List[str]:
     return sources
 
 
+def translate_symlink_to_destination(symlink: str) -> str:
+    """
+    Finds the translation from a *.symlink file to where its symlink should
+    live in the home directory. This follows a straightforward pattern:
+      1. The `.symlink` suffix will be removed
+      2. It will start with a `.`
+      3. It will live under ~/
+    """
+
+    file_name = symlink.split("/")[-1].replace(".symlink", "")
+    home_dir = os.path.expanduser("~")
+
+    return f"{home_dir}/.{file_name}"
+
+
 def main() -> None:
     builder = Builder()
 
