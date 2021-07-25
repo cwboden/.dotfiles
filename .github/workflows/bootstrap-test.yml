@@ -18,6 +18,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install Zsh
+        run: sudo apt-get install zsh
+
       - name: Bootstrap
         run: ./build/bootstrap.py
 
