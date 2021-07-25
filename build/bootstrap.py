@@ -257,7 +257,7 @@ def create_symlinks(builder: Builder, source_dir: str, dest_dir: str) -> None:
         builder.add_unit(
             BuildUnit(
                 FileExistsBuildPredicate(destination),
-                MakeSymlinkBuildAction(source, destination),
+                MakeSymlinkBuildAction(os.path.abspath(source), destination),
             ),
         )
 
