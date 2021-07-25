@@ -208,6 +208,13 @@ class BootstrapIntegrationTest(unittest.TestCase):
             os.path.isdir(f"{self.home_dir}/.oh-my-zsh/custom/themes/powerlevel10k")
         )
 
+    def test_symlinks_created(self) -> None:
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.hgrc"))
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.vimrc"))
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.zshrc"))
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.gitconfig"))
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.tmux.conf"))
+
 
 if __name__ == "__main__":
     unittest.main()
