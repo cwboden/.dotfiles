@@ -160,7 +160,7 @@ def install_vim(builder: Builder) -> None:
     )
 
 
-def install_zsh(builder: Builder) -> None:
+def install_zsh(builder: Builder, home_dir: str) -> None:
     zsh_installer_path = "/tmp/zsh_installer.sh"
 
     # Download installer
@@ -179,7 +179,6 @@ def install_zsh(builder: Builder) -> None:
     )
 
     # Run installer
-    home_dir = os.path.expanduser("~")
     builder.add_unit(
         BuildUnit(
             DirectoryExistsBuildPredicate(f"{home_dir}/.oh-my-zsh"),
@@ -266,9 +265,9 @@ def main() -> None:
     builder = Builder()
 
     install_common_dependencies(builder)
-    install_zsh(builder)
 
     home_dir = os.path.expanduser("~")
+    install_zsh(builder, home_dir)
     create_symlinks(builder, "./", home_dir)
 
     install_vim(builder)
