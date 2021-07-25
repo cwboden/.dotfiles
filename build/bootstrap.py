@@ -152,8 +152,8 @@ def install_vim(builder: Builder) -> None:
             RunShellCommandBuildAction(
                 [
                     "vim",
-                    "+PlugInstall",
-                    "+qall",
+                    "-c",
+                    "PlugInstall",
                 ]
             ),
         ),
