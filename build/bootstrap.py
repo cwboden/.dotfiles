@@ -13,9 +13,9 @@ class BuildPredicate(Protocol):
         return False
 
 
-class AlwaysTrueBuildPredicate(BuildPredicate):
+class AlwaysRunBuildPredicate(BuildPredicate):
     def check(self) -> bool:
-        return True
+        return False
 
 
 class FileExistsBuildPredicate(BuildPredicate):
@@ -65,13 +65,24 @@ class RunShellCommandBuildAction(BuildAction):
         subprocess.check_call(self.command)
 
 
+class MakeSymlinkBuildAction(BuildAction):
+    """Creates a link from source to destination"""
+
+    def __init__(self, source_path: str, dest_path: str):
+        self.source_path = source_path
+        self.dest_path = dest_path
+
+    def execute(self) -> None:
+        os.symlink(self.source_path, self.dest_path)
+
+
 class BuildUnit:
     def __init__(self, predicate: BuildPredicate, action: BuildAction):
         self.predicate = predicate
         self.action = action
 
     def build(self) -> None:
-        if self.predicate.check():
+        if not self.predicate.check():
             self.action.execute()
 
 
@@ -99,7 +110,7 @@ def install_common_dependencies(builder: Builder) -> None:
     # Install Python dependencies
     builder.add_unit(
         BuildUnit(
-            AlwaysTrueBuildPredicate(),
+            AlwaysRunBuildPredicate(),
             RunShellCommandBuildAction(["pip", "install", "pre-commit"]),
         ),
     )
@@ -231,7 +242,7 @@ def translate_symlink_to_destination(symlink: str, destination: str) -> str:
     return f"{destination}/.{file_name}"
 
 
-def create_symlinks(source_dir: str, dest_dir: str) -> None:
+def create_symlinks(builder: Builder, source_dir: str, dest_dir: str) -> None:
     """
     Crawl through the source_dir for any files that end in ".symlink" and
     create symlinks to them in the dest_dir
@@ -243,7 +254,12 @@ def create_symlinks(source_dir: str, dest_dir: str) -> None:
     ]
 
     for source, destination in zip(sources, destinations):
-        os.symlink(source, destination)
+        builder.add_unit(
+            BuildUnit(
+                FileExistsBuildPredicate(destination),
+                MakeSymlinkBuildAction(source, destination),
+            ),
+        )
 
 
 def main() -> None:
@@ -252,6 +268,9 @@ def main() -> None:
     install_common_dependencies(builder)
     install_vim(builder)
     install_zsh(builder)
+
+    home_dir = os.path.expanduser("~")
+    create_symlinks(builder, "./", home_dir)
 
     builder.build()
 

@@ -5,7 +5,7 @@ import subprocess
 import unittest
 from pathlib import Path
 
-from bootstrap import AlwaysTrueBuildPredicate
+from bootstrap import AlwaysRunBuildPredicate
 from bootstrap import BuildAction
 from bootstrap import Builder
 from bootstrap import BuildPredicate
@@ -105,7 +105,7 @@ class SpyBuildActionTest(unittest.TestCase):
 class BuildUnitTest(unittest.TestCase):
     def test_action_triggers_if_conditional_is_true(self) -> None:
         spy_action = SpyBuildAction()
-        unit = BuildUnit(AlwaysTrueBuildPredicate(), spy_action)
+        unit = BuildUnit(AlwaysRunBuildPredicate(), spy_action)
 
         unit.build()
 
@@ -122,7 +122,7 @@ class BuilderTest(unittest.TestCase):
             spy_actions.append(spy_action)
             builder.add_unit(
                 BuildUnit(
-                    AlwaysTrueBuildPredicate(),
+                    AlwaysRunBuildPredicate(),
                     spy_action,
                 ),
             )
@@ -170,7 +170,9 @@ class SymlinkDotFilesTest(unittest.TestCase):
         dest_dir = "test_home"
         os.mkdir(dest_dir)
 
-        create_symlinks("fiz", dest_dir)
+        builder = Builder()
+        create_symlinks(builder, "fiz", dest_dir)
+        builder.build()
 
         for root, dirs, files in os.walk(dest_dir):
             self.assertIn(".bar", files)
