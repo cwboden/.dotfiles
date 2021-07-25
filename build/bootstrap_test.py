@@ -11,6 +11,7 @@ from bootstrap import Builder
 from bootstrap import BuildPredicate
 from bootstrap import BuildUnit
 from bootstrap import crawl_for_symlink_sources
+from bootstrap import create_symlinks
 from bootstrap import DirectoryExistsBuildPredicate
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
@@ -154,11 +155,29 @@ class SymlinkDotFilesTest(unittest.TestCase):
         shutil.rmtree("foo")
 
     def test_translate_symlink_to_destination(self) -> None:
-        home_dir = os.path.expanduser("~")
+        dest_dir = "/root"
         self.assertEqual(
-            translate_symlink_to_destination("/home/user/file.symlink"),
-            f"{home_dir}/.file",
+            translate_symlink_to_destination("/home/user/file.symlink", dest_dir),
+            f"{dest_dir}/.file",
         )
+
+    def test_create_symlinks(self) -> None:
+        os.mkdir("fiz")
+        Path("fiz/bar.symlink").touch()
+        os.mkdir("fiz/fah")
+        Path("fiz/fah/bir.symlink").touch()
+
+        dest_dir = "test_home"
+        os.mkdir(dest_dir)
+
+        create_symlinks("fiz", dest_dir)
+
+        for root, dirs, files in os.walk(dest_dir):
+            self.assertIn(".bar", files)
+            self.assertIn(".bir", files)
+
+        shutil.rmtree("fiz")
+        shutil.rmtree(dest_dir)
 
 
 class BootstrapIntegrationTest(unittest.TestCase):

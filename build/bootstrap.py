@@ -208,28 +208,42 @@ def crawl_for_symlink_sources(start_directory: str) -> List[str]:
     end with `.symlink`
     """
 
-    sources = list()
+    sources = set()
     for root, dirs, files in os.walk(start_directory):
         for name in files:
             if name.endswith(".symlink"):
-                sources.append(os.path.join(root, name))
+                sources.add(os.path.join(root, name))
 
-    return sources
+    sorted_order = list(sources)
+    sorted_order.sort()
+    return sorted_order
 
 
-def translate_symlink_to_destination(symlink: str) -> str:
+def translate_symlink_to_destination(symlink: str, destination: str) -> str:
     """
     Finds the translation from a *.symlink file to where its symlink should
     live in the home directory. This follows a straightforward pattern:
       1. The `.symlink` suffix will be removed
       2. It will start with a `.`
-      3. It will live under ~/
     """
 
     file_name = symlink.split("/")[-1].replace(".symlink", "")
-    home_dir = os.path.expanduser("~")
+    return f"{destination}/.{file_name}"
 
-    return f"{home_dir}/.{file_name}"
+
+def create_symlinks(source_dir: str, dest_dir: str) -> None:
+    """
+    Crawl through the source_dir for any files that end in ".symlink" and
+    create symlinks to them in the dest_dir
+    """
+
+    sources = crawl_for_symlink_sources(source_dir)
+    destinations = [
+        translate_symlink_to_destination(source, dest_dir) for source in sources
+    ]
+
+    for source, destination in zip(sources, destinations):
+        os.symlink(source, destination)
 
 
 def main() -> None:
