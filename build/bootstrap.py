@@ -5,6 +5,8 @@ import sys
 from typing import List
 from typing import Protocol
 
+import pkg_resources
+
 
 class BuildPredicate(Protocol):
     """Used by a BuildUnit to check if it should build"""
@@ -36,6 +38,17 @@ class DirectoryExistsBuildPredicate(BuildPredicate):
 
     def check(self) -> bool:
         return os.path.isdir(self.path)
+
+
+class PythonModuleInstalledBuildPredicate(BuildPredicate):
+    """Checks whether a provided Python module is installed"""
+
+    def __init__(self, module: str):
+        self.module = module
+
+    def check(self) -> bool:
+        installed_packages = [pkg.key for pkg in pkg_resources.working_set]
+        return self.module in installed_packages
 
 
 class BuildAction(Protocol):

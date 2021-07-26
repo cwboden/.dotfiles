@@ -15,6 +15,7 @@ from bootstrap import create_symlinks
 from bootstrap import DirectoryExistsBuildPredicate
 from bootstrap import FileExistsBuildPredicate
 from bootstrap import MakeDirectoryBuildAction
+from bootstrap import PythonModuleInstalledBuildPredicate
 from bootstrap import RunShellCommandBuildAction
 from bootstrap import translate_symlink_to_destination
 
@@ -47,6 +48,16 @@ class DirectoryExistsBuildPredicateTest(unittest.TestCase):
         os.mkdir(self.path)
         self.assertTrue(predicate.check())
         os.rmdir(self.path)
+
+
+class PythonModuleInstalledBuildPredicateTest(unittest.TestCase):
+    def test_false_if_module_not_installed(self) -> None:
+        predicate = PythonModuleInstalledBuildPredicate("foobar")
+        self.assertFalse(predicate.check())
+
+    def test_true_if_module_installed(self) -> None:
+        predicate = PythonModuleInstalledBuildPredicate("pre-commit")
+        self.assertTrue(predicate.check())
 
 
 class MakeDirectoryBuildActionTest(unittest.TestCase):
