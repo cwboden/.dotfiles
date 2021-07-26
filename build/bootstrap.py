@@ -123,7 +123,7 @@ def install_common_dependencies(builder: Builder) -> None:
     # Install Python dependencies
     builder.add_unit(
         BuildUnit(
-            AlwaysRunBuildPredicate(),
+            PythonModuleInstalledBuildPredicate("pre-commit"),
             RunShellCommandBuildAction(["pip", "install", "pre-commit"]),
         ),
     )
