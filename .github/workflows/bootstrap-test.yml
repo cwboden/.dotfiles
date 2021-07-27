@@ -24,5 +24,8 @@ jobs:
       - name: Bootstrap
         run: ./build/bootstrap.py
 
+      - name: Source new dotfiles
+        run: source ~/.profile ~/.bashrc
+
       - name: Run bootstrap tests
         run: ./build/bootstrap_test.py
