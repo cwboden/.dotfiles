@@ -129,7 +129,12 @@ class Builder:
 
 def install_common_dependencies(builder: Builder) -> None:
     # Install Python dependencies
-    for module in ["pre-commit", "mypy", "types-setuptools"]:
+    for module in [
+        "mypy",
+        "pkg-resources",
+        "pre-commit",
+        "types-setuptools",
+    ]:
         builder.add_unit(InstallPythonModuleBuildUnit(module))
 
     # Have mypy install type stubs for any external libraries
