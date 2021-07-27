@@ -26,5 +26,7 @@ jobs:
 
       - name: Run bootstrap tests
         run: |
+          # Ensure this repo is on the $PYTHONPATH, which Python uses to
+          # determine where modules live
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
           ./build/bootstrap_test.py
