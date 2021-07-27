@@ -18,8 +18,15 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install Zsh
+        run: sudo apt-get install zsh
+
       - name: Bootstrap
         run: ./build/bootstrap.py
 
       - name: Run bootstrap tests
-        run: ./build/bootstrap_test.py
+        run: |
+          # Ensure this repo is on the $PYTHONPATH, which Python uses to
+          # determine where modules live
+          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
+          ./build/bootstrap_test.py

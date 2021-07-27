@@ -1,0 +1,2 @@
+# Add project directory to PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:$HOME/.dotfiles
