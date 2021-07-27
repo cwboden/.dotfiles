@@ -96,7 +96,14 @@ syntax on
 syntax enable
 
 set background=dark
-colorscheme gruvbox
+
+
+" Avoids freezing the terminal when plugins are not yet installed
+try
+    colorscheme gruvbox
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme elflord
+endtry
 
 set colorcolumn=80
 
