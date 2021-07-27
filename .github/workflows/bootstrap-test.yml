@@ -27,5 +27,13 @@ jobs:
       - name: Source new dotfiles
         run: source ~/.profile ~/.bashrc
 
+      - name: XXX Test to see what the PYTHONPATH is
+        run: |
+          export PYTHONPATH="foobar"
+          echo $PYTHONPATH
+
       - name: Run bootstrap tests
-        run: ./build/bootstrap_test.py
+        run: |
+          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
+          echo $PYTHONPATH
+          ./build/bootstrap_test.py
