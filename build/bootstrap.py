@@ -132,6 +132,14 @@ def install_common_dependencies(builder: Builder) -> None:
     for module in ["pre-commit", "types-setuptools"]:
         builder.add_unit(InstallPythonModuleBuildUnit(module))
 
+    # Have mypy install type stubs for any external libraries
+    builder.add_unit(
+        BuildUnit(
+            AlwaysRunBuildPredicate(),
+            RunShellCommandBuildAction(["python", "-m", "mypy", "--install-types"]),
+        ),
+    )
+
     # Install Git Hook for pre-commit
     builder.add_unit(
         BuildUnit(
