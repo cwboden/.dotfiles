@@ -24,9 +24,6 @@ jobs:
       - name: Bootstrap
         run: ./build/bootstrap.py
 
-      - name: Source new dotfiles
-        run: source ~/.profile ~/.bashrc
-
       - name: Run bootstrap tests
         run: |
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
