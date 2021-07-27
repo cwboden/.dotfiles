@@ -7,24 +7,21 @@ call plug#begin('~/.vim/plugged')
 
 " Vim-Plug management for other apps
 Plug 'FooSoft/vim-argwrap'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'ervandew/supertab'
 Plug 'fadein/vim-FIGlet'
 Plug 'itchyny/lightline.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'leafgarland/typescript-vim'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
-Plug 'jremmen/vim-ripgrep'
-Plug 'FooSoft/vim-argwrap'
-Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'shinchu/lightline-gruvbox.vim'
 
 " Finish the call, all plugins must be before this
@@ -266,13 +263,25 @@ let g:rustfmt_autosave_if_config_present = 1
 " }}}
 
 " File-Specific Commands {{{
+" Python
+
 " strip 'qinternal' for python gf
 autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
-" }}}
 
+autocmd FileType python setlocal colorcolumn=88
+
+" Rust (rustfmt defaults)
+
+autocmd FileType rust setlocal colorcolumn=100
+" }}}
 
 " ALE {{{
 let g:ale_linters = {'rust': ['analyzer']}
+" }}}
+
+" File-specific changes {{{
+" Python (Black's specifications)
+
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
