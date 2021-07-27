@@ -5,8 +5,6 @@ import sys
 from typing import List
 from typing import Protocol
 
-import pkg_resources
-
 
 class BuildPredicate(Protocol):
     """Used by a BuildUnit to check if it should build"""
@@ -47,7 +45,7 @@ class PythonModuleInstalledBuildPredicate(BuildPredicate):
         self.module = module
 
     def check(self) -> bool:
-        installed_packages = [pkg.key for pkg in pkg_resources.working_set]
+        installed_packages = subprocess.check_output(["pip", "list"]).decode("utf-8")
         return self.module in installed_packages
 
 
@@ -131,7 +129,6 @@ def install_common_dependencies(builder: Builder) -> None:
     # Install Python dependencies
     for module in [
         "mypy",
-        "pkg-resources",
         "pre-commit",
         "types-setuptools",
     ]:
