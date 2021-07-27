@@ -20,9 +20,11 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'peitalin/vim-jsx-typescript'
 Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Finish the call, all plugins must be before this
 call plug#end()
@@ -208,7 +210,7 @@ function JumpToGeneratedCode()
     execute "e " . fnameescape(l:generated_file)
 endfunc
 
-command G call JumpToGeneratedCode()
+command Gen call JumpToGeneratedCode()
 "   }}}
 " }}}
 
@@ -233,8 +235,12 @@ let NERDTreeDirArrows = 1
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
 map <C-n> :NERDTreeToggle %<CR>
-map <leader>nf : NERDTreeFind<CR>
+map <C-f> :NERDTreeFind<CR>
 " }}}
 
 " NERD Commenter {{{
@@ -277,11 +283,6 @@ autocmd FileType rust setlocal colorcolumn=100
 
 " ALE {{{
 let g:ale_linters = {'rust': ['analyzer']}
-" }}}
-
-" File-specific changes {{{
-" Python (Black's specifications)
-
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
