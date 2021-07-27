@@ -136,7 +136,9 @@ def install_common_dependencies(builder: Builder) -> None:
     builder.add_unit(
         BuildUnit(
             AlwaysRunBuildPredicate(),
-            RunShellCommandBuildAction(["python", "-m", "mypy", "--install-types"]),
+            RunShellCommandBuildAction(
+                ["python", "-m", "mypy", "--install-types", "./"]
+            ),
         ),
     )
 
