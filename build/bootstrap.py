@@ -107,6 +107,14 @@ class MakeDirectoryBuildUnit(BuildUnit):
         self.action = MakeDirectoryBuildAction(path)
 
 
+class InstallPythonModuleBuildUnit(BuildUnit):
+    """Installs a Python module if it isn't yet installed"""
+
+    def __init__(self, module: str):
+        self.predicate = PythonModuleInstalledBuildPredicate(module)
+        self.action = RunShellCommandBuildAction(["pip", "install", module])
+
+
 class Builder:
     def __init__(self):
         self.units = []
@@ -121,12 +129,8 @@ class Builder:
 
 def install_common_dependencies(builder: Builder) -> None:
     # Install Python dependencies
-    builder.add_unit(
-        BuildUnit(
-            PythonModuleInstalledBuildPredicate("pre-commit"),
-            RunShellCommandBuildAction(["pip", "install", "pre-commit"]),
-        ),
-    )
+    for module in ["pre-commit", "types-setuptools"]:
+        builder.add_unit(InstallPythonModuleBuildUnit(module))
 
     # Install Git Hook for pre-commit
     builder.add_unit(
