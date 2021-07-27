@@ -12,4 +12,3 @@ fi
 if [ -d "/opt/qumulo/toolchain/bin" ] ; then
     PATH="/opt/qumulo/toolchain/bin:$PATH"
 fi
-

@@ -1,4 +1,4 @@
-[ui] 
+[ui]
 username = Carson Boden <cboden@qumulo.com>
 # For your own ignore patterns.
 # ignore = ~/.hgignore #uncomment to define your own hgignore file
@@ -57,18 +57,18 @@ changeset = {desc}\n\n
 # own hg_qumulo extension
 [qumulo]
 # Uncomment to enable three-way-merge behavior during `qpush -m`.
-# This version uses kdiff3, but feel free to substitute a 
-# command that works with your favorite merge tool or editor. 
+# This version uses kdiff3, but feel free to substitute a
+# command that works with your favorite merge tool or editor.
 #three-way-merge.cmd = kdiff3 $base $local $other -o $output
 
-# Configure three-way-merge's premerge behavior. Compare to the 
+# Configure three-way-merge's premerge behavior. Compare to the
 # [merge-tools] section's my-merge-tool.premerge parameter.
 # 'keep' instructs merge to include hunks that gnu-patch rejects
-# in the $output file with seperators. This mode is useful for 
-# VIM-based (and other) workflows that do not include a built-in 
+# in the $output file with seperators. This mode is useful for
+# VIM-based (and other) workflows that do not include a built-in
 # merge engine.
 # 'true' instructs merge to only invoke a merge tool if gnu-patch
-# cannot merge successfully. 
+# cannot merge successfully.
 #three-way-merge.premerge = true
 
 # Uncomment to set the amount of context to use in the {diff()}
