@@ -2,7 +2,7 @@
 import os
 import unittest
 
-from temporary_filesystem import TemporaryFilesystem
+from util.temporary_filesystem import TemporaryFilesystem
 
 
 class TemporaryFilesystemTest(unittest.TestCase):

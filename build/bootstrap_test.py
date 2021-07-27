@@ -5,19 +5,19 @@ import subprocess
 import unittest
 from pathlib import Path
 
-from bootstrap import AlwaysRunBuildPredicate
-from bootstrap import BuildAction
-from bootstrap import Builder
-from bootstrap import BuildPredicate
-from bootstrap import BuildUnit
-from bootstrap import crawl_for_symlink_sources
-from bootstrap import create_symlinks
-from bootstrap import DirectoryExistsBuildPredicate
-from bootstrap import FileExistsBuildPredicate
-from bootstrap import MakeDirectoryBuildAction
-from bootstrap import PythonModuleInstalledBuildPredicate
-from bootstrap import RunShellCommandBuildAction
-from bootstrap import translate_symlink_to_destination
+from build.bootstrap import AlwaysRunBuildPredicate
+from build.bootstrap import BuildAction
+from build.bootstrap import Builder
+from build.bootstrap import BuildPredicate
+from build.bootstrap import BuildUnit
+from build.bootstrap import crawl_for_symlink_sources
+from build.bootstrap import create_symlinks
+from build.bootstrap import DirectoryExistsBuildPredicate
+from build.bootstrap import FileExistsBuildPredicate
+from build.bootstrap import MakeDirectoryBuildAction
+from build.bootstrap import PythonModuleInstalledBuildPredicate
+from build.bootstrap import RunShellCommandBuildAction
+from build.bootstrap import translate_symlink_to_destination
 
 
 class FileExistsBuildPredicateTest(unittest.TestCase):
