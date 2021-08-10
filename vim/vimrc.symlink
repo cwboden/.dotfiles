@@ -22,6 +22,13 @@ Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
+Plug 'jremmen/vim-ripgrep'
+Plug 'FooSoft/vim-argwrap'
+Plug 'rust-lang/rust.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'mtdl9/vim-log-highlighting'
 Plug 'shinchu/lightline-gruvbox.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -72,6 +79,16 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu | set rnu | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave * if &nu | set nornu | endif
 augroup END
+
+" Trigger `autoread` when files changes on disk
+" Relies on vim-tmux-focus-events if using vim inside tmux.
+" https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
+" https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
+autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif
+" Notification after file change
+" https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
+autocmd FileChangedShellPost *
+  \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 " }}}
 
 " Swap Files and Backups {{{
@@ -158,12 +175,14 @@ let maplocalleader = "\\"
 
 nnoremap j gj
 nnoremap k gk
+nnoremap ; :
 
 nmap <silent> // :nohlsearch<CR>
 
 inoremap <S-Tab> <C-V><Tab>
 
 imap jk <Esc>
+imap jj <Esc>
 
 set mouse=a
 " }}}
@@ -275,9 +294,9 @@ let g:rustfmt_autosave_if_config_present = 1
 autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
 
 autocmd FileType python setlocal colorcolumn=88
+" }}}
 
-" Rust (rustfmt defaults)
-
+" Rust (rustfmt defaults) {{{
 autocmd FileType rust setlocal colorcolumn=100
 " }}}
 

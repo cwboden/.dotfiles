@@ -1,4 +1,5 @@
 # Check Run
+alias b='build'
 alias cr='./check_run.py -j 8'
 alias crq='./check_run.py -Q'
 alias bcr='./check_run.py -b -j 8'
@@ -13,5 +14,6 @@ alias tags='build all_tests; build tags cscope'
 
 # Utility
 alias fetch-all='ssha; hg qpop -a; hg fetch; ./prebuild'
-alias clean-me='qpkg sweep; rm -rf build/tmp/; ./tools/rm_merge_remnants.sh'
-alias hello='fetch-all; clean-me; tags'
+alias clean-cache='qonstruct/cache_tool.py trim --entry-ctime 3_days_ago ~/cache/'
+alias clean-all='qpkg sweep; rm -rf build/tmp/; ./tools/rm_merge_remnants.sh; clean-cache'
+alias hello='fetch-all && clean-all && tags'
