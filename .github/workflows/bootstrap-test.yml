@@ -18,8 +18,8 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Zsh
-        run: sudo apt-get install zsh
+      - name: Install Dependencies
+        run: sudo apt-get install `cat dependencies.txt`
 
       - name: Bootstrap
         run: ./build/bootstrap.py
@@ -30,3 +30,6 @@ jobs:
           # determine where modules live
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
           ./build/bootstrap_test.py
+
+      - name: Run Rust tests
+        run: cargo test
