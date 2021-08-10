@@ -1,13 +1,20 @@
-use std::ops::{Add, Mul, Div};
+use std::{
+    ops::{Add, Mul, Div},
+    fmt::{self, Display, Write},
+};
 use crate::math::{LeastCommonMultiple, GreatestCommonDenominator};
 
+trait Integer<T>: Sized + Copy + Add<Output = T> + Display + Mul<Output = T> + LeastCommonMultiple + GreatestCommonDenominator + Div<Output = T> + Add<Output = T> + LeastCommonMultiple + GreatestCommonDenominator {}
+
+impl Integer<u32> for u32 {}
+
 #[derive(PartialEq, Eq, Clone, Copy, Debug)]
-struct Fraction<T> where T: Add<Output = T> + LeastCommonMultiple + GreatestCommonDenominator {
+struct Fraction<T> where T: Integer<T> {
     numerator: T,
     denominator: T,
 }
 
-impl<T> Fraction<T> where T: Copy + Add<Output = T> + Mul<Output = T> + LeastCommonMultiple + GreatestCommonDenominator + Div<Output = T> {
+impl<T> Fraction<T> where T: Integer<T> {
     fn new(numerator: T, denominator: T) -> Self {
         return Self { numerator, denominator }
     }
@@ -27,6 +34,12 @@ impl<T> Fraction<T> where T: Copy + Add<Output = T> + Mul<Output = T> + LeastCom
     }
 }
 
+impl<T> Display for Fraction<T> where T: Integer<T> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}/{}", self.numerator, self.denominator)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -40,7 +53,7 @@ mod tests {
     }
 
     #[test]
-    fn test_add_same_denominators() {
+    fn add_same_denominators() {
         let first = Fraction::new(4u32, 6u32);
         let second = Fraction::new(1u32, 6u32);
 
@@ -52,7 +65,7 @@ mod tests {
     }
 
     #[test]
-    fn test_add_different_denominators() {
+    fn add_different_denominators() {
         let first = Fraction::new(1u32, 3u32);
         let second = Fraction::new(1u32, 2u32);
 
@@ -60,5 +73,15 @@ mod tests {
 
         assert_eq!(sum.numerator, 5u32);
         assert_eq!(sum.denominator, 6u32);
+    }
+
+    #[test]
+    fn display_formats_as_expected() {
+        let fraction = Fraction::new(4u32, 7u32);
+
+        let mut as_string = String::new();
+        write!(&mut as_string, "{}", fraction).unwrap();
+
+        assert_eq!(as_string, "4/7");
     }
 }
