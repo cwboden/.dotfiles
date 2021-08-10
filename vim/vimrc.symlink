@@ -7,18 +7,21 @@ call plug#begin('~/.vim/plugged')
 
 " Vim-Plug management for other apps
 Plug 'FooSoft/vim-argwrap'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 Plug 'ervandew/supertab'
 Plug 'fadein/vim-FIGlet'
 Plug 'itchyny/lightline.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'leafgarland/typescript-vim'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'rust-lang/rust.vim'
 Plug 'ryanoasis/vim-devicons'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdcommenter'
+Plug 'preservim/nerdtree'
 Plug 'jremmen/vim-ripgrep'
 Plug 'FooSoft/vim-argwrap'
 Plug 'rust-lang/rust.vim'
@@ -27,6 +30,8 @@ Plug 'peitalin/vim-jsx-typescript'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'shinchu/lightline-gruvbox.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Finish the call, all plugins must be before this
 call plug#end()
@@ -224,7 +229,7 @@ function JumpToGeneratedCode()
     execute "e " . fnameescape(l:generated_file)
 endfunc
 
-command G call JumpToGeneratedCode()
+command Gen call JumpToGeneratedCode()
 "   }}}
 " }}}
 
@@ -249,8 +254,12 @@ let NERDTreeDirArrows = 1
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
 map <C-n> :NERDTreeToggle %<CR>
-map <leader>nf : NERDTreeFind<CR>
+map <C-f> :NERDTreeFind<CR>
 " }}}
 
 " NERD Commenter {{{
@@ -279,8 +288,16 @@ let g:rustfmt_autosave_if_config_present = 1
 " }}}
 
 " File-Specific Commands {{{
+" Python
+
 " strip 'qinternal' for python gf
 autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
+
+autocmd FileType python setlocal colorcolumn=88
+" }}}
+
+" Rust (rustfmt defaults) {{{
+autocmd FileType rust setlocal colorcolumn=100
 " }}}
 
 " ALE {{{
