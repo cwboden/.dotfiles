@@ -123,9 +123,16 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
         self.linux_distribution = linux_distribution.lower()
 
     def build(self) -> None:
+        dependencies = []
+        with open("dependencies.txt", "r") as dependencies_file:
+            dependencies = [
+                    dependency.strip()
+                    for dependency in dependencies_file.readlines()
+                ]
+
         if self.system == 'linux':
             if self.linux_distribution == 'ubuntu':
-                subprocess.check_call(["sudo", "apt", "install", "`cat dependencies.txt`"])
+                subprocess.check_call(["sudo", "apt", "install"] + dependencies)
             else:
                 raise NotImplementedError(f"Bootstrap not yet supported on {self.linux_distribution}!")
         else:
