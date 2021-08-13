@@ -9,7 +9,10 @@ call plug#begin('~/.vim/plugged')
 Plug 'FooSoft/vim-argwrap'
 Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'airblade/vim-gitgutter'
-Plug 'dense-analysis/ale'
+
+" Disable ALE for Qumulo
+" Plug 'dense-analysis/ale'
+
 Plug 'ervandew/supertab'
 Plug 'fadein/vim-FIGlet'
 Plug 'itchyny/lightline.vim'
@@ -282,7 +285,8 @@ autocmd FileType rust setlocal colorcolumn=100
 " }}}
 
 " ALE {{{
-let g:ale_linters = {'rust': ['analyzer']}
+" Disabled for Qumulo
+" let g:ale_linters = {'rust': ['analyzer']}
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
