@@ -1,0 +1,10 @@
+# Conventional Commits template
+# convetionalcommits.org
+#
+# {type}(optional scope): {description}
+#
+# [optional body]
+#
+# [optional footer(s)]
+
+type: description

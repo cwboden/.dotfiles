@@ -12,3 +12,6 @@ fi
 if [ -d "/opt/qumulo/toolchain/bin" ] ; then
     PATH="/opt/qumulo/toolchain/bin:$PATH"
 fi
+
+# Add project directory to PYTHONPATH
+export PYTHONPATH=$PYTHONPATH:$HOME/.dotfiles
