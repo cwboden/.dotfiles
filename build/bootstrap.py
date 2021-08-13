@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import distro
 import platform
 import os
 import subprocess
@@ -117,14 +118,14 @@ class InstallPythonModuleBuildUnit(BuildUnit):
 class InstallSystemPackagesBuildUnit(BuildUnit):
     """Installs packages to whichever distro of Linux is being run"""
 
-    def __init__(self, system: str = platform.system(), linux_distribution: str = platform.linux_distribution()[0]):
+    def __init__(self, system: str = platform.system(), linux_distribution: str = distro.id()):
         self.system = system
         self.linux_distribution = linux_distribution
 
     def build(self) -> None:
         if platform.system() == 'Linux':
             if platform.linux_distribution()[0] == 'Ubuntu':
-                pass
+                subprocess.check_call(["sudo", "apt", "install", "`cat dependencies.txt`"])
             else:
                 raise NotImplemented("Bootstrap only supported on Ubuntu!")
         else:
