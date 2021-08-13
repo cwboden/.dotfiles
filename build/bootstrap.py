@@ -123,8 +123,8 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
         self.linux_distribution = linux_distribution
 
     def build(self) -> None:
-        if platform.system() == 'Linux':
-            if platform.linux_distribution()[0] == 'Ubuntu':
+        if self.system == 'Linux':
+            if self.linux_distribution == 'Ubuntu':
                 subprocess.check_call(["sudo", "apt", "install", "`cat dependencies.txt`"])
             else:
                 raise NotImplemented("Bootstrap only supported on Ubuntu!")
