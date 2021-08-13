@@ -119,12 +119,12 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
     """Installs packages to whichever distro of Linux is being run"""
 
     def __init__(self, system: str = platform.system(), linux_distribution: str = distro.id()):
-        self.system = system
-        self.linux_distribution = linux_distribution
+        self.system = system.lower()
+        self.linux_distribution = linux_distribution.lower()
 
     def build(self) -> None:
-        if self.system == 'Linux':
-            if self.linux_distribution == 'Ubuntu':
+        if self.system == 'linux':
+            if self.linux_distribution == 'ubuntu':
                 subprocess.check_call(["sudo", "apt", "install", "`cat dependencies.txt`"])
             else:
                 raise NotImplementedError(f"Bootstrap not yet supported on {self.linux_distribution}!")
