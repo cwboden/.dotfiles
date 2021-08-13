@@ -127,9 +127,9 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
             if self.linux_distribution == 'Ubuntu':
                 subprocess.check_call(["sudo", "apt", "install", "`cat dependencies.txt`"])
             else:
-                raise NotImplemented(f"Bootstrap not yet supported on {self.linux_distribution}!")
+                raise NotImplementedError(f"Bootstrap not yet supported on {self.linux_distribution}!")
         else:
-            raise NotImplemented(f"Bootstrap not yet supported on {self.system}!")
+            raise NotImplementedError(f"Bootstrap not yet supported on {self.system}!")
 
 
 class Builder:

@@ -133,12 +133,12 @@ class InstallSystemPackagesBuildUnitTest(unittest.TestCase):
     @parameterized.expand('Windows', 'OSX', 'non-existant-system')
     def test_build_not_possible_on_system(self, system: str) -> None:
         unit = InstallSystemPackagesBuildUnit(system = system)
-        self.assertRaises(NotImplemented, unit.build())
+        self.assertRaises(NotImplementedError, unit.build())
 
     @parameterized.expand('Arch', 'Kali', 'Red Hat')
     def test_build_not_possible_on_linux_distribution(self, linux_distribution: str) -> None:
         unit = InstallSystemPackagesBuildUnit(linux_distribution = linux_distribution)
-        self.assertRaises(NotImplemented, unit.build())
+        self.assertRaises(NotImplementedError, unit.build())
 
 
 class BuilderTest(unittest.TestCase):
