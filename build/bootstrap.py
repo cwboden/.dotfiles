@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import platform
 import os
 import subprocess
 import sys
@@ -113,6 +114,23 @@ class InstallPythonModuleBuildUnit(BuildUnit):
         self.action = RunShellCommandBuildAction(["pip", "install", module])
 
 
+class InstallSystemPackagesBuildUnit(BuildUnit):
+    """Installs packages to whichever distro of Linux is being run"""
+
+    def __init__(self, system: str = platform.system(), linux_distribution: str = platform.linux_distribution()[0]):
+        self.system = system
+        self.linux_distribution = linux_distribution
+
+    def build(self) -> None:
+        if platform.system() == 'Linux':
+            if platform.linux_distribution()[0] == 'Ubuntu':
+                pass
+            else:
+                raise NotImplemented("Bootstrap only supported on Ubuntu!")
+        else:
+            raise NotImplemented("Bootstrap only supported on Linux!")
+
+
 class Builder:
     def __init__(self):
         self.units = []
@@ -126,6 +144,10 @@ class Builder:
 
 
 def install_common_dependencies(builder: Builder) -> None:
+    """Installs common dependencies for Linux, Python, Git, etc."""
+
+    builder.add_unit(InstallSystemPackagesBuildUnit())
+
     # Install Python dependencies
     for module in [
         "mypy",

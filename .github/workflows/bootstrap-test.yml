@@ -18,9 +18,6 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Dependencies
-        run: sudo apt-get install `cat dependencies.txt`
-
       - name: Bootstrap
         run: ./build/bootstrap.py
 
