@@ -26,6 +26,10 @@ jobs:
           # Ensure this repo is on the $PYTHONPATH, which Python uses to
           # determine where modules live
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
+
+          # XXX: see which Python packages are installed
+          python -m pip list
+
           ./build/bootstrap_test.py
 
       - name: Run Rust tests
