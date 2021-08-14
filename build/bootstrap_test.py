@@ -6,6 +6,7 @@ import unittest
 from pathlib import Path
 
 from parameterized import parameterized
+
 from build.bootstrap import AlwaysRunBuildPredicate
 from build.bootstrap import BuildAction
 from build.bootstrap import Builder
@@ -15,8 +16,8 @@ from build.bootstrap import crawl_for_symlink_sources
 from build.bootstrap import create_symlinks
 from build.bootstrap import DirectoryExistsBuildPredicate
 from build.bootstrap import FileExistsBuildPredicate
-from build.bootstrap import MakeDirectoryBuildAction
 from build.bootstrap import InstallSystemPackagesBuildUnit
+from build.bootstrap import MakeDirectoryBuildAction
 from build.bootstrap import PythonModuleInstalledBuildPredicate
 from build.bootstrap import RunShellCommandBuildAction
 from build.bootstrap import translate_symlink_to_destination
@@ -130,15 +131,17 @@ class InstallSystemPackagesBuildUnitTest(unittest.TestCase):
         unit = InstallSystemPackagesBuildUnit()
         unit.build()
 
-    @parameterized.expand('Windows', 'OSX', 'non-existant-system')
+    @parameterized.expand(["Windows", "OSX", "non-existant-system"])
     def test_build_not_possible_on_system(self, system: str) -> None:
-        unit = InstallSystemPackagesBuildUnit(system = system)
-        self.assertRaises(NotImplementedError, unit.build())
+        unit = InstallSystemPackagesBuildUnit(system=system)
+        self.assertRaises(NotImplementedError, unit.build)
 
-    @parameterized.expand('Arch', 'Kali', 'Red Hat')
-    def test_build_not_possible_on_linux_distribution(self, linux_distribution: str) -> None:
-        unit = InstallSystemPackagesBuildUnit(linux_distribution = linux_distribution)
-        self.assertRaises(NotImplementedError, unit.build())
+    @parameterized.expand(["Arch", "Kali", "Red Hat"])
+    def test_build_not_possible_on_linux_distribution(
+        self, linux_distribution: str
+    ) -> None:
+        unit = InstallSystemPackagesBuildUnit(linux_distribution=linux_distribution)
+        self.assertRaises(NotImplementedError, unit.build)
 
 
 class BuilderTest(unittest.TestCase):

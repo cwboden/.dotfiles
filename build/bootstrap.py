@@ -1,11 +1,12 @@
 #!/usr/bin/python3
-import distro
-import platform
 import os
+import platform
 import subprocess
 import sys
 from typing import List
 from typing import Protocol
+
+import distro
 
 
 class BuildPredicate(Protocol):
@@ -118,7 +119,9 @@ class InstallPythonModuleBuildUnit(BuildUnit):
 class InstallSystemPackagesBuildUnit(BuildUnit):
     """Installs packages to whichever distro of Linux is being run"""
 
-    def __init__(self, system: str = platform.system(), linux_distribution: str = distro.id()):
+    def __init__(
+        self, system: str = platform.system(), linux_distribution: str = distro.id()
+    ):
         self.system = system.lower()
         self.linux_distribution = linux_distribution.lower()
 
@@ -126,15 +129,16 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
         dependencies = []
         with open("dependencies.txt", "r") as dependencies_file:
             dependencies = [
-                    dependency.strip()
-                    for dependency in dependencies_file.readlines()
-                ]
+                dependency.strip() for dependency in dependencies_file.readlines()
+            ]
 
-        if self.system == 'linux':
-            if self.linux_distribution == 'ubuntu':
+        if self.system == "linux":
+            if self.linux_distribution == "ubuntu":
                 subprocess.check_call(["sudo", "apt", "install"] + dependencies)
             else:
-                raise NotImplementedError(f"Bootstrap not yet supported on {self.linux_distribution}!")
+                raise NotImplementedError(
+                    f"Bootstrap not yet supported on {self.linux_distribution}!"
+                )
         else:
             raise NotImplementedError(f"Bootstrap not yet supported on {self.system}!")
 

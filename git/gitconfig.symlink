@@ -69,4 +69,4 @@
     lg = !"git lg1"
 
 [commit]
-	template = /home/cboden/.gitmessage.txt
+	template = ~/.gitmessage.txt
