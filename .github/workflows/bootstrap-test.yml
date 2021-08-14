@@ -29,6 +29,8 @@ jobs:
 
           # XXX: see which Python packages are installed
           python -m pip list
+          which python
+          which pip
 
           ./build/bootstrap_test.py
 
