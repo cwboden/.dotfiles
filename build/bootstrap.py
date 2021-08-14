@@ -158,6 +158,8 @@ def install_common_dependencies(builder: Builder) -> None:
 
     # Install Python dependencies
     for module in [
+        "distro",
+        "parameterized",
         "mypy",
         "pre-commit",
         "types-setuptools",
