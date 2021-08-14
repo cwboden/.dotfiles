@@ -32,7 +32,7 @@ jobs:
           which python
           which pip
 
-          ./build/bootstrap_test.py
+          python build/bootstrap_test.py
 
       - name: Run Rust tests
         run: cargo test
