@@ -19,18 +19,13 @@ jobs:
           python-version: '3.x'
 
       - name: Bootstrap
-        run: ./build/bootstrap.py
+        run: python build/bootstrap.py
 
       - name: Run bootstrap tests
         run: |
           # Ensure this repo is on the $PYTHONPATH, which Python uses to
           # determine where modules live
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-
-          # XXX: see which Python packages are installed
-          python -m pip list
-          which python
-          which pip
 
           python build/bootstrap_test.py
 
