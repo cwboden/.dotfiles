@@ -21,13 +21,13 @@ jobs:
       - name: Bootstrap
         run: python builder/bootstrap.py
 
-      - name: Run bootstrap tests
+      - name: Run Python tests
         run: |
           # Ensure this repo is on the $PYTHONPATH, which Python uses to
           # determine where modules live
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
-          python builder/bootstrap_test.py
+          python -m unittest discover -p '*test.py'
 
       - name: Run Rust tests
         run: cargo test
