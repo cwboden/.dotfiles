@@ -7,20 +7,20 @@ from pathlib import Path
 
 from parameterized import parameterized
 
-from build.bootstrap import AlwaysRunBuildPredicate
-from build.bootstrap import BuildAction
-from build.bootstrap import Builder
-from build.bootstrap import BuildPredicate
-from build.bootstrap import BuildUnit
-from build.bootstrap import crawl_for_symlink_sources
-from build.bootstrap import create_symlinks
-from build.bootstrap import DirectoryExistsBuildPredicate
-from build.bootstrap import FileExistsBuildPredicate
-from build.bootstrap import InstallSystemPackagesBuildUnit
-from build.bootstrap import MakeDirectoryBuildAction
-from build.bootstrap import PythonModuleInstalledBuildPredicate
-from build.bootstrap import RunShellCommandBuildAction
-from build.bootstrap import translate_symlink_to_destination
+from builder.bootstrap import AlwaysRunBuildPredicate
+from builder.bootstrap import BuildAction
+from builder.bootstrap import Builder
+from builder.bootstrap import BuildPredicate
+from builder.bootstrap import BuildUnit
+from builder.bootstrap import crawl_for_symlink_sources
+from builder.bootstrap import create_symlinks
+from builder.bootstrap import DirectoryExistsBuildPredicate
+from builder.bootstrap import FileExistsBuildPredicate
+from builder.bootstrap import InstallSystemPackagesBuildUnit
+from builder.bootstrap import MakeDirectoryBuildAction
+from builder.bootstrap import PythonModuleInstalledBuildPredicate
+from builder.bootstrap import RunShellCommandBuildAction
+from builder.bootstrap import translate_symlink_to_destination
 
 
 class FileExistsBuildPredicateTest(unittest.TestCase):

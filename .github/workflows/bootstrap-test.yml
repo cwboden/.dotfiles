@@ -19,7 +19,7 @@ jobs:
           python-version: '3.x'
 
       - name: Bootstrap
-        run: python build/bootstrap.py
+        run: python builder/bootstrap.py
 
       - name: Run bootstrap tests
         run: |
@@ -27,7 +27,7 @@ jobs:
           # determine where modules live
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
-          python build/bootstrap_test.py
+          python builder/bootstrap_test.py
 
       - name: Run Rust tests
         run: cargo test
