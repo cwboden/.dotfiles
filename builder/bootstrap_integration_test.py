@@ -14,7 +14,9 @@ class BootstrapIntegrationTest(unittest.TestCase):
         self.home_dir = os.path.expanduser("~")
 
     def test_pre_commit_git_hook_installed(self) -> None:
-        subprocess.check_call(["pre-commit", "run", "--all-files"])
+        subprocess.check_call(
+            ["pre-commit", "run", "--all-files"], stdout=subprocess.DEVNULL
+        )
 
     def test_vim_folders_are_created(self) -> None:
         self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/swapfiles"))
