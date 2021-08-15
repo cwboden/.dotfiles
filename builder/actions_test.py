@@ -5,6 +5,7 @@ import unittest
 from builder.actions import BuildAction
 from builder.actions import MakeDirectoryBuildAction
 from builder.actions import RunShellCommandBuildAction
+from builder.actions import SpyBuildAction
 
 
 class MakeDirectoryBuildActionTest(unittest.TestCase):
@@ -27,21 +28,6 @@ class RunShellCommandBuildActionTest(unittest.TestCase):
         self.assertTrue(os.path.exists(path))
 
         os.remove(path)
-
-
-class SpyBuildAction(BuildAction):
-    def __init__(self):
-        self.called = False
-
-    def execute(self) -> None:
-        if not self.called:
-            self.called = True
-        else:
-            raise AssertionError("SpyBuildAction already called")
-
-    def assert_called(self) -> None:
-        if not self.called:
-            raise AssertionError("SpyBuildAction never called")
 
 
 class SpyBuildActionTest(unittest.TestCase):
