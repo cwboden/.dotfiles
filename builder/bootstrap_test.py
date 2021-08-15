@@ -4,6 +4,8 @@ import shutil
 import subprocess
 import unittest
 from pathlib import Path
+from unittest.mock import MagicMock
+from unittest.mock import patch
 
 from parameterized import parameterized
 
@@ -142,6 +144,18 @@ class InstallSystemPackagesBuildUnitTest(unittest.TestCase):
     ) -> None:
         unit = InstallSystemPackagesBuildUnit(linux_distribution=linux_distribution)
         self.assertRaises(NotImplementedError, unit.build)
+
+    @patch("subprocess.check_call")
+    def test_skips_already_installed_dependencies(
+        self, subprocess_mock: unittest.mock.MagicMock
+    ) -> None:
+        unit = InstallSystemPackagesBuildUnit()
+
+        # Definitely installed already
+        unit.dependencies = ["python"]
+
+        unit.build()
+        subprocess_mock.assert_not_called()
 
 
 class BuilderTest(unittest.TestCase):
