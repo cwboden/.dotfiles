@@ -1,116 +1,24 @@
 #!/usr/bin/python3
 import os
+import platform
 import subprocess
 import sys
 from typing import List
 from typing import Protocol
 
-
-class BuildPredicate(Protocol):
-    """Used by a BuildUnit to check if it should build"""
-
-    def check(self) -> bool:
-        return False
-
-
-class AlwaysRunBuildPredicate(BuildPredicate):
-    def check(self) -> bool:
-        return False
-
-
-class FileExistsBuildPredicate(BuildPredicate):
-    """Checks whether the given file exists"""
-
-    def __init__(self, path: str):
-        self.path = path
-
-    def check(self) -> bool:
-        return os.path.exists(self.path)
-
-
-class DirectoryExistsBuildPredicate(BuildPredicate):
-    """Checks whether the given directory exists"""
-
-    def __init__(self, path: str):
-        self.path = path
-
-    def check(self) -> bool:
-        return os.path.isdir(self.path)
-
-
-class PythonModuleInstalledBuildPredicate(BuildPredicate):
-    """Checks whether a provided Python module is installed"""
-
-    def __init__(self, module: str):
-        self.module = module
-
-    def check(self) -> bool:
-        installed_packages = subprocess.check_output(["pip", "list"]).decode("utf-8")
-        return self.module in installed_packages
-
-
-class BuildAction(Protocol):
-    """Used by a BuildUnit to run some code, create some files, etc. """
-
-    def execute(self) -> None:
-        return
-
-
-class MakeDirectoryBuildAction(BuildAction):
-    """Creates a directory with the given path"""
-
-    def __init__(self, path: str):
-        self.path = path
-
-    def execute(self) -> None:
-        os.mkdir(self.path)
-
-
-class RunShellCommandBuildAction(BuildAction):
-    """Runs a command in the console"""
-
-    def __init__(self, command: List[str]):
-        self.command = command
-
-    def execute(self) -> None:
-        subprocess.check_call(self.command)
-
-
-class MakeSymlinkBuildAction(BuildAction):
-    """Creates a link from source to destination"""
-
-    def __init__(self, source_path: str, dest_path: str):
-        self.source_path = source_path
-        self.dest_path = dest_path
-
-    def execute(self) -> None:
-        os.symlink(self.source_path, self.dest_path)
-
-
-class BuildUnit:
-    def __init__(self, predicate: BuildPredicate, action: BuildAction):
-        self.predicate = predicate
-        self.action = action
-
-    def build(self) -> None:
-        if not self.predicate.check():
-            self.action.execute()
-
-
-class MakeDirectoryBuildUnit(BuildUnit):
-    """Creates the given directory if it does not exist"""
-
-    def __init__(self, path: str):
-        self.predicate = DirectoryExistsBuildPredicate(path)
-        self.action = MakeDirectoryBuildAction(path)
-
-
-class InstallPythonModuleBuildUnit(BuildUnit):
-    """Installs a Python module if it isn't yet installed"""
-
-    def __init__(self, module: str):
-        self.predicate = PythonModuleInstalledBuildPredicate(module)
-        self.action = RunShellCommandBuildAction(["pip", "install", module])
+from builder.actions import BuildAction
+from builder.actions import MakeDirectoryBuildAction
+from builder.actions import MakeSymlinkBuildAction
+from builder.actions import RunShellCommandBuildAction
+from builder.predicates import AlwaysRunBuildPredicate
+from builder.predicates import BuildPredicate
+from builder.predicates import DirectoryExistsBuildPredicate
+from builder.predicates import FileExistsBuildPredicate
+from builder.predicates import PythonModuleInstalledBuildPredicate
+from builder.units import BuildUnit
+from builder.units import InstallPythonModuleBuildUnit
+from builder.units import InstallSystemPackagesBuildUnit
+from builder.units import MakeDirectoryBuildUnit
 
 
 class Builder:
@@ -126,23 +34,9 @@ class Builder:
 
 
 def install_common_dependencies(builder: Builder) -> None:
-    # Install Python dependencies
-    for module in [
-        "mypy",
-        "pre-commit",
-        "types-setuptools",
-    ]:
-        builder.add_unit(InstallPythonModuleBuildUnit(module))
+    """Installs common dependencies for Linux, Python, Git, etc."""
 
-    # Have mypy install type stubs for any external libraries
-    builder.add_unit(
-        BuildUnit(
-            AlwaysRunBuildPredicate(),
-            RunShellCommandBuildAction(
-                ["python", "-m", "mypy", "--install-types", "./"]
-            ),
-        ),
-    )
+    builder.add_unit(InstallSystemPackagesBuildUnit())
 
     # Install Git Hook for pre-commit
     builder.add_unit(
