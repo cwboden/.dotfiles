@@ -25,6 +25,7 @@ jobs:
           # each time a Python command is run.
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
+          pip install -r requirements.txt
           python builder/bootstrap.py
 
       - name: Run Python tests

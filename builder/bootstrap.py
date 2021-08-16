@@ -38,16 +38,6 @@ def install_common_dependencies(builder: Builder) -> None:
 
     builder.add_unit(InstallSystemPackagesBuildUnit())
 
-    # Install Python dependencies
-    for module in [
-        "distro",
-        "parameterized",
-        "mypy",
-        "pre-commit",
-        "types-setuptools",
-    ]:
-        builder.add_unit(InstallPythonModuleBuildUnit(module))
-
     # Install Git Hook for pre-commit
     builder.add_unit(
         BuildUnit(

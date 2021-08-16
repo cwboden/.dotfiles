@@ -5,7 +5,8 @@ The collection of all my dotfiles.
 ```sh
 git clone https://github.com/cwboden/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
-./build/bootstrap
+pip install -r requirements.txt
+python build/bootstrap
 ```
 
 ## Notable Content
