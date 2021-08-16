@@ -18,18 +18,24 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install Dependencies
-        run: sudo apt-get install `cat dependencies.txt`
-
       - name: Bootstrap
-        run: ./build/bootstrap.py
-
-      - name: Run bootstrap tests
         run: |
-          # Ensure this repo is on the $PYTHONPATH, which Python uses to
-          # determine where modules live
+          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
+          # determine where modules live. For some reason this must be done
+          # each time a Python command is run.
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-          ./build/bootstrap_test.py
+
+          pip install -r requirements.txt
+          python builder/bootstrap.py
+
+      - name: Run Python tests
+        run: |
+          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
+          # determine where modules live. For some reason this must be done
+          # each time a Python command is run.
+          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
+
+          python -m unittest discover -p '*test.py'
 
       - name: Run Rust tests
         run: cargo test
