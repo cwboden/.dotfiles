@@ -3,6 +3,9 @@ import os
 import subprocess
 import unittest
 
+from builder.bootstrap import crawl_for_symlink_sources
+from builder.bootstrap import translate_symlink_to_destination
+
 
 class BootstrapIntegrationTest(unittest.TestCase):
     """
@@ -35,11 +38,14 @@ class BootstrapIntegrationTest(unittest.TestCase):
         )
 
     def test_symlinks_created(self) -> None:
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.hgrc"))
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.vimrc"))
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.zshrc"))
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.gitconfig"))
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.tmux.conf"))
+        symlink_sources = crawl_for_symlink_sources(f"{self.home_dir}/.dotfiles")
+        symlink_destinations = [
+            translate_symlink_to_destination(source, self.home_dir)
+            for source in symlink_sources
+        ]
+
+        for destination in symlink_destinations:
+            self.assertTrue(os.path.exists(destination))
 
 
 if __name__ == "__main__":
