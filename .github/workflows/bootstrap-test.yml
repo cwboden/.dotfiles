@@ -25,7 +25,11 @@ jobs:
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
       - name: Bootstrap
-        run: python builder/bootstrap.py
+        run: |
+          # Ensure this repo is on the $PYTHONPATH, which Python uses to
+          # determine where modules live
+          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
+          python builder/bootstrap.py
 
       - name: Run Python tests
         run: python -m unittest discover -p '*test.py'
