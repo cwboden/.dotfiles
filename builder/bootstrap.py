@@ -6,8 +6,6 @@ import sys
 from typing import List
 from typing import Protocol
 
-import distro
-
 from builder.actions import BuildAction
 from builder.actions import MakeDirectoryBuildAction
 from builder.actions import MakeSymlinkBuildAction
