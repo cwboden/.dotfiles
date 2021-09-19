@@ -13,5 +13,3 @@ export const MenuToggle = (props: Props) => {
     </Box>
   )
 }
-
-
