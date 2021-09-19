@@ -1,4 +1,4 @@
-name: Website Test and Deploy
+name: Website Test
 
 on:
   push:
@@ -24,5 +24,4 @@ jobs:
 
       - run: yarn build
       - run: yarn test
-      - run: yarn deploy
 
