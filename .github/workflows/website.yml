@@ -9,30 +9,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docs
     steps:
-      # Checks out repository under $GITHUB_WORKSPACE
       - uses: actions/checkout@v2
 
       - name: Install Yarn
         uses: borales/actions-yarn@v2.3.0
-        working-directory: ./docs
         with:
           cmd: install
 
-      - name: Build from scratch
-        uses: borales/actions-yarn@v2.3.0
-        working-directory: ./docs
-        with:
-          cmd: build
+      - run: yarn build
+      - run: yarn test
+      - run: yarn deploy
 
-      - name: Run yarn tests
-        uses: borales/actions-yarn@v2.3.0
-        working-directory: ./docs
-        with:
-          cmd: test
-
-      - name: Deploy website to `gh-pages` branch
-        uses: borales/actions-yarn@v2.3.0
-        working-directory: ./docs
-        with:
-          cmd: deploy
