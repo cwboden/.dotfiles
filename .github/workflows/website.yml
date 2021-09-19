@@ -15,20 +15,24 @@ jobs:
 
       - name: Install Yarn
         uses: borales/actions-yarn@v2.3.0
+        working-directory: ./docs
         with:
           cmd: install
 
       - name: Build from scratch
         uses: borales/actions-yarn@v2.3.0
+        working-directory: ./docs
         with:
           cmd: build
 
       - name: Run yarn tests
         uses: borales/actions-yarn@v2.3.0
+        working-directory: ./docs
         with:
           cmd: test
 
       - name: Deploy website to `gh-pages` branch
         uses: borales/actions-yarn@v2.3.0
+        working-directory: ./docs
         with:
           cmd: deploy
