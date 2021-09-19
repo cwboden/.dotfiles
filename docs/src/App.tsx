@@ -7,10 +7,19 @@ import {
   VStack,
   Code,
   Grid,
-  theme,
+  extendTheme,
 } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import { Logo } from "./Logo"
+
+const colors = {
+  brand: {
+      700: "#BE961E",
+      300: "#503E2C",
+  },
+}
+
+const theme = extendTheme({ colors })
 
 export const App = () => (
   <ChakraProvider theme={theme}>
