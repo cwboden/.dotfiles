@@ -20,6 +20,7 @@ jobs:
         with:
           cmd: install
       - run: yarn global add create-react-app
+      - run: yarn install
 
       - run: yarn build
       - run: yarn test
