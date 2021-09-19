@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v3.2.0
+    rev: v4.0.1
     hooks:
     -   id: check-added-large-files
     -   id: check-ast
@@ -15,15 +15,15 @@ repos:
     -   id: mixed-line-ending
     -   id: trailing-whitespace
 -   repo: https://github.com/pre-commit/mirrors-mypy
-    rev: ''  # Use the sha / tag you want to point at
+    rev: 'v0.910'  # Use the sha / tag you want to point at
     hooks:
     -   id: mypy
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: v2.3.6
+    rev: v2.6.0
     hooks:
     -   id: reorder-python-imports
 -   repo: https://github.com/psf/black
-    rev: 20.8b1 # Replace by any tag/version: https://github.com/psf/black/tags
+    rev: 21.9b0 # Replace by any tag/version: https://github.com/psf/black/tags
     hooks:
       - id: black
         language_version: python3 # Should be a command that runs python3.6+
