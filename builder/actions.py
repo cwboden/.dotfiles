@@ -5,7 +5,7 @@ from typing import Protocol
 
 
 class BuildAction(Protocol):
-    """Used by a BuildUnit to run some code, create some files, etc. """
+    """Used by a BuildUnit to run some code, create some files, etc."""
 
     def execute(self) -> None:
         return

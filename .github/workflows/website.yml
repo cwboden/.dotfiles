@@ -1,0 +1,26 @@
+name: Website Test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docs
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Yarn
+        uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - run: yarn global add create-react-app
+      - run: yarn install
+
+      - run: yarn build
+      - run: yarn test
