@@ -2,6 +2,7 @@ use assert_matches::assert_matches;
 use maze::Format;
 
 mod maze;
+mod solver;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 enum Algorithm {
