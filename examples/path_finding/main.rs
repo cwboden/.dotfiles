@@ -1,4 +1,3 @@
-use assert_matches::assert_matches;
 use maze::Format;
 
 mod maze;
