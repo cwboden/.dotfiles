@@ -1,14 +1,6 @@
 use assert_matches::assert_matches;
-use std::convert::TryFrom;
+use std::convert::From;
 use std::io::Read;
-
-#[derive(Debug, Eq, PartialEq)]
-enum Error {
-    InvalidCellType(String),
-    InvalidHeader(String),
-}
-
-type Result<T> = std::result::Result<T, Error>;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Format {
@@ -26,22 +18,17 @@ enum Cell {
     Exit,
 }
 
-impl TryFrom<char> for Cell {
-    type Error = Error;
-
-    fn try_from(c: char) -> Result<Self> {
+impl From<char> for Cell {
+    fn from(c: char) -> Self {
         match c {
-            '.' => Ok(Self::Empty),
-            'S' => Ok(Self::StartPosition),
-            '#' => Ok(Self::Wall),
+            '.' => Self::Empty,
+            'S' => Self::StartPosition,
+            '#' => Self::Wall,
             '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' => {
-                Ok(Self::Teleporter(c.to_digit(10 /* radix */).unwrap() as u8))
+                Self::Teleporter(c.to_digit(10 /* radix */).unwrap() as u8)
             }
-            'E' => Ok(Self::Exit),
-            _ => Err(Error::InvalidCellType(format!(
-                "Invalid cell type: '{}'",
-                c
-            ))),
+            'E' => Self::Exit,
+            _ => panic!("Invalid cell type: '{}'", c),
         }
     }
 }
@@ -56,7 +43,7 @@ pub struct Maze {
 }
 
 impl Maze {
-    fn from_reader<T: Read>(mut reader: T) -> Result<Self> {
+    fn from_reader<T: Read>(mut reader: T) -> Self {
         let mut header = [0u8; 5];
         reader.read(&mut header).unwrap();
 
@@ -66,29 +53,29 @@ impl Maze {
                     match input_format as char {
                         'L' => Format::List,
                         'M' => Format::Map,
-                        _ => return Err(Error::InvalidHeader(format!("Invalid input format mode: '{}'", input_format))),
+                        _ => panic!("Invalid input format mode: '{}'", input_format),
                     },
                     match (number_of_rooms_char as char).to_digit(10 /* radix */) {
                         Some(number_of_rooms) => number_of_rooms,
-                        None => return Err(Error::InvalidHeader(format!("Invalid number of rooms: '{}'", number_of_rooms_char))),
+                        None => panic!("Invalid number of rooms: '{}'", number_of_rooms_char),
                     },
                     match (room_size_char as char).to_digit(10 /* radix */) {
                         Some(room_size) => room_size,
-                        None => return Err(Error::InvalidHeader(format!("Invalid room size: '{}'", room_size_char))),
+                        None => panic!("Invalid room size: '{}'", room_size_char),
                     },
                 )
             }
-            _ => return Err(Error::InvalidHeader(format!("Invalid header format: {:?}", header))),
+            _ => panic!("Invalid header format: {:?}", header),
         };
 
-        Ok(Maze {
+        Maze {
             rooms: vec![
                 Room {
                     rows: vec![vec![Cell::Empty; room_size as usize]; room_size as usize]
                 };
                 number_of_rooms as usize
             ],
-        })
+        }
     }
 }
 
@@ -97,19 +84,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn cell_try_from() {
-        assert_eq!(Cell::try_from('.').unwrap(), Cell::Empty);
-        assert_eq!(Cell::try_from('S').unwrap(), Cell::StartPosition);
-        assert_eq!(Cell::try_from('#').unwrap(), Cell::Wall);
-        assert_eq!(Cell::try_from('0').unwrap(), Cell::Teleporter(0));
-        assert_eq!(Cell::try_from('E').unwrap(), Cell::Exit);
-        assert_matches!(Cell::try_from('?'), Err(Error::InvalidCellType(_)));
+    fn cell_from() {
+        assert_eq!(Cell::from('.'), Cell::Empty);
+        assert_eq!(Cell::from('S'), Cell::StartPosition);
+        assert_eq!(Cell::from('#'), Cell::Wall);
+        assert_eq!(Cell::from('0'), Cell::Teleporter(0));
+        assert_eq!(Cell::from('E'), Cell::Exit);
     }
 
     #[test]
     fn maze_from_reader_list() {
         let input = include_bytes!("test_input/sample-list.maze");
-        let maze = Maze::from_reader(input.as_ref()).unwrap();
+        let maze = Maze::from_reader(input.as_ref());
 
         assert_eq!(maze.rooms.len(), 2);
         for room in maze.rooms {
