@@ -10,7 +10,7 @@ pub enum Format {
 
 /// A single Cell of a Room
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-enum Cell {
+pub enum Cell {
     Empty,
     StartPosition,
     Wall,
@@ -34,20 +34,20 @@ impl From<char> for Cell {
 }
 
 #[derive(Clone)]
-struct Room {
-    rows: Vec<Vec<Cell>>,
+pub struct Room {
+    pub rows: Vec<Vec<Cell>>,
 }
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct Coordinate {
-    room: u32,
-    row: u32,
-    column: u32,
+    pub room: u32,
+    pub row: u32,
+    pub column: u32,
 }
 
 pub struct Maze {
-    rooms: Vec<Room>,
-    starting_position: Option<Coordinate>,
+    pub rooms: Vec<Room>,
+    pub starting_position: Option<Coordinate>,
 }
 
 impl Maze {
