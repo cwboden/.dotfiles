@@ -4,17 +4,18 @@ use assert_matches::assert_matches;
 enum Error {
     InvalidArgument(String),
     DuplicateArgument(String),
+    MissingArgument(String),
 }
 
 type Result<T> = std::result::Result<T, Error>;
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 enum Algorithm {
     Queue,
     Stack,
 }
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 enum Format {
     List,
     Map,
@@ -57,6 +58,21 @@ impl PathFindingArgs {
             )),
         }
     }
+
+    fn validate(self) -> Result<Self> {
+        if self.algorithm.is_none() {
+            return Err(Error::MissingArgument(
+                "Missing algorithm argument".to_string(),
+            ));
+        }
+        if self.output_format.is_none() {
+            return Err(Error::MissingArgument(
+                "Missing output format argument".to_string(),
+            ));
+        }
+
+        return Ok(self);
+    }
 }
 
 fn parse_args(args: &[String]) -> Result<PathFindingArgs> {
@@ -85,11 +101,12 @@ fn parse_args(args: &[String]) -> Result<PathFindingArgs> {
         }
     }
 
-    Ok(parsed_args)
+    parsed_args.validate()
 }
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
+    let parsed_args = parse_args(&args).unwrap();
 }
 
 #[cfg(test)]
@@ -97,27 +114,33 @@ mod tests {
     use super::*;
 
     #[test]
-    fn parse_args_algorithm_queue() {
-        assert_eq!(
-            parse_args(&["-q".to_string()]).unwrap().algorithm,
-            Some(Algorithm::Queue)
-        );
-        assert_eq!(
-            parse_args(&["--queue".to_string()]).unwrap().algorithm,
-            Some(Algorithm::Queue),
-        );
-    }
+    fn parse_args_all_arguments() {
+        for (algorithm_arg_string, algorithm_expected) in [
+            ("-q", Algorithm::Queue),
+            ("--queue", Algorithm::Queue),
+            ("-s", Algorithm::Stack),
+            ("--stack", Algorithm::Stack),
+        ]
+        .iter()
+        {
+            for (output_format_arg_string, output_format_expected) in [
+                ("-l", Format::List),
+                ("--list", Format::List),
+                ("-m", Format::Map),
+                ("--map", Format::Map),
+            ]
+            .iter()
+            {
+                let parsed_args = parse_args(&[
+                    algorithm_arg_string.to_string(),
+                    output_format_arg_string.to_string(),
+                ])
+                .unwrap();
 
-    #[test]
-    fn parse_args_algorithm_stack() {
-        assert_eq!(
-            parse_args(&["-s".to_string()]).unwrap().algorithm,
-            Some(Algorithm::Stack)
-        );
-        assert_eq!(
-            parse_args(&["--stack".to_string()]).unwrap().algorithm,
-            Some(Algorithm::Stack)
-        );
+                assert_eq!(parsed_args.algorithm, Some(*algorithm_expected));
+                assert_eq!(parsed_args.output_format, Some(*output_format_expected));
+            }
+        }
     }
 
     #[test]
@@ -125,30 +148,6 @@ mod tests {
         assert_matches!(
             parse_args(&["-s".to_string(), "-q".to_string()]),
             Err(Error::DuplicateArgument(_))
-        );
-    }
-
-    #[test]
-    fn parse_args_output_format_list() {
-        assert_eq!(
-            parse_args(&["-l".to_string()]).unwrap().output_format,
-            Some(Format::List)
-        );
-        assert_eq!(
-            parse_args(&["--list".to_string()]).unwrap().output_format,
-            Some(Format::List)
-        );
-    }
-
-    #[test]
-    fn parse_args_output_format_map() {
-        assert_eq!(
-            parse_args(&["-m".to_string()]).unwrap().output_format,
-            Some(Format::Map)
-        );
-        assert_eq!(
-            parse_args(&["--map".to_string()]).unwrap().output_format,
-            Some(Format::Map)
         );
     }
 
@@ -165,6 +164,22 @@ mod tests {
         assert_matches!(
             parse_args(&["bad".to_string()]),
             Err(Error::InvalidArgument(_))
+        );
+    }
+
+    #[test]
+    fn parse_args_validate_missing_algorithm() {
+        assert_matches!(
+            parse_args(&["-m".to_string()]),
+            Err(Error::MissingArgument(_))
+        );
+    }
+
+    #[test]
+    fn parse_args_validate_missing_output_format() {
+        assert_matches!(
+            parse_args(&["-q".to_string()]),
+            Err(Error::MissingArgument(_))
         );
     }
 }
