@@ -6,7 +6,7 @@ edition = "2018"
 
 [[examples]]
 name = "path-finding"
-path = "examples/path_finding.rs"
+path = "examples/path_finding/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
