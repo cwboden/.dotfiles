@@ -1,5 +1,7 @@
 use assert_matches::assert_matches;
 
+mod maze;
+
 #[derive(Debug, Eq, PartialEq)]
 enum Error {
     InvalidArgument(String),
