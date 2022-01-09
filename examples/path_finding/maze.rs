@@ -1,4 +1,3 @@
-use assert_matches::assert_matches;
 use std::convert::From;
 use std::io::BufRead;
 
@@ -59,7 +58,7 @@ impl Maze {
         self.starting_position = Some(Coordinate { room, row, column });
     }
 
-    fn parse_list<T: BufRead>(mut self, mut reader: T) -> Self {
+    fn parse_list<T: BufRead>(mut self, reader: T) -> Self {
         for line in reader.lines() {
             let line = line.unwrap();
 
@@ -100,7 +99,7 @@ impl Maze {
         self
     }
 
-    fn parse_map<T: BufRead>(mut self, mut reader: T) -> Self {
+    fn parse_map<T: BufRead>(mut self, reader: T) -> Self {
         let mut row_index = 0;
         let mut room_index = 0;
         for line in reader.lines() {
