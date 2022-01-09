@@ -1,6 +1,6 @@
 use assert_matches::assert_matches;
 use std::convert::From;
-use std::io::Read;
+use std::io::BufRead;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Format {
@@ -43,12 +43,60 @@ pub struct Maze {
 }
 
 impl Maze {
-    fn from_reader<T: Read>(mut reader: T) -> Self {
-        let mut header = [0u8; 5];
+    fn parse_list<T: BufRead>(mut self, mut reader: T) -> Self {
+        for line in reader.lines() {
+            let line = line.unwrap();
+
+            // Ignore comments
+            if line.starts_with('/') {
+                continue;
+            }
+
+            // Given input should be of the form:
+            // ({room number},{row},{column},{cell type})
+            let room_number = line
+                .chars()
+                .nth(1)
+                .unwrap()
+                .to_digit(10 /* radix */)
+                .unwrap();
+            let row = line
+                .chars()
+                .nth(3)
+                .unwrap()
+                .to_digit(10 /* radix */)
+                .unwrap();
+            let column = line
+                .chars()
+                .nth(5)
+                .unwrap()
+                .to_digit(10 /* radix */)
+                .unwrap();
+            let cell_type = Cell::from(line.chars().nth(7).unwrap());
+
+            self.rooms[room_number as usize].rows[row as usize][column as usize] = cell_type;
+        }
+
+        self
+    }
+
+    fn parse_map<T: BufRead>(mut self, mut reader: T) -> Self {
+        unimplemented!()
+    }
+
+    fn from_reader<T: BufRead>(mut reader: T) -> Self {
+        let mut header = [0u8; 6];
         reader.read(&mut header).unwrap();
 
         let (input_format, number_of_rooms, room_size) = match header {
-            [input_format, 10 /* \n */, number_of_rooms_char, 10 /* \n */, room_size_char] => {
+            [
+                input_format,
+                10 /* \n */,
+                number_of_rooms_char,
+                10 /* \n */,
+                room_size_char,
+                10 /* \n */
+            ] => {
                 (
                     match input_format as char {
                         'L' => Format::List,
@@ -68,13 +116,18 @@ impl Maze {
             _ => panic!("Invalid header format: {:?}", header),
         };
 
-        Maze {
+        let maze = Maze {
             rooms: vec![
                 Room {
                     rows: vec![vec![Cell::Empty; room_size as usize]; room_size as usize]
                 };
                 number_of_rooms as usize
             ],
+        };
+
+        match input_format {
+            Format::List => maze.parse_list(reader),
+            Format::Map => maze.parse_map(reader),
         }
     }
 }
@@ -98,11 +151,16 @@ mod tests {
         let maze = Maze::from_reader(input.as_ref());
 
         assert_eq!(maze.rooms.len(), 2);
-        for room in maze.rooms {
+        for room in &maze.rooms {
             assert_eq!(room.rows.len(), 4);
-            for row in room.rows {
+            for row in &room.rows {
                 assert_eq!(row.len(), 4);
             }
         }
+
+        assert_eq!(maze.rooms[0].rows[0][1], Cell::Exit);
+        assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
+        assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
+        assert_eq!(maze.rooms[0].rows[3][2], Cell::Teleporter(1));
     }
 }
