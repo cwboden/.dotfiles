@@ -38,11 +38,27 @@ struct Room {
     rows: Vec<Vec<Cell>>,
 }
 
+#[derive(Debug, Eq, PartialEq)]
+pub struct Coordinate {
+    room: u32,
+    row: u32,
+    column: u32,
+}
+
 pub struct Maze {
     rooms: Vec<Room>,
+    starting_position: Option<Coordinate>,
 }
 
 impl Maze {
+    fn set_start_position(&mut self, room: u32, row: u32, column: u32) {
+        if self.starting_position.is_some() {
+            panic!("Multiple start positions found in maze");
+        }
+
+        self.starting_position = Some(Coordinate { room, row, column });
+    }
+
     fn parse_list<T: BufRead>(mut self, mut reader: T) -> Self {
         for line in reader.lines() {
             let line = line.unwrap();
@@ -74,6 +90,10 @@ impl Maze {
                 .unwrap();
             let cell_type = Cell::from(line.chars().nth(7).unwrap());
 
+            if cell_type == Cell::StartPosition {
+                self.set_start_position(room_number, row, column);
+            }
+
             self.rooms[room_number as usize].rows[row as usize][column as usize] = cell_type;
         }
 
@@ -93,7 +113,17 @@ impl Maze {
 
             let mut column_index = 0;
             for character in line.chars() {
-                self.rooms[room_index].rows[row_index][column_index] = Cell::from(character);
+                let cell_type = Cell::from(character);
+                self.rooms[room_index].rows[row_index][column_index] = cell_type;
+
+                if cell_type == Cell::StartPosition {
+                    self.set_start_position(
+                        room_index as u32,
+                        row_index as u32,
+                        column_index as u32,
+                    );
+                }
+
                 column_index += 1;
             }
 
@@ -108,7 +138,7 @@ impl Maze {
         self
     }
 
-    fn from_reader<T: BufRead>(mut reader: T) -> Self {
+    pub fn from_reader<T: BufRead>(mut reader: T) -> Self {
         let mut header = [0u8; 6];
         reader.read(&mut header).unwrap();
 
@@ -147,6 +177,7 @@ impl Maze {
                 };
                 number_of_rooms as usize
             ],
+            starting_position: None,
         };
 
         match input_format {
@@ -186,6 +217,14 @@ mod tests {
         assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
         assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
         assert_eq!(maze.rooms[0].rows[3][2], Cell::Teleporter(1));
+        assert_eq!(
+            maze.starting_position,
+            Some(Coordinate {
+                room: 0,
+                row: 2,
+                column: 3
+            })
+        );
     }
 
     #[test]
@@ -205,5 +244,13 @@ mod tests {
         assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
         assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
         assert_eq!(maze.rooms[0].rows[3][2], Cell::Teleporter(1));
+        assert_eq!(
+            maze.starting_position,
+            Some(Coordinate {
+                room: 0,
+                row: 2,
+                column: 3
+            })
+        );
     }
 }
