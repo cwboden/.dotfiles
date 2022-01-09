@@ -81,7 +81,31 @@ impl Maze {
     }
 
     fn parse_map<T: BufRead>(mut self, mut reader: T) -> Self {
-        unimplemented!()
+        let mut row_index = 0;
+        let mut room_index = 0;
+        for line in reader.lines() {
+            let line = line.unwrap();
+
+            // Ignore comments
+            if line.starts_with('/') {
+                continue;
+            }
+
+            let mut column_index = 0;
+            for character in line.chars() {
+                self.rooms[room_index].rows[row_index][column_index] = Cell::from(character);
+                column_index += 1;
+            }
+
+            row_index += 1;
+            // Continue to new room once processing all N rows
+            if row_index == self.rooms[0].rows.len() {
+                row_index = 0;
+                room_index += 1;
+            }
+        }
+
+        self
     }
 
     fn from_reader<T: BufRead>(mut reader: T) -> Self {
@@ -148,6 +172,25 @@ mod tests {
     #[test]
     fn maze_from_reader_list() {
         let input = include_bytes!("test_input/sample-list.maze");
+        let maze = Maze::from_reader(input.as_ref());
+
+        assert_eq!(maze.rooms.len(), 2);
+        for room in &maze.rooms {
+            assert_eq!(room.rows.len(), 4);
+            for row in &room.rows {
+                assert_eq!(row.len(), 4);
+            }
+        }
+
+        assert_eq!(maze.rooms[0].rows[0][1], Cell::Exit);
+        assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
+        assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
+        assert_eq!(maze.rooms[0].rows[3][2], Cell::Teleporter(1));
+    }
+
+    #[test]
+    fn maze_from_reader_map() {
+        let input = include_bytes!("test_input/sample-map.maze");
         let maze = Maze::from_reader(input.as_ref());
 
         assert_eq!(maze.rooms.len(), 2);
