@@ -1,4 +1,5 @@
 use assert_matches::assert_matches;
+use maze::Format;
 
 mod maze;
 
@@ -15,12 +16,6 @@ type Result<T> = std::result::Result<T, Error>;
 enum Algorithm {
     Queue,
     Stack,
-}
-
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-enum Format {
-    List,
-    Map,
 }
 
 #[derive(Debug, Eq, PartialEq)]
