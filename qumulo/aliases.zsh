@@ -10,10 +10,11 @@ alias bcrq='./check_run.py -bQ'
 alias red-green='./tools/red_green.py'
 
 # Build
-alias tags='build all_tests; build tags cscope'
+alias tags='build all_tests && build tags cscope'
 
 # Utility
-alias fetch-all='ssha; hg qpop -a; hg fetch; ./prebuild'
+alias fetch-all='ssha && hg qpop -a && hg fetch && ./prebuild'
 alias clean-cache='qonstruct/cache_tool.py trim --entry-ctime 3_days_ago ~/cache/'
-alias clean-all='qpkg sweep; rm -rf build/tmp/; ./tools/rm_merge_remnants.sh; clean-cache'
-alias hello='fetch-all && clean-all && tags'
+alias clean-all='qpkg sweep && rm -rf build/tmp/ && ./tools/rm_merge_remnants.sh && clean-cache'
+alias hello='fetch-all && update-tools && clean-all && tags'
+alias update-tools='hg fetch --cwd /home/cboden/tools; pkill -f hg.real; pkill -f hg'

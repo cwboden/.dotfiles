@@ -24,6 +24,6 @@ function start_ssh_agent() {
     if [[ "$?" == 1 ]]; then
         echo "SSH Agent needs to add identities:"
         # Agent doesn't have identities, so add them
-        ssh-add -t 4h
+        ssh-add -t 8h
     fi
 }
