@@ -75,6 +75,9 @@ bind j select-pane -D
 bind k select-pane -U
 bind l select-pane -R
 
+# Big history
+set -g history-limit 50000
+
 ## Theme settings mixed with colors (unfortunately, but there is no cleaner way)
 set-option -g status-justify 'left'
 set-option -g status-left-style none
