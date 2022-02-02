@@ -13,10 +13,12 @@ Plug 'airblade/vim-gitgutter'
 " Disable ALE for Qumulo
 " Plug 'dense-analysis/ale'
 
+Plug 'sheerun/vim-polyglot'
 Plug 'ervandew/supertab'
 Plug 'fadein/vim-FIGlet'
 Plug 'itchyny/lightline.vim'
 Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'morhetz/gruvbox'
 Plug 'octol/vim-cpp-enhanced-highlight'
@@ -107,7 +109,7 @@ catch /^Vim\%((\a\+)\)\=:E185/
     colorscheme elflord
 endtry
 
-set colorcolumn=80
+set colorcolumn=100
 
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
 " }}}
@@ -167,8 +169,6 @@ nmap <silent> // :nohlsearch<CR>
 inoremap <S-Tab> <C-V><Tab>
 
 imap jk <Esc>
-
-set mouse=a
 " }}}
 
 " Custom Functions {{{
@@ -193,17 +193,38 @@ endfunc
 command T call ToggleTestFile()
 "   }}}
 
-"   Toggle Between Source / Header {{{
+"   Toggle Between Rust/C Files {{{
+function GoToRustFile()
+    let rust_file = expand('%:r') . '.rs'
+    execute "e " . fnameescape(l:rust_file)
+endfunc
+function GoFromRustFile()
+    let c_file = expand('%:r') . '.c'
+    execute "e " . fnameescape(l:c_file)
+endfunc
+function ToggleRustFile()
+    let base = expand('%:r')
+    if base =~ '.rs'
+        call GoFromRustFile()
+    else
+        call GoToRustFile()
+    end
+endfunc
+
+command R call ToggleRustFile()
+"   }}}
+"
+"   Toggle Between Source / Header / Rust {{{
 function GoToHeaderFile()
     let header_file = expand('%:r') . '.h'
     execute "e " . fnameescape(l:header_file)
 endfunc
+command H call GoToHeaderFile()
+
 function GoToSourceFile()
     let source_file = expand('%:r') . '.c'
     execute "e " . fnameescape(l:source_file)
 endfunc
-
-command H call GoToHeaderFile()
 command C call GoToSourceFile()
 "   }}}
 
@@ -243,7 +264,6 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 map <C-n> :NERDTreeToggle %<CR>
-map <C-f> :NERDTreeFind<CR>
 " }}}
 
 " NERD Commenter {{{
@@ -277,11 +297,19 @@ let g:rustfmt_autosave_if_config_present = 1
 " strip 'qinternal' for python gf
 autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
 
-autocmd FileType python setlocal colorcolumn=88
+autocmd FileType python setlocal colorcolumn=100
+autocmd FileType python setlocal textwidth=100
 
 " Rust (rustfmt defaults)
 
 autocmd FileType rust setlocal colorcolumn=100
+autocmd FileType rust setlocal textwidth=100
+
+" C (Qumulo C rules)
+autocmd FileType c setlocal colorcolumn=100
+autocmd FileType c setlocal textwidth=100
+autocmd FileType h setlocal colorcolumn=100
+autocmd FileType h setlocal textwidth=100
 " }}}
 
 " ALE {{{
