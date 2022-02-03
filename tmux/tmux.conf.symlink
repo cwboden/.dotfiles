@@ -54,3 +54,6 @@ set -g @plugin 'tmux-plugins/tmux-continuum'
 set -g @plugin 'egel/tmux-gruvbox'
 set -g @tmux-gruvbox 'dark'
 set -g @plugin 'christoomey/vim-tmux-navigator'
+
+# Start the Plugins -- keep this line at the bottom!
+run '~/.tmux/plugins/tpm/tpm'
