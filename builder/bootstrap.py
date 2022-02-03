@@ -83,6 +83,40 @@ def install_vim(builder: Builder) -> None:
     )
 
 
+def install_tmux(builder: Builder) -> None:
+    # Create Tmux folders
+    home_dir = os.path.expanduser("~")
+    builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.tmux/"))
+    builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.tmux/plugins"))
+
+    # Install Tmux Plugin Manager (TPM)
+    builder.add_unit(
+        BuildUnit(
+            DirectoryExistsBuildPredicate(f"{home_dir}/.tmux/plugins/tpm/"),
+            RunShellCommandBuildAction(
+                [
+                    "git",
+                    "clone",
+                    "https://github.com/tmux-plugins/tpm",
+                    f"{home_dir}/.tmux/plugins/tpm",
+                ]
+            ),
+        ),
+    )
+
+    # Install Plugins
+    builder.add_unit(
+        BuildUnit(
+            AlwaysRunBuildPredicate(),
+            RunShellCommandBuildAction(
+                [
+                    f"{home_dir}/.tmux/plugins/tpm/bin/install_plugins",
+                ]
+            ),
+        ),
+    )
+
+
 def install_zsh(builder: Builder, home_dir: str) -> None:
     zsh_installer_path = "/tmp/zsh_installer.sh"
 
@@ -194,6 +228,7 @@ def main() -> None:
     create_symlinks(builder, "./", home_dir)
 
     install_vim(builder)
+    install_tmux(builder)
 
     builder.build()
 

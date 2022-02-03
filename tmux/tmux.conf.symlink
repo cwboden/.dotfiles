@@ -91,3 +91,14 @@ set-option -g status-right '#[fg=colour239, bg=colour237, nobold, nounderscore, 
 
 set-window-option -g window-status-current-format '#[fg=colour237, bg=colour214, nobold, noitalics, nounderscore]#[fg=colour239, bg=colour214] #I #[fg=colour239, bg=colour214, bold] #W #[fg=colour214, bg=colour237, nobold, noitalics, nounderscore]'
 set-window-option -g window-status-format '#[fg=colour237,bg=colour239,noitalics]#[fg=colour223,bg=colour239] #I #[fg=colour223, bg=colour239] #W #[fg=colour239, bg=colour237, noitalics]'
+
+#  ____  _             _         __  __
+# |  _ \| |_   _  __ _(_)_ __   |  \/  | __ _ _ __   __ _  __ _  ___ _ __
+# | |_) | | | | |/ _` | | '_ \  | |\/| |/ _` | '_ \ / _` |/ _` |/ _ \ '__|
+# |  __/| | |_| | (_| | | | | | | |  | | (_| | | | | (_| | (_| |  __/ |
+# |_|   |_|\__,_|\__, |_|_| |_| |_|  |_|\__,_|_| |_|\__,_|\__, |\___|_|
+#                |___/                                    |___/
+#  FIGLET: Plugin Manager
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
