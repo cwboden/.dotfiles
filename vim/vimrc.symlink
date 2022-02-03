@@ -14,6 +14,10 @@ Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'shinchu/lightline-gruvbox.vim'
 
+" Keybindings and Navigation
+Plug 'ervandew/supertab'
+Plug 'christoomey/vim-tmux-navigator'
+
 " Syntax Highlighting
 Plug 'sheerun/vim-polyglot'
 Plug 'leafgarland/typescript-vim'
@@ -25,7 +29,6 @@ Plug 'rust-lang/rust.vim'
 Plug 'mtdl9/vim-log-highlighting'
 
 " Search Utilities
-Plug 'ervandew/supertab'
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
