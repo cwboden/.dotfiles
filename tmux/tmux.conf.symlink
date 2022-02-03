@@ -102,3 +102,5 @@ set-window-option -g window-status-format '#[fg=colour237,bg=colour239,noitalics
 
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-continuum'
