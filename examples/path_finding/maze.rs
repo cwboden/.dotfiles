@@ -1,6 +1,7 @@
+use std::collections::HashSet;
 use std::convert::From;
-use std::io::BufRead;
 use std::convert::TryInto;
+use std::io::BufRead;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Format {
@@ -43,6 +44,38 @@ pub struct Coordinate {
     pub room: usize,
     pub row: usize,
     pub column: usize,
+}
+
+impl Coordinate {
+    /// Returns a new, valid space in the [`Maze`] in the corresponding [`Direction`]
+    pub fn move_in(self, direction: Direction) -> Coordinate {
+        match direction {
+            Direction::North => Coordinate {
+                row: self.row - 1,
+                ..self
+            },
+            Direction::East => Coordinate {
+                column: self.column + 1,
+                ..self
+            },
+            Direction::South => Coordinate {
+                row: self.row + 1,
+                ..self
+            },
+            Direction::West => Coordinate {
+                column: self.column - 1,
+                ..self
+            },
+        }
+    }
+}
+
+
+pub enum Direction {
+    North,
+    East,
+    South,
+    West,
 }
 
 pub struct Maze {
@@ -186,8 +219,22 @@ impl Maze {
         }
     }
 
-    pub fn at(&self, coordinate: Coordinate) -> Cell {
-        self.rooms[coordinate.room].rows[coordinate.row][coordinate.column]
+    pub fn at(&self, coordinate: Coordinate) -> Option<Cell> {
+        if self.rooms.len() <= coordinate.room
+            || self.rooms[coordinate.room].rows.len() <= coordinate.row
+            || self.rooms[coordinate.room].rows[coordinate.row].len() <= coordinate.column
+        {
+            None
+        } else {
+            Some(self.rooms[coordinate.room].rows[coordinate.row][coordinate.column])
+        }
+    }
+
+    /// Returns a set containing all valid moves from the given [`Coordinate`].
+    ///
+    /// The path can move in cardinal directions, unless encountering a wall.
+    pub fn branch(&self, coordinate: Coordinate) -> HashSet<Coordinate> {
+        HashSet::new()
     }
 }
 
@@ -211,7 +258,7 @@ mod tests {
                 row: 0,
                 column: 1
             }),
-            Cell::Exit
+            Some(Cell::Exit)
         );
         assert_eq!(
             maze.at(Coordinate {
@@ -219,7 +266,7 @@ mod tests {
                 row: 2,
                 column: 3
             }),
-            Cell::StartPosition
+            Some(Cell::StartPosition)
         );
         assert_eq!(
             maze.at(Coordinate {
@@ -227,7 +274,7 @@ mod tests {
                 row: 3,
                 column: 0
             }),
-            Cell::Wall
+            Some(Cell::Wall)
         );
         assert_eq!(
             maze.at(Coordinate {
@@ -235,7 +282,7 @@ mod tests {
                 row: 3,
                 column: 2
             }),
-            Cell::Teleporter(1)
+            Some(Cell::Teleporter(1))
         );
         assert_eq!(
             maze.starting_position,
@@ -277,5 +324,50 @@ mod tests {
         }
 
         assert_sample_list_valid(&maze);
+    }
+
+    #[test]
+    fn maze_at_out_of_bounds_room() {
+        let input = include_bytes!("test_input/sample-map.maze");
+        let maze = Maze::from_reader(input.as_ref());
+
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 2,
+                row: 0,
+                column: 0
+            }),
+            None
+        );
+    }
+
+    #[test]
+    fn maze_at_out_of_bounds_row() {
+        let input = include_bytes!("test_input/sample-map.maze");
+        let maze = Maze::from_reader(input.as_ref());
+
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 1,
+                row: 42,
+                column: 0
+            }),
+            None
+        );
+    }
+
+    #[test]
+    fn maze_at_out_of_bounds_column() {
+        let input = include_bytes!("test_input/sample-map.maze");
+        let maze = Maze::from_reader(input.as_ref());
+
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 1,
+                row: 0,
+                column: 42,
+            }),
+            None
+        );
     }
 }
