@@ -4,18 +4,24 @@ mod maze;
 mod solver;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-enum Algorithm {
+pub enum Algorithm {
     Queue,
     Stack,
 }
 
 #[derive(Debug, Eq, PartialEq)]
-struct PathFindingArgs {
+struct PathFindingArgsRaw {
     algorithm: Option<Algorithm>,
     output_format: Option<Format>,
 }
 
-impl PathFindingArgs {
+#[derive(Debug, Eq, PartialEq)]
+pub struct PathFindingArgs {
+    pub algorithm: Algorithm,
+    pub output_format: Format,
+}
+
+impl PathFindingArgsRaw {
     fn new() -> Self {
         Self {
             algorithm: None,
@@ -41,18 +47,23 @@ impl PathFindingArgs {
         }
     }
 
-    fn validate(&self) {
+    fn validate(&self) -> PathFindingArgs {
         if self.algorithm.is_none() {
             panic!("Missing algorithm argument");
         }
         if self.output_format.is_none() {
             panic!("Missing output format argument");
         }
+
+        PathFindingArgs {
+            algorithm: self.algorithm.unwrap(),
+            output_format: self.output_format.unwrap(),
+        }
     }
 }
 
-fn parse_args(args: &[String]) -> PathFindingArgs {
-    let mut parsed_args = PathFindingArgs::new();
+fn parse_args(args: &[String]) -> PathFindingArgs{
+    let mut parsed_args = PathFindingArgsRaw::new();
 
     for arg in args {
         match arg.as_str() {
@@ -74,8 +85,7 @@ fn parse_args(args: &[String]) -> PathFindingArgs {
         }
     }
 
-    parsed_args.validate();
-    parsed_args
+    parsed_args.validate()
 }
 
 fn main() {
@@ -110,8 +120,8 @@ mod tests {
                     output_format_arg_string.to_string(),
                 ]);
 
-                assert_eq!(parsed_args.algorithm, Some(*algorithm_expected));
-                assert_eq!(parsed_args.output_format, Some(*output_format_expected));
+                assert_eq!(parsed_args.algorithm, *algorithm_expected);
+                assert_eq!(parsed_args.output_format, *output_format_expected);
             }
         }
     }
