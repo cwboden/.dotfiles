@@ -7,36 +7,46 @@ call plug#begin('~/.vim/plugged')
 
 " Vim-Plug management for other apps
 Plug 'FooSoft/vim-argwrap'
+
+" Appearance
+Plug 'itchyny/lightline.vim'
+Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
+Plug 'shinchu/lightline-gruvbox.vim'
+
+" Keybindings and Navigation
+Plug 'ervandew/supertab'
+Plug 'christoomey/vim-tmux-navigator'
+
+" Syntax Highlighting
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'leafgarland/typescript-vim'
+Plug 'mtdl9/vim-log-highlighting'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'ron-rs/ron.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'sheerun/vim-polyglot'
+
+" Search Utilities
+Plug 'jremmen/vim-ripgrep'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'preservim/nerdtree'
+
+" Style Utilities
+Plug 'FooSoft/vim-argwrap'
+Plug 'fadein/vim-FIGlet'
+Plug 'preservim/nerdcommenter'
+
+" Version Control Utilities
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 
 " Disable ALE for Qumulo
 " Plug 'dense-analysis/ale'
-
-Plug 'sheerun/vim-polyglot'
-Plug 'ervandew/supertab'
-Plug 'fadein/vim-FIGlet'
-Plug 'itchyny/lightline.vim'
-Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'morhetz/gruvbox'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'rust-lang/rust.vim'
-Plug 'ryanoasis/vim-devicons'
-Plug 'preservim/nerdcommenter'
-Plug 'preservim/nerdtree'
-Plug 'jremmen/vim-ripgrep'
-Plug 'FooSoft/vim-argwrap'
-Plug 'rust-lang/rust.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'mtdl9/vim-log-highlighting'
-Plug 'shinchu/lightline-gruvbox.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Finish the call, all plugins must be before this
 call plug#end()
