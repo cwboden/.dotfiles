@@ -1,5 +1,6 @@
 use std::convert::From;
 use std::io::BufRead;
+use std::convert::TryInto;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Format {
@@ -39,9 +40,9 @@ pub struct Room {
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub struct Coordinate {
-    pub room: u32,
-    pub row: u32,
-    pub column: u32,
+    pub room: usize,
+    pub row: usize,
+    pub column: usize,
 }
 
 pub struct Maze {
@@ -50,7 +51,7 @@ pub struct Maze {
 }
 
 impl Maze {
-    fn set_start_position(&mut self, room: u32, row: u32, column: u32) {
+    fn set_start_position(&mut self, room: usize, row: usize, column: usize) {
         if self.starting_position.is_some() {
             panic!("Multiple start positions found in maze");
         }
@@ -90,7 +91,11 @@ impl Maze {
             let cell_type = Cell::from(line.chars().nth(7).unwrap());
 
             if cell_type == Cell::StartPosition {
-                self.set_start_position(room_number, row, column);
+                self.set_start_position(
+                    room_number.try_into().unwrap(),
+                    row.try_into().unwrap(),
+                    column.try_into().unwrap(),
+                );
             }
 
             self.rooms[room_number as usize].rows[row as usize][column as usize] = cell_type;
@@ -116,11 +121,7 @@ impl Maze {
                 self.rooms[room_index].rows[row_index][column_index] = cell_type;
 
                 if cell_type == Cell::StartPosition {
-                    self.set_start_position(
-                        room_index as u32,
-                        row_index as u32,
-                        column_index as u32,
-                    );
+                    self.set_start_position(room_index, row_index, column_index);
                 }
 
                 column_index += 1;
@@ -184,6 +185,10 @@ impl Maze {
             Format::Map => maze.parse_map(reader),
         }
     }
+
+    pub fn at(&self, coordinate: Coordinate) -> Cell {
+        self.rooms[coordinate.room].rows[coordinate.row][coordinate.column]
+    }
 }
 
 #[cfg(test)]
@@ -200,10 +205,38 @@ mod tests {
     }
 
     fn assert_sample_list_valid(maze: &Maze) {
-        assert_eq!(maze.rooms[0].rows[0][1], Cell::Exit);
-        assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
-        assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
-        assert_eq!(maze.rooms[0].rows[3][2], Cell::Teleporter(1));
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 0,
+                row: 0,
+                column: 1
+            }),
+            Cell::Exit
+        );
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 0,
+                row: 2,
+                column: 3
+            }),
+            Cell::StartPosition
+        );
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 0,
+                row: 3,
+                column: 0
+            }),
+            Cell::Wall
+        );
+        assert_eq!(
+            maze.at(Coordinate {
+                room: 0,
+                row: 3,
+                column: 2
+            }),
+            Cell::Teleporter(1)
+        );
         assert_eq!(
             maze.starting_position,
             Some(Coordinate {
