@@ -199,19 +199,7 @@ mod tests {
         assert_eq!(Cell::from('E'), Cell::Exit);
     }
 
-    #[test]
-    fn maze_from_reader_list() {
-        let input = include_bytes!("test_input/sample-list.maze");
-        let maze = Maze::from_reader(input.as_ref());
-
-        assert_eq!(maze.rooms.len(), 2);
-        for room in &maze.rooms {
-            assert_eq!(room.rows.len(), 4);
-            for row in &room.rows {
-                assert_eq!(row.len(), 4);
-            }
-        }
-
+    fn assert_sample_list_valid(maze: &Maze) {
         assert_eq!(maze.rooms[0].rows[0][1], Cell::Exit);
         assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
         assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
@@ -227,6 +215,22 @@ mod tests {
     }
 
     #[test]
+    fn maze_from_reader_list() {
+        let input = include_bytes!("test_input/sample-list.maze");
+        let maze = Maze::from_reader(input.as_ref());
+
+        assert_eq!(maze.rooms.len(), 2);
+        for room in &maze.rooms {
+            assert_eq!(room.rows.len(), 4);
+            for row in &room.rows {
+                assert_eq!(row.len(), 4);
+            }
+        }
+
+        assert_sample_list_valid(&maze);
+    }
+
+    #[test]
     fn maze_from_reader_map() {
         let input = include_bytes!("test_input/sample-map.maze");
         let maze = Maze::from_reader(input.as_ref());
@@ -239,17 +243,6 @@ mod tests {
             }
         }
 
-        assert_eq!(maze.rooms[0].rows[0][1], Cell::Exit);
-        assert_eq!(maze.rooms[0].rows[2][3], Cell::StartPosition);
-        assert_eq!(maze.rooms[0].rows[3][0], Cell::Wall);
-        assert_eq!(maze.rooms[0].rows[3][2], Cell::Teleporter(1));
-        assert_eq!(
-            maze.starting_position,
-            Some(Coordinate {
-                room: 0,
-                row: 2,
-                column: 3
-            })
-        );
+        assert_sample_list_valid(&maze);
     }
 }
