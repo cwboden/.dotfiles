@@ -1,5 +1,5 @@
-use crate::{Format, PathFindingArgs, Algorithm};
-use crate::maze::{Coordinate, Maze};
+use crate::maze::{Cell, Coordinate, Direction, Maze};
+use crate::{Algorithm, Format, PathFindingArgs};
 use std::collections::VecDeque;
 
 /// Abstracts the settings into an arbitrary [`SearchList`] where users can [`pop`] or [`push`] to
@@ -35,11 +35,52 @@ struct Solver {
 }
 
 impl Solver {
-    pub fn new(args: PathFindingArgs, maze: Maze) -> Self {
-        let mut search_list = SearchList::new(args.algorithm);
+    pub fn new(algorithm: Algorithm, maze: Maze) -> Self {
+        let mut search_list = SearchList::new(algorithm);
         search_list.push(maze.starting_position.unwrap());
 
         Self { maze, search_list }
+    }
+
+    pub fn run(mut self) -> Vec<Coordinate> {
+        while let Some(origin) = self.search_list.pop() {
+            for direction in [
+                Direction::North,
+                Direction::East,
+                Direction::South,
+                Direction::West,
+            ]
+            .iter()
+            {
+                let destination = origin.move_in(direction);
+                match self.maze.at(destination) {
+                    Some(cell) => match cell {
+                        Cell::Empty => {
+                            self.search_list.push(destination);
+                        }
+                        Cell::StartPosition => {
+                            unimplemented!();
+                        }
+                        Cell::Wall => {
+                            // Do nothing
+                        }
+                        Cell::Teleporter(floor) => {
+                            self.search_list.push(Coordinate {
+                                room: floor,
+                                ..destination
+                            });
+                        }
+                        Cell::Exit => {
+                            // TODO: This only works in the easiest possible solution
+                            return vec![origin, destination];
+                        }
+                    },
+                    None => {}
+                }
+            }
+        }
+
+        Vec::new()
     }
 }
 
@@ -73,23 +114,34 @@ mod tests {
         }
     }
 
+    fn do_solver_integration_test(algorithm: Algorithm) {
+        let input = include_bytes!("test_input/easiest-possible.maze");
+        let maze = Maze::from_reader(input.as_ref());
+        let mut solver = Solver::new(algorithm, maze);
+
+        let path = solver.run();
+        let expected = vec![
+            Coordinate {
+                room: 0,
+                row: 0,
+                column: 0,
+            },
+            Coordinate {
+                room: 0,
+                row: 0,
+                column: 1,
+            },
+        ];
+        assert_eq!(path, expected);
+    }
+
     #[test]
     fn solver_integration_test_queue() {
-        let coordinate = Coordinate {
-            room: 0,
-            row: 1,
-            column: 2,
-        };
-        let maze = Maze {
-            rooms: Vec::new(),
-            starting_position: Some(coordinate),
-        };
-        let args = PathFindingArgs {
-            algorithm: Algorithm::Queue,
-            output_format: Format::List,
-        };
-        let mut solver = Solver::new(args, maze);
+        do_solver_integration_test(Algorithm::Queue);
+    }
 
-        assert_eq!(solver.search_list.pop(), Some(coordinate));
+    #[test]
+    fn solver_integration_test_stack() {
+        do_solver_integration_test(Algorithm::Stack);
     }
 }
