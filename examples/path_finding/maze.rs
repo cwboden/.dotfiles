@@ -1,5 +1,6 @@
 use std::collections::HashSet;
 use std::convert::From;
+use std::num::Wrapping;
 use std::convert::TryInto;
 use std::io::BufRead;
 
@@ -15,7 +16,7 @@ pub enum Cell {
     Empty,
     StartPosition,
     Wall,
-    Teleporter(u8),
+    Teleporter(usize),
     Exit,
 }
 
@@ -26,7 +27,7 @@ impl From<char> for Cell {
             'S' => Self::StartPosition,
             '#' => Self::Wall,
             '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' => {
-                Self::Teleporter(c.to_digit(10 /* radix */).unwrap() as u8)
+                Self::Teleporter(c.to_digit(10 /* radix */).unwrap() as usize)
             }
             'E' => Self::Exit,
             _ => panic!("Invalid cell type: '{}'", c),
@@ -48,22 +49,22 @@ pub struct Coordinate {
 
 impl Coordinate {
     /// Returns a new, valid space in the [`Maze`] in the corresponding [`Direction`]
-    pub fn move_in(self, direction: Direction) -> Coordinate {
+    pub fn move_in(self, direction: &Direction) -> Coordinate {
         match direction {
             Direction::North => Coordinate {
-                row: self.row - 1,
+                row: self.row.checked_sub(1).unwrap_or(usize::MAX),
                 ..self
             },
             Direction::East => Coordinate {
-                column: self.column + 1,
+                column: self.column.checked_add(1).unwrap_or(usize::MIN),
                 ..self
             },
             Direction::South => Coordinate {
-                row: self.row + 1,
+                row: self.row.checked_add(1).unwrap_or(usize::MIN),
                 ..self
             },
             Direction::West => Coordinate {
-                column: self.column - 1,
+                column: self.column.checked_sub(1).unwrap_or(usize::MAX),
                 ..self
             },
         }
