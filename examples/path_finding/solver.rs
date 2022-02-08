@@ -1,5 +1,5 @@
 use crate::maze::{Cell, Coordinate, Direction, Maze};
-use crate::{Algorithm, Format, PathFindingArgs};
+use crate::Algorithm;
 use std::collections::VecDeque;
 
 /// Abstracts the settings into an arbitrary [`SearchList`] where users can [`pop`] or [`push`] to
@@ -31,19 +31,19 @@ impl<T> SearchList<T> {
 
 struct Solver {
     maze: Maze,
-    search_list: SearchList<Coordinate>,
+    search_list: SearchList<Vec<Coordinate>>,
 }
 
 impl Solver {
     pub fn new(algorithm: Algorithm, maze: Maze) -> Self {
         let mut search_list = SearchList::new(algorithm);
-        search_list.push(maze.starting_position.unwrap());
+        search_list.push(vec![maze.starting_position.unwrap()]);
 
         Self { maze, search_list }
     }
 
     pub fn run(mut self) -> Vec<Coordinate> {
-        while let Some(origin) = self.search_list.pop() {
+        while let Some(path) = self.search_list.pop() {
             for direction in [
                 Direction::North,
                 Direction::East,
@@ -52,30 +52,41 @@ impl Solver {
             ]
             .iter()
             {
+                // XXX: Have to clone due to non-lexical lifetimes?
+                // https://stackoverflow.com/questions/38023871/returning-a-reference-from-a-hashmap-or-vec-causes-a-borrow-to-last-beyond-the-s
+                let mut path = path.clone();
+                let origin = path.last().unwrap();
                 let destination = origin.move_in(direction);
-                match self.maze.at(destination) {
-                    Some(cell) => match cell {
+                if path.contains(&destination) {
+                    continue;
+                }
+
+                if let Some(cell) = self.maze.at(destination) {
+                    match cell {
+                        // Apply special movement rules:
+                        // - Teleport to the corresponding floor for a Teleporter
+                        // - Return the path if the exit is found
                         Cell::Empty => {
-                            self.search_list.push(destination);
+                            path.push(destination);
+                            self.search_list.push(path);
                         }
-                        Cell::StartPosition => {
-                            unimplemented!();
-                        }
-                        Cell::Wall => {
-                            // Do nothing
-                        }
+                        Cell::StartPosition => panic!(
+                            "Unexpected Cell '{:?}' should have been filtered out.",
+                            cell
+                        ),
+                        Cell::Wall => (/* do nothing */),
                         Cell::Teleporter(floor) => {
-                            self.search_list.push(Coordinate {
+                            path.push(Coordinate {
                                 room: floor,
                                 ..destination
                             });
+                            self.search_list.push(path);
                         }
                         Cell::Exit => {
-                            // TODO: This only works in the easiest possible solution
-                            return vec![origin, destination];
+                            path.push(destination);
+                            return path;
                         }
-                    },
-                    None => {}
+                    }
                 }
             }
         }
@@ -114,13 +125,16 @@ mod tests {
         }
     }
 
-    fn do_solver_integration_test(algorithm: Algorithm) {
-        let input = include_bytes!("test_input/easiest-possible.maze");
+    const EASIEST_POSSIBLE: &[u8] = include_bytes!("test_input/easiest-possible.maze");
+    const SECOND_EASIEST_POSSIBLE: &[u8] =
+        include_bytes!("test_input/second-easiest-possible.maze");
+
+    fn do_solver_integration_test(algorithm: Algorithm, input: &[u8]) {
         let maze = Maze::from_reader(input.as_ref());
-        let mut solver = Solver::new(algorithm, maze);
+        let solver = Solver::new(algorithm, maze);
 
         let path = solver.run();
-        let expected = vec![
+        let mut expected = vec![
             Coordinate {
                 room: 0,
                 row: 0,
@@ -132,16 +146,35 @@ mod tests {
                 column: 1,
             },
         ];
+
+        // TODO: Use maze paths to a solution file
+        if input == SECOND_EASIEST_POSSIBLE {
+            expected.push(Coordinate {
+                room: 0,
+                row: 1,
+                column: 1,
+            });
+        }
         assert_eq!(path, expected);
     }
 
     #[test]
-    fn solver_integration_test_queue() {
-        do_solver_integration_test(Algorithm::Queue);
+    fn solver_integration_test_queue_easiest() {
+        do_solver_integration_test(Algorithm::Queue, EASIEST_POSSIBLE);
     }
 
     #[test]
-    fn solver_integration_test_stack() {
-        do_solver_integration_test(Algorithm::Stack);
+    fn solver_integration_test_stack_easiest() {
+        do_solver_integration_test(Algorithm::Stack, EASIEST_POSSIBLE);
+    }
+
+    #[test]
+    fn solver_integration_test_queue_second_easiest() {
+        do_solver_integration_test(Algorithm::Queue, SECOND_EASIEST_POSSIBLE);
+    }
+
+    #[test]
+    fn solver_integration_test_stack_second_easiest() {
+        do_solver_integration_test(Algorithm::Stack, SECOND_EASIEST_POSSIBLE);
     }
 }
