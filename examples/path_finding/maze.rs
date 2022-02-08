@@ -1,6 +1,4 @@
-use std::collections::HashSet;
 use std::convert::From;
-use std::num::Wrapping;
 use std::convert::TryInto;
 use std::io::BufRead;
 
@@ -229,13 +227,6 @@ impl Maze {
         } else {
             Some(self.rooms[coordinate.room].rows[coordinate.row][coordinate.column])
         }
-    }
-
-    /// Returns a set containing all valid moves from the given [`Coordinate`].
-    ///
-    /// The path can move in cardinal directions, unless encountering a wall.
-    pub fn branch(&self, coordinate: Coordinate) -> HashSet<Coordinate> {
-        HashSet::new()
     }
 }
 
