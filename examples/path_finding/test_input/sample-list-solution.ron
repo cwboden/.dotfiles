@@ -1,0 +1,27 @@
+[
+        (
+                room: 0,
+                row: 2,
+                column: 3,
+        ),
+        (
+                room: 0,
+                row: 1,
+                column: 3,
+        ),
+        (
+                room: 0,
+                row: 0,
+                column: 3,
+        ),
+        (
+                room: 0,
+                row: 0,
+                column: 2,
+        ),
+        (
+                room: 0,
+                row: 0,
+                column: 1,
+        ),
+]
