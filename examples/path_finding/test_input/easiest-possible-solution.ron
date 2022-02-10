@@ -1,0 +1,12 @@
+[
+    Coordinate(
+        room: 0,
+        row: 0,
+        column: 0,
+    ),
+    Coordinate(
+        room: 0,
+        row: 0,
+        column: 1,
+    ),
+]
