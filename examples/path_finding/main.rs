@@ -1,6 +1,12 @@
 mod maze;
 mod solver;
 
+use ron::ser::{to_writer_pretty, PrettyConfig};
+use std::io::BufReader;
+
+use crate::maze::Maze;
+use crate::solver::Solver;
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Algorithm {
     Queue,
@@ -67,7 +73,7 @@ impl PathFindingArgsRaw {
     }
 }
 
-fn parse_args(args: &[String]) -> PathFindingArgs{
+fn parse_args(args: &[String]) -> PathFindingArgs {
     let mut parsed_args = PathFindingArgsRaw::new();
 
     for arg in args {
@@ -110,7 +116,25 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     // Ignore the first argument, the name of the binary
-    parse_args(&args[1..]);
+    let parsed_args = parse_args(&args[1..]);
+
+    let reader = BufReader::new(std::io::stdin());
+    let maze = Maze::from_reader(reader);
+
+    let solver = Solver::new(parsed_args.algorithm, maze);
+    let result = solver.run();
+
+    match parsed_args.output_format {
+        Format::RustyObjectNotation => {
+            to_writer_pretty(
+                std::io::stdout(),
+                &result,
+                PrettyConfig::new().depth_limit(4).indentor("\t".to_owned()),
+            )
+            .unwrap();
+        }
+        _ => unimplemented!(),
+    }
 }
 
 #[cfg(test)]
