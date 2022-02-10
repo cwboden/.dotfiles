@@ -38,6 +38,27 @@ class PathFindingIntegrationTest(TestCase):
 
             self.assertEqual(test_name, stripped_solution_name)
 
+    def do_integration_test(self, test_file: Path, solution_file: Path, algorithm: str):
+        with test_file.open("r") as test_contents:
+            subprocess.check_call(
+                ["cargo", "run", "--example", "path_finding", "--", "-r", algorithm],
+                stdin=test_contents,
+            )
+
     @parameterized.expand(zip(TEST_NAMES, TEST_FILES, SOLUTION_FILES))
-    def test_integration(self, _test_name: str, test_file: Path, solution_file: Path):
-        self.assertTrue(True)
+    def test_integration_queue(
+        self,
+        _test_name: str,
+        test_file: Path,
+        solution_file: Path,
+    ):
+        self.do_integration_test(test_file, solution_file, "--queue")
+
+    @parameterized.expand(zip(TEST_NAMES, TEST_FILES, SOLUTION_FILES))
+    def test_integration_stack(
+        self,
+        _test_name: str,
+        test_file: Path,
+        solution_file: Path,
+    ):
+        self.do_integration_test(test_file, solution_file, "--stack")
