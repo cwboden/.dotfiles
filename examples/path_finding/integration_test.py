@@ -58,8 +58,10 @@ class PathFindingIntegrationTest(TestCase):
         with solution_file.open("r") as solution_contents:
             solution_lines = solution_contents.readlines()
 
-        for output_line, solution_line in zip(output_lines, solution_lines):
-            self.assertEqual(output_line.strip(), solution_line.strip())
+        # Strip extraneous whitespace
+        output_lines = [line.strip() for line in output_lines]
+        solution_lines = [line.strip() for line in solution_lines]
+        self.assertEqual(output_lines, solution_lines)
 
     @parameterized.expand(zip(TEST_NAMES, TEST_FILES, SOLUTION_FILES))
     def test_integration_queue(
