@@ -39,7 +39,7 @@ pub struct Room {
     pub rows: Vec<Vec<Cell>>,
 }
 
-#[derive(Serialize, Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, Serialize)]
 pub struct Coordinate {
     pub room: usize,
     pub row: usize,
