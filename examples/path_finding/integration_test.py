@@ -49,6 +49,8 @@ class PathFindingIntegrationTest(TestCase):
                 ["cargo", "run", "--example", "path_finding", "--", "-r", algorithm],
                 stdin=test_contents,
                 stdout=output_contents,
+                stderr=subprocess.DEVNULL,
+                timeout=10,
             )
 
         with output_file.open("r") as output_contents:
