@@ -1,0 +1,9 @@
+M
+3
+1
+// One 3x3 Rooms to test the pipe case
+// Should return no solution
+// Room 0
+S..
+#1#
+..C
