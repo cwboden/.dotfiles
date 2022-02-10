@@ -38,27 +38,41 @@ class PathFindingIntegrationTest(TestCase):
 
             self.assertEqual(test_name, stripped_solution_name)
 
-    def do_integration_test(self, test_file: Path, solution_file: Path, algorithm: str):
-        with test_file.open("r") as test_contents:
+    def do_integration_test(
+        self, test_name: str, test_file: Path, solution_file: Path, algorithm: str
+    ):
+        output_file = Path(f"tmp/{test_name}-output.ron")
+        with test_file.open("r") as test_contents, output_file.open(
+            "w"
+        ) as output_contents:
             subprocess.check_call(
                 ["cargo", "run", "--example", "path_finding", "--", "-r", algorithm],
                 stdin=test_contents,
+                stdout=output_contents,
             )
+
+        with output_file.open("r") as output_contents:
+            output_lines = output_contents.readlines()
+        with solution_file.open("r") as solution_contents:
+            solution_lines = solution_contents.readlines()
+
+        for output_line, solution_line in zip(output_lines, solution_lines):
+            self.assertEqual(output_line.strip(), solution_line.strip())
 
     @parameterized.expand(zip(TEST_NAMES, TEST_FILES, SOLUTION_FILES))
     def test_integration_queue(
         self,
-        _test_name: str,
+        test_name: str,
         test_file: Path,
         solution_file: Path,
     ):
-        self.do_integration_test(test_file, solution_file, "--queue")
+        self.do_integration_test(test_name, test_file, solution_file, "--queue")
 
     @parameterized.expand(zip(TEST_NAMES, TEST_FILES, SOLUTION_FILES))
     def test_integration_stack(
         self,
-        _test_name: str,
+        test_name: str,
         test_file: Path,
         solution_file: Path,
     ):
-        self.do_integration_test(test_file, solution_file, "--stack")
+        self.do_integration_test(test_name, test_file, solution_file, "--stack")

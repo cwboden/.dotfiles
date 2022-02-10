@@ -1,6 +1,7 @@
 use std::convert::From;
 use std::convert::TryInto;
 use std::io::BufRead;
+use serde::Serialize;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Format {
@@ -38,7 +39,7 @@ pub struct Room {
     pub rows: Vec<Vec<Cell>>,
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Serialize, Clone, Copy, Debug, Eq, PartialEq)]
 pub struct Coordinate {
     pub room: usize,
     pub row: usize,
@@ -178,9 +179,9 @@ impl Maze {
             [
                 input_format,
                 10 /* \n */,
-                number_of_rooms_char,
-                10 /* \n */,
                 room_size_char,
+                10 /* \n */,
+                number_of_rooms_char,
                 10 /* \n */
             ] => {
                 (

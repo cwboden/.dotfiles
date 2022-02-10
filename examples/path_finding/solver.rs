@@ -29,7 +29,7 @@ impl<T> SearchList<T> {
     }
 }
 
-struct Solver {
+pub struct Solver {
     maze: Maze,
     search_list: SearchList<Vec<Coordinate>>,
 }
