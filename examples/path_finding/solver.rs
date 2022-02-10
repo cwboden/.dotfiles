@@ -98,6 +98,7 @@ impl Solver {
             }
         }
 
+        // Return an empty Vec if we never reach the exit.
         Vec::new()
     }
 }
