@@ -1,5 +1,3 @@
-use maze::Format;
-
 mod maze;
 mod solver;
 
@@ -7,6 +5,13 @@ mod solver;
 pub enum Algorithm {
     Queue,
     Stack,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Format {
+    List,
+    Map,
+    RustyObjectNotation,
 }
 
 #[derive(Debug, Eq, PartialEq)]
@@ -79,6 +84,9 @@ fn parse_args(args: &[String]) -> PathFindingArgs{
             "-m" | "--map" => {
                 parsed_args.add_output_format(Format::Map);
             }
+            "-r" | "--ron" => {
+                parsed_args.add_output_format(Format::RustyObjectNotation);
+            }
             "-h" | "--help" => {
                 println!("\nPath finding algorithm for solving simple mazes.");
                 println!("See README.md for more details.");
@@ -86,6 +94,7 @@ fn parse_args(args: &[String]) -> PathFindingArgs{
                 println!("  -s --stack    Use stack-based search algorithm (Depth-First Search)");
                 println!("  -m --map      Return output in Map format (See README.md)");
                 println!("  -l --list     Return output in List format (See README.md)");
+                println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
                 std::process::exit(0);
             }
             _ => {
@@ -123,6 +132,8 @@ mod tests {
                 ("--list", Format::List),
                 ("-m", Format::Map),
                 ("--map", Format::Map),
+                ("-r", Format::RustyObjectNotation),
+                ("--ron", Format::RustyObjectNotation),
             ]
             .iter()
             {
