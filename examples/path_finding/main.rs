@@ -79,6 +79,15 @@ fn parse_args(args: &[String]) -> PathFindingArgs{
             "-m" | "--map" => {
                 parsed_args.add_output_format(Format::Map);
             }
+            "-h" | "--help" => {
+                println!("\nPath finding algorithm for solving simple mazes.");
+                println!("See README.md for more details.");
+                println!("  -q --queue    Use queue-based search algorithm (Breadth-First Search)");
+                println!("  -s --stack    Use stack-based search algorithm (Depth-First Search)");
+                println!("  -m --map      Return output in Map format (See README.md)");
+                println!("  -l --list     Return output in List format (See README.md)");
+                std::process::exit(0);
+            }
             _ => {
                 panic!("Invalid argument: '{}'", arg)
             }
@@ -90,7 +99,9 @@ fn parse_args(args: &[String]) -> PathFindingArgs{
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
-    parse_args(&args);
+
+    // Ignore the first argument, the name of the binary
+    parse_args(&args[1..]);
 }
 
 #[cfg(test)]
