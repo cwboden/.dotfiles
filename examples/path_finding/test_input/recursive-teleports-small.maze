@@ -1,0 +1,23 @@
+M
+2
+6
+// A bunch of 2x2 rooms
+// Tests sequential pipes teleporting to each other
+// room 0
+S1
+.2
+// room 1
+.#
+33
+// room 2
+##
+#1
+// room 3
+.E
+#5
+// room 4
+3#
+..
+// room 5
+##
+94
