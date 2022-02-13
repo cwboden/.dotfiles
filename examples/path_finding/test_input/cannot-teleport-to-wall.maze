@@ -1,0 +1,21 @@
+M
+3
+4
+// Unsolvable 3x3 set
+// Tests using a pipe to an invalid tile type
+// room 0
+S..
+.2.
+...
+// room 1
+.#.
+.E.
+...
+// room 2
+##.
+#..
+..3
+// room 3
+...
+#..
+1.#

@@ -1,27 +1,43 @@
-use std::{
-    ops::{Add, Mul, Div},
-    fmt::{self, Display, Write},
-};
-use crate::math::{LeastCommonMultiple, GreatestCommonDenominator};
+use crate::math::{GreatestCommonDenominator, LeastCommonMultiple};
+use std::fmt::{self, Display, Write};
+use std::ops::{Add, Div, Mul};
 
-trait Integer<T>: Sized + Copy + Add<Output = T> + Display + Mul<Output = T> + LeastCommonMultiple + GreatestCommonDenominator + Div<Output = T> + Add<Output = T> + LeastCommonMultiple + GreatestCommonDenominator {}
+pub trait Integer<T>:
+    Sized
+    + Copy
+    + Add<Output = T>
+    + Display
+    + Mul<Output = T>
+    + LeastCommonMultiple
+    + GreatestCommonDenominator
+    + Div<Output = T>
+    + Add<Output = T>
+    + LeastCommonMultiple
+    + GreatestCommonDenominator
+{
+}
 
 impl Integer<u32> for u32 {}
 
 #[derive(PartialEq, Eq, Clone, Copy, Debug)]
-struct Fraction<T> where T: Integer<T> {
+pub struct Fraction<T>
+{
     numerator: T,
     denominator: T,
 }
 
-impl<T> Fraction<T> where T: Integer<T> {
-    fn new(numerator: T, denominator: T) -> Self {
-        return Self { numerator, denominator }
+impl<T> Fraction<T>
+where
+    T: Integer<T>,
+{
+    pub fn new(numerator: T, denominator: T) -> Self {
+        return Self {
+            numerator,
+            denominator,
+        };
     }
 
-    fn add(&self, other: &Self) -> Self {
-
-        let gcd = self.denominator.gcd(&other.denominator);
+    pub fn add(&self, other: &Self) -> Self {
         let lcm = self.denominator.lcm(&other.denominator);
 
         let first = (self.numerator * lcm) / other.denominator;
@@ -34,7 +50,10 @@ impl<T> Fraction<T> where T: Integer<T> {
     }
 }
 
-impl<T> Display for Fraction<T> where T: Integer<T> {
+impl<T> Display for Fraction<T>
+where
+    T: Integer<T>,
+{
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         write!(f, "{}/{}", self.numerator, self.denominator)
     }
