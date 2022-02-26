@@ -6,6 +6,9 @@ import sys
 from typing import List
 from typing import Protocol
 
+from colorama import Fore
+from colorama import Style
+
 from builder.actions import ActionException
 from builder.actions import BuildAction
 from builder.actions import MakeDirectoryBuildAction
@@ -34,11 +37,17 @@ class Builder:
             try:
                 unit.build()
             except ActionException as e:
-                print(f"Failure for BuildUnit '{str(unit)}'")
+                print(
+                    Fore.RED + f"Failure for BuildUnit '{str(unit)}'" + Style.RESET_ALL
+                )
                 print(f"\t{e}")
                 print("\tAttempting other build units...")
             except NotImplementedError as e:
-                print(f"Missing Implementation for BuildUnit '{str(unit)}'")
+                print(
+                    Fore.YELLOW
+                    + f"Missing Implementation for BuildUnit '{str(unit)}'"
+                    + Style.RESET_ALL
+                )
                 print(f"\t{e}")
                 print("\tAttempting other build units...")
 
