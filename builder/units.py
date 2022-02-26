@@ -27,6 +27,9 @@ class BuildUnit:
         if not self.predicate.check():
             self.action.execute()
 
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}: {{ {str(self.predicate)} -> {str(self.action)} }}"
+
 
 class MakeDirectoryBuildUnit(BuildUnit):
     """Creates the given directory if it does not exist"""
@@ -57,6 +60,11 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
             self.dependencies = [
                 dependency.strip() for dependency in dependencies_file.readlines()
             ]
+
+    def __str__(self) -> str:
+        return (
+            f"{self.__class__.__name__}: {{ {self.system}-{self.linux_distribution} }}"
+        )
 
     def build(self) -> None:
         if self.system == "linux":

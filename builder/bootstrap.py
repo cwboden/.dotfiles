@@ -6,6 +6,7 @@ import sys
 from typing import List
 from typing import Protocol
 
+from builder.actions import ActionException
 from builder.actions import BuildAction
 from builder.actions import MakeDirectoryBuildAction
 from builder.actions import MakeSymlinkBuildAction
@@ -30,7 +31,16 @@ class Builder:
 
     def build(self) -> None:
         for unit in self.units:
-            unit.build()
+            try:
+                unit.build()
+            except ActionException as e:
+                print(f"Failure for BuildUnit '{str(unit)}'")
+                print(f"\t{e}")
+                print("\tAttempting other build units...")
+            except NotImplementedError as e:
+                print(f"Missing Implementation for BuildUnit '{str(unit)}'")
+                print(f"\t{e}")
+                print("\tAttempting other build units...")
 
 
 def install_common_dependencies(builder: Builder) -> None:

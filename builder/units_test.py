@@ -29,6 +29,14 @@ class BuildUnitTest(unittest.TestCase):
 
         spy_action.assert_called()
 
+    def test_to_str(self) -> None:
+        spy_action = SpyBuildAction()
+        unit = BuildUnit(AlwaysRunBuildPredicate(), spy_action)
+
+        self.assertEqual(
+            str(unit), "BuildUnit: { AlwaysRunBuildPredicate -> SpyBuildAction }"
+        )
+
 
 class InstallSystemPackagesBuildUnitTest(unittest.TestCase):
     def test_build_possible_on_current_platform(self) -> None:

@@ -8,6 +8,15 @@ from builder.actions import RunShellCommandBuildAction
 from builder.actions import SpyBuildAction
 
 
+class BuildActionTest(unittest.TestCase):
+    def test_to_str(self) -> None:
+        action = SpyBuildAction()
+        self.assertEqual(
+            str(action),
+            "SpyBuildAction",
+        )
+
+
 class MakeDirectoryBuildActionTest(unittest.TestCase):
     def test_creates_directory(self) -> None:
         path = "foobar"

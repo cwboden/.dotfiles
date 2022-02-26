@@ -9,6 +9,15 @@ from builder.predicates import FileExistsBuildPredicate
 from builder.predicates import PythonModuleInstalledBuildPredicate
 
 
+class BuildPredicateTest(unittest.TestCase):
+    def test_to_str(self) -> None:
+        predicate = AlwaysRunBuildPredicate()
+        self.assertEqual(
+            str(predicate),
+            "AlwaysRunBuildPredicate",
+        )
+
+
 class FileExistsBuildPredicateTest(unittest.TestCase):
     def setUp(self) -> None:
         self.path = "./foobar.txt"

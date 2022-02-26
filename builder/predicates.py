@@ -9,6 +9,9 @@ class BuildPredicate(Protocol):
     def check(self) -> bool:
         return False
 
+    def __str__(self) -> str:
+        return self.__class__.__name__
+
 
 class AlwaysRunBuildPredicate(BuildPredicate):
     def check(self) -> bool:
