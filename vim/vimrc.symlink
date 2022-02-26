@@ -42,6 +42,7 @@ Plug 'preservim/nerdtree'
 Plug 'FooSoft/vim-argwrap'
 Plug 'fadein/vim-FIGlet'
 Plug 'preservim/nerdcommenter'
+Plug 'psf/black'
 
 " Version Control Utilities
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -376,6 +377,11 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" }}}
+
+" Python Black {{{
+let g:black_fast = 1
+let g:black_quiet = 1
 " }}}
 
 " vim:foldmethod=marker:foldlevel=0
