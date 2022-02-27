@@ -36,7 +36,7 @@ jobs:
           # each time a Python command is run.
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
-          python -m unittest discover -p 'bootstrap/main_integration_test.py'
+          python -m unittest discover -k 'bootstrap/' -p '*test.py'
 
   rust-tests:
     name: Rust Tests
@@ -66,6 +66,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Install requirements.txt
+        run: pip install -r requirements.txt
+
       - name: Run Python unittests
         run: |
           # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
@@ -73,4 +76,6 @@ jobs:
           # each time a Python command is run.
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
-          python -m unittest discover -p '*test.py'
+          python -m unittest discover -k 'tools/' -p '*test.py'
+          python -m unittest discover -k 'examples/' -p '*test.py'
+          python -m unittest discover -k 'utils/' -p '*test.py'
