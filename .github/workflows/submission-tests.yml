@@ -46,7 +46,7 @@ jobs:
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
           python -m unittest discover -s 'tools/' -p '*test.py'
-          python -m unittest discover -s 'utils/' -p '*test.py'
+          python -m unittest discover -s 'util/' -p '*test.py'
 
       - name: Run Rust core tests
         run: cargo test
