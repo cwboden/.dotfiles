@@ -90,3 +90,21 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
                 )
         else:
             raise NotImplementedError(f"Bootstrap not yet supported on {self.system}!")
+
+
+class SaboteurBuildUnitException(Exception):
+    def __init__(self) -> None:
+        super().__init__("SaboteurBuildUnit called")
+
+
+class SaboteurBuildUnit(BuildUnit):
+    """Raises an Exception, no matter what"""
+
+    def __init__(self) -> None:
+        pass
+
+    def __str__(self) -> str:
+        return self.__class__.__name__
+
+    def build(self) -> None:
+        raise SaboteurBuildUnitException()

@@ -26,8 +26,10 @@ from builder.units import MakeDirectoryBuildUnit
 
 
 class Builder:
-    def __init__(self):
+    def __init__(self, io_out=sys.stdout):
         self.units = []
+        self.errors = []
+        self.io_out = io_out
 
     def add_unit(self, unit: BuildUnit) -> None:
         self.units.append(unit)
@@ -36,20 +38,27 @@ class Builder:
         for unit in self.units:
             try:
                 unit.build()
-            except ActionException as e:
-                print(
-                    Fore.RED + f"Failure for BuildUnit '{str(unit)}'" + Style.RESET_ALL
-                )
-                print(f"\t{e}")
-                print("\tAttempting other build units...")
             except NotImplementedError as e:
                 print(
                     Fore.YELLOW
                     + f"Missing Implementation for BuildUnit '{str(unit)}'"
-                    + Style.RESET_ALL
+                    + Style.RESET_ALL,
+                    file=self.io_out,
                 )
-                print(f"\t{e}")
-                print("\tAttempting other build units...")
+                self.errors.append(e)
+            except Exception as e:
+                print(
+                    Fore.RED + f"Failure for BuildUnit '{str(unit)}'" + Style.RESET_ALL,
+                    file=self.io_out,
+                )
+                self.errors.append(e)
+
+        if self.errors:
+            print(
+                Fore.RED + "\nBuildUnit Failures:" + Style.RESET_ALL,
+                file=self.io_out,
+            )
+            raise Exception(self.errors)
 
 
 def install_common_dependencies(builder: Builder) -> None:

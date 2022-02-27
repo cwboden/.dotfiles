@@ -20,11 +20,15 @@ from builder.bootstrap import translate_symlink_to_destination
 from builder.predicates import AlwaysRunBuildPredicate
 from builder.units import BuildUnit
 from builder.units import InstallSystemPackagesBuildUnit
+from builder.units import SaboteurBuildUnit
+from builder.units import SaboteurBuildUnitException
+
+DEVNULL = open(os.devnull, "w")
 
 
 class BuilderTest(unittest.TestCase):
     def test_all_build_units_complete(self) -> None:
-        builder = Builder()
+        builder = Builder(io_out=DEVNULL)
         spy_actions = []
 
         for _ in range(3):
@@ -41,6 +45,28 @@ class BuilderTest(unittest.TestCase):
 
         for spy_action in spy_actions:
             spy_action.assert_called()
+
+    def test_all_errors_are_thrown_at_end(self) -> None:
+        builder = Builder(io_out=DEVNULL)
+
+        num_errors = 3
+        for _ in range(num_errors):
+            builder.add_unit(SaboteurBuildUnit())
+
+        spy_action = SpyBuildAction()
+        builder.add_unit(
+            BuildUnit(
+                AlwaysRunBuildPredicate(),
+                spy_action,
+            ),
+        )
+
+        try:
+            builder.build()
+        except Exception as e:
+            self.assertEqual(len(e.args[0]), num_errors)
+
+        spy_action.assert_called()
 
 
 class SymlinkDotFilesTest(unittest.TestCase):
@@ -80,7 +106,7 @@ class SymlinkDotFilesTest(unittest.TestCase):
         dest_dir = "test_home"
         os.mkdir(dest_dir)
 
-        builder = Builder()
+        builder = Builder(io_out=DEVNULL)
         create_symlinks(builder, "fiz", dest_dir)
         builder.build()
 
