@@ -6,7 +6,7 @@ The collection of all my dotfiles.
 git clone https://github.com/cwboden/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 pip install -r requirements.txt
-python build/bootstrap
+python bootstrap/main.py
 ```
 
 ## Notable Content
