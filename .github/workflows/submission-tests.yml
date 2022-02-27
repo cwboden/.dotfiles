@@ -38,6 +38,17 @@ jobs:
 
           python -m unittest discover -s 'bootstrap/' -p '*test.py'
 
+      - name: Run Python unittests
+        run: |
+          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
+          # determine where modules live. For some reason this must be done
+          # each time a Python command is run.
+          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
+
+          python -m unittest discover -s 'tools/' -p '*test.py'
+          python -m unittest discover -s 'examples/' -p '*test.py'
+          python -m unittest discover -s 'utils/' -p '*test.py'
+
   rust-tests:
     name: Rust Tests
     runs-on: ubuntu-latest
@@ -53,29 +64,3 @@ jobs:
 
       - name: Run Rust doc tests
         run: cargo test --doc
-
-  python-tests:
-    name: Python Tests
-    runs-on: ubuntu-latest
-    steps:
-      # Checks out repository under $GITHUB_WORKSPACE
-      - uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
-
-      - name: Install requirements.txt
-        run: pip install -r requirements.txt
-
-      - name: Run Python unittests
-        run: |
-          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
-          # determine where modules live. For some reason this must be done
-          # each time a Python command is run.
-          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-
-          python -m unittest discover -s 'tools/' -p '*test.py'
-          python -m unittest discover -s 'examples/' -p '*test.py'
-          python -m unittest discover -s 'utils/' -p '*test.py'
