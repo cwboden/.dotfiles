@@ -29,11 +29,6 @@ jobs:
           pip install -r requirements.txt
           python bootstrap/main.py
 
-  bootstrap-test:
-    name: Bootstrap Test
-    needs: bootstrap
-    runs-on: ubuntu-latest
-    steps:
       - name: See if Bootstrap worked
         run: |
           # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
@@ -45,21 +40,32 @@ jobs:
 
   rust-tests:
     name: Rust Tests
-    needs: bootstrap
     runs-on: ubuntu-latest
     steps:
+      # Checks out repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+
       - name: Run Rust core tests
         run: cargo test
-      - name: Run Rust doc tests
-        run: cargo test --doc
+
       - name: Run Rust example tests
         run: cargo test --examples
 
+      - name: Run Rust doc tests
+        run: cargo test --doc
+
   python-tests:
     name: Python Tests
-    needs: bootstrap
     runs-on: ubuntu-latest
     steps:
+      # Checks out repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
       - name: Run Python unittests
         run: |
           # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
