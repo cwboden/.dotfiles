@@ -2,11 +2,11 @@
 import os
 import unittest
 
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.predicates import BuildPredicate
-from builder.predicates import DirectoryExistsBuildPredicate
-from builder.predicates import FileExistsBuildPredicate
-from builder.predicates import PythonModuleInstalledBuildPredicate
+from bootstrap.predicates import AlwaysRunBuildPredicate
+from bootstrap.predicates import BuildPredicate
+from bootstrap.predicates import DirectoryExistsBuildPredicate
+from bootstrap.predicates import FileExistsBuildPredicate
+from bootstrap.predicates import PythonModuleInstalledBuildPredicate
 
 
 class BuildPredicateTest(unittest.TestCase):

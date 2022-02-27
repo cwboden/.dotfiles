@@ -6,18 +6,18 @@ from unittest.mock import patch
 import distro
 from parameterized import parameterized
 
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import MakeSymlinkBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.actions import SpyBuildAction
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.predicates import BuildPredicate
-from builder.predicates import DirectoryExistsBuildPredicate
-from builder.predicates import FileExistsBuildPredicate
-from builder.predicates import PythonModuleInstalledBuildPredicate
-from builder.units import BuildUnit
-from builder.units import InstallSystemPackagesBuildUnit
+from bootstrap.actions import BuildAction
+from bootstrap.actions import MakeDirectoryBuildAction
+from bootstrap.actions import MakeSymlinkBuildAction
+from bootstrap.actions import RunShellCommandBuildAction
+from bootstrap.actions import SpyBuildAction
+from bootstrap.predicates import AlwaysRunBuildPredicate
+from bootstrap.predicates import BuildPredicate
+from bootstrap.predicates import DirectoryExistsBuildPredicate
+from bootstrap.predicates import FileExistsBuildPredicate
+from bootstrap.predicates import PythonModuleInstalledBuildPredicate
+from bootstrap.units import BuildUnit
+from bootstrap.units import InstallSystemPackagesBuildUnit
 
 
 class BuildUnitTest(unittest.TestCase):

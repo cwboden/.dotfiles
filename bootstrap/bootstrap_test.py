@@ -9,19 +9,19 @@ from unittest.mock import patch
 
 from parameterized import parameterized
 
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.actions import SpyBuildAction
-from builder.bootstrap import Builder
-from builder.bootstrap import crawl_for_symlink_sources
-from builder.bootstrap import create_symlinks
-from builder.bootstrap import translate_symlink_to_destination
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.units import BuildUnit
-from builder.units import InstallSystemPackagesBuildUnit
-from builder.units import SaboteurBuildUnit
-from builder.units import SaboteurBuildUnitException
+from bootstrap.actions import BuildAction
+from bootstrap.actions import MakeDirectoryBuildAction
+from bootstrap.actions import RunShellCommandBuildAction
+from bootstrap.actions import SpyBuildAction
+from bootstrap.bootstrap import Builder
+from bootstrap.bootstrap import crawl_for_symlink_sources
+from bootstrap.bootstrap import create_symlinks
+from bootstrap.bootstrap import translate_symlink_to_destination
+from bootstrap.predicates import AlwaysRunBuildPredicate
+from bootstrap.units import BuildUnit
+from bootstrap.units import InstallSystemPackagesBuildUnit
+from bootstrap.units import SaboteurBuildUnit
+from bootstrap.units import SaboteurBuildUnitException
 
 DEVNULL = open(os.devnull, "w")
 

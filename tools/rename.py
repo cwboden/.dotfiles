@@ -60,5 +60,5 @@ def main(args: Namespace):
 
 
 if __name__ == "__main__":
-    args = parse_args(sys.argv)
+    args = parse_args(sys.argv[1:])
     main(args)

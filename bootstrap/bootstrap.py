@@ -9,20 +9,20 @@ from typing import Protocol
 from colorama import Fore
 from colorama import Style
 
-from builder.actions import ActionException
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import MakeSymlinkBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.predicates import BuildPredicate
-from builder.predicates import DirectoryExistsBuildPredicate
-from builder.predicates import FileExistsBuildPredicate
-from builder.predicates import PythonModuleInstalledBuildPredicate
-from builder.units import BuildUnit
-from builder.units import InstallPythonModuleBuildUnit
-from builder.units import InstallSystemPackagesBuildUnit
-from builder.units import MakeDirectoryBuildUnit
+from bootstrap.actions import ActionException
+from bootstrap.actions import BuildAction
+from bootstrap.actions import MakeDirectoryBuildAction
+from bootstrap.actions import MakeSymlinkBuildAction
+from bootstrap.actions import RunShellCommandBuildAction
+from bootstrap.predicates import AlwaysRunBuildPredicate
+from bootstrap.predicates import BuildPredicate
+from bootstrap.predicates import DirectoryExistsBuildPredicate
+from bootstrap.predicates import FileExistsBuildPredicate
+from bootstrap.predicates import PythonModuleInstalledBuildPredicate
+from bootstrap.units import BuildUnit
+from bootstrap.units import InstallPythonModuleBuildUnit
+from bootstrap.units import InstallSystemPackagesBuildUnit
+from bootstrap.units import MakeDirectoryBuildUnit
 
 
 class Builder:
