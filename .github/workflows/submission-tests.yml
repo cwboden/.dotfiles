@@ -27,7 +27,7 @@ jobs:
           export PYTHONPATH=$PYTHONPATH:~/.dotfiles
 
           pip install -r requirements.txt
-          python builder/bootstrap.py
+          python bootstrap/main.py
 
   bootstrap-test:
     name: Bootstrap Test
@@ -45,6 +45,7 @@ jobs:
 
   rust-tests:
     name: Rust Tests
+    needs: bootstrap
     runs-on: ubuntu-latest
     steps:
       - name: Run Rust core tests
