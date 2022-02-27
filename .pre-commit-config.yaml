@@ -27,3 +27,8 @@ repos:
     hooks:
       - id: black
         language_version: python3 # Should be a command that runs python3.6+
+-   repo: https://github.com/hadialqattan/pycln
+    rev: v1.2.4 # Possible releases: https://github.com/hadialqattan/pycln/releases
+    hooks:
+      - id: pycln
+        args: [--config=pyproject.toml]
