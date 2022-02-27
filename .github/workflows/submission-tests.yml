@@ -19,32 +19,19 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Configure $PYTHONPATH
+        run: echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
+
       - name: Run Bootstrap
         run: |
-          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
-          # determine where modules live. For some reason this must be done
-          # each time a Python command is run.
-          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-
           pip install -r requirements.txt
           python bootstrap/main.py
 
       - name: See if Bootstrap worked
-        run: |
-          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
-          # determine where modules live. For some reason this must be done
-          # each time a Python command is run.
-          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-
-          python -m unittest discover -s 'bootstrap/' -p '*test.py'
+        run: python -m unittest discover -s 'bootstrap/' -p '*test.py'
 
       - name: Run Python unittests
         run: |
-          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
-          # determine where modules live. For some reason this must be done
-          # each time a Python command is run.
-          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-
           python -m unittest discover -s 'tools/' -p '*test.py'
           python -m unittest discover -s 'util/' -p '*test.py'
 
@@ -52,13 +39,7 @@ jobs:
         run: cargo test
 
       - name: Run Rust integration tests
-        run: |
-          # XXX: Ensure this repo is on the $PYTHONPATH, which Python uses to
-          # determine where modules live. For some reason this must be done
-          # each time a Python command is run.
-          export PYTHONPATH=$PYTHONPATH:~/.dotfiles
-
-          python -m unittest discover -s 'examples/' -p '*test.py'
+        run: python -m unittest discover -s 'examples/' -p '*test.py'
 
       - name: Run Rust example tests
         run: cargo test --examples
