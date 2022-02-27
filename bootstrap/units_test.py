@@ -1,21 +1,11 @@
 #!/usr/bin/python3
 import unittest
-from unittest.mock import MagicMock
 from unittest.mock import patch
 
-import distro
 from parameterized import parameterized
 
-from bootstrap.actions import BuildAction
-from bootstrap.actions import MakeDirectoryBuildAction
-from bootstrap.actions import MakeSymlinkBuildAction
-from bootstrap.actions import RunShellCommandBuildAction
 from bootstrap.actions import SpyBuildAction
 from bootstrap.predicates import AlwaysRunBuildPredicate
-from bootstrap.predicates import BuildPredicate
-from bootstrap.predicates import DirectoryExistsBuildPredicate
-from bootstrap.predicates import FileExistsBuildPredicate
-from bootstrap.predicates import PythonModuleInstalledBuildPredicate
 from bootstrap.units import BuildUnit
 from bootstrap.units import InstallSystemPackagesBuildUnit
 

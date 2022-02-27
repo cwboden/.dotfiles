@@ -1,17 +1,9 @@
 #!/usr/bin/python3
 import os
 import shutil
-import subprocess
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock
-from unittest.mock import patch
 
-from parameterized import parameterized
-
-from bootstrap.actions import BuildAction
-from bootstrap.actions import MakeDirectoryBuildAction
-from bootstrap.actions import RunShellCommandBuildAction
 from bootstrap.actions import SpyBuildAction
 from bootstrap.bootstrap import Builder
 from bootstrap.bootstrap import crawl_for_symlink_sources
@@ -19,9 +11,7 @@ from bootstrap.bootstrap import create_symlinks
 from bootstrap.bootstrap import translate_symlink_to_destination
 from bootstrap.predicates import AlwaysRunBuildPredicate
 from bootstrap.units import BuildUnit
-from bootstrap.units import InstallSystemPackagesBuildUnit
 from bootstrap.units import SaboteurBuildUnit
-from bootstrap.units import SaboteurBuildUnitException
 
 DEVNULL = open(os.devnull, "w")
 

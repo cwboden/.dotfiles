@@ -2,7 +2,6 @@
 import os
 import unittest
 
-from bootstrap.actions import BuildAction
 from bootstrap.actions import MakeDirectoryBuildAction
 from bootstrap.actions import RunShellCommandBuildAction
 from bootstrap.actions import SpyBuildAction

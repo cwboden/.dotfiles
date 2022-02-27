@@ -1,20 +1,13 @@
-import os
 import platform
 import subprocess
-import sys
-from typing import List
-from typing import Protocol
 
 import distro
 
 from bootstrap.actions import BuildAction
 from bootstrap.actions import MakeDirectoryBuildAction
-from bootstrap.actions import MakeSymlinkBuildAction
 from bootstrap.actions import RunShellCommandBuildAction
-from bootstrap.predicates import AlwaysRunBuildPredicate
 from bootstrap.predicates import BuildPredicate
 from bootstrap.predicates import DirectoryExistsBuildPredicate
-from bootstrap.predicates import FileExistsBuildPredicate
 from bootstrap.predicates import PythonModuleInstalledBuildPredicate
 
 

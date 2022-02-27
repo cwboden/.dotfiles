@@ -3,7 +3,6 @@ import os
 import unittest
 
 from bootstrap.predicates import AlwaysRunBuildPredicate
-from bootstrap.predicates import BuildPredicate
 from bootstrap.predicates import DirectoryExistsBuildPredicate
 from bootstrap.predicates import FileExistsBuildPredicate
 from bootstrap.predicates import PythonModuleInstalledBuildPredicate
