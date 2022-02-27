@@ -11,12 +11,13 @@ alias red-green='./tools/red_green.py'
 
 # Build
 alias tags='build all_tests && build tags cscope'
+alias rust-analysis='~/qonstruct/rust_analyzer/build.py'
 
 # Utility
 alias fetch-all='ssha && hg qpop -a && hg fetch && ./prebuild'
 alias clean-cache='qonstruct/cache_tool.py trim --entry-ctime 3_days_ago ~/cache/'
 alias clean-all='qpkg sweep && rm -rf build/tmp/ && ./tools/rm_merge_remnants.sh && clean-cache'
-alias hello='fetch-all && update-tools && clean-all && tags'
+alias hello='fetch-all && update-tools && clean-all && tags && rust-analysis'
 alias update-tools='hg fetch --cwd /home/cboden/tools; pkill -f hg.real; pkill -f hg'
 
 # Add enzo for Qston

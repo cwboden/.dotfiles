@@ -1,46 +1,15 @@
 #!/usr/bin/python3
 import os
 import shutil
-import subprocess
 import unittest
 from pathlib import Path
-from unittest.mock import MagicMock
-from unittest.mock import patch
 
-from parameterized import parameterized
+from bootstrap.builder import Builder
+from bootstrap.main import crawl_for_symlink_sources
+from bootstrap.main import create_symlinks
+from bootstrap.main import translate_symlink_to_destination
 
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.actions import SpyBuildAction
-from builder.bootstrap import Builder
-from builder.bootstrap import crawl_for_symlink_sources
-from builder.bootstrap import create_symlinks
-from builder.bootstrap import translate_symlink_to_destination
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.units import BuildUnit
-from builder.units import InstallSystemPackagesBuildUnit
-
-
-class BuilderTest(unittest.TestCase):
-    def test_all_build_units_complete(self) -> None:
-        builder = Builder()
-        spy_actions = []
-
-        for _ in range(3):
-            spy_action = SpyBuildAction()
-            spy_actions.append(spy_action)
-            builder.add_unit(
-                BuildUnit(
-                    AlwaysRunBuildPredicate(),
-                    spy_action,
-                ),
-            )
-
-        builder.build()
-
-        for spy_action in spy_actions:
-            spy_action.assert_called()
+DEVNULL = open(os.devnull, "w")
 
 
 class SymlinkDotFilesTest(unittest.TestCase):
@@ -80,7 +49,7 @@ class SymlinkDotFilesTest(unittest.TestCase):
         dest_dir = "test_home"
         os.mkdir(dest_dir)
 
-        builder = Builder()
+        builder = Builder(io_out=DEVNULL)
         create_symlinks(builder, "fiz", dest_dir)
         builder.build()
 

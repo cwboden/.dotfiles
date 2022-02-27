@@ -1,2 +1,3 @@
-zsh
 cargo
+ripgrep
+zsh

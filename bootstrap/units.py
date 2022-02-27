@@ -1,21 +1,14 @@
-import os
 import platform
 import subprocess
-import sys
-from typing import List
-from typing import Protocol
 
 import distro
 
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import MakeSymlinkBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.predicates import BuildPredicate
-from builder.predicates import DirectoryExistsBuildPredicate
-from builder.predicates import FileExistsBuildPredicate
-from builder.predicates import PythonModuleInstalledBuildPredicate
+from bootstrap.actions import BuildAction
+from bootstrap.actions import MakeDirectoryBuildAction
+from bootstrap.actions import RunShellCommandBuildAction
+from bootstrap.predicates import BuildPredicate
+from bootstrap.predicates import DirectoryExistsBuildPredicate
+from bootstrap.predicates import PythonModuleInstalledBuildPredicate
 
 
 class BuildUnit:
@@ -26,6 +19,9 @@ class BuildUnit:
     def build(self) -> None:
         if not self.predicate.check():
             self.action.execute()
+
+    def __str__(self) -> str:
+        return f"{self.__class__.__name__}: {{ {str(self.predicate)} -> {str(self.action)} }}"
 
 
 class MakeDirectoryBuildUnit(BuildUnit):
@@ -58,6 +54,11 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
                 dependency.strip() for dependency in dependencies_file.readlines()
             ]
 
+    def __str__(self) -> str:
+        return (
+            f"{self.__class__.__name__}: {{ {self.system}-{self.linux_distribution} }}"
+        )
+
     def build(self) -> None:
         if self.system == "linux":
             if self.linux_distribution == "ubuntu":
@@ -82,3 +83,21 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
                 )
         else:
             raise NotImplementedError(f"Bootstrap not yet supported on {self.system}!")
+
+
+class SaboteurBuildUnitException(Exception):
+    def __init__(self) -> None:
+        super().__init__("SaboteurBuildUnit called")
+
+
+class SaboteurBuildUnit(BuildUnit):
+    """Raises an Exception, no matter what"""
+
+    def __init__(self) -> None:
+        pass
+
+    def __str__(self) -> str:
+        return self.__class__.__name__
+
+    def build(self) -> None:
+        raise SaboteurBuildUnitException()
