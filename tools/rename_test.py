@@ -2,6 +2,7 @@
 import os
 import random
 import string
+import textwrap
 import unittest
 from io import StringIO
 from typing import List
@@ -9,11 +10,13 @@ from typing import Union
 
 from fs import open_fs
 from fs.base import FS
-from fs.base import SubFS
+from fs.subfs import SubFS
+
+from tools import rename
 
 FILE_1_CONTENTS = """
 old_name
-oldName
+newName
 OldName
 OLD_NAME
 """
@@ -86,6 +89,78 @@ class RenameTest(unittest.TestCase):
             "|   |-- 1.txt\n|   |-- 2.txt\n|   `-- 3.txt\n|-- 1.txt\n|-- 2.txt\n"
             "`-- 3.txt\n",
         )
+
+    def test_rename_within_one_file(self) -> None:
+        file_path = "1.txt"
+        args = rename.parse_args(
+            ["old_name", "new_name", f"{self.fs_dir_name}/{file_path}"]
+        )
+        rename.main(args)
+
+        self.assertEqual(
+            self.fs.readtext(file_path),
+            textwrap.dedent(
+                """
+                new_name
+                newName
+                OldName
+                OLD_NAME
+            """
+            ),
+        )
+
+    def test_rename_matches_case(self) -> None:
+        file_path = "1.txt"
+        args = rename.parse_args(
+            ["newName", "newName", f"{self.fs_dir_name}/{file_path}"]
+        )
+        rename.main(args)
+
+        self.assertEqual(
+            self.fs.readtext(file_path),
+            textwrap.dedent(
+                """
+                old_name
+                newName
+                OldName
+                OLD_NAME
+            """
+            ),
+        )
+
+    def test_rename_searches_recursively(self) -> None:
+        args = rename.parse_args(["newName", "newName", f"{self.fs_dir_name}/"])
+        rename.main(args)
+
+        for file_path in ["1.txt", "foo/1.txt", "foo/baz/1.txt", "bar/1.txt"]:
+            self.assertEqual(
+                self.fs.readtext(file_path),
+                textwrap.dedent(
+                    """
+                    old_name
+                    newName
+                    OldName
+                    OLD_NAME
+                """
+                ),
+            )
+
+    def test_rename_starts_in_dot_directory(self) -> None:
+        args = rename.parse_args(["newName", "newName"])
+        rename.main(args)
+
+        for file_path in ["1.txt", "foo/1.txt", "foo/baz/1.txt", "bar/1.txt"]:
+            self.assertEqual(
+                self.fs.readtext(file_path),
+                textwrap.dedent(
+                    """
+                    old_name
+                    newName
+                    OldName
+                    OLD_NAME
+                """
+                ),
+            )
 
 
 if __name__ == "__main__":
