@@ -1,12 +1,12 @@
 use std::collections::HashMap;
 
-struct Parser<'a, T> {
+pub struct Parser<'a, T> {
     output_args: &'a mut T,
-    input_arg_to_funcs: HashMap<String, Box<dyn Fn(&mut T)>>,
+    input_arg_to_funcs: HashMap<&'a str, Box<dyn Fn(&mut T)>>,
 }
 
 #[derive(Debug, Eq, PartialEq)]
-enum Error {
+pub enum Error {
     ArgAlreadyUsed(String),
     ArgNotRecognized(String),
 }
@@ -21,14 +21,14 @@ impl<'a, T> Parser<'a, T> {
         }
     }
 
-    pub fn add_flag<F>(&mut self, identifiers: &[String], func: F) -> Result<()>
+    pub fn add_flag<F>(&mut self, identifiers: &[&'a str], func: F) -> Result<()>
     where
         F: 'static + Fn(&mut T) + Copy,
     {
         for identifier in identifiers.iter() {
             if self
                 .input_arg_to_funcs
-                .insert(identifier.to_string(), Box::new(func))
+                .insert(identifier, Box::new(func))
                 .is_some()
             {
                 return Err(Error::ArgAlreadyUsed(format!(
@@ -40,7 +40,7 @@ impl<'a, T> Parser<'a, T> {
         Ok(())
     }
 
-    pub fn parse(self, args: &[String]) -> Result<()> {
+    pub fn parse(self, args: &[&str]) -> Result<()> {
         for arg in args.iter() {
             let func = self
                 .input_arg_to_funcs
@@ -70,19 +70,19 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
 
         parser
-            .add_flag(&["--flag".to_owned()], |t| t.arg_flag = true)
+            .add_flag(&["--flag"], |t| t.arg_flag = true)
             .unwrap();
-        parser.parse(&["--flag".to_owned()]);
+        parser.parse(&["--flag"]);
 
         assert!(test_args.arg_flag);
     }
 
     #[test]
     fn parse_flag_with_multiple_keys() {
-        let keys = vec![
-            "-f".to_owned(),
-            "--flag".to_owned(),
-            "--really-verbose-flag".to_owned(),
+        let keys = [
+            "-f",
+            "--flag",
+            "--really-verbose-flag",
         ];
 
         for key in keys.iter() {
@@ -90,7 +90,7 @@ mod tests {
             let mut parser = Parser::new(&mut test_args);
 
             parser.add_flag(&keys, |t| t.arg_flag = true).unwrap();
-            parser.parse(&[key.to_string()]);
+            parser.parse(&[&key]);
 
             assert!(test_args.arg_flag);
         }
@@ -102,7 +102,7 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
 
         assert_eq!(
-            parser.add_flag(&["-f".to_owned(), "-f".to_owned()], |t| t.arg_flag = true),
+            parser.add_flag(&["-f", "-f"], |t| t.arg_flag = true),
             Err(Error::ArgAlreadyUsed(
                 "Identifier '-f' already used.".to_string()
             ))
@@ -115,7 +115,7 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
 
         assert_eq!(
-            parser.parse(&["-f".to_owned()]),
+            parser.parse(&["-f"]),
             Err(Error::ArgNotRecognized(
                 "Argument '-f' not recognized.".to_string()
             ))
