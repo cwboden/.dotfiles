@@ -8,6 +8,7 @@ struct Parser<'a, T> {
 #[derive(Debug, Eq, PartialEq)]
 enum Error {
     ArgAlreadyUsed(String),
+    ArgNotRecognized(String),
 }
 
 type Result<T> = std::result::Result<T, Error>;
@@ -39,11 +40,18 @@ impl<'a, T> Parser<'a, T> {
         Ok(())
     }
 
-    pub fn parse(self, args: &[String]) {
+    pub fn parse(self, args: &[String]) -> Result<()> {
         for arg in args.iter() {
-            let func = self.input_arg_to_funcs.get(arg).unwrap();
+            let func = self
+                .input_arg_to_funcs
+                .get(arg)
+                .ok_or(Error::ArgNotRecognized(format!(
+                    "Argument '{}' not recognized.",
+                    arg
+                )))?;
             func(self.output_args);
         }
+        Ok(())
     }
 }
 
@@ -97,6 +105,19 @@ mod tests {
             parser.add_flag(&["-f".to_owned(), "-f".to_owned()], |t| t.arg_flag = true),
             Err(Error::ArgAlreadyUsed(
                 "Identifier '-f' already used.".to_string()
+            ))
+        );
+    }
+
+    #[test]
+    fn parse_throws_error_for_unrecognized_arg() {
+        let mut test_args = TestArgs::default();
+        let mut parser = Parser::new(&mut test_args);
+
+        assert_eq!(
+            parser.parse(&["-f".to_owned()]),
+            Err(Error::ArgNotRecognized(
+                "Argument '-f' not recognized.".to_string()
             ))
         );
     }
