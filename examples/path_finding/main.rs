@@ -1,6 +1,8 @@
 mod maze;
 mod solver;
 
+use dotfiles::argparse::Parser;
+
 use ron::ser::{to_writer_pretty, PrettyConfig};
 use std::io::BufReader;
 
@@ -73,41 +75,41 @@ impl PathFindingArgsRaw {
     }
 }
 
-fn parse_args(args: &[String]) -> PathFindingArgs {
+fn parse_args(args: Vec<String>) -> PathFindingArgs {
     let mut parsed_args = PathFindingArgsRaw::new();
+    let mut parser = Parser::new(&mut parsed_args);
 
-    for arg in args {
-        match arg.as_str() {
-            "-q" | "--queue" => {
-                parsed_args.add_algorithm(Algorithm::Queue);
-            }
-            "-s" | "--stack" => {
-                parsed_args.add_algorithm(Algorithm::Stack);
-            }
-            "-l" | "--list" => {
-                parsed_args.add_output_format(Format::List);
-            }
-            "-m" | "--map" => {
-                parsed_args.add_output_format(Format::Map);
-            }
-            "-r" | "--ron" => {
-                parsed_args.add_output_format(Format::RustyObjectNotation);
-            }
-            "-h" | "--help" => {
-                println!("\nPath finding algorithm for solving simple mazes.");
-                println!("See README.md for more details.");
-                println!("  -q --queue    Use queue-based search algorithm (Breadth-First Search)");
-                println!("  -s --stack    Use stack-based search algorithm (Depth-First Search)");
-                println!("  -m --map      Return output in Map format (See README.md)");
-                println!("  -l --list     Return output in List format (See README.md)");
-                println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
-                std::process::exit(0);
-            }
-            _ => {
-                panic!("Invalid argument: '{}'", arg)
-            }
-        }
-    }
+    parser
+        .add_flag(&["-q", "--queue"], |a| a.add_algorithm(Algorithm::Queue))
+        .unwrap();
+    parser
+        .add_flag(&["-s", "--stack"], |a| a.add_algorithm(Algorithm::Stack))
+        .unwrap();
+    parser
+        .add_flag(&["-l", "--list"], |a| a.add_output_format(Format::List))
+        .unwrap();
+    parser
+        .add_flag(&["-m", "--map"], |a| a.add_output_format(Format::Map))
+        .unwrap();
+    parser
+        .add_flag(&["-r", "--ron"], |a| {
+            a.add_output_format(Format::RustyObjectNotation)
+        })
+        .unwrap();
+    parser
+        .add_flag(&["-h", "--help"], |_| {
+            println!("\nPath finding algorithm for solving simple mazes.");
+            println!("See README.md for more details.");
+            println!("  -q --queue    Use queue-based search algorithm (Breadth-First Search)");
+            println!("  -s --stack    Use stack-based search algorithm (Depth-First Search)");
+            println!("  -m --map      Return output in Map format (See README.md)");
+            println!("  -l --list     Return output in List format (See README.md)");
+            println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
+            std::process::exit(0);
+        })
+        .unwrap();
+
+    parser.parse(&args).unwrap();
 
     parsed_args.validate()
 }
@@ -116,7 +118,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     // Ignore the first argument, the name of the binary
-    let parsed_args = parse_args(&args[1..]);
+    let parsed_args = parse_args(args);
 
     let reader = BufReader::new(std::io::stdin());
     let maze = Maze::from_reader(reader);
@@ -161,7 +163,7 @@ mod tests {
             ]
             .iter()
             {
-                let parsed_args = parse_args(&[
+                let parsed_args = parse_args(vec![
                     algorithm_arg_string.to_string(),
                     output_format_arg_string.to_string(),
                 ]);

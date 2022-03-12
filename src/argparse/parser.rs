@@ -40,14 +40,15 @@ impl<'a, T> Parser<'a, T> {
         Ok(())
     }
 
-    pub fn parse(self, args: &[&str]) -> Result<()> {
+    pub fn parse<S: Into<String> + Clone>(self, args: &[S]) -> Result<()> {
         for arg in args.iter() {
+            let arg_string: String = arg.clone().into();
             let func = self
                 .input_arg_to_funcs
-                .get(arg)
+                .get(arg_string.as_str())
                 .ok_or(Error::ArgNotRecognized(format!(
                     "Argument '{}' not recognized.",
-                    arg
+                    arg_string
                 )))?;
             func(self.output_args);
         }
@@ -72,7 +73,7 @@ mod tests {
         parser
             .add_flag(&["--flag"], |t| t.arg_flag = true)
             .unwrap();
-        parser.parse(&["--flag"]);
+        parser.parse(&["--flag"]).unwrap();
 
         assert!(test_args.arg_flag);
     }
@@ -85,12 +86,12 @@ mod tests {
             "--really-verbose-flag",
         ];
 
-        for key in keys.iter() {
+        for &key in keys.iter() {
             let mut test_args = TestArgs::default();
             let mut parser = Parser::new(&mut test_args);
 
             parser.add_flag(&keys, |t| t.arg_flag = true).unwrap();
-            parser.parse(&[&key]);
+            parser.parse(&[key]).unwrap();
 
             assert!(test_args.arg_flag);
         }
@@ -112,7 +113,7 @@ mod tests {
     #[test]
     fn parse_throws_error_for_unrecognized_arg() {
         let mut test_args = TestArgs::default();
-        let mut parser = Parser::new(&mut test_args);
+        let parser = Parser::new(&mut test_args);
 
         assert_eq!(
             parser.parse(&["-f"]),
