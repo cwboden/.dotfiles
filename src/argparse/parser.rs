@@ -5,6 +5,13 @@ struct Parser<'a, T> {
     input_arg_to_funcs: HashMap<String, Box<dyn Fn(&mut T)>>,
 }
 
+#[derive(Debug, Eq, PartialEq)]
+enum Error {
+    ArgAlreadyUsed(String),
+}
+
+type Result<T> = std::result::Result<T, Error>;
+
 impl<'a, T> Parser<'a, T> {
     pub fn new(output_args: &'a mut T) -> Self {
         Self {
@@ -13,16 +20,23 @@ impl<'a, T> Parser<'a, T> {
         }
     }
 
-    pub fn add_flag<F>(&mut self, identifiers: &[String], func: F)
+    pub fn add_flag<F>(&mut self, identifiers: &[String], func: F) -> Result<()>
     where
         F: 'static + Fn(&mut T) + Copy,
     {
         for identifier in identifiers.iter() {
-            assert!(self
+            if self
                 .input_arg_to_funcs
                 .insert(identifier.to_string(), Box::new(func))
-                .is_none());
+                .is_some()
+            {
+                return Err(Error::ArgAlreadyUsed(format!(
+                    "Identifier '{}' already used.",
+                    identifier
+                )));
+            }
         }
+        Ok(())
     }
 
     pub fn parse(self, args: &[String]) {
@@ -47,7 +61,9 @@ mod tests {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
 
-        parser.add_flag(&["--flag".to_owned()], |t| t.arg_flag = true);
+        parser
+            .add_flag(&["--flag".to_owned()], |t| t.arg_flag = true)
+            .unwrap();
         parser.parse(&["--flag".to_owned()]);
 
         assert!(test_args.arg_flag);
@@ -65,10 +81,23 @@ mod tests {
             let mut test_args = TestArgs::default();
             let mut parser = Parser::new(&mut test_args);
 
-            parser.add_flag(&keys, |t| t.arg_flag = true);
+            parser.add_flag(&keys, |t| t.arg_flag = true).unwrap();
             parser.parse(&[key.to_string()]);
 
             assert!(test_args.arg_flag);
         }
+    }
+
+    #[test]
+    fn cannot_register_flag_more_than_once() {
+        let mut test_args = TestArgs::default();
+        let mut parser = Parser::new(&mut test_args);
+
+        assert_eq!(
+            parser.add_flag(&["-f".to_owned(), "-f".to_owned()], |t| t.arg_flag = true),
+            Err(Error::ArgAlreadyUsed(
+                "Identifier '-f' already used.".to_string()
+            ))
+        );
     }
 }
