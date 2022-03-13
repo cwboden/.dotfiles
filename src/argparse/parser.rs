@@ -1,4 +1,5 @@
 use crate::argparse::Argument;
+use std::collections::HashSet;
 
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
@@ -9,11 +10,15 @@ pub struct Parser<'a, T> {
 pub enum Error {
     ArgAlreadyUsed(String),
     ArgNotRecognized(String),
+    CannotOverrideHelpArg,
+    HelpTextRequested,
 }
 
 type Result<T> = std::result::Result<T, Error>;
 
 impl<'a, T> Parser<'a, T> {
+    const HELP_IDENTIFIERS: [&'static str; 2] = ["-h", "--help"];
+
     pub fn new(output_args: &'a mut T) -> Self {
         Self {
             output_args,
@@ -22,6 +27,13 @@ impl<'a, T> Parser<'a, T> {
     }
 
     pub fn add_argument(&mut self, arg: Argument<'a, T>) -> Result<()> {
+        if Self::HELP_IDENTIFIERS
+            .iter()
+            .any(|help_id| arg.identifiers.contains(help_id))
+        {
+            return Err(Error::CannotOverrideHelpArg);
+        }
+
         if let Some(existing_arg) = self
             .arguments
             .iter()
@@ -42,6 +54,14 @@ impl<'a, T> Parser<'a, T> {
     }
 
     pub fn parse<S: Into<String> + Clone>(self, args: &[S]) -> Result<()> {
+        let args_set: HashSet<String> = args.iter().map(|a| Into::<String>::into(a.clone())).collect();
+        if Self::HELP_IDENTIFIERS
+            .iter()
+            .any(|help_id| args_set.contains(&help_id.to_string()))
+        {
+            return Err(Error::HelpTextRequested);
+        }
+
         for arg in args.iter() {
             let arg_string: String = arg.clone().into();
             let argument = self
@@ -140,11 +160,13 @@ mod tests {
     fn cannot_register_flag_more_than_once() {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
-        parser.add_argument(
-            Argument::new()
-                .with_identifiers(&["-f"])
-                .with_callback(|t: &mut TestArgs| t.arg_flag = true),
-        ).unwrap();
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-f"])
+                    .with_callback(|t: &mut TestArgs| t.arg_flag = true),
+            )
+            .unwrap();
 
         assert_eq!(
             parser.add_argument(
@@ -155,6 +177,21 @@ mod tests {
             Err(Error::ArgAlreadyUsed(
                 "Identifiers [\"-f\"] already used.".to_string()
             ))
+        );
+    }
+
+    #[test]
+    fn cannot_override_help_arg() {
+        let mut test_args = TestArgs::default();
+        let mut parser = Parser::new(&mut test_args);
+
+        assert_eq!(
+            parser.add_argument(
+                Argument::new()
+                    .with_identifiers(&["-h"])
+                    .with_callback(|t: &mut TestArgs| t.arg_flag = true)
+            ),
+            Err(Error::CannotOverrideHelpArg)
         );
     }
 
@@ -175,6 +212,32 @@ mod tests {
             Err(Error::ArgNotRecognized(
                 "Argument '--different' not recognized.".to_string()
             ))
+        );
+    }
+
+    #[test]
+    fn parse_throws_error_for_help_text() {
+        let mut test_args = TestArgs::default();
+        let parser = Parser::new(&mut test_args);
+
+        assert_eq!(parser.parse(&["--help"]), Err(Error::HelpTextRequested),);
+    }
+
+    #[test]
+    fn parse_with_invalid_argument_throws_error_for_help_text() {
+        let mut test_args = TestArgs::default();
+        let mut parser = Parser::new(&mut test_args);
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-f", "--flag"])
+                    .with_help_text(&"this is the help text for a flag"),
+            )
+            .unwrap();
+
+        assert_eq!(
+            parser.parse(&["-f", "--different", "--help"]),
+            Err(Error::HelpTextRequested),
         );
     }
 }
