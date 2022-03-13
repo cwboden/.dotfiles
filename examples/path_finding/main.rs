@@ -1,7 +1,7 @@
 mod maze;
 mod solver;
 
-use dotfiles::argparse::{Argument, Parser};
+use dotfiles::argparse;
 
 use ron::ser::{to_writer_pretty, PrettyConfig};
 use std::io::BufReader;
@@ -77,61 +77,73 @@ impl PathFindingArgsRaw {
 
 fn parse_args(args: Vec<String>) -> PathFindingArgs {
     let mut parsed_args = PathFindingArgsRaw::new();
-    let mut parser = Parser::new(&mut parsed_args);
+    let mut parser = argparse::Parser::new(&mut parsed_args);
 
-    for (ids, algorithm) in [
-        (["-q", "--queue"], Algorithm::Queue),
-        (["-s", "--stack"], Algorithm::Stack),
+    for (ids, algorithm, help_text) in [
+        (
+            ["-q", "--queue"],
+            Algorithm::Queue,
+            "Use queue-based search algorithm (Breadth-First Search)",
+        ),
+        (
+            ["-s", "--stack"],
+            Algorithm::Stack,
+            "Use stack-based search algorithm (Depth-First Search)",
+        ),
     ]
     .iter()
     {
         parser
             .add_argument(
-                Argument::new()
+                argparse::Argument::new()
                     .with_identifiers(ids)
-                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_algorithm(*algorithm)),
+                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_algorithm(*algorithm))
+                    .with_help_text(help_text),
             )
             .unwrap();
     }
 
-    for (ids, format) in [
-        (["-l", "--list"], Format::List),
-        (["-m", "--map"], Format::Map),
-        (["-r", "--ron"], Format::RustyObjectNotation),
+    for (ids, format, help_text) in [
+        (
+            ["-l", "--list"],
+            Format::List,
+            "Return output in Map format (See README.md)",
+        ),
+        (
+            ["-m", "--map"],
+            Format::Map,
+            "Return output in List format (See README.md)",
+        ),
+        (
+            ["-r", "--ron"],
+            Format::RustyObjectNotation,
+            "Return output in RustyObjectNotation (.ron) format",
+        ),
     ]
     .iter()
     {
         parser
             .add_argument(
-                Argument::new()
+                argparse::Argument::new()
                     .with_identifiers(ids)
-                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_output_format(*format)),
+                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_output_format(*format))
+                    .with_help_text(help_text),
             )
             .unwrap();
     }
 
-    parser
-        .add_argument(
-            Argument::new()
-                .with_identifiers(&["-h", "--help"])
-                .with_callback(|_| {
-                    println!("\nPath finding algorithm for solving simple mazes.");
-                    println!("See README.md for more details.");
-                    println!(
-                        "  -q --queue    Use queue-based search algorithm (Breadth-First Search)"
-                    );
-                    println!(
-                        "  -s --stack    Use stack-based search algorithm (Depth-First Search)"
-                    );
-                    println!("  -m --map      Return output in Map format (See README.md)");
-                    println!("  -l --list     Return output in List format (See README.md)");
-                    println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
-                    std::process::exit(0);
-                }),
-        )
-        .unwrap();
+    match parser.parse(&args) {
+        Ok(_) => (),
+        Err(e) => {
+            parser.print_help_text(std::io::stdout());
 
-    parser.parse(&args).unwrap();
+            if e == argparse::Error::HelpTextRequested {
+                std::process::exit(0)
+            } else {
+                std::process::exit(2)
+            }
+        }
+    }
 
     parsed_args.validate()
 }

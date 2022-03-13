@@ -54,7 +54,7 @@ impl<'a, T> Parser<'a, T> {
         Ok(())
     }
 
-    pub fn parse<S: Into<String> + Clone>(self, args: &[S]) -> Result<()> {
+    pub fn parse<S: Into<String> + Clone>(&mut self, args: &[S]) -> Result<()> {
         let args_set: HashSet<String> = args
             .iter()
             .map(|a| Into::<String>::into(a.clone()))
