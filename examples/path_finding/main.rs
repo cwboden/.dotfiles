@@ -1,7 +1,7 @@
 mod maze;
 mod solver;
 
-use dotfiles::argparse::Parser;
+use dotfiles::argparse::{Argument, Parser};
 
 use ron::ser::{to_writer_pretty, PrettyConfig};
 use std::io::BufReader;
@@ -79,34 +79,56 @@ fn parse_args(args: Vec<String>) -> PathFindingArgs {
     let mut parsed_args = PathFindingArgsRaw::new();
     let mut parser = Parser::new(&mut parsed_args);
 
+    for (ids, algorithm) in [
+        (["-q", "--queue"], Algorithm::Queue),
+        (["-s", "--stack"], Algorithm::Stack),
+    ]
+    .iter()
+    {
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(ids)
+                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_algorithm(*algorithm)),
+            )
+            .unwrap();
+    }
+
+    for (ids, format) in [
+        (["-l", "--list"], Format::List),
+        (["-m", "--map"], Format::Map),
+        (["-r", "--ron"], Format::RustyObjectNotation),
+    ]
+    .iter()
+    {
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(ids)
+                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_output_format(*format)),
+            )
+            .unwrap();
+    }
+
     parser
-        .add_flag(&["-q", "--queue"], |a| a.add_algorithm(Algorithm::Queue))
-        .unwrap();
-    parser
-        .add_flag(&["-s", "--stack"], |a| a.add_algorithm(Algorithm::Stack))
-        .unwrap();
-    parser
-        .add_flag(&["-l", "--list"], |a| a.add_output_format(Format::List))
-        .unwrap();
-    parser
-        .add_flag(&["-m", "--map"], |a| a.add_output_format(Format::Map))
-        .unwrap();
-    parser
-        .add_flag(&["-r", "--ron"], |a| {
-            a.add_output_format(Format::RustyObjectNotation)
-        })
-        .unwrap();
-    parser
-        .add_flag(&["-h", "--help"], |_| {
-            println!("\nPath finding algorithm for solving simple mazes.");
-            println!("See README.md for more details.");
-            println!("  -q --queue    Use queue-based search algorithm (Breadth-First Search)");
-            println!("  -s --stack    Use stack-based search algorithm (Depth-First Search)");
-            println!("  -m --map      Return output in Map format (See README.md)");
-            println!("  -l --list     Return output in List format (See README.md)");
-            println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
-            std::process::exit(0);
-        })
+        .add_argument(
+            Argument::new()
+                .with_identifiers(&["-h", "--help"])
+                .with_callback(|_| {
+                    println!("\nPath finding algorithm for solving simple mazes.");
+                    println!("See README.md for more details.");
+                    println!(
+                        "  -q --queue    Use queue-based search algorithm (Breadth-First Search)"
+                    );
+                    println!(
+                        "  -s --stack    Use stack-based search algorithm (Depth-First Search)"
+                    );
+                    println!("  -m --map      Return output in Map format (See README.md)");
+                    println!("  -l --list     Return output in List format (See README.md)");
+                    println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
+                    std::process::exit(0);
+                }),
+        )
         .unwrap();
 
     parser.parse(&args).unwrap();

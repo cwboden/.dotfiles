@@ -1,8 +1,8 @@
-use std::collections::HashMap;
+use crate::argparse::Argument;
 
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
-    input_arg_to_funcs: HashMap<&'a str, Box<dyn Fn(&mut T)>>,
+    arguments: Vec<Argument<'a, T>>,
 }
 
 #[derive(Debug, Eq, PartialEq)]
@@ -17,40 +17,45 @@ impl<'a, T> Parser<'a, T> {
     pub fn new(output_args: &'a mut T) -> Self {
         Self {
             output_args,
-            input_arg_to_funcs: HashMap::new(),
+            arguments: Vec::new(),
         }
     }
 
-    pub fn add_flag<F>(&mut self, identifiers: &[&'a str], func: F) -> Result<()>
-    where
-        F: 'static + Fn(&mut T) + Copy,
-    {
-        for identifier in identifiers.iter() {
-            if self
-                .input_arg_to_funcs
-                .insert(identifier, Box::new(func))
-                .is_some()
-            {
-                return Err(Error::ArgAlreadyUsed(format!(
-                    "Identifier '{}' already used.",
-                    identifier
-                )));
-            }
+    pub fn add_argument(&mut self, arg: Argument<'a, T>) -> Result<()> {
+        if let Some(existing_arg) = self
+            .arguments
+            .iter()
+            .find(|a| !a.identifiers.is_disjoint(&arg.identifiers))
+        {
+            let identifiers: Vec<_> = existing_arg
+                .identifiers
+                .intersection(&arg.identifiers)
+                .collect();
+            return Err(Error::ArgAlreadyUsed(format!(
+                "Identifiers {:?} already used.",
+                identifiers
+            )));
         }
+
+        self.arguments.push(arg);
         Ok(())
     }
 
     pub fn parse<S: Into<String> + Clone>(self, args: &[S]) -> Result<()> {
         for arg in args.iter() {
             let arg_string: String = arg.clone().into();
-            let func = self
-                .input_arg_to_funcs
-                .get(arg_string.as_str())
+            let argument = self
+                .arguments
+                .iter()
+                .find(|a| a.identifiers.contains(arg_string.as_str()))
                 .ok_or(Error::ArgNotRecognized(format!(
                     "Argument '{}' not recognized.",
                     arg_string
                 )))?;
-            func(self.output_args);
+
+            for func in argument.callbacks.iter() {
+                func(self.output_args);
+            }
         }
         Ok(())
     }
@@ -63,6 +68,7 @@ mod tests {
     #[derive(Default)]
     struct TestArgs {
         arg_flag: bool,
+        arg_number: u32,
     }
 
     #[test]
@@ -71,7 +77,11 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
 
         parser
-            .add_flag(&["--flag"], |t| t.arg_flag = true)
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["--flag"])
+                    .with_callback(|t: &mut TestArgs| t.arg_flag = true),
+            )
             .unwrap();
         parser.parse(&["--flag"]).unwrap();
 
@@ -80,17 +90,19 @@ mod tests {
 
     #[test]
     fn parse_flag_with_multiple_keys() {
-        let keys = [
-            "-f",
-            "--flag",
-            "--really-verbose-flag",
-        ];
+        let keys = ["-f", "--flag", "--really-verbose-flag"];
 
         for &key in keys.iter() {
             let mut test_args = TestArgs::default();
             let mut parser = Parser::new(&mut test_args);
 
-            parser.add_flag(&keys, |t| t.arg_flag = true).unwrap();
+            parser
+                .add_argument(
+                    Argument::new()
+                        .with_identifiers(&keys)
+                        .with_callback(|t: &mut TestArgs| t.arg_flag = true),
+                )
+                .unwrap();
             parser.parse(&[key]).unwrap();
 
             assert!(test_args.arg_flag);
@@ -98,14 +110,50 @@ mod tests {
     }
 
     #[test]
-    fn cannot_register_flag_more_than_once() {
+    fn can_register_multiple_flags() {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
 
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-f"])
+                    .with_callback(|t: &mut TestArgs| t.arg_flag = true),
+            )
+            .unwrap();
+
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-n"])
+                    .with_callback(|t: &mut TestArgs| t.arg_number = 13),
+            )
+            .unwrap();
+
+        parser.parse(&["-f", "-n"]).unwrap();
+
+        assert!(test_args.arg_flag);
+        assert_eq!(test_args.arg_number, 13);
+    }
+
+    #[test]
+    fn cannot_register_flag_more_than_once() {
+        let mut test_args = TestArgs::default();
+        let mut parser = Parser::new(&mut test_args);
+        parser.add_argument(
+            Argument::new()
+                .with_identifiers(&["-f"])
+                .with_callback(|t: &mut TestArgs| t.arg_flag = true),
+        );
+
         assert_eq!(
-            parser.add_flag(&["-f", "-f"], |t| t.arg_flag = true),
+            parser.add_argument(
+                Argument::new()
+                    .with_identifiers(&["-f"])
+                    .with_callback(|t: &mut TestArgs| t.arg_flag = true)
+            ),
             Err(Error::ArgAlreadyUsed(
-                "Identifier '-f' already used.".to_string()
+                "Identifiers [\"-f\"] already used.".to_string()
             ))
         );
     }
@@ -113,12 +161,19 @@ mod tests {
     #[test]
     fn parse_throws_error_for_unrecognized_arg() {
         let mut test_args = TestArgs::default();
-        let parser = Parser::new(&mut test_args);
+        let mut parser = Parser::new(&mut test_args);
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-f", "--flag"])
+                    .with_callback(|t: &mut TestArgs| t.arg_flag = true),
+            )
+            .unwrap();
 
         assert_eq!(
-            parser.parse(&["-f"]),
+            parser.parse(&["--different"]),
             Err(Error::ArgNotRecognized(
-                "Argument '-f' not recognized.".to_string()
+                "Argument '--different' not recognized.".to_string()
             ))
         );
     }
