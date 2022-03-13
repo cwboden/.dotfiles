@@ -1,5 +1,6 @@
 use crate::argparse::Argument;
 use std::collections::HashSet;
+use std::io::Write;
 
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
@@ -54,7 +55,10 @@ impl<'a, T> Parser<'a, T> {
     }
 
     pub fn parse<S: Into<String> + Clone>(self, args: &[S]) -> Result<()> {
-        let args_set: HashSet<String> = args.iter().map(|a| Into::<String>::into(a.clone())).collect();
+        let args_set: HashSet<String> = args
+            .iter()
+            .map(|a| Into::<String>::into(a.clone()))
+            .collect();
         if Self::HELP_IDENTIFIERS
             .iter()
             .any(|help_id| args_set.contains(&help_id.to_string()))
@@ -78,6 +82,15 @@ impl<'a, T> Parser<'a, T> {
             }
         }
         Ok(())
+    }
+
+    pub fn print_help_text<W: Write>(&self, mut writer: W) {
+        writer
+            .write(b"-h --help : Display this help text\n")
+            .unwrap();
+        for argument in self.arguments.iter() {
+            writer.write(format!("{}\n", argument).as_bytes()).unwrap();
+        }
     }
 }
 
@@ -228,16 +241,42 @@ mod tests {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
         parser
-            .add_argument(
-                Argument::new()
-                    .with_identifiers(&["-f", "--flag"])
-                    .with_help_text(&"this is the help text for a flag"),
-            )
+            .add_argument(Argument::new().with_identifiers(&["-f", "--flag"]))
             .unwrap();
 
         assert_eq!(
             parser.parse(&["-f", "--different", "--help"]),
             Err(Error::HelpTextRequested),
+        );
+    }
+
+    #[test]
+    fn print_help_text() {
+        let mut test_args = TestArgs::default();
+        let mut parser = Parser::new(&mut test_args);
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-f"])
+                    .with_help_text(&"this is the help text for a boolean flag"),
+            )
+            .unwrap();
+        parser
+            .add_argument(
+                Argument::new()
+                    .with_identifiers(&["-n"])
+                    .with_help_text(&"this is the help text for a number flag"),
+            )
+            .unwrap();
+
+        let mut buf = Vec::new();
+        parser.print_help_text(&mut buf);
+
+        assert_eq!(
+            String::from_utf8(buf).unwrap(),
+            "-h --help : Display this help text\n\
+             -f : this is the help text for a boolean flag\n\
+             -n : this is the help text for a number flag\n"
         );
     }
 }
