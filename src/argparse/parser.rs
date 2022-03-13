@@ -144,7 +144,7 @@ mod tests {
             Argument::new()
                 .with_identifiers(&["-f"])
                 .with_callback(|t: &mut TestArgs| t.arg_flag = true),
-        );
+        ).unwrap();
 
         assert_eq!(
             parser.add_argument(
