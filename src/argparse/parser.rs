@@ -231,7 +231,7 @@ mod tests {
     #[test]
     fn parse_throws_error_for_help_text() {
         let mut test_args = TestArgs::default();
-        let parser = Parser::new(&mut test_args);
+        let mut parser = Parser::new(&mut test_args);
 
         assert_eq!(parser.parse(&["--help"]), Err(Error::HelpTextRequested),);
     }
