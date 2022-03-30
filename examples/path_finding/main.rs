@@ -1,6 +1,8 @@
 mod maze;
 mod solver;
 
+use dotfiles::argparse;
+
 use ron::ser::{to_writer_pretty, PrettyConfig};
 use std::io::BufReader;
 
@@ -73,38 +75,72 @@ impl PathFindingArgsRaw {
     }
 }
 
-fn parse_args(args: &[String]) -> PathFindingArgs {
+fn parse_args(args: Vec<String>) -> PathFindingArgs {
     let mut parsed_args = PathFindingArgsRaw::new();
+    let mut parser = argparse::Parser::new(&mut parsed_args);
 
-    for arg in args {
-        match arg.as_str() {
-            "-q" | "--queue" => {
-                parsed_args.add_algorithm(Algorithm::Queue);
-            }
-            "-s" | "--stack" => {
-                parsed_args.add_algorithm(Algorithm::Stack);
-            }
-            "-l" | "--list" => {
-                parsed_args.add_output_format(Format::List);
-            }
-            "-m" | "--map" => {
-                parsed_args.add_output_format(Format::Map);
-            }
-            "-r" | "--ron" => {
-                parsed_args.add_output_format(Format::RustyObjectNotation);
-            }
-            "-h" | "--help" => {
-                println!("\nPath finding algorithm for solving simple mazes.");
-                println!("See README.md for more details.");
-                println!("  -q --queue    Use queue-based search algorithm (Breadth-First Search)");
-                println!("  -s --stack    Use stack-based search algorithm (Depth-First Search)");
-                println!("  -m --map      Return output in Map format (See README.md)");
-                println!("  -l --list     Return output in List format (See README.md)");
-                println!("  -r --ron      Return output in RustyObjectNotation (.ron) format");
-                std::process::exit(0);
-            }
-            _ => {
-                panic!("Invalid argument: '{}'", arg)
+    for (ids, algorithm, help_text) in [
+        (
+            ["-q", "--queue"],
+            Algorithm::Queue,
+            "Use queue-based search algorithm (Breadth-First Search)",
+        ),
+        (
+            ["-s", "--stack"],
+            Algorithm::Stack,
+            "Use stack-based search algorithm (Depth-First Search)",
+        ),
+    ]
+    .iter()
+    {
+        parser
+            .add_argument(
+                argparse::Argument::new()
+                    .with_identifiers(ids)
+                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_algorithm(*algorithm))
+                    .with_help_text(help_text),
+            )
+            .unwrap();
+    }
+
+    for (ids, format, help_text) in [
+        (
+            ["-l", "--list"],
+            Format::List,
+            "Return output in Map format (See README.md)",
+        ),
+        (
+            ["-m", "--map"],
+            Format::Map,
+            "Return output in List format (See README.md)",
+        ),
+        (
+            ["-r", "--ron"],
+            Format::RustyObjectNotation,
+            "Return output in RustyObjectNotation (.ron) format",
+        ),
+    ]
+    .iter()
+    {
+        parser
+            .add_argument(
+                argparse::Argument::new()
+                    .with_identifiers(ids)
+                    .with_callback(move |a: &mut PathFindingArgsRaw| a.add_output_format(*format))
+                    .with_help_text(help_text),
+            )
+            .unwrap();
+    }
+
+    match parser.parse(&args) {
+        Ok(_) => (),
+        Err(e) => {
+            parser.print_help_text(std::io::stdout());
+
+            if e == argparse::Error::HelpTextRequested {
+                std::process::exit(0)
+            } else {
+                std::process::exit(2)
             }
         }
     }
@@ -116,7 +152,7 @@ fn main() {
     let args: Vec<String> = std::env::args().collect();
 
     // Ignore the first argument, the name of the binary
-    let parsed_args = parse_args(&args[1..]);
+    let parsed_args = parse_args(args);
 
     let reader = BufReader::new(std::io::stdin());
     let maze = Maze::from_reader(reader);
@@ -161,7 +197,7 @@ mod tests {
             ]
             .iter()
             {
-                let parsed_args = parse_args(&[
+                let parsed_args = parse_args(vec![
                     algorithm_arg_string.to_string(),
                     output_format_arg_string.to_string(),
                 ]);
