@@ -95,7 +95,7 @@ fn parse_args(args: Vec<String>) -> PathFindingArgs {
     {
         parser
             .add_argument(
-                argparse::Argument::new()
+                argparse::Argument::default()
                     .with_identifiers(ids)
                     .with_callback(move |a: &mut PathFindingArgsRaw| a.add_algorithm(*algorithm))
                     .with_help_text(help_text),
@@ -124,7 +124,7 @@ fn parse_args(args: Vec<String>) -> PathFindingArgs {
     {
         parser
             .add_argument(
-                argparse::Argument::new()
+                argparse::Argument::default()
                     .with_identifiers(ids)
                     .with_callback(move |a: &mut PathFindingArgsRaw| a.add_output_format(*format))
                     .with_help_text(help_text),

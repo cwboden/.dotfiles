@@ -8,14 +8,6 @@ pub struct Argument<'a, T> {
 }
 
 impl<'a, T> Argument<'a, T> {
-    pub fn new() -> Self {
-        Self {
-            identifiers: HashSet::new(),
-            callbacks: Vec::new(),
-            help_text: None,
-        }
-    }
-
     pub fn with_identifiers(mut self, identifiers: &[&'a str]) -> Self {
         for identifier in identifiers.iter() {
             self.identifiers.insert(identifier);
@@ -33,6 +25,17 @@ impl<'a, T> Argument<'a, T> {
         self.help_text = Some(help_text);
         self
     }
+}
+
+impl<T> Default for Argument<'_, T> {
+    fn default() -> Self {
+        Self {
+            identifiers: HashSet::new(),
+            callbacks: Vec::new(),
+            help_text: None,
+        }
+    }
+
 }
 
 impl<T> Display for Argument<'_, T> {
