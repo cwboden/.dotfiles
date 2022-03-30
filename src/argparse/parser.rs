@@ -258,14 +258,14 @@ mod tests {
             .add_argument(
                 Argument::new()
                     .with_identifiers(&["-f"])
-                    .with_help_text(&"this is the help text for a boolean flag"),
+                    .with_help_text("this is the help text for a boolean flag"),
             )
             .unwrap();
         parser
             .add_argument(
                 Argument::new()
                     .with_identifiers(&["-n"])
-                    .with_help_text(&"this is the help text for a number flag"),
+                    .with_help_text("this is the help text for a number flag"),
             )
             .unwrap();
 

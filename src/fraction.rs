@@ -31,10 +31,10 @@ where
     T: Integer<T>,
 {
     pub fn new(numerator: T, denominator: T) -> Self {
-        return Self {
+        Self {
             numerator,
             denominator,
-        };
+        }
     }
 
     pub fn add(&self, other: &Self) -> Self {
