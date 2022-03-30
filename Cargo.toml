@@ -4,7 +4,7 @@ version = "0.1.0"
 authors = ["Carson Boden <carson.boden@gmail.com>"]
 edition = "2021"
 
-[[examples]]
+[[example]]
 name = "path-finding"
 path = "examples/path_finding/main.rs"
 
