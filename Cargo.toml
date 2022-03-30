@@ -6,7 +6,7 @@ edition = "2021"
 
 [[example]]
 name = "path-finding"
-path = "examples/path_finding/main.rs"
+path = "examples/path-finding/main.rs"
 
 [[example]]
 name = "gaia-project"
