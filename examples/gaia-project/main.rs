@@ -1,3 +1,4 @@
+mod power;
 mod types;
 
 fn main() {
