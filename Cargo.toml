@@ -8,6 +8,10 @@ edition = "2021"
 name = "path-finding"
 path = "examples/path_finding/main.rs"
 
+[[example]]
+name = "gaia-project"
+path = "examples/gaia-project/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dev-dependencies]
