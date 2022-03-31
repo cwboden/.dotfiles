@@ -37,6 +37,15 @@ impl PowerCycleTracker {
         amount - to_move
     }
 
+    pub fn spend(&mut self, amount: u8) -> Result<()> {
+        if self.bowls[PowerBowl::Three.index()] < amount {
+            Err(Error::NotEnoughPower)
+        } else {
+            self.move_power(amount, PowerBowl::Three, PowerBowl::One);
+            Ok(())
+        }
+    }
+
     pub fn charge(&mut self, amount: u8) {
         let remaining_amount = self.move_power(amount, PowerBowl::One, PowerBowl::Two);
         self.move_power(remaining_amount, PowerBowl::Two, PowerBowl::Three);
@@ -177,9 +186,41 @@ mod tests {
             1, /* bowl 3 */
         );
 
-        assert_eq!(
-            tracker.reserve(4),
-            Err(Error::NotEnoughPower),
+        assert_eq!(tracker.reserve(4), Err(Error::NotEnoughPower));
+    }
+
+    #[test]
+    fn spend_one_power() {
+        let mut tracker = PowerCycleTracker::new(
+            0, /* bowl 1 */
+            0, /* bowl 2 */
+            1, /* bowl 3 */
         );
+
+        tracker.spend(1);
+        assert_bowl_contents(&tracker, 1, 0, 0, 0);
+    }
+
+    #[test]
+    fn spend_two_power_leaves_one_remaining_in_bowl() {
+        let mut tracker = PowerCycleTracker::new(
+            0, /* bowl 1 */
+            0, /* bowl 2 */
+            3, /* bowl 3 */
+        );
+
+        tracker.spend(2);
+        assert_bowl_contents(&tracker, 2, 0, 1, 0);
+    }
+
+    #[test]
+    fn spend_throws_error_if_not_enough_power() {
+        let mut tracker = PowerCycleTracker::new(
+            0, /* bowl 1 */
+            0, /* bowl 2 */
+            0, /* bowl 3 */
+        );
+
+        assert_eq!(tracker.spend(1), Err(Error::NotEnoughPower));
     }
 }
