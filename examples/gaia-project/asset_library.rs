@@ -8,7 +8,14 @@ pub struct AssetLibrary {
 
 impl AssetLibrary {
     pub fn font(&self, name: &str) -> Handle<Font> {
-        self.fonts.get(name).unwrap().clone()
+        match self.fonts.get(name) {
+            Some(handle) => handle.clone(),
+            None => panic!(
+                "Could not find font: \'{}\' in font library: {:?}",
+                name,
+                self.fonts.keys().collect::<Vec<&String>>()
+            ),
+        }
     }
 }
 
@@ -25,6 +32,8 @@ fn init_assets(mut asset_library: ResMut<AssetLibrary>, asset_server: Res<AssetS
     let fonts = vec![("game", "fonts\\MartianMono-StdRg.ttf")];
 
     for &(title, file_location) in fonts.iter() {
-        asset_library.fonts.insert(title.into(), asset_server.load(file_location));
+        asset_library
+            .fonts
+            .insert(title.into(), asset_server.load(file_location));
     }
 }

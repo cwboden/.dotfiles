@@ -1,9 +1,12 @@
 use bevy::prelude::*;
+
 mod asset_library;
 mod power;
 mod types;
+mod view;
 
 use asset_library::AssetLibraryPlugin;
+use view::ViewPlugin;
 
 fn main() {
     App::new()
@@ -13,7 +16,14 @@ fn main() {
             ..Default::default()
         })
         .insert_resource(ClearColor(Color::BLACK))
+            .add_startup_system(init)
         .add_plugins(DefaultPlugins)
         .add_plugin(AssetLibraryPlugin)
+        .add_plugin(ViewPlugin)
         .run();
+}
+
+fn init(mut commands: Commands) {
+    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
+    commands.spawn_bundle(UiCameraBundle::default());
 }
