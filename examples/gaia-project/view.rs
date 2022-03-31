@@ -11,7 +11,9 @@ impl Plugin for ViewPlugin {
             tracker: PowerCycleTracker::new(2, 4, 0),
         })
         .add_startup_system(init)
-        .add_system_to_stage(CoreStage::PostUpdate, power_view);
+        .add_system_to_stage(CoreStage::PostUpdate, power_view)
+        .add_system(input_monitor)
+        .add_event::<PowerEvent>();
     }
 }
 
@@ -36,14 +38,15 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
         .insert(PowerView);
 }
 
-pub struct PowerViewState {
-    pub tracker: PowerCycleTracker,
+#[derive(Copy, Clone, Eq, PartialEq)]
+enum PowerEvent {
+    Charge(u8),
+    Reserve(u8),
+    Spend(u8),
 }
 
-#[derive(Component)]
-pub struct PowerView;
-
-fn power_view(mut view_state: ResMut<PowerViewState>, input: Res<Input<KeyCode>>) {
+// TODO: This should eventually become it's own plugin
+fn input_monitor(input: Res<Input<KeyCode>>, mut events: EventWriter<PowerEvent>) {
     for &(key, amount) in [
         (KeyCode::Key1, 1),
         (KeyCode::Key2, 2),
@@ -58,17 +61,33 @@ fn power_view(mut view_state: ResMut<PowerViewState>, input: Res<Input<KeyCode>>
     .iter()
     {
         if input.just_pressed(key) {
-            view_state.tracker.charge(amount);
+            events.send(PowerEvent::Charge(amount));
         }
     }
 
-    // Would be nice to extract this into an event-driven input sytem
     if input.just_pressed(KeyCode::R) {
-        view_state.tracker.reserve(1).unwrap();
+        events.send(PowerEvent::Reserve(1));
     }
 
     if input.just_pressed(KeyCode::S) {
-        view_state.tracker.spend(4).unwrap();
+        events.send(PowerEvent::Spend(4));
+    }
+}
+
+pub struct PowerViewState {
+    pub tracker: PowerCycleTracker,
+}
+
+#[derive(Component)]
+pub struct PowerView;
+
+fn power_view(mut view_state: ResMut<PowerViewState>, mut events: EventReader<PowerEvent>) {
+    for &event in events.iter() {
+        match event {
+            PowerEvent::Charge(amount) => view_state.tracker.charge(amount),
+            PowerEvent::Reserve(amount) => view_state.tracker.reserve(amount).unwrap(),
+            PowerEvent::Spend(amount) => view_state.tracker.spend(amount).unwrap(),
+        }
     }
 
     println!("Power Bowl 1: {}", view_state.tracker.get(PowerBowl::One));

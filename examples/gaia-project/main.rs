@@ -16,10 +16,10 @@ fn main() {
             ..Default::default()
         })
         .insert_resource(ClearColor(Color::BLACK))
-            .add_startup_system(init)
         .add_plugins(DefaultPlugins)
         .add_plugin(AssetLibraryPlugin)
         .add_plugin(ViewPlugin)
+        .add_startup_system(init)
         .run();
 }
 

@@ -36,4 +36,6 @@ fn init_assets(mut asset_library: ResMut<AssetLibrary>, asset_server: Res<AssetS
             .fonts
             .insert(title.into(), asset_server.load(file_location));
     }
+
+    println!("Loaded fonts: {:?}", asset_library.fonts);
 }
