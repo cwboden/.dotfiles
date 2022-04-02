@@ -1,3 +1,4 @@
+use crate::GameState;
 use bevy::prelude::*;
 use std::collections::HashMap;
 
@@ -24,12 +25,16 @@ pub struct AssetLibraryPlugin;
 impl Plugin for AssetLibraryPlugin {
     fn build(&self, app: &mut App) {
         app.init_resource::<AssetLibrary>()
-            .add_startup_system(init_assets);
+            .add_system_set(SystemSet::on_enter(GameState::Loading).with_system(init_assets));
     }
 }
 
-fn init_assets(mut asset_library: ResMut<AssetLibrary>, asset_server: Res<AssetServer>) {
-    let fonts = vec![("game", "fonts\\MartianMono-StdRg.ttf")];
+fn init_assets(
+    mut game_state: ResMut<State<GameState>>,
+    mut asset_library: ResMut<AssetLibrary>,
+    asset_server: Res<AssetServer>,
+) {
+    let fonts = vec![("game", "fonts/MartianMono-StdRg.ttf")];
 
     for &(title, file_location) in fonts.iter() {
         asset_library
@@ -38,4 +43,5 @@ fn init_assets(mut asset_library: ResMut<AssetLibrary>, asset_server: Res<AssetS
     }
 
     println!("Loaded fonts: {:?}", asset_library.fonts);
+    game_state.set(GameState::Running).unwrap();
 }

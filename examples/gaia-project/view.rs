@@ -1,6 +1,7 @@
 use crate::asset_library::AssetLibrary;
 use crate::power::PowerCycleTracker;
 use crate::types::*;
+use crate::GameState;
 use bevy::prelude::*;
 
 pub struct ViewPlugin;
@@ -10,29 +11,58 @@ impl Plugin for ViewPlugin {
         app.insert_resource(PowerViewState {
             tracker: PowerCycleTracker::new(2, 4, 0),
         })
-        .add_startup_system(init)
-        .add_system_to_stage(CoreStage::PostUpdate, power_view)
-        .add_system(input_monitor)
+        .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
+        .add_system_set(
+            SystemSet::on_update(GameState::Running)
+                .with_system(power_view)
+                .with_system(input_monitor),
+        )
         .add_event::<PowerEvent>();
     }
 }
 
 fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
+    let style = TextStyle {
+        font: asset_library.font("game"),
+        font_size: 40.0,
+        color: Color::WHITE,
+    };
+    let alignment = TextAlignment {
+        vertical: VerticalAlign::Center,
+        horizontal: HorizontalAlign::Center,
+    };
+
     commands
-        .spawn_bundle(Text2dBundle {
-            text: Text::with_section(
-                "",
-                TextStyle {
-                    font: asset_library.font("game"),
-                    font_size: 40.0,
-                    color: Color::WHITE,
-                },
-                TextAlignment {
-                    vertical: VerticalAlign::Center,
-                    horizontal: HorizontalAlign::Center,
-                },
-            ),
-            transform: Transform::from_xyz(0.0, 55.0, 0.5),
+        .spawn_bundle(TextBundle {
+            style: Style {
+                align_self: AlignSelf::FlexEnd,
+                ..Default::default()
+            },
+            text: Text {
+                sections: vec![
+                    TextSection {
+                        value: "Power Bowl\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Bowl 1: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Bowl 2: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Bowl 3: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Bowl G: 0\n".to_string(),
+                        style: style,
+                    },
+                ],
+                ..Default::default()
+            },
             ..Default::default()
         })
         .insert(PowerView);
@@ -81,7 +111,11 @@ pub struct PowerViewState {
 #[derive(Component)]
 pub struct PowerView;
 
-fn power_view(mut view_state: ResMut<PowerViewState>, mut events: EventReader<PowerEvent>) {
+fn power_view(
+    mut view_state: ResMut<PowerViewState>,
+    mut events: EventReader<PowerEvent>,
+    mut query: Query<&mut Text, With<PowerView>>,
+) {
     for &event in events.iter() {
         match event {
             PowerEvent::Charge(amount) => view_state.tracker.charge(amount),
@@ -90,8 +124,10 @@ fn power_view(mut view_state: ResMut<PowerViewState>, mut events: EventReader<Po
         }
     }
 
-    println!("Power Bowl 1: {}", view_state.tracker.get(PowerBowl::One));
-    println!("Power Bowl 2: {}", view_state.tracker.get(PowerBowl::Two));
-    println!("Power Bowl 3: {}", view_state.tracker.get(PowerBowl::Three));
-    println!("Power Bowl G: {}", view_state.tracker.get(PowerBowl::Gaia));
+    for mut text in query.iter_mut() {
+        text.sections[1].value = format!("Bowl 1: {}\n", view_state.tracker.get(PowerBowl::One));
+        text.sections[2].value = format!("Bowl 2: {}\n", view_state.tracker.get(PowerBowl::Two));
+        text.sections[3].value = format!("Bowl 3: {}\n", view_state.tracker.get(PowerBowl::Three));
+        text.sections[4].value = format!("Bowl G: {}\n", view_state.tracker.get(PowerBowl::Gaia));
+    }
 }

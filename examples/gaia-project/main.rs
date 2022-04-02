@@ -8,6 +8,12 @@ mod view;
 use asset_library::AssetLibraryPlugin;
 use view::ViewPlugin;
 
+#[derive(Clone, Debug, Eq, Hash, PartialEq)]
+pub enum GameState {
+    Loading,
+    Running,
+}
+
 fn main() {
     App::new()
         .insert_resource(WindowDescriptor {
@@ -20,6 +26,7 @@ fn main() {
         .add_plugin(AssetLibraryPlugin)
         .add_plugin(ViewPlugin)
         .add_startup_system(init)
+        .add_state(GameState::Loading)
         .run();
 }
 
