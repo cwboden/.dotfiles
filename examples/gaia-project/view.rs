@@ -9,7 +9,7 @@ pub struct ViewPlugin;
 impl Plugin for ViewPlugin {
     fn build(&self, app: &mut App) {
         app.insert_resource(PowerViewState {
-            tracker: PowerCycleTracker::new(2, 4, 0),
+            tracker: PowerCycleTracker::new(2, 4, 0, 0),
         })
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
         .add_system_set(

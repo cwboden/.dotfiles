@@ -23,9 +23,9 @@ pub enum Error {
 pub type Result<T> = std::result::Result<T, Error>;
 
 impl PowerCycleTracker {
-    pub fn new(bowl_1: u8, bowl_2: u8, bowl_3: u8) -> Self {
+    pub fn new(bowl_1: u8, bowl_2: u8, bowl_3: u8, bowl_gaia: u8) -> Self {
         Self {
-            bowls: [bowl_1, bowl_2, bowl_3, 0],
+            bowls: [bowl_1, bowl_2, bowl_3, bowl_gaia],
         }
     }
 
@@ -66,6 +66,15 @@ impl PowerCycleTracker {
             Ok(())
         }
     }
+
+    pub fn discard(&mut self, bowl: PowerBowl, amount: u8) -> Result<()> {
+        if self.bowls[bowl.index()] < amount {
+            Err(Error::NotEnoughPower)
+        } else {
+            self.bowls[bowl.index()] -= amount;
+            Ok(())
+        }
+    }
 }
 
 #[cfg(test)]
@@ -91,6 +100,7 @@ mod tests {
             1, /* bowl 1 */
             2, /* bowl 2 */
             3, /* bowl 3 */
+            0, /* bowl G */
         );
 
         assert_bowl_contents(&tracker, 1, 2, 3, 0);
@@ -102,6 +112,7 @@ mod tests {
             1, /* bowl 1 */
             0, /* bowl 2 */
             0, /* bowl 3 */
+            0, /* bowl G */
         );
         assert_eq!(tracker.get(PowerBowl::One), 1);
 
@@ -118,6 +129,7 @@ mod tests {
             1, /* bowl 1 */
             1, /* bowl 2 */
             0, /* bowl 3 */
+            0, /* bowl G */
         );
 
         tracker.charge(1);
@@ -130,6 +142,7 @@ mod tests {
             1, /* bowl 1 */
             0, /* bowl 2 */
             0, /* bowl 3 */
+            0, /* bowl G */
         );
 
         tracker.charge(2);
@@ -142,6 +155,7 @@ mod tests {
             1, /* bowl 1 */
             0, /* bowl 2 */
             0, /* bowl 3 */
+            0, /* bowl G */
         );
 
         tracker.charge(3);
@@ -154,6 +168,7 @@ mod tests {
             1, /* bowl 1 */
             1, /* bowl 2 */
             1, /* bowl 3 */
+            0, /* bowl G */
         );
 
         tracker.reserve(1).unwrap();
@@ -172,6 +187,7 @@ mod tests {
             1, /* bowl 1 */
             1, /* bowl 2 */
             1, /* bowl 3 */
+            0, /* bowl G */
         );
 
         tracker.reserve(3).unwrap();
@@ -184,6 +200,7 @@ mod tests {
             1, /* bowl 1 */
             1, /* bowl 2 */
             1, /* bowl 3 */
+            0, /* bowl G */
         );
 
         assert_eq!(tracker.reserve(4), Err(Error::NotEnoughPower));
@@ -195,9 +212,10 @@ mod tests {
             0, /* bowl 1 */
             0, /* bowl 2 */
             1, /* bowl 3 */
+            0, /* bowl G */
         );
 
-        tracker.spend(1);
+        tracker.spend(1).unwrap();
         assert_bowl_contents(&tracker, 1, 0, 0, 0);
     }
 
@@ -207,9 +225,10 @@ mod tests {
             0, /* bowl 1 */
             0, /* bowl 2 */
             3, /* bowl 3 */
+            0, /* bowl G */
         );
 
-        tracker.spend(2);
+        tracker.spend(2).unwrap();
         assert_bowl_contents(&tracker, 2, 0, 1, 0);
     }
 
@@ -219,8 +238,48 @@ mod tests {
             0, /* bowl 1 */
             0, /* bowl 2 */
             0, /* bowl 3 */
+            0, /* bowl G */
         );
 
         assert_eq!(tracker.spend(1), Err(Error::NotEnoughPower));
+    }
+
+    #[test]
+    fn discard_power_from_each_bowl() {
+        let mut tracker = PowerCycleTracker::new(
+            1, /* bowl 1 */
+            1, /* bowl 2 */
+            1, /* bowl 3 */
+            1, /* bowl G */
+        );
+
+        tracker.discard(PowerBowl::One, 1).unwrap();
+        assert_bowl_contents(&tracker, 0, 1, 1, 1);
+
+        tracker.discard(PowerBowl::Two, 1).unwrap();
+        assert_bowl_contents(&tracker, 0, 0, 1, 1);
+
+        tracker.discard(PowerBowl::Three, 1).unwrap();
+        assert_bowl_contents(&tracker, 0, 0, 0, 1);
+
+        tracker.discard(PowerBowl::Gaia, 1);
+        assert_bowl_contents(&tracker, 0, 0, 0, 0);
+    }
+
+    #[test]
+    fn discard_power_throws_error_if_not_enough_power() {
+        let mut tracker = PowerCycleTracker::new(
+            1, /* bowl 1 */
+            1, /* bowl 2 */
+            1, /* bowl 3 */
+            1, /* bowl G */
+        );
+
+        for &bowl in [PowerBowl::One, PowerBowl::Two, PowerBowl::Three, PowerBowl::Gaia].iter() {
+            assert_eq!(
+                tracker.discard(bowl, 2),
+                Err(Error::NotEnoughPower),
+            );
+        }
     }
 }

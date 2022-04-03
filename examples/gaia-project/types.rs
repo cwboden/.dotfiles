@@ -6,6 +6,7 @@ pub enum Resource {
     Power,
 }
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum PowerBowl {
     One,
     Two,
