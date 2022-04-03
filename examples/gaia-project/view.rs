@@ -71,6 +71,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
 #[derive(Copy, Clone, Eq, PartialEq)]
 enum PowerEvent {
     Charge(u8),
+    Discard(u8),
     Reserve(u8),
     Spend(u8),
 }
@@ -102,6 +103,10 @@ fn input_monitor(input: Res<Input<KeyCode>>, mut events: EventWriter<PowerEvent>
     if input.just_pressed(KeyCode::S) {
         events.send(PowerEvent::Spend(4));
     }
+
+    if input.just_pressed(KeyCode::D) {
+        events.send(PowerEvent::Discard(1));
+    }
 }
 
 pub struct PowerViewState {
@@ -121,6 +126,18 @@ fn power_view(
             PowerEvent::Charge(amount) => view_state.tracker.charge(amount),
             PowerEvent::Reserve(amount) => view_state.tracker.reserve(amount).unwrap(),
             PowerEvent::Spend(amount) => view_state.tracker.spend(amount).unwrap(),
+            PowerEvent::Discard(mut amount) => {
+                for &bowl in [PowerBowl::Gaia, PowerBowl::One, PowerBowl::Two, PowerBowl::Three].iter() {
+                    let bowl_amount = view_state.tracker.get(bowl);
+                    let discard_amount = std::cmp::min(bowl_amount, amount);
+                    view_state.tracker.discard(bowl, discard_amount).unwrap();
+
+                    amount -= discard_amount;
+                }
+
+                // We should have discarded all input power
+                assert_eq!(amount, 0);
+            }
         }
     }
 
