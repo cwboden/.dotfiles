@@ -27,10 +27,6 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
         font_size: 40.0,
         color: Color::WHITE,
     };
-    let alignment = TextAlignment {
-        vertical: VerticalAlign::Center,
-        horizontal: HorizontalAlign::Center,
-    };
 
     commands
         .spawn_bundle(TextBundle {
