@@ -66,6 +66,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
 
 #[derive(Copy, Clone, Eq, PartialEq)]
 enum PowerEvent {
+    Add(u8),
     Charge(u8),
     Discard(u8),
     Reserve(u8),
@@ -103,6 +104,10 @@ fn input_monitor(input: Res<Input<KeyCode>>, mut events: EventWriter<PowerEvent>
     if input.just_pressed(KeyCode::D) {
         events.send(PowerEvent::Discard(1));
     }
+
+    if input.just_pressed(KeyCode::A) {
+        events.send(PowerEvent::Add(1));
+    }
 }
 
 pub struct PowerViewState {
@@ -134,6 +139,7 @@ fn power_view(
                 // We should have discarded all input power
                 assert_eq!(amount, 0);
             }
+            PowerEvent::Add(amount) => view_state.tracker.add(amount),
         }
     }
 
