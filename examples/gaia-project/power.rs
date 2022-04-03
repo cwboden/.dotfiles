@@ -79,6 +79,16 @@ impl PowerCycleTracker {
     pub fn add(&mut self, amount: u8) {
         self.bowls[PowerBowl::One.index()] += amount;
     }
+
+    pub fn force(&mut self, amount: u8) -> Result<()> {
+        self.discard(PowerBowl::Two, amount)?;
+        let remaining_amount = self.move_power(amount, PowerBowl::Two, PowerBowl::Three);
+        if remaining_amount > 0 {
+            Err(Error::NotEnoughPower)
+        } else {
+            Ok(())
+        }
+    }
 }
 
 #[cfg(test)]
@@ -266,7 +276,7 @@ mod tests {
         tracker.discard(PowerBowl::Three, 1).unwrap();
         assert_bowl_contents(&tracker, 0, 0, 0, 1);
 
-        tracker.discard(PowerBowl::Gaia, 1);
+        tracker.discard(PowerBowl::Gaia, 1).unwrap();
         assert_bowl_contents(&tracker, 0, 0, 0, 0);
     }
 
@@ -279,11 +289,15 @@ mod tests {
             1, /* bowl G */
         );
 
-        for &bowl in [PowerBowl::One, PowerBowl::Two, PowerBowl::Three, PowerBowl::Gaia].iter() {
-            assert_eq!(
-                tracker.discard(bowl, 2),
-                Err(Error::NotEnoughPower),
-            );
+        for &bowl in [
+            PowerBowl::One,
+            PowerBowl::Two,
+            PowerBowl::Three,
+            PowerBowl::Gaia,
+        ]
+        .iter()
+        {
+            assert_eq!(tracker.discard(bowl, 2), Err(Error::NotEnoughPower),);
         }
     }
 
@@ -298,5 +312,33 @@ mod tests {
 
         tracker.add(4);
         assert_bowl_contents(&tracker, 4, 0, 0, 0);
+    }
+
+    #[test]
+    fn force_two_power_from_bowl_two_to_bowl_three() {
+        let mut tracker = PowerCycleTracker::new(
+            0, /* bowl 1 */
+            2, /* bowl 2 */
+            0, /* bowl 3 */
+            0, /* bowl G */
+        );
+
+        tracker.force(1).unwrap();
+        assert_bowl_contents(&tracker, 0, 0, 1, 0);
+    }
+
+    #[test]
+    fn force_throws_error_if_not_enough_power() {
+        let mut tracker = PowerCycleTracker::new(
+            0, /* bowl 1 */
+            1, /* bowl 2 */
+            0, /* bowl 3 */
+            0, /* bowl G */
+        );
+
+        assert_eq!(
+            tracker.force(1),
+            Err(Error::NotEnoughPower),
+        );
     }
 }
