@@ -75,6 +75,10 @@ impl PowerCycleTracker {
             Ok(())
         }
     }
+
+    pub fn add(&mut self, amount: u8) {
+        self.bowls[PowerBowl::One.index()] += amount;
+    }
 }
 
 #[cfg(test)]
@@ -281,5 +285,18 @@ mod tests {
                 Err(Error::NotEnoughPower),
             );
         }
+    }
+
+    #[test]
+    fn add_power_is_always_added_to_bowl_one() {
+        let mut tracker = PowerCycleTracker::new(
+            0, /* bowl 1 */
+            0, /* bowl 2 */
+            0, /* bowl 3 */
+            0, /* bowl G */
+        );
+
+        tracker.add(4);
+        assert_bowl_contents(&tracker, 4, 0, 0, 0);
     }
 }
