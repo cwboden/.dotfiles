@@ -69,6 +69,7 @@ enum PowerEvent {
     Add(u8),
     Charge(u8),
     Discard(u8),
+    Force(u8),
     Reserve(u8),
     Spend(u8),
 }
@@ -108,6 +109,10 @@ fn input_monitor(input: Res<Input<KeyCode>>, mut events: EventWriter<PowerEvent>
     if input.just_pressed(KeyCode::A) {
         events.send(PowerEvent::Add(1));
     }
+
+    if input.just_pressed(KeyCode::F) {
+        events.send(PowerEvent::Force(1));
+    }
 }
 
 pub struct PowerViewState {
@@ -140,6 +145,7 @@ fn power_view(
                 assert_eq!(amount, 0);
             }
             PowerEvent::Add(amount) => view_state.tracker.add(amount),
+            PowerEvent::Force(amount) => view_state.tracker.force(amount).unwrap(),
         }
     }
 
