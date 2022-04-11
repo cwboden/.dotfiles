@@ -1,3 +1,13 @@
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum PowerEvent {
+    Add(u8),
+    Charge(u8),
+    Discard(u8),
+    Force(u8),
+    Reserve(u8),
+    Spend(u8),
+}
+
 pub enum Resource {
     Ore,
     Credit,
