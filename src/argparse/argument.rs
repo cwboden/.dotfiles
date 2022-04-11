@@ -35,7 +35,6 @@ impl<T> Default for Argument<'_, T> {
             help_text: None,
         }
     }
-
 }
 
 impl<T> Display for Argument<'_, T> {

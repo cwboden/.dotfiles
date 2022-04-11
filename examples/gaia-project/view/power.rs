@@ -1,6 +1,7 @@
+use bevy::prelude::*;
+
 use crate::logic::power::PowerCycleTracker;
 use crate::types::*;
-use bevy::prelude::*;
 
 pub struct PowerViewState {
     pub tracker: PowerCycleTracker,

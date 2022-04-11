@@ -1,10 +1,10 @@
 mod maze;
 mod solver;
 
-use dotfiles::argparse;
-
-use ron::ser::{to_writer_pretty, PrettyConfig};
 use std::io::BufReader;
+
+use dotfiles::argparse;
+use ron::ser::{to_writer_pretty, PrettyConfig};
 
 use crate::maze::Maze;
 use crate::solver::Solver;

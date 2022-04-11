@@ -1,6 +1,8 @@
-use crate::GameState;
-use bevy::prelude::*;
 use std::collections::HashMap;
+
+use bevy::prelude::*;
+
+use crate::GameState;
 
 #[derive(Default)]
 pub struct AssetLibrary {

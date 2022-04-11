@@ -1,6 +1,7 @@
-use crate::argparse::Argument;
 use std::collections::HashSet;
 use std::io::Write;
+
+use crate::argparse::Argument;
 
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
@@ -72,10 +73,9 @@ impl<'a, T> Parser<'a, T> {
                 .arguments
                 .iter()
                 .find(|a| a.identifiers.contains(arg_string.as_str()))
-                .ok_or_else(|| Error::ArgNotRecognized(format!(
-                    "Argument '{}' not recognized.",
-                    arg_string
-                )))?;
+                .ok_or_else(|| {
+                    Error::ArgNotRecognized(format!("Argument '{}' not recognized.", arg_string))
+                })?;
 
             for func in argument.callbacks.iter() {
                 func(self.output_args);
@@ -89,7 +89,9 @@ impl<'a, T> Parser<'a, T> {
             .write_all(b"-h --help : Display this help text\n")
             .unwrap();
         for argument in self.arguments.iter() {
-            writer.write_all(format!("{}\n", argument).as_bytes()).unwrap();
+            writer
+                .write_all(format!("{}\n", argument).as_bytes())
+                .unwrap();
         }
     }
 }
