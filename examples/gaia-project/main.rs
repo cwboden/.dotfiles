@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 
 mod asset_library;
-mod power;
+mod logic;
 mod types;
 mod view;
 

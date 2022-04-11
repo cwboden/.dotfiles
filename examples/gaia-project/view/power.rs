@@ -1,4 +1,4 @@
-use crate::power::PowerCycleTracker;
+use crate::logic::power::PowerCycleTracker;
 use crate::types::*;
 use bevy::prelude::*;
 

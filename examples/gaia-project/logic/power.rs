@@ -111,10 +111,10 @@ mod tests {
     #[test]
     fn constructor_populates_bowls() {
         let tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            2, /* bowl 2 */
-            3, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            2, // bowl 2
+            3, // bowl 3
+            0, // bowl G
         );
 
         assert_bowl_contents(&tracker, 1, 2, 3, 0);
@@ -123,10 +123,10 @@ mod tests {
     #[test]
     fn charge_one_power() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            0, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            0, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
         assert_eq!(tracker.get(PowerBowl::One), 1);
 
@@ -140,10 +140,10 @@ mod tests {
     #[test]
     fn charge_one_power_prioritized_bowl_one() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            1, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            1, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         tracker.charge(1);
@@ -153,10 +153,10 @@ mod tests {
     #[test]
     fn charge_two_power_moves_to_bowl_three() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            0, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            0, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         tracker.charge(2);
@@ -166,10 +166,10 @@ mod tests {
     #[test]
     fn charge_three_power_moves_to_bowl_three_ignoring_overflow() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            0, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            0, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         tracker.charge(3);
@@ -179,10 +179,10 @@ mod tests {
     #[test]
     fn reserve_one_power_prioritizes_lower_bowls() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            1, /* bowl 2 */
-            1, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            1, // bowl 2
+            1, // bowl 3
+            0, // bowl G
         );
 
         tracker.reserve(1).unwrap();
@@ -198,10 +198,10 @@ mod tests {
     #[test]
     fn reserve_three_power() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            1, /* bowl 2 */
-            1, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            1, // bowl 2
+            1, // bowl 3
+            0, // bowl G
         );
 
         tracker.reserve(3).unwrap();
@@ -211,10 +211,10 @@ mod tests {
     #[test]
     fn reserve_throws_error_if_not_enough_power() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            1, /* bowl 2 */
-            1, /* bowl 3 */
-            0, /* bowl G */
+            1, // bowl 1
+            1, // bowl 2
+            1, // bowl 3
+            0, // bowl G
         );
 
         assert_eq!(tracker.reserve(4), Err(Error::NotEnoughPower));
@@ -223,10 +223,10 @@ mod tests {
     #[test]
     fn spend_one_power() {
         let mut tracker = PowerCycleTracker::new(
-            0, /* bowl 1 */
-            0, /* bowl 2 */
-            1, /* bowl 3 */
-            0, /* bowl G */
+            0, // bowl 1
+            0, // bowl 2
+            1, // bowl 3
+            0, // bowl G
         );
 
         tracker.spend(1).unwrap();
@@ -236,10 +236,10 @@ mod tests {
     #[test]
     fn spend_two_power_leaves_one_remaining_in_bowl() {
         let mut tracker = PowerCycleTracker::new(
-            0, /* bowl 1 */
-            0, /* bowl 2 */
-            3, /* bowl 3 */
-            0, /* bowl G */
+            0, // bowl 1
+            0, // bowl 2
+            3, // bowl 3
+            0, // bowl G
         );
 
         tracker.spend(2).unwrap();
@@ -249,10 +249,10 @@ mod tests {
     #[test]
     fn spend_throws_error_if_not_enough_power() {
         let mut tracker = PowerCycleTracker::new(
-            0, /* bowl 1 */
-            0, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            0, // bowl 1
+            0, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         assert_eq!(tracker.spend(1), Err(Error::NotEnoughPower));
@@ -261,10 +261,10 @@ mod tests {
     #[test]
     fn discard_power_from_each_bowl() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            1, /* bowl 2 */
-            1, /* bowl 3 */
-            1, /* bowl G */
+            1, // bowl 1
+            1, // bowl 2
+            1, // bowl 3
+            1, // bowl G
         );
 
         tracker.discard(PowerBowl::One, 1).unwrap();
@@ -283,10 +283,10 @@ mod tests {
     #[test]
     fn discard_power_throws_error_if_not_enough_power() {
         let mut tracker = PowerCycleTracker::new(
-            1, /* bowl 1 */
-            1, /* bowl 2 */
-            1, /* bowl 3 */
-            1, /* bowl G */
+            1, // bowl 1
+            1, // bowl 2
+            1, // bowl 3
+            1, // bowl G
         );
 
         for &bowl in [
@@ -304,10 +304,10 @@ mod tests {
     #[test]
     fn add_power_is_always_added_to_bowl_one() {
         let mut tracker = PowerCycleTracker::new(
-            0, /* bowl 1 */
-            0, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            0, // bowl 1
+            0, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         tracker.add(4);
@@ -317,10 +317,10 @@ mod tests {
     #[test]
     fn force_two_power_from_bowl_two_to_bowl_three() {
         let mut tracker = PowerCycleTracker::new(
-            0, /* bowl 1 */
-            2, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            0, // bowl 1
+            2, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         tracker.force(1).unwrap();
@@ -330,10 +330,10 @@ mod tests {
     #[test]
     fn force_throws_error_if_not_enough_power() {
         let mut tracker = PowerCycleTracker::new(
-            0, /* bowl 1 */
-            1, /* bowl 2 */
-            0, /* bowl 3 */
-            0, /* bowl G */
+            0, // bowl 1
+            1, // bowl 2
+            0, // bowl 3
+            0, // bowl G
         );
 
         assert_eq!(tracker.force(1), Err(Error::NotEnoughPower),);

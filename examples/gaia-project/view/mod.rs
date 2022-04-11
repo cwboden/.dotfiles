@@ -1,6 +1,5 @@
 use crate::asset_library::AssetLibrary;
-use crate::power::PowerCycleTracker;
-use crate::types::*;
+use crate::logic::power::PowerCycleTracker;
 use crate::GameState;
 use bevy::prelude::*;
 
