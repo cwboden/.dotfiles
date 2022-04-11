@@ -21,3 +21,12 @@
 # Replace uses of the try! macro by the ? shorthand.
 # Default: false
   use_try_shorthand = true
+
+# How imports should be grouped into use statements. Imports will be merged or
+# split to the configured level of granularity.
+# Default: Preserve
+  imports_granularity = "Module"
+
+# Controls the strategy for how imports are grouped together.
+# Default: Preserve
+  group_imports = "StdExternalCrate"
