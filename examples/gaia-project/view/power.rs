@@ -1,6 +1,6 @@
+use crate::power::PowerCycleTracker;
 use crate::types::*;
 use bevy::prelude::*;
-use crate::power::PowerCycleTracker;
 
 pub struct PowerViewPlugin;
 

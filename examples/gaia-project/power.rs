@@ -336,9 +336,6 @@ mod tests {
             0, /* bowl G */
         );
 
-        assert_eq!(
-            tracker.force(1),
-            Err(Error::NotEnoughPower),
-        );
+        assert_eq!(tracker.force(1), Err(Error::NotEnoughPower),);
     }
 }

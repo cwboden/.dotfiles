@@ -6,7 +6,7 @@ use bevy::prelude::*;
 
 mod power;
 
-use power::{PowerView, PowerEvent, PowerViewState, power_view};
+use power::{power_view, PowerEvent, PowerView, PowerViewState};
 
 pub struct ViewPlugin;
 

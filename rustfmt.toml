@@ -1,0 +1,23 @@
+# Reorder import statements alphabetically.
+# Default: false
+  reorder_imports = true
+
+# Reorder lists of names in import statements alphabetically.
+# Default: false
+  reorder_imported_names = true
+
+# Retain some formatting characteristics from the source code.
+# Default: true
+  take_source_hints = false
+
+# Break comments to fit on the line.
+# Default: false
+  wrap_comments = true
+
+# Convert /* */ comments to // comments where possible.
+# Default: false
+  normalize_comments = true
+
+# Replace uses of the try! macro by the ? shorthand.
+# Default: false
+  use_try_shorthand = true
