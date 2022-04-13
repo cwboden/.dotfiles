@@ -2,11 +2,15 @@
 name = "dotfiles"
 version = "0.1.0"
 authors = ["Carson Boden <carson.boden@gmail.com>"]
-edition = "2018"
+edition = "2021"
 
-[[examples]]
+[[example]]
 name = "path-finding"
-path = "examples/path_finding/main.rs"
+path = "examples/path-finding/main.rs"
+
+[[example]]
+name = "gaia-project"
+path = "examples/gaia-project/main.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -16,3 +20,4 @@ assert_matches = "1.5"
 [dependencies]
 ron = "0.7"
 serde = { version = "1.0", features = ["derive"] }
+bevy = "0.6.1"

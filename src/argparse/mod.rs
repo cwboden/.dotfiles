@@ -1,5 +1,5 @@
-pub mod parser;
 pub mod argument;
+pub mod parser;
 
-pub use parser::{Error, Parser};
 pub use argument::Argument;
+pub use parser::{Error, Parser};

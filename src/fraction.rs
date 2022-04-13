@@ -1,6 +1,7 @@
-use crate::math::{GreatestCommonDenominator, LeastCommonMultiple};
 use std::fmt::{self, Display, Write};
 use std::ops::{Add, Div, Mul};
+
+use crate::math::{GreatestCommonDenominator, LeastCommonMultiple};
 
 pub trait Integer<T>:
     Sized
@@ -20,8 +21,7 @@ pub trait Integer<T>:
 impl Integer<u32> for u32 {}
 
 #[derive(PartialEq, Eq, Clone, Copy, Debug)]
-pub struct Fraction<T>
-{
+pub struct Fraction<T> {
     numerator: T,
     denominator: T,
 }
@@ -31,10 +31,10 @@ where
     T: Integer<T>,
 {
     pub fn new(numerator: T, denominator: T) -> Self {
-        return Self {
+        Self {
             numerator,
             denominator,
-        };
+        }
     }
 
     pub fn add(&self, other: &Self) -> Self {

@@ -1,6 +1,7 @@
-use crate::argparse::Argument;
 use std::collections::HashSet;
 use std::io::Write;
+
+use crate::argparse::Argument;
 
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
@@ -72,10 +73,9 @@ impl<'a, T> Parser<'a, T> {
                 .arguments
                 .iter()
                 .find(|a| a.identifiers.contains(arg_string.as_str()))
-                .ok_or(Error::ArgNotRecognized(format!(
-                    "Argument '{}' not recognized.",
-                    arg_string
-                )))?;
+                .ok_or_else(|| {
+                    Error::ArgNotRecognized(format!("Argument '{}' not recognized.", arg_string))
+                })?;
 
             for func in argument.callbacks.iter() {
                 func(self.output_args);
@@ -86,10 +86,12 @@ impl<'a, T> Parser<'a, T> {
 
     pub fn print_help_text<W: Write>(&self, mut writer: W) {
         writer
-            .write(b"-h --help : Display this help text\n")
+            .write_all(b"-h --help : Display this help text\n")
             .unwrap();
         for argument in self.arguments.iter() {
-            writer.write(format!("{}\n", argument).as_bytes()).unwrap();
+            writer
+                .write_all(format!("{}\n", argument).as_bytes())
+                .unwrap();
         }
     }
 }
@@ -111,7 +113,7 @@ mod tests {
 
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["--flag"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true),
             )
@@ -131,7 +133,7 @@ mod tests {
 
             parser
                 .add_argument(
-                    Argument::new()
+                    Argument::default()
                         .with_identifiers(&keys)
                         .with_callback(|t: &mut TestArgs| t.arg_flag = true),
                 )
@@ -149,7 +151,7 @@ mod tests {
 
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-f"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true),
             )
@@ -157,7 +159,7 @@ mod tests {
 
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-n"])
                     .with_callback(|t: &mut TestArgs| t.arg_number = 13),
             )
@@ -175,7 +177,7 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-f"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true),
             )
@@ -183,7 +185,7 @@ mod tests {
 
         assert_eq!(
             parser.add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-f"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true)
             ),
@@ -200,7 +202,7 @@ mod tests {
 
         assert_eq!(
             parser.add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-h"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true)
             ),
@@ -214,7 +216,7 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-f", "--flag"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true),
             )
@@ -241,7 +243,7 @@ mod tests {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
         parser
-            .add_argument(Argument::new().with_identifiers(&["-f", "--flag"]))
+            .add_argument(Argument::default().with_identifiers(&["-f", "--flag"]))
             .unwrap();
 
         assert_eq!(
@@ -256,16 +258,16 @@ mod tests {
         let mut parser = Parser::new(&mut test_args);
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-f"])
-                    .with_help_text(&"this is the help text for a boolean flag"),
+                    .with_help_text("this is the help text for a boolean flag"),
             )
             .unwrap();
         parser
             .add_argument(
-                Argument::new()
+                Argument::default()
                     .with_identifiers(&["-n"])
-                    .with_help_text(&"this is the help text for a number flag"),
+                    .with_help_text("this is the help text for a number flag"),
             )
             .unwrap();
 
