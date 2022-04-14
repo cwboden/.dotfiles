@@ -28,7 +28,7 @@ impl<'a, T> Parser<'a, T> {
         }
     }
 
-    pub fn add_argument(&mut self, arg: Argument<'a, T>) -> Result<()> {
+    pub fn add_argument(&mut self, arg: Argument<'a, T>) -> Result<&mut Self> {
         if Self::HELP_IDENTIFIERS
             .iter()
             .any(|help_id| arg.identifiers.contains(help_id))
@@ -52,7 +52,7 @@ impl<'a, T> Parser<'a, T> {
         }
 
         self.arguments.push(arg);
-        Ok(())
+        Ok(self)
     }
 
     pub fn parse<S: Into<String> + Clone>(&mut self, args: &[S]) -> Result<()> {
@@ -67,7 +67,8 @@ impl<'a, T> Parser<'a, T> {
             return Err(Error::HelpTextRequested);
         }
 
-        for arg in args.iter() {
+        let mut args_iter = args.iter();
+        while let Some(arg) = args_iter.next() {
             let arg_string: String = arg.clone().into();
             let argument = self
                 .arguments
@@ -79,6 +80,19 @@ impl<'a, T> Parser<'a, T> {
 
             for func in argument.callbacks.iter() {
                 func(self.output_args);
+            }
+
+            for (num_parameters, func) in argument.callbacks_and_args.iter() {
+                let num_parameters = *num_parameters as usize;
+                let parameters: Vec<String> = args_iter
+                    .clone()
+                    .take(num_parameters)
+                    .map(|a| Into::<String>::into(a.clone()))
+                    .collect();
+                func(self.output_args, parameters.as_slice());
+
+                // Advance iterator by number of arguments consumed
+                args_iter.nth(num_parameters - 1);
             }
         }
         Ok(())

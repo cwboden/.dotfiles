@@ -4,6 +4,7 @@ use std::fmt::{Display, Formatter};
 pub struct Argument<'a, T> {
     pub identifiers: HashSet<&'a str>,
     pub callbacks: Vec<Box<dyn Fn(&mut T)>>,
+    pub callbacks_and_args: Vec<(u32, Box<dyn Fn(&mut T, &[String])>)>,
     pub help_text: Option<&'a str>,
 }
 
@@ -21,6 +22,16 @@ impl<'a, T> Argument<'a, T> {
         self
     }
 
+    pub fn with_callback_and_args<F: 'static + Copy + Fn(&mut T, &[String])>(
+        mut self,
+        num_parameters: u32,
+        callback: F,
+    ) -> Self {
+        self.callbacks_and_args
+            .push((num_parameters, Box::new(callback)));
+        self
+    }
+
     pub fn with_help_text(mut self, help_text: &'a str) -> Self {
         self.help_text = Some(help_text);
         self
@@ -32,6 +43,7 @@ impl<T> Default for Argument<'_, T> {
         Self {
             identifiers: HashSet::new(),
             callbacks: Vec::new(),
+            callbacks_and_args: Vec::new(),
             help_text: None,
         }
     }

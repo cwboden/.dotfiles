@@ -12,6 +12,10 @@ path = "examples/path-finding/main.rs"
 name = "gaia-project"
 path = "examples/gaia-project/main.rs"
 
+[[example]]
+name = "wave-form-collapse"
+path = "examples/wave-form-collapse/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dev-dependencies]
