@@ -3,6 +3,7 @@ use std::io::Write;
 
 use crate::argparse::Argument;
 
+#[derive(Debug)]
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
     arguments: Vec<Argument<'a, T>>,
@@ -114,7 +115,7 @@ impl<'a, T> Parser<'a, T> {
 mod tests {
     use super::*;
 
-    #[derive(Default)]
+    #[derive(Debug, Default)]
     struct TestArgs {
         arg_flag: bool,
         arg_number: u32,
@@ -197,15 +198,13 @@ mod tests {
             )
             .unwrap();
 
-        assert_eq!(
+        assert_matches!(
             parser.add_argument(
                 Argument::default()
                     .with_identifiers(&["-f"])
                     .with_callback(|t: &mut TestArgs| t.arg_flag = true)
             ),
-            Err(Error::ArgAlreadyUsed(
-                "Identifiers [\"-f\"] already used.".to_string()
-            ))
+            Err(Error::ArgAlreadyUsed(_))
         );
     }
 
@@ -214,7 +213,7 @@ mod tests {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
 
-        assert_eq!(
+        assert_matches!(
             parser.add_argument(
                 Argument::default()
                     .with_identifiers(&["-h"])
@@ -236,11 +235,9 @@ mod tests {
             )
             .unwrap();
 
-        assert_eq!(
+        assert_matches!(
             parser.parse(&["--different"]),
-            Err(Error::ArgNotRecognized(
-                "Argument '--different' not recognized.".to_string()
-            ))
+            Err(Error::ArgNotRecognized(_))
         );
     }
 
@@ -249,7 +246,7 @@ mod tests {
         let mut test_args = TestArgs::default();
         let mut parser = Parser::new(&mut test_args);
 
-        assert_eq!(parser.parse(&["--help"]), Err(Error::HelpTextRequested),);
+        assert_matches!(parser.parse(&["--help"]), Err(Error::HelpTextRequested));
     }
 
     #[test]
@@ -260,9 +257,9 @@ mod tests {
             .add_argument(Argument::default().with_identifiers(&["-f", "--flag"]))
             .unwrap();
 
-        assert_eq!(
+        assert_matches!(
             parser.parse(&["-f", "--different", "--help"]),
-            Err(Error::HelpTextRequested),
+            Err(Error::HelpTextRequested)
         );
     }
 

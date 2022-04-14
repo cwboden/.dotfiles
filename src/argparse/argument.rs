@@ -1,5 +1,5 @@
 use std::collections::HashSet;
-use std::fmt::{Display, Formatter};
+use std::fmt::{Debug, Display, Formatter};
 
 pub struct Argument<'a, T> {
     pub identifiers: HashSet<&'a str>,
@@ -61,5 +61,11 @@ impl<T> Display for Argument<'_, T> {
             .unwrap();
 
         Ok(())
+    }
+}
+
+impl<T> Debug for Argument<'_, T> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        Display::fmt(self, f)
     }
 }
