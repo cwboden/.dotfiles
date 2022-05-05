@@ -8,6 +8,7 @@ pub enum PowerEvent {
     Spend(u8),
 }
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Resource {
     Ore,
     Credit,
