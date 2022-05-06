@@ -1,3 +1,4 @@
+pub use crate::logic::cover_action::Type as CoverActionType;
 pub use crate::logic::power::Bowl as PowerBowl;
 pub use crate::logic::research::Type as ResearchType;
 
@@ -62,21 +63,4 @@ pub enum StandardTechTile {
     ThreePointsWhenSettlingGaiaPlanets,
     FourCreditProduction,
     ChargeFourPowerAction,
-}
-
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub enum CoverActionType {
-    // Power Actions
-    GainThreePower,
-    SingleTerraform,
-    TwoKnowledge,
-    SevenCredits,
-    TwoOre,
-    DoubleTerraform,
-    ThreeKnowledge,
-
-    // QIC Actions
-    PointsForPlanetTypes,
-    RescoreFederationToken,
-    GainTechTile,
 }

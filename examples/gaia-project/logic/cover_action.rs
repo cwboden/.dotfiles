@@ -1,6 +1,23 @@
 use crate::types::*;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Type {
+    // Power Actions
+    GainThreePower,
+    SingleTerraform,
+    TwoKnowledge,
+    SevenCredits,
+    TwoOre,
+    DoubleTerraform,
+    ThreeKnowledge,
+
+    // QIC Actions
+    PointsForPlanetTypes,
+    RescoreFederationToken,
+    GainTechTile,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 struct Cost {
     resource: Resource,
     amount: u8,
@@ -8,7 +25,7 @@ struct Cost {
 
 #[derive(Debug)]
 struct CoverAction {
-    action: CoverActionType,
+    action: Type,
     cost: Cost,
     is_used: bool,
 }
@@ -21,29 +38,27 @@ pub enum Error {
 pub type Result<T> = std::result::Result<T, Error>;
 
 impl CoverAction {
-    pub fn new(action: CoverActionType) -> Self {
+    pub fn new(action: Type) -> Self {
         let resource = match action {
-            CoverActionType::GainThreePower
-            | CoverActionType::SingleTerraform
-            | CoverActionType::TwoKnowledge
-            | CoverActionType::SevenCredits
-            | CoverActionType::TwoOre
-            | CoverActionType::DoubleTerraform
-            | CoverActionType::ThreeKnowledge => Resource::Power,
-            CoverActionType::GainTechTile
-            | CoverActionType::RescoreFederationToken
-            | CoverActionType::PointsForPlanetTypes => Resource::Qic,
+            Type::GainThreePower
+            | Type::SingleTerraform
+            | Type::TwoKnowledge
+            | Type::SevenCredits
+            | Type::TwoOre
+            | Type::DoubleTerraform
+            | Type::ThreeKnowledge => Resource::Power,
+            Type::GainTechTile | Type::RescoreFederationToken | Type::PointsForPlanetTypes => {
+                Resource::Qic
+            }
         };
         let amount = match action {
-            CoverActionType::GainThreePower | CoverActionType::SingleTerraform => 3,
-            CoverActionType::TwoKnowledge
-            | CoverActionType::SevenCredits
-            | CoverActionType::TwoOre => 4,
-            CoverActionType::DoubleTerraform => 5,
-            CoverActionType::ThreeKnowledge => 7,
-            CoverActionType::PointsForPlanetTypes => 2,
-            CoverActionType::RescoreFederationToken => 3,
-            CoverActionType::GainTechTile => 4,
+            Type::GainThreePower | Type::SingleTerraform => 3,
+            Type::TwoKnowledge | Type::SevenCredits | Type::TwoOre => 4,
+            Type::DoubleTerraform => 5,
+            Type::ThreeKnowledge => 7,
+            Type::PointsForPlanetTypes => 2,
+            Type::RescoreFederationToken => 3,
+            Type::GainTechTile => 4,
         };
 
         Self {
@@ -77,12 +92,7 @@ mod tests {
 
     #[test]
     fn cover_actions_cost_three_power() {
-        for &action in [
-            CoverActionType::SingleTerraform,
-            CoverActionType::GainThreePower,
-        ]
-        .iter()
-        {
+        for &action in [Type::SingleTerraform, Type::GainThreePower].iter() {
             assert_eq!(
                 CoverAction::new(action).get_cost(),
                 Cost {
@@ -95,13 +105,7 @@ mod tests {
 
     #[test]
     fn cover_actions_cost_four_power() {
-        for &action in [
-            CoverActionType::TwoKnowledge,
-            CoverActionType::SevenCredits,
-            CoverActionType::TwoOre,
-        ]
-        .iter()
-        {
+        for &action in [Type::TwoKnowledge, Type::SevenCredits, Type::TwoOre].iter() {
             assert_eq!(
                 CoverAction::new(action).get_cost(),
                 Cost {
@@ -115,7 +119,7 @@ mod tests {
     #[test]
     fn cover_action_double_terraform_costs_five_power() {
         assert_eq!(
-            CoverAction::new(CoverActionType::DoubleTerraform).get_cost(),
+            CoverAction::new(Type::DoubleTerraform).get_cost(),
             Cost {
                 resource: Resource::Power,
                 amount: 5,
@@ -126,7 +130,7 @@ mod tests {
     #[test]
     fn cover_action_three_knowledge_costs_seven_power() {
         assert_eq!(
-            CoverAction::new(CoverActionType::ThreeKnowledge).get_cost(),
+            CoverAction::new(Type::ThreeKnowledge).get_cost(),
             Cost {
                 resource: Resource::Power,
                 amount: 7,
@@ -137,7 +141,7 @@ mod tests {
     #[test]
     fn cover_action_points_for_planet_types_cost_two_qic() {
         assert_eq!(
-            CoverAction::new(CoverActionType::PointsForPlanetTypes).get_cost(),
+            CoverAction::new(Type::PointsForPlanetTypes).get_cost(),
             Cost {
                 resource: Resource::Qic,
                 amount: 2,
@@ -148,7 +152,7 @@ mod tests {
     #[test]
     fn cover_action_rescore_federation_token_costs_three_qic() {
         assert_eq!(
-            CoverAction::new(CoverActionType::RescoreFederationToken).get_cost(),
+            CoverAction::new(Type::RescoreFederationToken).get_cost(),
             Cost {
                 resource: Resource::Qic,
                 amount: 3,
@@ -159,7 +163,7 @@ mod tests {
     #[test]
     fn cover_action_gain_tech_tile_costs_four_qic() {
         assert_eq!(
-            CoverAction::new(CoverActionType::GainTechTile).get_cost(),
+            CoverAction::new(Type::GainTechTile).get_cost(),
             Cost {
                 resource: Resource::Qic,
                 amount: 4,
@@ -169,14 +173,14 @@ mod tests {
 
     #[test]
     fn cover_action_cover() {
-        let mut action = CoverAction::new(CoverActionType::TwoOre);
+        let mut action = CoverAction::new(Type::TwoOre);
         action.cover().unwrap();
         assert_eq!(action.cover(), Err(Error::AlreadyCovered));
     }
 
     #[test]
     fn cover_action_uncover() {
-        let mut action = CoverAction::new(CoverActionType::TwoOre);
+        let mut action = CoverAction::new(Type::TwoOre);
         action.cover().unwrap();
         action.uncover();
         action.cover().unwrap();
