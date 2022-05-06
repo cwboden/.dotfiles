@@ -32,6 +32,41 @@ impl ResearchTrack {
     }
 }
 
+struct ResearchTracks {
+    tracks: Vec<ResearchTrack>,
+}
+
+impl ResearchTracks {
+    pub fn new() -> Self {
+        let tracks = [
+            ResearchType::Terraforming,
+            ResearchType::Flight,
+            ResearchType::ArtificialIntelligence,
+            ResearchType::Gaiaforming,
+            ResearchType::Economics,
+            ResearchType::Science,
+        ]
+        .iter()
+        .map(|&t| ResearchTrack::new(t))
+        .collect();
+
+        Self { tracks }
+    }
+
+    pub fn get_track(&self, research_type: ResearchType) -> &ResearchTrack {
+        let index = match research_type {
+            ResearchType::Terraforming => 0,
+            ResearchType::Flight => 1,
+            ResearchType::ArtificialIntelligence => 2,
+            ResearchType::Gaiaforming => 3,
+            ResearchType::Economics => 4,
+            ResearchType::Science => 5,
+        };
+
+        &self.tracks[index]
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -52,5 +87,21 @@ mod tests {
         }
 
         assert_eq!(track.advance(), Err(Error::ResearchTrackAtMax));
+    }
+
+    #[test]
+    fn research_tracks_get() {
+        let tracks = ResearchTracks::new();
+
+        [
+            ResearchType::Terraforming,
+            ResearchType::Flight,
+            ResearchType::ArtificialIntelligence,
+            ResearchType::Gaiaforming,
+            ResearchType::Economics,
+            ResearchType::Science,
+        ]
+        .iter()
+        .for_each(|&t| assert_eq!(tracks.get_track(t).research_type, t));
     }
 }
