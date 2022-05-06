@@ -1,3 +1,5 @@
+pub use crate::logic::power::Bowl as PowerBowl;
+
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum PowerEvent {
     Add(u8),
@@ -15,14 +17,6 @@ pub enum Resource {
     Knowledge,
     Qic,
     Power,
-}
-
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub enum PowerBowl {
-    One,
-    Two,
-    Three,
-    Gaia,
 }
 
 pub enum Building {

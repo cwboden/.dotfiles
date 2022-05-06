@@ -1,16 +1,22 @@
-use crate::types::PowerBowl;
-
 pub struct PowerCycleTracker {
     bowls: [u8; 4],
 }
 
-impl PowerBowl {
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Bowl {
+    One,
+    Two,
+    Three,
+    Gaia,
+}
+
+impl Bowl {
     fn index(&self) -> usize {
         match self {
-            PowerBowl::One => 0,
-            PowerBowl::Two => 1,
-            PowerBowl::Three => 2,
-            PowerBowl::Gaia => 3,
+            Bowl::One => 0,
+            Bowl::Two => 1,
+            Bowl::Three => 2,
+            Bowl::Gaia => 3,
         }
     }
 }
@@ -29,7 +35,7 @@ impl PowerCycleTracker {
         }
     }
 
-    fn move_power(&mut self, amount: u8, bowl_from: PowerBowl, bowl_to: PowerBowl) -> u8 {
+    fn move_power(&mut self, amount: u8, bowl_from: Bowl, bowl_to: Bowl) -> u8 {
         let to_move = std::cmp::min(self.bowls[bowl_from.index()], amount);
         self.bowls[bowl_from.index()] -= to_move;
         self.bowls[bowl_to.index()] += to_move;
@@ -38,27 +44,27 @@ impl PowerCycleTracker {
     }
 
     pub fn spend(&mut self, amount: u8) -> Result<()> {
-        if self.bowls[PowerBowl::Three.index()] < amount {
+        if self.bowls[Bowl::Three.index()] < amount {
             Err(Error::NotEnoughPower)
         } else {
-            self.move_power(amount, PowerBowl::Three, PowerBowl::One);
+            self.move_power(amount, Bowl::Three, Bowl::One);
             Ok(())
         }
     }
 
     pub fn charge(&mut self, amount: u8) {
-        let remaining_amount = self.move_power(amount, PowerBowl::One, PowerBowl::Two);
-        self.move_power(remaining_amount, PowerBowl::Two, PowerBowl::Three);
+        let remaining_amount = self.move_power(amount, Bowl::One, Bowl::Two);
+        self.move_power(remaining_amount, Bowl::Two, Bowl::Three);
     }
 
-    pub fn get(&self, bowl: PowerBowl) -> u8 {
+    pub fn get(&self, bowl: Bowl) -> u8 {
         self.bowls[bowl.index()]
     }
 
     pub fn reserve(&mut self, amount: u8) -> Result<()> {
-        let remaining_amount = self.move_power(amount, PowerBowl::One, PowerBowl::Gaia);
-        let remaining_amount = self.move_power(remaining_amount, PowerBowl::Two, PowerBowl::Gaia);
-        let remaining_amount = self.move_power(remaining_amount, PowerBowl::Three, PowerBowl::Gaia);
+        let remaining_amount = self.move_power(amount, Bowl::One, Bowl::Gaia);
+        let remaining_amount = self.move_power(remaining_amount, Bowl::Two, Bowl::Gaia);
+        let remaining_amount = self.move_power(remaining_amount, Bowl::Three, Bowl::Gaia);
 
         if remaining_amount > 0 {
             Err(Error::NotEnoughPower)
@@ -67,7 +73,7 @@ impl PowerCycleTracker {
         }
     }
 
-    pub fn discard(&mut self, bowl: PowerBowl, amount: u8) -> Result<()> {
+    pub fn discard(&mut self, bowl: Bowl, amount: u8) -> Result<()> {
         if self.bowls[bowl.index()] < amount {
             Err(Error::NotEnoughPower)
         } else {
@@ -77,12 +83,12 @@ impl PowerCycleTracker {
     }
 
     pub fn add(&mut self, amount: u8) {
-        self.bowls[PowerBowl::One.index()] += amount;
+        self.bowls[Bowl::One.index()] += amount;
     }
 
     pub fn force(&mut self, amount: u8) -> Result<()> {
-        self.discard(PowerBowl::Two, amount)?;
-        let remaining_amount = self.move_power(amount, PowerBowl::Two, PowerBowl::Three);
+        self.discard(Bowl::Two, amount)?;
+        let remaining_amount = self.move_power(amount, Bowl::Two, Bowl::Three);
         if remaining_amount > 0 {
             Err(Error::NotEnoughPower)
         } else {
@@ -102,10 +108,10 @@ mod tests {
         bowl_3: u8,
         bowl_gaia: u8,
     ) {
-        assert_eq!(tracker.get(PowerBowl::One), bowl_1);
-        assert_eq!(tracker.get(PowerBowl::Two), bowl_2);
-        assert_eq!(tracker.get(PowerBowl::Three), bowl_3);
-        assert_eq!(tracker.get(PowerBowl::Gaia), bowl_gaia);
+        assert_eq!(tracker.get(Bowl::One), bowl_1);
+        assert_eq!(tracker.get(Bowl::Two), bowl_2);
+        assert_eq!(tracker.get(Bowl::Three), bowl_3);
+        assert_eq!(tracker.get(Bowl::Gaia), bowl_gaia);
     }
 
     #[test]
@@ -128,13 +134,13 @@ mod tests {
             0, // bowl 3
             0, // bowl G
         );
-        assert_eq!(tracker.get(PowerBowl::One), 1);
+        assert_eq!(tracker.get(Bowl::One), 1);
 
         tracker.charge(1);
-        assert_eq!(tracker.get(PowerBowl::Two), 1);
+        assert_eq!(tracker.get(Bowl::Two), 1);
 
         tracker.charge(1);
-        assert_eq!(tracker.get(PowerBowl::Three), 1);
+        assert_eq!(tracker.get(Bowl::Three), 1);
     }
 
     #[test]
@@ -267,16 +273,16 @@ mod tests {
             1, // bowl G
         );
 
-        tracker.discard(PowerBowl::One, 1).unwrap();
+        tracker.discard(Bowl::One, 1).unwrap();
         assert_bowl_contents(&tracker, 0, 1, 1, 1);
 
-        tracker.discard(PowerBowl::Two, 1).unwrap();
+        tracker.discard(Bowl::Two, 1).unwrap();
         assert_bowl_contents(&tracker, 0, 0, 1, 1);
 
-        tracker.discard(PowerBowl::Three, 1).unwrap();
+        tracker.discard(Bowl::Three, 1).unwrap();
         assert_bowl_contents(&tracker, 0, 0, 0, 1);
 
-        tracker.discard(PowerBowl::Gaia, 1).unwrap();
+        tracker.discard(Bowl::Gaia, 1).unwrap();
         assert_bowl_contents(&tracker, 0, 0, 0, 0);
     }
 
@@ -289,14 +295,7 @@ mod tests {
             1, // bowl G
         );
 
-        for &bowl in [
-            PowerBowl::One,
-            PowerBowl::Two,
-            PowerBowl::Three,
-            PowerBowl::Gaia,
-        ]
-        .iter()
-        {
+        for &bowl in [Bowl::One, Bowl::Two, Bowl::Three, Bowl::Gaia].iter() {
             assert_eq!(tracker.discard(bowl, 2), Err(Error::NotEnoughPower),);
         }
     }
