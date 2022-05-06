@@ -13,6 +13,13 @@ struct CoverAction {
     is_used: bool,
 }
 
+#[derive(Debug, Eq, PartialEq)]
+pub enum Error {
+    AlreadyCovered,
+}
+
+pub type Result<T> = std::result::Result<T, Error>;
+
 impl CoverAction {
     pub fn new(action: CoverActionType) -> Self {
         let resource = match action {
@@ -48,6 +55,19 @@ impl CoverAction {
 
     pub fn get_cost(&self) -> Cost {
         self.cost
+    }
+
+    pub fn cover(&mut self) -> Result<()> {
+        if self.is_used {
+            Err(Error::AlreadyCovered)
+        } else {
+            self.is_used = true;
+            Ok(())
+        }
+    }
+
+    pub fn uncover(&mut self) {
+        self.is_used = false;
     }
 }
 
@@ -145,5 +165,20 @@ mod tests {
                 amount: 4,
             }
         );
+    }
+
+    #[test]
+    fn cover_action_cover() {
+        let mut action = CoverAction::new(CoverActionType::TwoOre);
+        action.cover().unwrap();
+        assert_eq!(action.cover(), Err(Error::AlreadyCovered));
+    }
+
+    #[test]
+    fn cover_action_uncover() {
+        let mut action = CoverAction::new(CoverActionType::TwoOre);
+        action.cover().unwrap();
+        action.uncover();
+        action.cover().unwrap();
     }
 }

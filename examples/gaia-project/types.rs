@@ -81,7 +81,7 @@ pub enum CoverActionType {
     ThreeKnowledge,
 
     // QIC Actions
-    GainTechTile,
-    RescoreFederationToken,
     PointsForPlanetTypes,
+    RescoreFederationToken,
+    GainTechTile,
 }
