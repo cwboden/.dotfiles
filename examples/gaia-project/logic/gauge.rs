@@ -6,6 +6,13 @@ struct Gauge<T> {
     limit: u8,
 }
 
+#[derive(Debug, Eq, PartialEq)]
+pub enum Error {
+    NotEnoughResources,
+}
+
+pub type Result<T> = std::result::Result<T, Error>;
+
 impl<T> Gauge<T> {
     pub fn get(&self) -> u8 {
         self.amount
@@ -13,6 +20,24 @@ impl<T> Gauge<T> {
 
     pub fn set(&mut self, amount: u8) {
         self.amount = std::cmp::min(self.limit, amount);
+    }
+
+    pub fn add(&mut self, amount: u8) -> u8 {
+        self.amount = std::cmp::min(self.limit, self.amount + amount);
+        self.amount
+    }
+
+    pub fn try_sub(&mut self, amount: u8) -> Result<u8> {
+        if self.amount < amount {
+            Err(Error::NotEnoughResources)
+        } else {
+            self.amount -= amount;
+            Ok(self.amount)
+        }
+    }
+
+    pub fn sub(&mut self, amount: u8) -> u8 {
+        self.try_sub(amount).unwrap()
     }
 }
 
@@ -61,6 +86,49 @@ mod tests {
         let mut gauge = Gauge::new(Resource::Ore);
         gauge.set(16);
         assert_eq!(gauge.get(), 15);
+    }
+
+    #[test]
+    fn gauge_add() {
+        let mut gauge = Gauge::new(Resource::Ore);
+        assert_eq!(gauge.add(7), 7);
+        assert_eq!(gauge.get(), 7);
+    }
+
+    #[test]
+    fn gauge_add_respects_limit() {
+        let mut gauge = Gauge::new(Resource::Ore);
+        assert_eq!(gauge.add(16), 15);
+        assert_eq!(gauge.get(), 15);
+    }
+
+    #[test]
+    fn gauge_sub() {
+        let mut gauge = Gauge::new(Resource::Ore);
+        gauge.set(5);
+        assert_eq!(gauge.sub(3), 2);
+        assert_eq!(gauge.get(), 2);
+    }
+
+    #[test]
+    #[should_panic]
+    fn gauge_sub_panics_on_overflow() {
+        let mut gauge = Gauge::new(Resource::Ore);
+        gauge.sub(1);
+    }
+
+    #[test]
+    fn gauge_try_sub() {
+        let mut gauge = Gauge::new(Resource::Ore);
+        gauge.set(5);
+        assert_eq!(gauge.try_sub(3), Ok(2));
+        assert_eq!(gauge.get(), 2);
+    }
+
+    #[test]
+    fn gauge_try_sub_throws_error_on_overflow() {
+        let mut gauge = Gauge::new(Resource::Ore);
+        assert_eq!(gauge.try_sub(1), Err(Error::NotEnoughResources));
     }
 
     #[test]
