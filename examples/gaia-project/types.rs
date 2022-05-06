@@ -85,3 +85,13 @@ pub enum CoverActionType {
     RescoreFederationToken,
     GainTechTile,
 }
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum ResearchType {
+    Terraforming,
+    Flight,
+    ArtificialIntelligence,
+    Gaiaforming,
+    Economics,
+    Science,
+}
