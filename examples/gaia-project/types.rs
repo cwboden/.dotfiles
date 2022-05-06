@@ -68,3 +68,20 @@ pub enum StandardTechTile {
     FourCreditProduction,
     ChargeFourPowerAction,
 }
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum CoverActionType {
+    // Power Actions
+    GainThreePower,
+    SingleTerraform,
+    TwoKnowledge,
+    SevenCredits,
+    TwoOre,
+    DoubleTerraform,
+    ThreeKnowledge,
+
+    // QIC Actions
+    GainTechTile,
+    RescoreFederationToken,
+    PointsForPlanetTypes,
+}
