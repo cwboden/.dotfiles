@@ -1,8 +1,16 @@
-use crate::types::*;
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub enum Type {
+    Terraforming,
+    Flight,
+    ArtificialIntelligence,
+    Gaiaforming,
+    Economics,
+    Science,
+}
 
 pub struct ResearchTrack {
     level: u8,
-    research_type: ResearchType,
+    research_type: Type,
 }
 
 #[derive(Debug, Eq, PartialEq)]
@@ -15,7 +23,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 impl ResearchTrack {
     const MAX: u8 = 6;
 
-    pub fn new(research_type: ResearchType) -> Self {
+    pub fn new(research_type: Type) -> Self {
         Self {
             level: 0,
             research_type,
@@ -39,12 +47,12 @@ struct ResearchTracks {
 impl ResearchTracks {
     pub fn new() -> Self {
         let tracks = [
-            ResearchType::Terraforming,
-            ResearchType::Flight,
-            ResearchType::ArtificialIntelligence,
-            ResearchType::Gaiaforming,
-            ResearchType::Economics,
-            ResearchType::Science,
+            Type::Terraforming,
+            Type::Flight,
+            Type::ArtificialIntelligence,
+            Type::Gaiaforming,
+            Type::Economics,
+            Type::Science,
         ]
         .iter()
         .map(|&t| ResearchTrack::new(t))
@@ -53,14 +61,14 @@ impl ResearchTracks {
         Self { tracks }
     }
 
-    pub fn get_track(&self, research_type: ResearchType) -> &ResearchTrack {
+    pub fn get_track(&self, research_type: Type) -> &ResearchTrack {
         let index = match research_type {
-            ResearchType::Terraforming => 0,
-            ResearchType::Flight => 1,
-            ResearchType::ArtificialIntelligence => 2,
-            ResearchType::Gaiaforming => 3,
-            ResearchType::Economics => 4,
-            ResearchType::Science => 5,
+            Type::Terraforming => 0,
+            Type::Flight => 1,
+            Type::ArtificialIntelligence => 2,
+            Type::Gaiaforming => 3,
+            Type::Economics => 4,
+            Type::Science => 5,
         };
 
         &self.tracks[index]
@@ -73,14 +81,14 @@ mod tests {
 
     #[test]
     fn research_track_advance() {
-        let mut track = ResearchTrack::new(ResearchType::Science);
+        let mut track = ResearchTrack::new(Type::Science);
         track.advance().unwrap();
         assert_eq!(track.level, 1);
     }
 
     #[test]
     fn research_track_advance_errors_at_max() {
-        let mut track = ResearchTrack::new(ResearchType::Science);
+        let mut track = ResearchTrack::new(Type::Science);
 
         for _ in 0..ResearchTrack::MAX {
             track.advance().unwrap();
@@ -94,12 +102,12 @@ mod tests {
         let tracks = ResearchTracks::new();
 
         [
-            ResearchType::Terraforming,
-            ResearchType::Flight,
-            ResearchType::ArtificialIntelligence,
-            ResearchType::Gaiaforming,
-            ResearchType::Economics,
-            ResearchType::Science,
+            Type::Terraforming,
+            Type::Flight,
+            Type::ArtificialIntelligence,
+            Type::Gaiaforming,
+            Type::Economics,
+            Type::Science,
         ]
         .iter()
         .for_each(|&t| assert_eq!(tracks.get_track(t).research_type, t));

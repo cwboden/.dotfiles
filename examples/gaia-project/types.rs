@@ -1,4 +1,5 @@
 pub use crate::logic::power::Bowl as PowerBowl;
+pub use crate::logic::research::Type as ResearchType;
 
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum PowerEvent {
@@ -78,14 +79,4 @@ pub enum CoverActionType {
     PointsForPlanetTypes,
     RescoreFederationToken,
     GainTechTile,
-}
-
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub enum ResearchType {
-    Terraforming,
-    Flight,
-    ArtificialIntelligence,
-    Gaiaforming,
-    Economics,
-    Science,
 }
