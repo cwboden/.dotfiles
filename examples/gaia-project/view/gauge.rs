@@ -25,4 +25,17 @@ pub fn gauge_view(
             }
         }
     }
+
+    for mut text in query.iter_mut() {
+        text.sections[1].value = format!("Ore: {}\n", view_state.gauges.get(Resource::Ore).get());
+        text.sections[2].value = format!(
+            "Knowledge: {}\n",
+            view_state.gauges.get(Resource::Knowledge).get()
+        );
+        text.sections[3].value = format!(
+            "Credits: {}\n",
+            view_state.gauges.get(Resource::Credit).get()
+        );
+        text.sections[4].value = format!("QIC: {}\n", view_state.gauges.get(Resource::Qic).get());
+    }
 }

@@ -13,7 +13,11 @@ impl Plugin for InputPlugin {
     }
 }
 
-fn input_monitor(input: Res<Input<KeyCode>>, mut events: EventWriter<PowerEvent>) {
+fn input_monitor(
+    input: Res<Input<KeyCode>>,
+    mut power_events: EventWriter<PowerEvent>,
+    mut gauge_events: EventWriter<GaugeEvent>,
+) {
     for &(key, amount) in [
         (KeyCode::Key1, 1),
         (KeyCode::Key2, 2),
@@ -28,27 +32,43 @@ fn input_monitor(input: Res<Input<KeyCode>>, mut events: EventWriter<PowerEvent>
     .iter()
     {
         if input.just_pressed(key) {
-            events.send(PowerEvent::Charge(amount));
+            power_events.send(PowerEvent::Charge(amount));
         }
     }
 
     if input.just_pressed(KeyCode::R) {
-        events.send(PowerEvent::Reserve(1));
+        power_events.send(PowerEvent::Reserve(1));
     }
 
     if input.just_pressed(KeyCode::S) {
-        events.send(PowerEvent::Spend(4));
+        power_events.send(PowerEvent::Spend(4));
     }
 
     if input.just_pressed(KeyCode::D) {
-        events.send(PowerEvent::Discard(1));
+        power_events.send(PowerEvent::Discard(1));
     }
 
     if input.just_pressed(KeyCode::A) {
-        events.send(PowerEvent::Add(1));
+        power_events.send(PowerEvent::Add(1));
     }
 
     if input.just_pressed(KeyCode::F) {
-        events.send(PowerEvent::Force(1));
+        power_events.send(PowerEvent::Force(1));
+    }
+
+    for &(key, resource) in [
+        (KeyCode::O, Resource::Ore),
+        (KeyCode::K, Resource::Knowledge),
+        (KeyCode::C, Resource::Credit),
+        (KeyCode::Q, Resource::Qic),
+    ]
+    .iter()
+    {
+        if input.just_pressed(key) {
+            gauge_events.send(GaugeEvent::Gain(Cost {
+                resource,
+                amount: 1,
+            }));
+        }
     }
 }
