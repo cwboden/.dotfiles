@@ -1,6 +1,6 @@
 use crate::types::*;
 
-struct Gauge<T> {
+pub struct Gauge<T> {
     resource: T,
     amount: u8,
     limit: u8,
@@ -60,6 +60,34 @@ impl Gauge<Resource> {
             resource,
             amount: 0,
             limit,
+        }
+    }
+}
+
+pub struct Gauges {
+    ore: Gauge<Resource>,
+    knowledge: Gauge<Resource>,
+    credits: Gauge<Resource>,
+    qic: Gauge<Resource>,
+}
+
+impl Gauges {
+    pub fn new() -> Self {
+        Self {
+            ore: Gauge::new(Resource::Ore),
+            knowledge: Gauge::new(Resource::Knowledge),
+            credits: Gauge::new(Resource::Credit),
+            qic: Gauge::new(Resource::Qic),
+        }
+    }
+
+    pub fn get(&self, resource: Resource) -> &Gauge<Resource> {
+        match resource {
+            Resource::Credit => &self.credits,
+            Resource::Ore => &self.ore,
+            Resource::Knowledge => &self.knowledge,
+            Resource::Qic => &self.qic,
+            _ => panic!("No such `Gauge` for resource type: {resource:?}"),
         }
     }
 }
@@ -169,5 +197,28 @@ mod tests {
     #[should_panic]
     fn gauge_power_is_not_valid() {
         let _ = Gauge::new(Resource::Power);
+    }
+
+    #[test]
+    fn gauges_get() {
+        let gauges = Gauges::new();
+
+        [
+            Resource::Ore,
+            Resource::Knowledge,
+            Resource::Credit,
+            Resource::Qic,
+        ]
+        .iter()
+        .for_each(|&r| {
+            assert_eq!(gauges.get(r).resource_type(), r);
+        })
+    }
+
+    #[test]
+    #[should_panic]
+    fn gauges_get_invalid_for_power() {
+        let gauges = Gauges::new();
+        gauges.get(Resource::Power);
     }
 }
