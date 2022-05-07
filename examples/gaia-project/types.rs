@@ -27,6 +27,13 @@ pub struct Cost {
     pub amount: u8,
 }
 
+// XXX: Should probably combine the Gauge with the PowerTracker
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum GaugeEvent {
+    Gain(Cost),
+    Spend(Cost),
+}
+
 pub enum Building {
     PlanetaryInstitute,
     Academy,

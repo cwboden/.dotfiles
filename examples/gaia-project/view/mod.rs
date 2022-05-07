@@ -1,11 +1,15 @@
 use bevy::prelude::*;
 
 use crate::asset_library::AssetLibrary;
+use crate::logic::gauge::Gauges;
 use crate::logic::power::PowerCycleTracker;
+use crate::types::*;
 use crate::GameState;
 
+mod gauge;
 mod power;
 
+use gauge::{gauge_view, GaugeView, GaugeViewState};
 use power::{power_view, PowerView, PowerViewState};
 
 pub struct ViewPlugin;
@@ -15,8 +19,12 @@ impl Plugin for ViewPlugin {
         app.insert_resource(PowerViewState {
             tracker: PowerCycleTracker::new(2, 4, 0, 0),
         })
+        .insert_resource(GaugeViewState {
+            gauges: Gauges::new(),
+        })
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
-        .add_system_set(SystemSet::on_update(GameState::Running).with_system(power_view));
+        .add_system_set(SystemSet::on_update(GameState::Running).with_system(power_view))
+        .add_system_set(SystemSet::on_update(GameState::Running).with_system(gauge_view));
     }
 }
 
@@ -53,7 +61,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
                     },
                     TextSection {
                         value: "Bowl G: 0\n".to_string(),
-                        style: style,
+                        style: style.clone(),
                     },
                 ],
                 ..Default::default()
@@ -61,4 +69,39 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(PowerView);
+
+    commands
+        .spawn_bundle(TextBundle {
+            style: Style {
+                align_self: AlignSelf::FlexEnd,
+                ..Default::default()
+            },
+            text: Text {
+                sections: vec![
+                    TextSection {
+                        value: "Gauges\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Ore: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Knowledge: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Credits: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "QIC: 0\n".to_string(),
+                        style: style,
+                    },
+                ],
+                ..Default::default()
+            },
+            ..Default::default()
+        })
+        .insert(GaugeView);
 }

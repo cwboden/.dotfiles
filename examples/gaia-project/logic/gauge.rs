@@ -90,6 +90,16 @@ impl Gauges {
             _ => panic!("No such `Gauge` for resource type: {resource:?}"),
         }
     }
+
+    pub fn get_mut(&mut self, resource: Resource) -> &mut Gauge<Resource> {
+        match resource {
+            Resource::Credit => &mut self.credits,
+            Resource::Ore => &mut self.ore,
+            Resource::Knowledge => &mut self.knowledge,
+            Resource::Qic => &mut self.qic,
+            _ => panic!("No such `Gauge` for resource type: {resource:?}"),
+        }
+    }
 }
 
 #[cfg(test)]
