@@ -17,12 +17,6 @@ pub enum Type {
     GainTechTile,
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
-struct Cost {
-    resource: Resource,
-    amount: u8,
-}
-
 #[derive(Debug)]
 struct CoverAction {
     action: Type,

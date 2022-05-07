@@ -21,6 +21,12 @@ pub enum Resource {
     Power,
 }
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+pub struct Cost {
+    pub resource: Resource,
+    pub amount: u8,
+}
+
 pub enum Building {
     PlanetaryInstitute,
     Academy,
