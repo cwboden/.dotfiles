@@ -1,6 +1,9 @@
+use strum::IntoEnumIterator;
+use strum_macros::EnumIter;
+
 use crate::types::*;
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
 pub enum Type {
     // Power Actions
     GainThreePower,
@@ -77,6 +80,35 @@ impl CoverAction {
 
     pub fn uncover(&mut self) {
         self.is_used = false;
+    }
+}
+
+struct CoverActions {
+    actions: Vec<CoverAction>,
+}
+
+impl CoverActions {
+    pub fn new() -> Self {
+        Self {
+            actions: Type::iter().map(|t| CoverAction::new(t)).collect(),
+        }
+    }
+
+    pub fn get(&self, action: Type) -> &CoverAction {
+        let index = match action {
+            Type::GainThreePower => 0,
+            Type::SingleTerraform => 1,
+            Type::TwoKnowledge => 2,
+            Type::SevenCredits => 3,
+            Type::TwoOre => 4,
+            Type::DoubleTerraform => 5,
+            Type::ThreeKnowledge => 6,
+            Type::PointsForPlanetTypes => 7,
+            Type::RescoreFederationToken => 8,
+            Type::GainTechTile => 9,
+        };
+
+        &self.actions[index]
     }
 }
 
@@ -178,5 +210,12 @@ mod tests {
         action.cover().unwrap();
         action.uncover();
         action.cover().unwrap();
+    }
+
+    #[test]
+    fn cover_actions_all_actions_covered() {
+        let actions = CoverActions::new();
+
+        Type::iter().for_each(|t| assert_eq!(actions.get(t).action, t));
     }
 }
