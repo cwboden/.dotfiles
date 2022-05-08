@@ -94,8 +94,8 @@ impl CoverActions {
         }
     }
 
-    pub fn get(&self, action: Type) -> &CoverAction {
-        let index = match action {
+    fn map_index(action: Type) -> usize {
+        match action {
             Type::GainThreePower => 0,
             Type::SingleTerraform => 1,
             Type::TwoKnowledge => 2,
@@ -106,9 +106,21 @@ impl CoverActions {
             Type::PointsForPlanetTypes => 7,
             Type::RescoreFederationToken => 8,
             Type::GainTechTile => 9,
-        };
+        }
+    }
 
+    pub fn get(&self, action: Type) -> &CoverAction {
+        let index = Self::map_index(action);
         &self.actions[index]
+    }
+
+    pub fn get_mut(&mut self, action: Type) -> &mut CoverAction {
+        let index = Self::map_index(action);
+        &mut self.actions[index]
+    }
+
+    pub fn reset(&mut self) {
+        self.actions.iter_mut().for_each(|a| a.uncover());
     }
 }
 
@@ -217,5 +229,17 @@ mod tests {
         let actions = CoverActions::new();
 
         Type::iter().for_each(|t| assert_eq!(actions.get(t).action, t));
+    }
+
+    #[test]
+    fn cover_actions_reset() {
+        let mut actions = CoverActions::new();
+
+        Type::iter().for_each(|t| actions.get_mut(t).cover().unwrap());
+
+        actions.reset();
+
+        // Should be able to cover each action again
+        Type::iter().for_each(|t| actions.get_mut(t).cover().unwrap());
     }
 }
