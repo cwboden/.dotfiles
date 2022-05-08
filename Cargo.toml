@@ -18,6 +18,8 @@ path = "examples/gaia-project/main.rs"
 assert_matches = "1.5"
 
 [dependencies]
+bevy = "0.6.1"
 ron = "0.7"
 serde = { version = "1.0", features = ["derive"] }
-bevy = "0.6.1"
+strum = "0.13.0"
+strum_macros = "0.13.0"
