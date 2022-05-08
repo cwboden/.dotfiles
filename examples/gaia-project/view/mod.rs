@@ -7,9 +7,9 @@ use crate::logic::power::PowerCycleTracker;
 use crate::types::*;
 use crate::GameState;
 
-mod cover_action;
-mod gauge;
-mod power;
+pub mod cover_action;
+pub mod gauge;
+pub mod power;
 
 use cover_action::{cover_action_view, CoverActionView, CoverActionViewState};
 use gauge::{gauge_view, GaugeView, GaugeViewState};

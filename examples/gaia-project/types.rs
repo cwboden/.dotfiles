@@ -40,6 +40,11 @@ pub enum CoverActionEvent {
     Reset,
 }
 
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum PaymentEvent {
+    CoverAction(CoverActionEvent),
+}
+
 pub enum Building {
     PlanetaryInstitute,
     Academy,

@@ -7,6 +7,7 @@ mod view;
 
 use asset_library::AssetLibraryPlugin;
 use logic::input::InputPlugin;
+use logic::LogicPlugin;
 use view::ViewPlugin;
 
 #[derive(Clone, Debug, Eq, Hash, PartialEq)]
@@ -27,6 +28,7 @@ fn main() {
         .add_plugin(AssetLibraryPlugin)
         .add_plugin(ViewPlugin)
         .add_plugin(InputPlugin)
+        .add_plugin(LogicPlugin)
         .add_startup_system(init)
         .add_state(GameState::Loading)
         .run();

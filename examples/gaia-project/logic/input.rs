@@ -10,7 +10,8 @@ impl Plugin for InputPlugin {
         app.add_system_set(SystemSet::on_update(GameState::Running).with_system(input_monitor))
             .add_event::<PowerEvent>()
             .add_event::<GaugeEvent>()
-            .add_event::<CoverActionEvent>();
+            .add_event::<CoverActionEvent>()
+            .add_event::<PaymentEvent>();
     }
 }
 
@@ -19,6 +20,7 @@ fn input_monitor(
     mut power_events: EventWriter<PowerEvent>,
     mut gauge_events: EventWriter<GaugeEvent>,
     mut cover_action_events: EventWriter<CoverActionEvent>,
+    mut payment_events: EventWriter<PaymentEvent>,
 ) {
     for &(key, action_type) in [
         (KeyCode::Key1, CoverActionType::GainThreePower),
@@ -35,7 +37,9 @@ fn input_monitor(
     .iter()
     {
         if input.just_pressed(key) {
-            cover_action_events.send(CoverActionEvent::Cover(action_type));
+            payment_events.send(PaymentEvent::CoverAction(CoverActionEvent::Cover(
+                action_type,
+            )));
         }
     }
 
