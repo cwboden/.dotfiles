@@ -9,7 +9,8 @@ impl Plugin for InputPlugin {
     fn build(&self, app: &mut App) {
         app.add_system_set(SystemSet::on_update(GameState::Running).with_system(input_monitor))
             .add_event::<PowerEvent>()
-            .add_event::<GaugeEvent>();
+            .add_event::<GaugeEvent>()
+            .add_event::<CoverActionEvent>();
     }
 }
 
@@ -17,23 +18,29 @@ fn input_monitor(
     input: Res<Input<KeyCode>>,
     mut power_events: EventWriter<PowerEvent>,
     mut gauge_events: EventWriter<GaugeEvent>,
+    mut cover_action_events: EventWriter<CoverActionEvent>,
 ) {
-    for &(key, amount) in [
-        (KeyCode::Key1, 1),
-        (KeyCode::Key2, 2),
-        (KeyCode::Key3, 3),
-        (KeyCode::Key4, 4),
-        (KeyCode::Key5, 5),
-        (KeyCode::Key6, 6),
-        (KeyCode::Key7, 7),
-        (KeyCode::Key8, 8),
-        (KeyCode::Key9, 9),
+    for &(key, action_type) in [
+        (KeyCode::Key1, CoverActionType::GainThreePower),
+        (KeyCode::Key2, CoverActionType::SingleTerraform),
+        (KeyCode::Key3, CoverActionType::TwoKnowledge),
+        (KeyCode::Key4, CoverActionType::SevenCredits),
+        (KeyCode::Key5, CoverActionType::TwoOre),
+        (KeyCode::Key6, CoverActionType::DoubleTerraform),
+        (KeyCode::Key7, CoverActionType::ThreeKnowledge),
+        (KeyCode::Key8, CoverActionType::PointsForPlanetTypes),
+        (KeyCode::Key9, CoverActionType::RescoreFederationToken),
+        (KeyCode::Key0, CoverActionType::GainTechTile),
     ]
     .iter()
     {
         if input.just_pressed(key) {
-            power_events.send(PowerEvent::Charge(amount));
+            cover_action_events.send(CoverActionEvent::Cover(action_type));
         }
+    }
+
+    if input.just_pressed(KeyCode::Up) {
+        power_events.send(PowerEvent::Charge(1));
     }
 
     if input.just_pressed(KeyCode::R) {
@@ -54,6 +61,10 @@ fn input_monitor(
 
     if input.just_pressed(KeyCode::F) {
         power_events.send(PowerEvent::Force(1));
+    }
+
+    if input.just_pressed(KeyCode::Z) {
+        cover_action_events.send(CoverActionEvent::Reset);
     }
 
     for &(key, resource) in [

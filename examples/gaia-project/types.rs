@@ -34,6 +34,12 @@ pub enum GaugeEvent {
     Spend(Cost),
 }
 
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum CoverActionEvent {
+    Cover(CoverActionType),
+    Reset,
+}
+
 pub enum Building {
     PlanetaryInstitute,
     Academy,

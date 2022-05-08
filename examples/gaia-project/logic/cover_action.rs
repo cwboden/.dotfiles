@@ -1,9 +1,9 @@
 use strum::IntoEnumIterator;
-use strum_macros::EnumIter;
+use strum_macros::{Display, EnumIter};
 
 use crate::types::*;
 
-#[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, Display, EnumIter, Eq, PartialEq)]
 pub enum Type {
     // Power Actions
     GainThreePower,
@@ -21,10 +21,10 @@ pub enum Type {
 }
 
 #[derive(Debug)]
-struct CoverAction {
+pub struct CoverAction {
     action: Type,
     cost: Cost,
-    is_used: bool,
+    pub is_used: bool,
 }
 
 #[derive(Debug, Eq, PartialEq)]
@@ -83,7 +83,7 @@ impl CoverAction {
     }
 }
 
-struct CoverActions {
+pub struct CoverActions {
     actions: Vec<CoverAction>,
 }
 
