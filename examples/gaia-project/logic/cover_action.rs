@@ -43,7 +43,7 @@ impl CoverAction {
             | Type::SevenCredits
             | Type::TwoOre
             | Type::DoubleTerraform
-            | Type::ThreeKnowledge => Resource::Power,
+            | Type::ThreeKnowledge => Resource::PowerCharge,
             Type::GainTechTile | Type::RescoreFederationToken | Type::PointsForPlanetTypes => {
                 Resource::Qic
             }
@@ -134,7 +134,7 @@ mod tests {
             assert_eq!(
                 CoverAction::new(action).get_cost(),
                 Amount {
-                    resource: Resource::Power,
+                    resource: Resource::PowerCharge,
                     amount: 3,
                 }
             );
@@ -147,7 +147,7 @@ mod tests {
             assert_eq!(
                 CoverAction::new(action).get_cost(),
                 Amount {
-                    resource: Resource::Power,
+                    resource: Resource::PowerCharge,
                     amount: 4,
                 }
             );
@@ -159,7 +159,7 @@ mod tests {
         assert_eq!(
             CoverAction::new(Type::DoubleTerraform).get_cost(),
             Amount {
-                resource: Resource::Power,
+                resource: Resource::PowerCharge,
                 amount: 5,
             }
         );
@@ -170,7 +170,7 @@ mod tests {
         assert_eq!(
             CoverAction::new(Type::ThreeKnowledge).get_cost(),
             Amount {
-                resource: Resource::Power,
+                resource: Resource::PowerCharge,
                 amount: 7,
             }
         );

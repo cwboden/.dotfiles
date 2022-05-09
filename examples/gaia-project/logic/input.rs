@@ -16,7 +16,6 @@ impl Plugin for InputPlugin {
 
 fn input_monitor(
     input: Res<Input<KeyCode>>,
-    mut power_events: EventWriter<PowerEvent>,
     mut cover_action_events: EventWriter<CoverActionEvent>,
     mut payment_events: EventWriter<PaymentEvent>,
 ) {
@@ -42,27 +41,17 @@ fn input_monitor(
     }
 
     if input.just_pressed(KeyCode::Up) {
-        power_events.send(PowerEvent::Charge(1));
-    }
-
-    if input.just_pressed(KeyCode::R) {
-        power_events.send(PowerEvent::Reserve(1));
-    }
-
-    if input.just_pressed(KeyCode::S) {
-        power_events.send(PowerEvent::Spend(4));
-    }
-
-    if input.just_pressed(KeyCode::D) {
-        power_events.send(PowerEvent::Discard(1));
+        payment_events.send(PaymentEvent::Gain(Amount {
+            resource: Resource::PowerCharge,
+            amount: 1,
+        }));
     }
 
     if input.just_pressed(KeyCode::A) {
-        power_events.send(PowerEvent::Add(1));
-    }
-
-    if input.just_pressed(KeyCode::F) {
-        power_events.send(PowerEvent::Force(1));
+        payment_events.send(PaymentEvent::Gain(Amount {
+            resource: Resource::PowerTokens,
+            amount: 1,
+        }));
     }
 
     if input.just_pressed(KeyCode::Z) {

@@ -1,3 +1,5 @@
+use strum_macros::EnumIter;
+
 pub use crate::logic::cover_action::Type as CoverActionType;
 pub use crate::logic::power::Bowl as PowerBowl;
 pub use crate::logic::research::Type as ResearchType;
@@ -12,13 +14,14 @@ pub enum PowerEvent {
     Spend(u8),
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
 pub enum Resource {
     Ore,
     Credit,
     Knowledge,
     Qic,
-    Power,
+    PowerCharge,
+    PowerTokens,
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]

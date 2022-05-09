@@ -1,7 +1,8 @@
 use bevy::prelude::*;
+use strum::IntoEnumIterator;
 
 use crate::logic::gauge::{self, Gauge};
-use crate::logic::power::PowerCycleTracker;
+use crate::logic::power::{self, PowerCycleTracker};
 use crate::types::*;
 use crate::view::cover_action::CoverActionViewState;
 use crate::view::gauge::{GaugeView, GaugeViewState};
@@ -26,6 +27,14 @@ impl From<gauge::Error> for Error {
     fn from(other: gauge::Error) -> Self {
         match other {
             gauge::Error::NotEnoughResources => Self::NotEnoughResources,
+        }
+    }
+}
+
+impl From<power::Error> for Error {
+    fn from(other: power::Error) -> Self {
+        match other {
+            power::Error::NotEnoughPower => Self::NotEnoughResources,
         }
     }
 }
@@ -55,8 +64,11 @@ impl ResourcesState {
             Resource::Qic => {
                 self.qic.add(amount.amount);
             }
-            Resource::Power => {
-                unimplemented!("XXX: Need to support Power gain and charge!");
+            Resource::PowerCharge => {
+                self.power.charge(amount.amount);
+            }
+            Resource::PowerTokens => {
+                self.power.add(amount.amount);
             }
         }
     }
@@ -67,8 +79,28 @@ impl ResourcesState {
             Resource::Knowledge => Ok(self.knowledge.try_sub(cost.amount)?),
             Resource::Credit => Ok(self.credits.try_sub(cost.amount)?),
             Resource::Qic => Ok(self.qic.try_sub(cost.amount)?),
-            Resource::Power => {
-                unimplemented!("XXX: Need to support Power gain and charge!");
+            Resource::PowerCharge => Ok(self.power.spend(cost.amount)?),
+            Resource::PowerTokens => {
+                let mut amount = cost.amount;
+                for &bowl in [
+                    // XXX: User should be able to choose how power is discarded
+                    PowerBowl::Gaia,
+                    PowerBowl::One,
+                    PowerBowl::Two,
+                    PowerBowl::Three,
+                ]
+                .iter()
+                {
+                    let bowl_amount = self.power.get(bowl);
+                    let discard_amount = std::cmp::min(bowl_amount, amount);
+                    self.power.discard(bowl, discard_amount).unwrap();
+
+                    amount -= discard_amount;
+                }
+
+                // We should have discarded all input power
+                assert_eq!(amount, 0);
+                Ok(())
             }
         }
     }
@@ -119,24 +151,10 @@ mod tests {
     use super::*;
 
     #[test]
-    #[should_panic]
-    fn resources_state_gain_power_unimplemented() {
-        let mut state = ResourcesState::new();
-        state.gain(Amount::new(Resource::Power, 0));
-    }
-
-    #[test]
     fn resources_state_gain_and_spend() {
         let mut state = ResourcesState::new();
-        [
-            Resource::Ore,
-            Resource::Knowledge,
-            Resource::Credit,
-            Resource::Qic,
-        ]
-        .iter()
-        .for_each(|&r| {
-            state.gain(Amount::new(r, 1));
+        Resource::iter().for_each(|r| {
+            state.gain(Amount::new(r, 3));
             state.spend(Amount::new(r, 1)).unwrap();
         });
     }

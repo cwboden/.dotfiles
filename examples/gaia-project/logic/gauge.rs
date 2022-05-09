@@ -204,8 +204,14 @@ mod tests {
 
     #[test]
     #[should_panic]
-    fn gauge_power_is_not_valid() {
-        let _ = Gauge::new(Resource::Power);
+    fn gauge_power_charge_is_not_valid() {
+        let _ = Gauge::new(Resource::PowerCharge);
+    }
+
+    #[test]
+    #[should_panic]
+    fn gauge_power_tokens_is_not_valid() {
+        let _ = Gauge::new(Resource::PowerTokens);
     }
 
     #[test]
@@ -226,8 +232,15 @@ mod tests {
 
     #[test]
     #[should_panic]
-    fn gauges_get_invalid_for_power() {
+    fn gauges_get_invalid_for_power_charge() {
         let gauges = Gauges::new();
-        gauges.get(Resource::Power);
+        gauges.get(Resource::PowerCharge);
+    }
+
+    #[test]
+    #[should_panic]
+    fn gauges_get_invalid_for_power_tokens() {
+        let gauges = Gauges::new();
+        gauges.get(Resource::PowerTokens);
     }
 }
