@@ -41,17 +41,11 @@ fn input_monitor(
     }
 
     if input.just_pressed(KeyCode::Up) {
-        payment_events.send(PaymentEvent::Gain(Amount {
-            resource: Resource::PowerCharge,
-            amount: 1,
-        }));
+        payment_events.send(PaymentEvent::Gain(Amount::new(Resource::PowerCharge, 1)));
     }
 
     if input.just_pressed(KeyCode::A) {
-        payment_events.send(PaymentEvent::Gain(Amount {
-            resource: Resource::PowerTokens,
-            amount: 1,
-        }));
+        payment_events.send(PaymentEvent::Gain(Amount::new(Resource::PowerTokens, 1)));
     }
 
     if input.just_pressed(KeyCode::Z) {
@@ -67,10 +61,7 @@ fn input_monitor(
     .iter()
     {
         if input.just_pressed(key) {
-            payment_events.send(PaymentEvent::Gain(Amount {
-                resource,
-                amount: 1,
-            }));
+            payment_events.send(PaymentEvent::Gain(Amount::new(resource, 1)));
         }
     }
 }
