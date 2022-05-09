@@ -2,12 +2,13 @@ use bevy::prelude::*;
 
 use crate::asset_library::AssetLibrary;
 use crate::logic::cover_action::CoverActions;
-use crate::logic::payment::{GaugeView, PowerView};
 use crate::GameState;
 
 pub mod cover_action;
+pub mod payment;
 
 use cover_action::{cover_action_view, CoverActionView, CoverActionViewState};
+use payment::{payment_view, GaugeView, PowerView};
 
 pub struct ViewPlugin;
 
@@ -17,7 +18,8 @@ impl Plugin for ViewPlugin {
             actions: CoverActions::new(),
         })
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
-        .add_system_set(SystemSet::on_update(GameState::Running).with_system(cover_action_view));
+        .add_system_set(SystemSet::on_update(GameState::Running).with_system(cover_action_view))
+        .add_system_set(SystemSet::on_update(GameState::Running).with_system(payment_view));
     }
 }
 
