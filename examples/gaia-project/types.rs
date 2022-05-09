@@ -26,13 +26,6 @@ impl Amount {
     }
 }
 
-// XXX: Should probably combine the Gauge with the PowerTracker
-#[derive(Copy, Clone, Eq, PartialEq)]
-pub enum GaugeEvent {
-    Gain(Amount),
-    Spend(Amount),
-}
-
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum CoverActionEvent {
     Cover(CoverActionType),
