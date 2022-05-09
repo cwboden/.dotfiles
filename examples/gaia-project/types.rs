@@ -4,16 +4,6 @@ pub use crate::logic::cover_action::Type as CoverActionType;
 pub use crate::logic::power::Bowl as PowerBowl;
 pub use crate::logic::research::Type as ResearchType;
 
-#[derive(Copy, Clone, Eq, PartialEq)]
-pub enum PowerEvent {
-    Add(u8),
-    Charge(u8),
-    Discard(u8),
-    Force(u8),
-    Reserve(u8),
-    Spend(u8),
-}
-
 #[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
 pub enum Resource {
     Ore,

@@ -8,7 +8,6 @@ pub struct InputPlugin;
 impl Plugin for InputPlugin {
     fn build(&self, app: &mut App) {
         app.add_system_set(SystemSet::on_update(GameState::Running).with_system(input_monitor))
-            .add_event::<PowerEvent>()
             .add_event::<CoverActionEvent>()
             .add_event::<PaymentEvent>();
     }
