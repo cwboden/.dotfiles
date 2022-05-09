@@ -2,30 +2,18 @@ use bevy::prelude::*;
 
 use crate::asset_library::AssetLibrary;
 use crate::logic::cover_action::CoverActions;
-use crate::logic::gauge::Gauges;
-use crate::logic::power::PowerCycleTracker;
-use crate::types::*;
+use crate::logic::payment::{GaugeView, PowerView};
 use crate::GameState;
 
 pub mod cover_action;
-pub mod gauge;
-pub mod power;
 
 use cover_action::{cover_action_view, CoverActionView, CoverActionViewState};
-use gauge::{GaugeView, GaugeViewState};
-use power::{PowerView, PowerViewState};
 
 pub struct ViewPlugin;
 
 impl Plugin for ViewPlugin {
     fn build(&self, app: &mut App) {
-        app.insert_resource(PowerViewState {
-            tracker: PowerCycleTracker::new(2, 4, 0, 0),
-        })
-        .insert_resource(GaugeViewState {
-            gauges: Gauges::new(),
-        })
-        .insert_resource(CoverActionViewState {
+        app.insert_resource(CoverActionViewState {
             actions: CoverActions::new(),
         })
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))

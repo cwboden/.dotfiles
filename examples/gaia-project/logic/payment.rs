@@ -1,12 +1,15 @@
 use bevy::prelude::*;
-use strum::IntoEnumIterator;
 
 use crate::logic::gauge::{self, Gauge};
 use crate::logic::power::{self, PowerCycleTracker};
 use crate::types::*;
 use crate::view::cover_action::CoverActionViewState;
-use crate::view::gauge::{GaugeView, GaugeViewState};
-use crate::view::power::{PowerView, PowerViewState};
+
+#[derive(Component)]
+pub struct GaugeView;
+
+#[derive(Component)]
+pub struct PowerView;
 
 pub struct ResourcesState {
     ore: Gauge<Resource>,
