@@ -22,22 +22,21 @@ impl<T> Gauge<T> {
         self.amount = std::cmp::min(self.limit, amount);
     }
 
-    pub fn add(&mut self, amount: u8) -> u8 {
+    pub fn add(&mut self, amount: u8) {
         self.amount = std::cmp::min(self.limit, self.amount + amount);
-        self.amount
     }
 
-    pub fn try_sub(&mut self, amount: u8) -> Result<u8> {
+    pub fn try_sub(&mut self, amount: u8) -> Result<()> {
         if self.amount < amount {
             Err(Error::NotEnoughResources)
         } else {
             self.amount -= amount;
-            Ok(self.amount)
+            Ok(())
         }
     }
 
-    pub fn sub(&mut self, amount: u8) -> u8 {
-        self.try_sub(amount).unwrap()
+    pub fn sub(&mut self, amount: u8) {
+        self.try_sub(amount).unwrap();
     }
 }
 
@@ -129,14 +128,14 @@ mod tests {
     #[test]
     fn gauge_add() {
         let mut gauge = Gauge::new(Resource::Ore);
-        assert_eq!(gauge.add(7), 7);
+        gauge.add(7);
         assert_eq!(gauge.get(), 7);
     }
 
     #[test]
     fn gauge_add_respects_limit() {
         let mut gauge = Gauge::new(Resource::Ore);
-        assert_eq!(gauge.add(16), 15);
+        gauge.add(16);
         assert_eq!(gauge.get(), 15);
     }
 
@@ -144,7 +143,7 @@ mod tests {
     fn gauge_sub() {
         let mut gauge = Gauge::new(Resource::Ore);
         gauge.set(5);
-        assert_eq!(gauge.sub(3), 2);
+        gauge.sub(3);
         assert_eq!(gauge.get(), 2);
     }
 
@@ -159,7 +158,7 @@ mod tests {
     fn gauge_try_sub() {
         let mut gauge = Gauge::new(Resource::Ore);
         gauge.set(5);
-        assert_eq!(gauge.try_sub(3), Ok(2));
+        assert_eq!(gauge.try_sub(3), Ok(()));
         assert_eq!(gauge.get(), 2);
     }
 
