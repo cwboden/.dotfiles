@@ -22,7 +22,7 @@ pub enum Resource {
 }
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-pub struct Cost {
+pub struct Amount {
     pub resource: Resource,
     pub amount: u8,
 }
@@ -30,8 +30,8 @@ pub struct Cost {
 // XXX: Should probably combine the Gauge with the PowerTracker
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum GaugeEvent {
-    Gain(Cost),
-    Spend(Cost),
+    Gain(Amount),
+    Spend(Amount),
 }
 
 #[derive(Copy, Clone, Eq, PartialEq)]
