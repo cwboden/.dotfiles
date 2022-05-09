@@ -6,10 +6,12 @@ use crate::logic::research::ResearchTracks;
 use crate::GameState;
 
 pub mod cover_action;
+pub mod federation;
 pub mod payment;
 pub mod research;
 
 use cover_action::{cover_action_view, CoverActionView, CoverActionViewState};
+use federation::{federation_token_view, FederationTokenView};
 use payment::{payment_view, GaugeView, PowerView};
 use research::{research_view, ResearchView, ResearchViewState};
 
@@ -26,7 +28,10 @@ impl Plugin for ViewPlugin {
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
         .add_system_set(SystemSet::on_update(GameState::Running).with_system(cover_action_view))
         .add_system_set(SystemSet::on_update(GameState::Running).with_system(research_view))
-        .add_system_set(SystemSet::on_update(GameState::Running).with_system(payment_view));
+        .add_system_set(SystemSet::on_update(GameState::Running).with_system(payment_view))
+        .add_system_set(
+            SystemSet::on_update(GameState::Running).with_system(federation_token_view),
+        );
     }
 }
 
@@ -200,7 +205,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
                     },
                     TextSection {
                         value: "Science: 0\n".to_string(),
-                        style: style,
+                        style: style.clone(),
                     },
                 ],
                 ..Default::default()
@@ -208,4 +213,47 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(ResearchView);
+
+    commands
+        .spawn_bundle(TextBundle {
+            style: Style {
+                align_self: AlignSelf::FlexEnd,
+                ..Default::default()
+            },
+            text: Text {
+                sections: vec![
+                    TextSection {
+                        value: "Federation Tokens\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "".to_string(),
+                        style: style,
+                    },
+                ],
+                ..Default::default()
+            },
+            ..Default::default()
+        })
+        .insert(FederationTokenView);
 }

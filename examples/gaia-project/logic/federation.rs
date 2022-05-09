@@ -18,8 +18,8 @@ impl FederationTokens {
         Self { stacks: vec![3; 6] }
     }
 
-    pub fn take(&mut self, token_type: FederationToken) -> Result<Amount> {
-        let index = match token_type {
+    fn map_index(token_type: FederationToken) -> usize {
+        match token_type {
             FederationToken::EightPointsQic => 0,
             FederationToken::EightPointsTwoPower => 1,
             FederationToken::SevenPointsSixCredits => 2,
@@ -29,8 +29,16 @@ impl FederationTokens {
             FederationToken::OneOreOneKnowledgeTwoCredits => {
                 panic!("No FederationToken stack for {token_type:?}")
             }
-        };
+        }
+    }
 
+    pub fn get(&self, token_type: FederationToken) -> u8 {
+        let index = Self::map_index(token_type);
+        self.stacks[index]
+    }
+
+    pub fn take(&mut self, token_type: FederationToken) -> Result<Amount> {
+        let index = Self::map_index(token_type);
         if self.stacks[index] == 0 {
             Err(Error::NoTokensRemaining)
         } else {
