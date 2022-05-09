@@ -151,6 +151,8 @@ pub fn payment_system(
 
 #[cfg(test)]
 mod tests {
+    use strum::IntoEnumIterator;
+
     use super::*;
 
     #[test]

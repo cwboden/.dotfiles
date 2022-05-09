@@ -20,9 +20,8 @@ pub enum Type {
     GainTechTile,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Eq, PartialEq)]
 pub struct CoverAction {
-    action: Type,
     cost: Amount,
     pub is_used: bool,
 }
@@ -59,7 +58,6 @@ impl CoverAction {
         };
 
         Self {
-            action,
             cost: Amount { resource, amount },
             is_used: false,
         }
@@ -228,7 +226,7 @@ mod tests {
     fn cover_actions_all_actions_covered() {
         let actions = CoverActions::new();
 
-        Type::iter().for_each(|t| assert_eq!(actions.get(t).action, t));
+        Type::iter().for_each(|t| assert_eq!(actions.get(t), &CoverAction::new(t)));
     }
 
     #[test]
