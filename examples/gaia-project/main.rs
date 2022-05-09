@@ -18,8 +18,8 @@ pub enum GameState {
 fn main() {
     App::new()
         .insert_resource(WindowDescriptor {
-            width: 640.,
-            height: 480.,
+            width: 1080.,
+            height: 810.,
             ..Default::default()
         })
         .insert_resource(ClearColor(Color::BLACK))
