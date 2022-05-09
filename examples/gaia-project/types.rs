@@ -52,6 +52,7 @@ pub enum Building {
     Mine,
 }
 
+#[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
 pub enum FederationToken {
     EightPointsQic,
     EightPointsTwoPower,
@@ -62,6 +63,22 @@ pub enum FederationToken {
 
     // Special token, for the Gleens
     OneOreOneKnowledgeTwoCredits,
+}
+
+impl Into<Amount> for FederationToken {
+    fn into(self) -> Amount {
+        match self {
+            FederationToken::EightPointsQic => Amount::new(Resource::Qic, 1),
+            FederationToken::EightPointsTwoPower => Amount::new(Resource::PowerTokens, 2),
+            FederationToken::SevenPointsSixCredits => Amount::new(Resource::Credit, 6),
+            FederationToken::SevenPointsTwoOre => Amount::new(Resource::Ore, 2),
+            FederationToken::SixPointsTwoKnowledge => Amount::new(Resource::Knowledge, 2),
+            FederationToken::TwelvePoints => Amount::new(Resource::Ore, 0),
+            FederationToken::OneOreOneKnowledgeTwoCredits => {
+                panic!("XXX: Cannot convert into an amount with multiple resources yet");
+            }
+        }
+    }
 }
 
 pub enum PlanetType {
@@ -86,4 +103,9 @@ pub enum StandardTechTile {
     ThreePointsWhenSettlingGaiaPlanets,
     FourCreditProduction,
     ChargeFourPowerAction,
+}
+
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum FederationTokenEvent {
+    Take(FederationToken),
 }
