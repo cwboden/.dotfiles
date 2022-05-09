@@ -63,44 +63,6 @@ impl Gauge<Resource> {
     }
 }
 
-pub struct Gauges {
-    ore: Gauge<Resource>,
-    knowledge: Gauge<Resource>,
-    credits: Gauge<Resource>,
-    qic: Gauge<Resource>,
-}
-
-impl Gauges {
-    pub fn new() -> Self {
-        Self {
-            ore: Gauge::new(Resource::Ore),
-            knowledge: Gauge::new(Resource::Knowledge),
-            credits: Gauge::new(Resource::Credit),
-            qic: Gauge::new(Resource::Qic),
-        }
-    }
-
-    pub fn get(&self, resource: Resource) -> &Gauge<Resource> {
-        match resource {
-            Resource::Credit => &self.credits,
-            Resource::Ore => &self.ore,
-            Resource::Knowledge => &self.knowledge,
-            Resource::Qic => &self.qic,
-            _ => panic!("No such `Gauge` for resource type: {resource:?}"),
-        }
-    }
-
-    pub fn get_mut(&mut self, resource: Resource) -> &mut Gauge<Resource> {
-        match resource {
-            Resource::Credit => &mut self.credits,
-            Resource::Ore => &mut self.ore,
-            Resource::Knowledge => &mut self.knowledge,
-            Resource::Qic => &mut self.qic,
-            _ => panic!("No such `Gauge` for resource type: {resource:?}"),
-        }
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -212,35 +174,5 @@ mod tests {
     #[should_panic]
     fn gauge_power_tokens_is_not_valid() {
         let _ = Gauge::new(Resource::PowerTokens);
-    }
-
-    #[test]
-    fn gauges_get() {
-        let gauges = Gauges::new();
-
-        [
-            Resource::Ore,
-            Resource::Knowledge,
-            Resource::Credit,
-            Resource::Qic,
-        ]
-        .iter()
-        .for_each(|&r| {
-            assert_eq!(gauges.get(r).resource_type(), r);
-        })
-    }
-
-    #[test]
-    #[should_panic]
-    fn gauges_get_invalid_for_power_charge() {
-        let gauges = Gauges::new();
-        gauges.get(Resource::PowerCharge);
-    }
-
-    #[test]
-    #[should_panic]
-    fn gauges_get_invalid_for_power_tokens() {
-        let gauges = Gauges::new();
-        gauges.get(Resource::PowerTokens);
     }
 }
