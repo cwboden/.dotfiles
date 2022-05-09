@@ -2,13 +2,16 @@ use bevy::prelude::*;
 
 use crate::asset_library::AssetLibrary;
 use crate::logic::cover_action::CoverActions;
+use crate::logic::research::ResearchTracks;
 use crate::GameState;
 
 pub mod cover_action;
 pub mod payment;
+pub mod research;
 
 use cover_action::{cover_action_view, CoverActionView, CoverActionViewState};
 use payment::{payment_view, GaugeView, PowerView};
+use research::{research_view, ResearchView, ResearchViewState};
 
 pub struct ViewPlugin;
 
@@ -17,8 +20,12 @@ impl Plugin for ViewPlugin {
         app.insert_resource(CoverActionViewState {
             actions: CoverActions::new(),
         })
+        .insert_resource(ResearchViewState {
+            tracks: ResearchTracks::new(),
+        })
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
         .add_system_set(SystemSet::on_update(GameState::Running).with_system(cover_action_view))
+        .add_system_set(SystemSet::on_update(GameState::Running).with_system(research_view))
         .add_system_set(SystemSet::on_update(GameState::Running).with_system(payment_view));
     }
 }
@@ -150,7 +157,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
                     },
                     TextSection {
                         value: "GainTechTile: 0\n".to_string(),
-                        style: style,
+                        style: style.clone(),
                     },
                 ],
                 ..Default::default()
@@ -158,4 +165,47 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(CoverActionView);
+
+    commands
+        .spawn_bundle(TextBundle {
+            style: Style {
+                align_self: AlignSelf::FlexEnd,
+                ..Default::default()
+            },
+            text: Text {
+                sections: vec![
+                    TextSection {
+                        value: "Research\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Terraforming: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Flight: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "ArtificialIntelligence: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Gaiaforming: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Economics: 0\n".to_string(),
+                        style: style.clone(),
+                    },
+                    TextSection {
+                        value: "Science: 0\n".to_string(),
+                        style: style,
+                    },
+                ],
+                ..Default::default()
+            },
+            ..Default::default()
+        })
+        .insert(ResearchView);
 }

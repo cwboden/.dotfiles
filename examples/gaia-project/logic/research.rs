@@ -9,7 +9,7 @@ pub enum Type {
 }
 
 pub struct ResearchTrack {
-    level: u8,
+    pub level: u8,
     research_type: Type,
 }
 
@@ -40,7 +40,7 @@ impl ResearchTrack {
     }
 }
 
-struct ResearchTracks {
+pub struct ResearchTracks {
     tracks: Vec<ResearchTrack>,
 }
 
@@ -61,17 +61,25 @@ impl ResearchTracks {
         Self { tracks }
     }
 
-    pub fn get_track(&self, research_type: Type) -> &ResearchTrack {
-        let index = match research_type {
+    fn map_index(research_type: Type) -> usize {
+        match research_type {
             Type::Terraforming => 0,
             Type::Flight => 1,
             Type::ArtificialIntelligence => 2,
             Type::Gaiaforming => 3,
             Type::Economics => 4,
             Type::Science => 5,
-        };
+        }
+    }
 
+    pub fn get(&self, research_type: Type) -> &ResearchTrack {
+        let index = Self::map_index(research_type);
         &self.tracks[index]
+    }
+
+    pub fn get_mut(&mut self, research_type: Type) -> &mut ResearchTrack {
+        let index = Self::map_index(research_type);
+        &mut self.tracks[index]
     }
 }
 
@@ -110,6 +118,6 @@ mod tests {
             Type::Science,
         ]
         .iter()
-        .for_each(|&t| assert_eq!(tracks.get_track(t).research_type, t));
+        .for_each(|&t| assert_eq!(tracks.get(t).research_type, t));
     }
 }

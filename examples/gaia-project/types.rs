@@ -36,6 +36,12 @@ pub enum CoverActionEvent {
 pub enum PaymentEvent {
     Gain(Amount),
     CoverAction(CoverActionEvent),
+    Research(ResearchType),
+}
+
+#[derive(Copy, Clone, Eq, PartialEq)]
+pub enum ResearchEvent {
+    Advance(ResearchType),
 }
 
 pub enum Building {

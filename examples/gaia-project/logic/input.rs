@@ -9,7 +9,8 @@ impl Plugin for InputPlugin {
     fn build(&self, app: &mut App) {
         app.add_system_set(SystemSet::on_update(GameState::Running).with_system(input_monitor))
             .add_event::<CoverActionEvent>()
-            .add_event::<PaymentEvent>();
+            .add_event::<PaymentEvent>()
+            .add_event::<ResearchEvent>();
     }
 }
 
@@ -61,6 +62,21 @@ fn input_monitor(
     {
         if input.just_pressed(key) {
             payment_events.send(PaymentEvent::Gain(Amount::new(resource, 1)));
+        }
+    }
+
+    for &(key, research_type) in [
+        (KeyCode::B, ResearchType::Terraforming),
+        (KeyCode::N, ResearchType::Flight),
+        (KeyCode::M, ResearchType::ArtificialIntelligence),
+        (KeyCode::Comma, ResearchType::Gaiaforming),
+        (KeyCode::Period, ResearchType::Economics),
+        (KeyCode::Slash, ResearchType::Science),
+    ]
+    .iter()
+    {
+        if input.just_pressed(key) {
+            payment_events.send(PaymentEvent::Research(research_type));
         }
     }
 }

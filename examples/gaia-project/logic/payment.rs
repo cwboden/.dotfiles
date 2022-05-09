@@ -108,6 +108,7 @@ pub fn payment_system(
     mut resources_state: ResMut<ResourcesState>,
     cover_action_state: Res<CoverActionViewState>,
     mut cover_action_events: EventWriter<CoverActionEvent>,
+    mut research_events: EventWriter<ResearchEvent>,
 ) {
     payment_events.iter().for_each(|&event| match event {
         PaymentEvent::Gain(amount) => resources_state.gain(amount),
@@ -121,6 +122,12 @@ pub fn payment_system(
             }
 
             cover_action_events.send(cover_event_type);
+        }
+        PaymentEvent::Research(research_type) => {
+            resources_state
+                .spend(Amount::new(Resource::Knowledge, 4))
+                .unwrap();
+            research_events.send(ResearchEvent::Advance(research_type));
         }
     });
 }
