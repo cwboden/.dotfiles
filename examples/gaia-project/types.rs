@@ -27,6 +27,12 @@ pub struct Amount {
     pub amount: u8,
 }
 
+impl Amount {
+    pub fn new(resource: Resource, amount: u8) -> Self {
+        Self { resource, amount }
+    }
+}
+
 // XXX: Should probably combine the Gauge with the PowerTracker
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum GaugeEvent {
@@ -42,6 +48,7 @@ pub enum CoverActionEvent {
 
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum PaymentEvent {
+    Gain(Amount),
     CoverAction(CoverActionEvent),
 }
 

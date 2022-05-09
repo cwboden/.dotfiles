@@ -9,7 +9,6 @@ impl Plugin for InputPlugin {
     fn build(&self, app: &mut App) {
         app.add_system_set(SystemSet::on_update(GameState::Running).with_system(input_monitor))
             .add_event::<PowerEvent>()
-            .add_event::<GaugeEvent>()
             .add_event::<CoverActionEvent>()
             .add_event::<PaymentEvent>();
     }
@@ -18,7 +17,6 @@ impl Plugin for InputPlugin {
 fn input_monitor(
     input: Res<Input<KeyCode>>,
     mut power_events: EventWriter<PowerEvent>,
-    mut gauge_events: EventWriter<GaugeEvent>,
     mut cover_action_events: EventWriter<CoverActionEvent>,
     mut payment_events: EventWriter<PaymentEvent>,
 ) {
@@ -80,7 +78,7 @@ fn input_monitor(
     .iter()
     {
         if input.just_pressed(key) {
-            gauge_events.send(GaugeEvent::Gain(Cost {
+            payment_events.send(PaymentEvent::Gain(Amount {
                 resource,
                 amount: 1,
             }));

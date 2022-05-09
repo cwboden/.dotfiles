@@ -10,13 +10,14 @@ pub mod power;
 pub mod research;
 
 use input::InputPlugin;
-use payment::payment_system;
+use payment::{payment_system, ResourcesState};
 
 pub struct LogicPlugin;
 
 impl Plugin for LogicPlugin {
     fn build(&self, app: &mut App) {
-        app.add_system_set(SystemSet::on_update(GameState::Running).with_system(payment_system))
+        app.insert_resource(ResourcesState::new())
+            .add_system_set(SystemSet::on_update(GameState::Running).with_system(payment_system))
             .add_plugin(InputPlugin);
     }
 }

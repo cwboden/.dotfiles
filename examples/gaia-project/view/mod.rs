@@ -12,8 +12,8 @@ pub mod gauge;
 pub mod power;
 
 use cover_action::{cover_action_view, CoverActionView, CoverActionViewState};
-use gauge::{gauge_view, GaugeView, GaugeViewState};
-use power::{power_view, PowerView, PowerViewState};
+use gauge::{GaugeView, GaugeViewState};
+use power::{PowerView, PowerViewState};
 
 pub struct ViewPlugin;
 
@@ -29,8 +29,6 @@ impl Plugin for ViewPlugin {
             actions: CoverActions::new(),
         })
         .add_system_set(SystemSet::on_enter(GameState::Running).with_system(init))
-        .add_system_set(SystemSet::on_update(GameState::Running).with_system(power_view))
-        .add_system_set(SystemSet::on_update(GameState::Running).with_system(gauge_view))
         .add_system_set(SystemSet::on_update(GameState::Running).with_system(cover_action_view));
     }
 }
