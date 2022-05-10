@@ -1,7 +1,6 @@
 use crate::types::*;
 
-pub struct Gauge<T> {
-    resource: T,
+pub struct Gauge {
     amount: u8,
     limit: u8,
 }
@@ -13,7 +12,7 @@ pub enum Error {
 
 pub type Result<T> = std::result::Result<T, Error>;
 
-impl<T> Gauge<T> {
+impl Gauge {
     pub fn get(&self) -> u8 {
         self.amount
     }
@@ -40,13 +39,7 @@ impl<T> Gauge<T> {
     }
 }
 
-impl<T: Copy> Gauge<T> {
-    pub fn resource_type(&self) -> T {
-        self.resource
-    }
-}
-
-impl Gauge<Resource> {
+impl Gauge {
     pub fn new(resource: Resource) -> Self {
         let limit = match resource {
             Resource::Ore | Resource::Knowledge => 15,
@@ -55,11 +48,7 @@ impl Gauge<Resource> {
             _ => panic!("Cannot create a `Gauge` for resource type: {resource:?}"),
         };
 
-        Self {
-            resource,
-            amount: 0,
-            limit,
-        }
+        Self { amount: 0, limit }
     }
 }
 
@@ -128,12 +117,6 @@ mod tests {
     fn gauge_try_sub_throws_error_on_overflow() {
         let mut gauge = Gauge::new(Resource::Ore);
         assert_eq!(gauge.try_sub(1), Err(Error::NotEnoughResources));
-    }
-
-    #[test]
-    fn gauge_resource_type() {
-        let gauge = Gauge::new(Resource::Ore);
-        assert_eq!(gauge.resource_type(), Resource::Ore);
     }
 
     #[test]

@@ -6,10 +6,10 @@ use crate::types::*;
 use crate::view::cover_action::CoverActionViewState;
 
 pub struct ResourcesState {
-    pub ore: Gauge<Resource>,
-    pub knowledge: Gauge<Resource>,
-    pub credits: Gauge<Resource>,
-    pub qic: Gauge<Resource>,
+    pub ore: Gauge,
+    pub knowledge: Gauge,
+    pub credits: Gauge,
+    pub qic: Gauge,
     pub power: PowerCycleTracker,
 }
 
