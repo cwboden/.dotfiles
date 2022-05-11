@@ -9,6 +9,7 @@ pub mod input;
 pub mod payment;
 pub mod power;
 pub mod research;
+pub mod terraforming;
 
 use federation::{federation_token_system, FederationTokens};
 use input::InputPlugin;

@@ -81,6 +81,7 @@ impl Into<Amount> for FederationToken {
     }
 }
 
+#[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
 pub enum PlanetType {
     Yellow,
     Orange,
@@ -91,6 +92,29 @@ pub enum PlanetType {
     Red,
     Gaia,
     LostPlanet,
+}
+
+impl PlanetType {
+    const STANDARD_PLANETS: usize = 7;
+
+    pub fn terraforms_from(self, other: PlanetType) -> u8 {
+        if self == PlanetType::Gaia || self == PlanetType::LostPlanet {
+            panic!("Invalid `self` type: {self:?}!");
+        }
+        if other == PlanetType::Gaia || other == PlanetType::LostPlanet {
+            panic!("Invalid `other` type: {self:?}!");
+        }
+
+        let self_u8 = self as u8;
+        let other_u8 = other as u8;
+
+        println!("{self:?}: {self_u8}, {other:?}: {other_u8}");
+
+        let max = std::cmp::max(self_u8, other_u8);
+        let min = std::cmp::min(self_u8, other_u8);
+
+        max - min
+    }
 }
 
 pub enum StandardTechTile {
@@ -108,4 +132,49 @@ pub enum StandardTechTile {
 #[derive(Copy, Clone, Eq, PartialEq)]
 pub enum FederationTokenEvent {
     Take(FederationToken),
+}
+
+#[cfg(test)]
+mod tests {
+    use std::iter::zip;
+
+    use strum::IntoEnumIterator;
+
+    use super::*;
+
+    #[test]
+    fn terraforms_from_zero_steps_from_self() {
+        PlanetType::iter()
+            .take(
+                PlanetType::STANDARD_PLANETS, // ignore Gaia and Lost Planet
+            )
+            .for_each(|t| {
+                assert_eq!(t.terraforms_from(t), 0);
+            });
+    }
+
+    fn do_terraform_from_n_steps_away_test(n: u8) {
+        let standard_planets = PlanetType::iter().take(
+            PlanetType::STANDARD_PLANETS, // ignore Gaia and Lost Planet
+        );
+        zip(standard_planets.clone(), standard_planets.skip(n.into())).for_each(|(t, t_plus_n)| {
+            assert_eq!(t.terraforms_from(t_plus_n), n);
+            assert_eq!(t_plus_n.terraforms_from(t), n);
+        });
+    }
+
+    #[test]
+    fn terraforms_from_one_step_away() {
+        do_terraform_from_n_steps_away_test(1);
+    }
+
+    #[test]
+    fn terraforms_from_two_steps_away() {
+        do_terraform_from_n_steps_away_test(2);
+    }
+
+    #[test]
+    fn terraforms_from_three_steps_away() {
+        do_terraform_from_n_steps_away_test(3);
+    }
 }
