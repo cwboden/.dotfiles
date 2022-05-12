@@ -14,15 +14,36 @@ pub enum Resource {
     PowerTokens,
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct Amount {
-    pub resource: Resource,
-    pub amount: u8,
+    units: [u8; 6],
 }
 
 impl Amount {
-    pub fn new(resource: Resource, amount: u8) -> Self {
-        Self { resource, amount }
+    pub fn new() -> Self {
+        Default::default()
+    }
+
+    fn map_index(resource: Resource) -> usize {
+        resource as usize
+    }
+
+    pub fn with(mut self, resource: Resource, amount: u8) -> Self {
+        self.units[Self::map_index(resource)] += amount;
+        self
+    }
+
+    pub fn new_singular(resource: Resource, amount: u8) -> Self {
+        let self_ = Self::new().with(resource, amount);
+        self_
+    }
+
+    pub fn get(&self, resource: Resource) -> u8 {
+        self.units[Self::map_index(resource)]
+    }
+
+    pub fn multiply(&mut self, factor: u8) {
+        self.units.iter_mut().for_each(|unit| *unit *= 3);
     }
 }
 
@@ -32,11 +53,12 @@ pub enum CoverActionEvent {
     Reset,
 }
 
-#[derive(Copy, Clone, Eq, PartialEq)]
+#[derive(Clone, Eq, PartialEq)]
 pub enum PaymentEvent {
     Gain(Amount),
     CoverAction(CoverActionEvent),
     Research(ResearchType),
+    Terraform((PlanetType, PlanetType)),
 }
 
 #[derive(Copy, Clone, Eq, PartialEq)]
@@ -68,12 +90,12 @@ pub enum FederationToken {
 impl Into<Amount> for FederationToken {
     fn into(self) -> Amount {
         match self {
-            FederationToken::EightPointsQic => Amount::new(Resource::Qic, 1),
-            FederationToken::EightPointsTwoPower => Amount::new(Resource::PowerTokens, 2),
-            FederationToken::SevenPointsSixCredits => Amount::new(Resource::Credit, 6),
-            FederationToken::SevenPointsTwoOre => Amount::new(Resource::Ore, 2),
-            FederationToken::SixPointsTwoKnowledge => Amount::new(Resource::Knowledge, 2),
-            FederationToken::TwelvePoints => Amount::new(Resource::Ore, 0),
+            FederationToken::EightPointsQic => Amount::new_singular(Resource::Qic, 1),
+            FederationToken::EightPointsTwoPower => Amount::new_singular(Resource::PowerTokens, 2),
+            FederationToken::SevenPointsSixCredits => Amount::new_singular(Resource::Credit, 6),
+            FederationToken::SevenPointsTwoOre => Amount::new_singular(Resource::Ore, 2),
+            FederationToken::SixPointsTwoKnowledge => Amount::new_singular(Resource::Knowledge, 2),
+            FederationToken::TwelvePoints => Amount::new_singular(Resource::Ore, 0),
             FederationToken::OneOreOneKnowledgeTwoCredits => {
                 panic!("XXX: Cannot convert into an amount with multiple resources yet");
             }
@@ -141,6 +163,13 @@ mod tests {
     use strum::IntoEnumIterator;
 
     use super::*;
+
+    #[test]
+    fn amount_multiply() {
+        let mut amount = Amount::new_singular(Resource::Ore, 1);
+        amount.multiply(3);
+        assert_eq!(amount.get(Resource::Ore), 3);
+    }
 
     #[test]
     fn terraforms_from_zero_steps_from_self() {
