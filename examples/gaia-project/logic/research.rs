@@ -1,3 +1,6 @@
+use crate::logic::terraforming::TerraformingCost;
+use crate::types::*;
+
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Type {
     Terraforming,
@@ -25,7 +28,7 @@ impl ResearchTrack {
 
     pub fn new(research_type: Type) -> Self {
         Self {
-            level: 0,
+            level: 1,
             research_type,
         }
     }
@@ -83,6 +86,22 @@ impl ResearchTracks {
     }
 }
 
+impl TerraformingCost for ResearchTracks {
+    fn terraforming_cost(&self) -> Amount {
+        let cost = match self.get(Type::Terraforming).level {
+            1 => 3,
+            2 => 3,
+            3 => 2,
+            4 => 2,
+            5 => 1,
+            6 => 1,
+            _ => panic!("Invalid track value"),
+        };
+
+        Amount::new(Resource::Ore, cost)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -91,14 +110,14 @@ mod tests {
     fn research_track_advance() {
         let mut track = ResearchTrack::new(Type::Science);
         track.advance().unwrap();
-        assert_eq!(track.level, 1);
+        assert_eq!(track.level, 2);
     }
 
     #[test]
     fn research_track_advance_errors_at_max() {
         let mut track = ResearchTrack::new(Type::Science);
 
-        for _ in 0..ResearchTrack::MAX {
+        for _ in 1..ResearchTrack::MAX {
             track.advance().unwrap();
         }
 
