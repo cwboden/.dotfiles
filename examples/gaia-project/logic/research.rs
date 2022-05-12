@@ -98,7 +98,7 @@ impl TerraformingCost for ResearchTracks {
             _ => panic!("Invalid track value"),
         };
 
-        Amount::new(Resource::Ore, cost)
+        Amount::new_singular(Resource::Ore, cost)
     }
 }
 

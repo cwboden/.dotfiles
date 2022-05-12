@@ -58,13 +58,13 @@ impl CoverAction {
         };
 
         Self {
-            cost: Amount::new(resource, amount),
+            cost: Amount::new_singular(resource, amount),
             is_used: false,
         }
     }
 
     pub fn get_cost(&self) -> Amount {
-        self.cost
+        self.cost.clone()
     }
 
     pub fn cover(&mut self) -> Result<()> {
@@ -131,7 +131,7 @@ mod tests {
         for &action in [Type::SingleTerraform, Type::GainThreePower].iter() {
             assert_eq!(
                 CoverAction::new(action).get_cost(),
-                Amount::new(Resource::PowerCharge, 3,)
+                Amount::new_singular(Resource::PowerCharge, 3)
             );
         }
     }
@@ -141,7 +141,7 @@ mod tests {
         for &action in [Type::TwoKnowledge, Type::SevenCredits, Type::TwoOre].iter() {
             assert_eq!(
                 CoverAction::new(action).get_cost(),
-                Amount::new(Resource::PowerCharge, 4,)
+                Amount::new_singular(Resource::PowerCharge, 4)
             );
         }
     }
@@ -150,7 +150,7 @@ mod tests {
     fn cover_action_double_terraform_costs_five_power() {
         assert_eq!(
             CoverAction::new(Type::DoubleTerraform).get_cost(),
-            Amount::new(Resource::PowerCharge, 5,)
+            Amount::new_singular(Resource::PowerCharge, 5)
         );
     }
 
@@ -158,7 +158,7 @@ mod tests {
     fn cover_action_three_knowledge_costs_seven_power() {
         assert_eq!(
             CoverAction::new(Type::ThreeKnowledge).get_cost(),
-            Amount::new(Resource::PowerCharge, 7,)
+            Amount::new_singular(Resource::PowerCharge, 7)
         );
     }
 
@@ -166,7 +166,7 @@ mod tests {
     fn cover_action_points_for_planet_types_cost_two_qic() {
         assert_eq!(
             CoverAction::new(Type::PointsForPlanetTypes).get_cost(),
-            Amount::new(Resource::Qic, 2,)
+            Amount::new_singular(Resource::Qic, 2)
         );
     }
 
@@ -174,7 +174,7 @@ mod tests {
     fn cover_action_rescore_federation_token_costs_three_qic() {
         assert_eq!(
             CoverAction::new(Type::RescoreFederationToken).get_cost(),
-            Amount::new(Resource::Qic, 3,)
+            Amount::new_singular(Resource::Qic, 3)
         );
     }
 
@@ -182,7 +182,7 @@ mod tests {
     fn cover_action_gain_tech_tile_costs_four_qic() {
         assert_eq!(
             CoverAction::new(Type::GainTechTile).get_cost(),
-            Amount::new(Resource::Qic, 4,)
+            Amount::new_singular(Resource::Qic, 4)
         );
     }
 
