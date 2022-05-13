@@ -43,7 +43,7 @@ impl Amount {
     }
 
     pub fn multiply(&mut self, factor: u8) {
-        self.units.iter_mut().for_each(|unit| *unit *= 3);
+        self.units.iter_mut().for_each(|unit| *unit *= factor);
     }
 }
 
