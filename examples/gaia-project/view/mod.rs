@@ -72,15 +72,7 @@ fn spawn_power_bowl_assets(commands: &mut Commands, style: TextStyle) {
         .insert(PowerView);
 }
 
-fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
-    let style = TextStyle {
-        font: asset_library.font("game"),
-        font_size: 24.0,
-        color: Color::WHITE,
-    };
-
-    spawn_power_bowl_assets(&mut commands, style.clone());
-
+fn spawn_gauges_assets(commands: &mut Commands, style: TextStyle) {
     commands
         .spawn_bundle(TextBundle {
             style: Style {
@@ -107,7 +99,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
                     },
                     TextSection {
                         value: "QIC: 0\n".to_string(),
-                        style: style.clone(),
+                        style: style,
                     },
                 ],
                 ..Default::default()
@@ -115,6 +107,17 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(GaugeView);
+}
+
+fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
+    let style = TextStyle {
+        font: asset_library.font("game"),
+        font_size: 24.0,
+        color: Color::WHITE,
+    };
+
+    spawn_power_bowl_assets(&mut commands, style.clone());
+    spawn_gauges_assets(&mut commands, style.clone());
 
     commands
         .spawn_bundle(TextBundle {
