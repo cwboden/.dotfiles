@@ -170,17 +170,7 @@ fn spawn_cover_actions_assets(commands: &mut Commands, style: TextStyle) {
         .insert(CoverActionView);
 }
 
-fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
-    let style = TextStyle {
-        font: asset_library.font("game"),
-        font_size: 24.0,
-        color: Color::WHITE,
-    };
-
-    spawn_power_bowl_assets(&mut commands, style.clone());
-    spawn_gauges_assets(&mut commands, style.clone());
-    spawn_cover_actions_assets(&mut commands, style.clone());
-
+fn spawn_research_assets(commands: &mut Commands, style: TextStyle) {
     commands
         .spawn_bundle(TextBundle {
             style: Style {
@@ -223,7 +213,9 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(ResearchView);
+}
 
+fn spawn_federation_tokens_assets(commands: &mut Commands, style: TextStyle) {
     commands
         .spawn_bundle(TextBundle {
             style: Style {
@@ -266,4 +258,18 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(FederationTokenView);
+}
+
+fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
+    let style = TextStyle {
+        font: asset_library.font("game"),
+        font_size: 24.0,
+        color: Color::WHITE,
+    };
+
+    spawn_power_bowl_assets(&mut commands, style.clone());
+    spawn_gauges_assets(&mut commands, style.clone());
+    spawn_cover_actions_assets(&mut commands, style.clone());
+    spawn_research_assets(&mut commands, style.clone());
+    spawn_federation_tokens_assets(&mut commands, style.clone());
 }
