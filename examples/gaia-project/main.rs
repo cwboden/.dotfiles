@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use dotfiles::input::select::SelectPlugin;
 
 mod asset_library;
 mod logic;
@@ -27,6 +28,7 @@ fn main() {
         .add_plugin(AssetLibraryPlugin)
         .add_plugin(ViewPlugin)
         .add_plugin(LogicPlugin)
+        .add_plugin(SelectPlugin)
         .add_startup_system(init)
         .add_state(GameState::Loading)
         .run();
