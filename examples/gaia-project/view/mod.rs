@@ -109,16 +109,7 @@ fn spawn_gauges_assets(commands: &mut Commands, style: TextStyle) {
         .insert(GaugeView);
 }
 
-fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
-    let style = TextStyle {
-        font: asset_library.font("game"),
-        font_size: 24.0,
-        color: Color::WHITE,
-    };
-
-    spawn_power_bowl_assets(&mut commands, style.clone());
-    spawn_gauges_assets(&mut commands, style.clone());
-
+fn spawn_cover_actions_assets(commands: &mut Commands, style: TextStyle) {
     commands
         .spawn_bundle(TextBundle {
             style: Style {
@@ -177,6 +168,18 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
             ..Default::default()
         })
         .insert(CoverActionView);
+}
+
+fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
+    let style = TextStyle {
+        font: asset_library.font("game"),
+        font_size: 24.0,
+        color: Color::WHITE,
+    };
+
+    spawn_power_bowl_assets(&mut commands, style.clone());
+    spawn_gauges_assets(&mut commands, style.clone());
+    spawn_cover_actions_assets(&mut commands, style.clone());
 
     commands
         .spawn_bundle(TextBundle {
