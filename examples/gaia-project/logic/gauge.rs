@@ -43,7 +43,7 @@ impl Gauge {
     pub fn new(resource: Resource) -> Self {
         let limit = match resource {
             Resource::Ore | Resource::Knowledge => 15,
-            Resource::Credit => 30,
+            Resource::Credits => 30,
             Resource::Qic => u8::MAX,
             _ => panic!("Cannot create a `Gauge` for resource type: {resource:?}"),
         };
@@ -128,7 +128,7 @@ mod tests {
 
     #[test]
     fn gauge_credit_limit_is_30() {
-        let mut gauge = Gauge::new(Resource::Credit);
+        let mut gauge = Gauge::new(Resource::Credits);
         gauge.set(31);
         assert_eq!(gauge.get(), 30);
     }

@@ -7,7 +7,7 @@ pub use crate::logic::research::Type as ResearchType;
 #[derive(Clone, Copy, Debug, EnumIter, Eq, PartialEq)]
 pub enum Resource {
     Ore,
-    Credit,
+    Credits,
     Knowledge,
     Qic,
     PowerCharge,
@@ -19,15 +19,15 @@ impl Resource {
         match self {
             Resource::Ore => match into {
                 Resource::Ore => 1,
-                Resource::Credit => 1,
+                Resource::Credits => 1,
                 Resource::Knowledge => 0,
                 Resource::Qic => 0,
                 Resource::PowerCharge => 0,
                 Resource::PowerTokens => 1,
             },
-            Resource::Credit => match into {
+            Resource::Credits => match into {
                 Resource::Ore => 0,
-                Resource::Credit => 1,
+                Resource::Credits => 1,
                 Resource::Knowledge => 0,
                 Resource::Qic => 0,
                 Resource::PowerCharge => 0,
@@ -35,7 +35,7 @@ impl Resource {
             },
             Resource::Knowledge => match into {
                 Resource::Ore => 0,
-                Resource::Credit => 1,
+                Resource::Credits => 1,
                 Resource::Knowledge => 1,
                 Resource::Qic => 0,
                 Resource::PowerCharge => 0,
@@ -43,7 +43,7 @@ impl Resource {
             },
             Resource::Qic => match into {
                 Resource::Ore => 1,
-                Resource::Credit => 1,
+                Resource::Credits => 1,
                 Resource::Knowledge => 0,
                 Resource::Qic => 1,
                 Resource::PowerCharge => 0,
@@ -52,7 +52,7 @@ impl Resource {
 
             Resource::PowerCharge => match into {
                 Resource::Ore => 3,
-                Resource::Credit => 1,
+                Resource::Credits => 1,
                 Resource::Knowledge => 4,
                 Resource::Qic => 4,
                 Resource::PowerCharge => 0,
@@ -60,7 +60,7 @@ impl Resource {
             },
             Resource::PowerTokens => match into {
                 Resource::Ore => 0,
-                Resource::Credit => 0,
+                Resource::Credits => 0,
                 Resource::Knowledge => 0,
                 Resource::Qic => 0,
                 Resource::PowerCharge => 2,
@@ -148,7 +148,7 @@ impl Into<Amount> for FederationToken {
         match self {
             FederationToken::EightPointsQic => Amount::new_singular(Resource::Qic, 1),
             FederationToken::EightPointsTwoPower => Amount::new_singular(Resource::PowerTokens, 2),
-            FederationToken::SevenPointsSixCredits => Amount::new_singular(Resource::Credit, 6),
+            FederationToken::SevenPointsSixCredits => Amount::new_singular(Resource::Credits, 6),
             FederationToken::SevenPointsTwoOre => Amount::new_singular(Resource::Ore, 2),
             FederationToken::SixPointsTwoKnowledge => Amount::new_singular(Resource::Knowledge, 2),
             FederationToken::TwelvePoints => Amount::new_singular(Resource::Ore, 0),
@@ -223,7 +223,7 @@ mod tests {
     #[test]
     fn resource_conversion_rate_ore() {
         assert_eq!(Resource::Ore.conversion_rate(Resource::Ore), 1);
-        assert_eq!(Resource::Ore.conversion_rate(Resource::Credit), 1);
+        assert_eq!(Resource::Ore.conversion_rate(Resource::Credits), 1);
         assert_eq!(Resource::Ore.conversion_rate(Resource::Knowledge), 0);
         assert_eq!(Resource::Ore.conversion_rate(Resource::Qic), 0);
         assert_eq!(Resource::Ore.conversion_rate(Resource::PowerCharge), 0);
@@ -232,18 +232,18 @@ mod tests {
 
     #[test]
     fn resource_conversion_rate_credit() {
-        assert_eq!(Resource::Credit.conversion_rate(Resource::Ore), 0);
-        assert_eq!(Resource::Credit.conversion_rate(Resource::Credit), 1);
-        assert_eq!(Resource::Credit.conversion_rate(Resource::Knowledge), 0);
-        assert_eq!(Resource::Credit.conversion_rate(Resource::Qic), 0);
-        assert_eq!(Resource::Credit.conversion_rate(Resource::PowerCharge), 0);
-        assert_eq!(Resource::Credit.conversion_rate(Resource::PowerTokens), 0);
+        assert_eq!(Resource::Credits.conversion_rate(Resource::Ore), 0);
+        assert_eq!(Resource::Credits.conversion_rate(Resource::Credits), 1);
+        assert_eq!(Resource::Credits.conversion_rate(Resource::Knowledge), 0);
+        assert_eq!(Resource::Credits.conversion_rate(Resource::Qic), 0);
+        assert_eq!(Resource::Credits.conversion_rate(Resource::PowerCharge), 0);
+        assert_eq!(Resource::Credits.conversion_rate(Resource::PowerTokens), 0);
     }
 
     #[test]
     fn resource_conversion_rate_knowledge() {
         assert_eq!(Resource::Knowledge.conversion_rate(Resource::Ore), 0);
-        assert_eq!(Resource::Knowledge.conversion_rate(Resource::Credit), 1);
+        assert_eq!(Resource::Knowledge.conversion_rate(Resource::Credits), 1);
         assert_eq!(Resource::Knowledge.conversion_rate(Resource::Knowledge), 1);
         assert_eq!(Resource::Knowledge.conversion_rate(Resource::Qic), 0);
         assert_eq!(
@@ -259,7 +259,7 @@ mod tests {
     #[test]
     fn resource_conversion_rate_qic() {
         assert_eq!(Resource::Qic.conversion_rate(Resource::Ore), 1);
-        assert_eq!(Resource::Qic.conversion_rate(Resource::Credit), 1);
+        assert_eq!(Resource::Qic.conversion_rate(Resource::Credits), 1);
         assert_eq!(Resource::Qic.conversion_rate(Resource::Knowledge), 0);
         assert_eq!(Resource::Qic.conversion_rate(Resource::Qic), 1);
         assert_eq!(Resource::Qic.conversion_rate(Resource::PowerCharge), 0);
@@ -269,7 +269,7 @@ mod tests {
     #[test]
     fn resource_conversion_rate_power_charge() {
         assert_eq!(Resource::PowerCharge.conversion_rate(Resource::Ore), 3);
-        assert_eq!(Resource::PowerCharge.conversion_rate(Resource::Credit), 1);
+        assert_eq!(Resource::PowerCharge.conversion_rate(Resource::Credits), 1);
         assert_eq!(
             Resource::PowerCharge.conversion_rate(Resource::Knowledge),
             4
@@ -288,7 +288,7 @@ mod tests {
     #[test]
     fn resource_conversion_rate_power_tokens() {
         assert_eq!(Resource::PowerTokens.conversion_rate(Resource::Ore), 0);
-        assert_eq!(Resource::PowerTokens.conversion_rate(Resource::Credit), 0);
+        assert_eq!(Resource::PowerTokens.conversion_rate(Resource::Credits), 0);
         assert_eq!(
             Resource::PowerTokens.conversion_rate(Resource::Knowledge),
             0

@@ -63,7 +63,7 @@ fn input_monitor(
     for &(key, resource) in [
         (KeyCode::O, Resource::Ore),
         (KeyCode::K, Resource::Knowledge),
-        (KeyCode::C, Resource::Credit),
+        (KeyCode::C, Resource::Credits),
         (KeyCode::Q, Resource::Qic),
     ]
     .iter()

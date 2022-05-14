@@ -43,7 +43,7 @@ impl ResourcesState {
         Self {
             ore: Gauge::new(Resource::Ore),
             knowledge: Gauge::new(Resource::Knowledge),
-            credits: Gauge::new(Resource::Credit),
+            credits: Gauge::new(Resource::Credits),
             qic: Gauge::new(Resource::Qic),
             power: PowerCycleTracker::new(2, 4, 0, 0),
         }
@@ -52,7 +52,7 @@ impl ResourcesState {
     pub fn gain(&mut self, amount: Amount) {
         self.ore.add(amount.get(Resource::Ore));
         self.knowledge.add(amount.get(Resource::Knowledge));
-        self.credits.add(amount.get(Resource::Credit));
+        self.credits.add(amount.get(Resource::Credits));
         self.qic.add(amount.get(Resource::Qic));
         self.power.charge(amount.get(Resource::PowerCharge));
         self.power.add(amount.get(Resource::PowerTokens));
@@ -61,7 +61,7 @@ impl ResourcesState {
     pub fn spend(&mut self, amount: Amount) -> Result<()> {
         self.ore.try_sub(amount.get(Resource::Ore))?;
         self.knowledge.try_sub(amount.get(Resource::Knowledge))?;
-        self.credits.try_sub(amount.get(Resource::Credit))?;
+        self.credits.try_sub(amount.get(Resource::Credits))?;
         self.qic.try_sub(amount.get(Resource::Qic))?;
         self.power.spend(amount.get(Resource::PowerCharge))?;
 
