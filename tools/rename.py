@@ -50,7 +50,7 @@ def main(args: Namespace):
     files_to_check = completed_rg.stdout.decode("utf-8").split("\n")[:-1]
     for file_name in files_to_check:
         completed_sed = subprocess.run(
-            ["sed", "-i", f"s/{args.old_name}/{args.new_name}/g", file_name],
+            ["sed", "-i", f"s/\<{args.old_name}\>/{args.new_name}/g", file_name],
             capture_output=True,
         )
         try:
