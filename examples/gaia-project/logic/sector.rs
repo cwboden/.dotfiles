@@ -48,6 +48,30 @@ impl Sector {
         ],
     };
 
+    const NUM_02: Self = Self {
+        spaces: [
+            Space::Planet(PlanetType::Grey),
+            Space::Planet(PlanetType::Orange),
+            Space::Empty,
+            Space::Empty,
+            Space::Empty,
+            Space::Empty,
+            Space::Empty,
+            Space::Empty,
+            Space::Planet(PlanetType::White),
+            Space::Empty,
+            Space::Planet(PlanetType::Brown),
+            Space::Empty,
+            Space::Planet(PlanetType::Yellow),
+            Space::Empty,
+            Space::Empty,
+            Space::Planet(PlanetType::Red),
+            Space::Empty,
+            Space::Planet(PlanetType::Transdim),
+            Space::Empty,
+        ],
+    };
+
     pub fn new(spaces: [Space; 19]) -> Self {
         Self { spaces }
     }

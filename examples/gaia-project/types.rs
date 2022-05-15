@@ -165,7 +165,7 @@ pub enum PlanetType {
     Orange,
     Brown,
     White,
-    Gray,
+    Grey,
     Blue,
     Red,
     Gaia,
