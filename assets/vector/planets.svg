@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="1024"
+   height="1024"
+   viewBox="0 0 270.93333 270.93334"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   sodipodi:docname="planets.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     units="px"
+     height="1024px"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true"
+     inkscape:bbox-paths="true"
+     inkscape:snap-page="true"
+     inkscape:zoom="0.55945567"
+     inkscape:cx="782.01013"
+     inkscape:cy="561.25984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1023"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#aa0000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60"
+       cx="33.866665"
+       cy="33.866665"
+       r="33.866665" />
+    <circle
+       style="fill:#d45500;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3"
+       cx="101.59999"
+       cy="33.866665"
+       r="33.866665" />
+    <circle
+       style="fill:#ffcc00;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-6"
+       cx="169.33331"
+       cy="33.866665"
+       r="33.866665" />
+    <circle
+       style="fill:#443800;fill-rule:evenodd;stroke-width:5.29167;fill-opacity:1"
+       id="path60-3-7"
+       cx="237.06665"
+       cy="33.866665"
+       r="33.866665" />
+    <circle
+       style="fill:#ffffff;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-5"
+       cx="33.866661"
+       cy="101.59999"
+       r="33.866665" />
+    <circle
+       style="fill:#666666;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-3"
+       cx="101.59998"
+       cy="101.59999"
+       r="33.866665" />
+    <circle
+       style="fill:#5f5fd1;fill-rule:evenodd;stroke-width:5.29167;fill-opacity:1"
+       id="path60-3-6-5"
+       cx="169.33331"
+       cy="101.59999"
+       r="33.866665" />
+    <circle
+       style="fill:#008200;fill-rule:evenodd;stroke-width:5.29167;fill-opacity:1"
+       id="path60-3-7-6"
+       cx="237.06665"
+       cy="101.59999"
+       r="33.866665" />
+    <circle
+       style="fill:#800080;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-2"
+       cx="33.866665"
+       cy="169.33334"
+       r="33.866665" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-9"
+       cx="101.59999"
+       cy="169.33334"
+       r="33.866665" />
+    <circle
+       style="fill:#999999;fill-rule:evenodd;stroke-width:2.45379"
+       id="path60-3-9-6"
+       cx="101.59999"
+       cy="169.33334"
+       r="15.704239" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-6-1"
+       cx="169.33333"
+       cy="169.33334"
+       r="33.866665" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-7-2"
+       cx="237.06667"
+       cy="169.33334"
+       r="33.866665" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-5-7"
+       cx="33.866665"
+       cy="237.06667"
+       r="33.866665" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-3-0"
+       cx="101.59999"
+       cy="237.06667"
+       r="33.866665" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-6-5-9"
+       cx="169.33333"
+       cy="237.06667"
+       r="33.866665" />
+    <circle
+       style="fill:#000000;fill-rule:evenodd;stroke-width:5.29167"
+       id="path60-3-7-6-3"
+       cx="237.06667"
+       cy="237.06667"
+       r="33.866665" />
+  </g>
+</svg>
