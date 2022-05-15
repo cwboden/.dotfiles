@@ -1,8 +1,12 @@
 use bevy::prelude::*;
+use dotfiles::input::interaction::Interactable;
+use dotfiles::input::select::Selectable;
+use strum::IntoEnumIterator;
 
 use crate::asset_library::AssetLibrary;
 use crate::logic::cover_action::CoverActions;
 use crate::logic::research::ResearchTracks;
+use crate::types::*;
 use crate::GameState;
 
 pub mod cover_action;
@@ -260,6 +264,17 @@ fn spawn_federation_tokens_assets(commands: &mut Commands, style: TextStyle) {
         .insert(FederationTokenView);
 }
 
+fn spawn_planet_assets(commands: &mut Commands, asset_library: Res<AssetLibrary>) {
+    PlanetType::iter().for_each(|planet_type| {
+        commands
+            .spawn_bundle(asset_library.sprite_sheet_bundle_for_planet_type(planet_type))
+            .insert(Interactable {
+                bounding_box: (Vec2::new(-128., -128.), Vec2::new(128., 128.)),
+            })
+            .insert(Selectable);
+    });
+}
+
 fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
     let style = TextStyle {
         font: asset_library.font("game"),
@@ -272,4 +287,6 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
     spawn_cover_actions_assets(&mut commands, style.clone());
     spawn_research_assets(&mut commands, style.clone());
     spawn_federation_tokens_assets(&mut commands, style.clone());
+
+    spawn_planet_assets(&mut commands, asset_library);
 }

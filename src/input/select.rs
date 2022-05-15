@@ -1,12 +1,12 @@
 use bevy::prelude::*;
 
-use crate::input::interaction::{Interactable, InteractionState};
+use crate::input::interaction::{InteractionPlugin, InteractionState};
 
 pub struct SelectPlugin;
 
 impl Plugin for SelectPlugin {
     fn build(&self, app: &mut App) {
-        app.init_resource::<InteractionState>()
+        app.add_plugin(InteractionPlugin)
             .init_resource::<SelectedEntity>()
             .add_system(select_entity_system);
     }

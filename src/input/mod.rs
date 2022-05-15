@@ -1,3 +1,3 @@
-mod drag;
-mod interaction;
+pub mod drag;
+pub mod interaction;
 pub mod select;

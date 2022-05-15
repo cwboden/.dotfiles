@@ -169,6 +169,7 @@ pub enum PlanetType {
     Blue,
     Red,
     Gaia,
+    Transdim,
     LostPlanet,
 }
 
