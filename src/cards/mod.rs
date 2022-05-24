@@ -1,6 +1,6 @@
 use bevy::ecs::system::Resource;
-use bevy::input::InputPlugin;
 use bevy::prelude::*;
+use std::fmt::Display;
 
 mod card;
 pub mod deck;
@@ -22,21 +22,22 @@ impl<T> CardsPlugin<T> {
     }
 }
 
-impl<T: 'static + Clone + Resource + Send + Sync> Plugin for CardsPlugin<T> {
+impl<T: 'static + Clone + Resource + Send + Sync + ToString> Plugin for CardsPlugin<T> {
     fn build(&self, app: &mut App) {
         app.insert_resource(self.deck.clone())
             .insert_resource(Pile::<T>::default())
-            .add_plugin(InputPlugin)
             .add_system(deck_view::<T>);
     }
 }
 
-fn deck_view<T: Clone + Resource>(
+fn deck_view<T: Clone + Resource + ToString>(
     input: Res<Input<KeyCode>>,
     mut deck: ResMut<Deck<T>>,
     mut pile: ResMut<Pile<T>>,
 ) {
     if input.just_pressed(KeyCode::Return) {
         let card = deck.deal_one().unwrap();
+        println!("Dealt: {}", card.to_string());
+        pile.add(card);
     }
 }
