@@ -251,7 +251,30 @@ impl StandardPlayingCard {
 
 impl ToString for StandardPlayingCard {
     fn to_string(&self) -> String {
-        format!("{} of {}", self.value.to_string(), self.suit.to_string())
+        let suit = match self.suit {
+            Suit::Clubs => "♣",
+            Suit::Diamonds => "♦",
+            Suit::Spades => "♠",
+            Suit::Hearts => "♥",
+        };
+
+        let value = match self.value {
+            Value::Two => "2",
+            Value::Three => "3",
+            Value::Four => "4",
+            Value::Five => "5",
+            Value::Six => "6",
+            Value::Seven => "7",
+            Value::Eight => "8",
+            Value::Nine => "9",
+            Value::Ten => "T",
+            Value::Jack => "J",
+            Value::Queen => "Q",
+            Value::King => "K",
+            Value::Ace => "A",
+        };
+
+        format!("{value}{suit}")
     }
 }
 

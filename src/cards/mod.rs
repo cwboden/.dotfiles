@@ -35,7 +35,7 @@ impl<T: 'static + Clone + Resource + Send + Sync + ToString> Plugin for CardsPlu
 struct PileView;
 
 fn init_pile(mut commands: Commands, asset_server: Res<AssetServer>) {
-    let font = asset_server.load("fonts/MartianMono-StdRg.ttf");
+    let font = asset_server.load("fonts/ClassicConsoleNeue.ttf");
     let text_style = TextStyle {
         font,
         font_size: 48.0,
@@ -62,9 +62,13 @@ fn deck_system<T: Clone + Resource + ToString>(
     mut pile: ResMut<Pile<T>>,
 ) {
     if input.just_pressed(KeyCode::Return) {
-        let card = deck.deal_one().unwrap();
-        println!("Dealt: {}", card.to_string());
-        pile.add(card);
+        if let Ok(card) = deck.deal_one() {
+            println!("Dealt: {}", card.to_string());
+            pile.add(card);
+        } else {
+            deck.reset();
+            deck.shuffle();
+        }
     }
 }
 
