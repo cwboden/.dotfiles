@@ -89,7 +89,7 @@ impl PowerCycleTracker {
     pub fn force(&mut self, amount: u8) -> Result<()> {
         self.discard(Bowl::Two, amount)?;
         let remaining_amount = self.move_power(amount, Bowl::Two, Bowl::Three);
-      
+
         if remaining_amount > 0 {
             Err(Error::NotEnoughPower)
         } else {
