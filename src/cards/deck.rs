@@ -49,13 +49,7 @@ impl<T> IntoIterator for Deck<T> {
 #[cfg(test)]
 mod tests {
     use super::*;
-
-    #[derive(Clone, Copy, Debug, Eq, PartialEq)]
-    enum TestCard {
-        X,
-        Y,
-        Z,
-    }
+    use crate::cards::test::TestCard;
 
     #[test]
     fn deck_into_iterator() {
