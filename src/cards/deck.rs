@@ -1,21 +1,41 @@
+use std::collections::VecDeque;
+
 struct Deck<T> {
-    cards: Vec<T>,
+    in_cards: VecDeque<T>,
+    out_cards: VecDeque<T>,
 }
+
+#[derive(Debug, Eq, PartialEq)]
+enum Error {
+    DeckEmpty,
+}
+
+type Result<T> = std::result::Result<T, Error>;
 
 impl<T: Clone> Deck<T> {
     pub fn new(cards: &[T]) -> Self {
         Self {
-            cards: cards.to_vec(),
+            in_cards: cards.iter().map(|c| c.clone()).collect(),
+            out_cards: VecDeque::new(),
+        }
+    }
+
+    pub fn deal_one(&mut self) -> Result<T> {
+        if let Some(card) = self.in_cards.pop_front() {
+            self.out_cards.push_back(card.clone());
+            Ok(card)
+        } else {
+            Err(Error::DeckEmpty)
         }
     }
 }
 
 impl<T> IntoIterator for Deck<T> {
     type Item = T;
-    type IntoIter = std::vec::IntoIter<Self::Item>;
+    type IntoIter = std::collections::vec_deque::IntoIter<Self::Item>;
 
     fn into_iter(self) -> Self::IntoIter {
-        self.cards.into_iter()
+        self.in_cards.into_iter()
     }
 }
 
@@ -36,5 +56,29 @@ mod tests {
         let deck = Deck::new(&cards);
 
         assert_eq!(cards, deck.into_iter().collect::<Vec<TestCard>>());
+    }
+
+    #[test]
+    fn deck_deal_one() {
+        let mut deck = Deck::new(&[TestCard::X]);
+
+        assert_eq!(deck.deal_one().unwrap(), TestCard::X);
+    }
+
+    #[test]
+    fn deck_deal_one_errors_when_empty() {
+        let mut deck = Deck::new(&[TestCard::X]);
+
+        deck.deal_one().unwrap();
+        assert_eq!(deck.deal_one(), Err(Error::DeckEmpty));
+    }
+
+    #[test]
+    fn deck_deal_one_multiple_times() {
+        let mut deck = Deck::new(&[TestCard::X, TestCard::Y, TestCard::Z]);
+
+        assert_eq!(deck.deal_one().unwrap(), TestCard::X);
+        assert_eq!(deck.deal_one().unwrap(), TestCard::Y);
+        assert_eq!(deck.deal_one().unwrap(), TestCard::Z);
     }
 }
