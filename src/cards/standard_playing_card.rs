@@ -1,6 +1,7 @@
-use strum_macros::EnumIter;
+use std::string::ToString;
+use strum_macros::{Display, EnumIter, EnumString};
 
-#[derive(Clone, Copy, Debug, EnumIter, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Display, EnumIter, EnumString, Eq, Hash, PartialEq)]
 pub enum Suit {
     Clubs,
     Diamonds,
@@ -8,7 +9,7 @@ pub enum Suit {
     Hearts,
 }
 
-#[derive(Clone, Copy, Debug, EnumIter, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Display, EnumIter, EnumString, Eq, Hash, PartialEq)]
 pub enum Value {
     Two,
     Three,
@@ -245,6 +246,12 @@ impl StandardPlayingCard {
 
     pub fn new(suit: Suit, value: Value) -> Self {
         Self { suit, value }
+    }
+}
+
+impl ToString for StandardPlayingCard {
+    fn to_string(&self) -> String {
+        format!("{} of {}", self.value.to_string(), self.suit.to_string())
     }
 }
 
