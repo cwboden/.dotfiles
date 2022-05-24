@@ -1,3 +1,4 @@
 cargo
+libasound2-dev
 ripgrep
 zsh
