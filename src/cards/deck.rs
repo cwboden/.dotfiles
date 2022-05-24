@@ -22,11 +22,18 @@ impl<T: Clone> Deck<T> {
 
     pub fn deal_one(&mut self) -> Result<T> {
         if let Some(card) = self.in_cards.pop_front() {
-            self.out_cards.push_back(card.clone());
+            self.out_cards.push_front(card.clone());
             Ok(card)
         } else {
             Err(Error::DeckEmpty)
         }
+    }
+
+    pub fn reset(&mut self) {
+        self.out_cards
+            .iter()
+            .for_each(|c| self.in_cards.push_front(c.clone()));
+        self.out_cards.clear();
     }
 }
 
@@ -76,6 +83,30 @@ mod tests {
     #[test]
     fn deck_deal_one_multiple_times() {
         let mut deck = Deck::new(&[TestCard::X, TestCard::Y, TestCard::Z]);
+
+        assert_eq!(deck.deal_one().unwrap(), TestCard::X);
+        assert_eq!(deck.deal_one().unwrap(), TestCard::Y);
+        assert_eq!(deck.deal_one().unwrap(), TestCard::Z);
+    }
+
+    #[test]
+    fn deck_reset_adds_cards_back_to_deck() {
+        let mut deck = Deck::new(&[TestCard::X]);
+
+        deck.deal_one().unwrap();
+
+        deck.reset();
+        assert_eq!(deck.deal_one().unwrap(), TestCard::X);
+    }
+
+    #[test]
+    fn deck_reset_preserves_order() {
+        let mut deck = Deck::new(&[TestCard::X, TestCard::Y, TestCard::Z]);
+
+        deck.deal_one().unwrap();
+        deck.deal_one().unwrap();
+
+        deck.reset();
 
         assert_eq!(deck.deal_one().unwrap(), TestCard::X);
         assert_eq!(deck.deal_one().unwrap(), TestCard::Y);
