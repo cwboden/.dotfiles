@@ -11,11 +11,5 @@ fn main() {
         .insert_resource(ClearColor(Color::BLACK))
         .add_plugins(DefaultPlugins)
         .add_plugin(CardsPlugin::new(Deck::new(&StandardPlayingCard::ALL)))
-        .add_startup_system(init)
         .run();
-}
-
-fn init(mut commands: Commands) {
-    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
-    commands.spawn_bundle(UiCameraBundle::default());
 }
