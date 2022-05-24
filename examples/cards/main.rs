@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use dotfiles::cards::{CardsPlugin, Deck, StandardPlayingCard};
 
 fn main() {
     App::new()
@@ -9,6 +10,7 @@ fn main() {
         })
         .insert_resource(ClearColor(Color::BLACK))
         .add_plugins(DefaultPlugins)
+        .add_plugin(CardsPlugin::new(Deck::new(&StandardPlayingCard::ALL)))
         .add_startup_system(init)
         .run();
 }

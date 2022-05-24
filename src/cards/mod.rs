@@ -3,13 +3,14 @@ use bevy::input::InputPlugin;
 use bevy::prelude::*;
 
 mod card;
-mod deck;
+pub mod deck;
 mod pile;
-mod standard_playing_card;
+pub mod standard_playing_card;
 mod test;
 
-use deck::Deck;
-use pile::Pile;
+pub use deck::Deck;
+pub use pile::Pile;
+pub use standard_playing_card::StandardPlayingCard;
 
 pub struct CardsPlugin<T> {
     deck: Deck<T>,

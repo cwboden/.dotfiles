@@ -1,7 +1,7 @@
 use strum_macros::EnumIter;
 
 #[derive(Clone, Copy, Debug, EnumIter, Eq, Hash, PartialEq)]
-enum Suit {
+pub enum Suit {
     Clubs,
     Diamonds,
     Spades,
@@ -9,7 +9,7 @@ enum Suit {
 }
 
 #[derive(Clone, Copy, Debug, EnumIter, Eq, Hash, PartialEq)]
-enum Value {
+pub enum Value {
     Two,
     Three,
     Four,
@@ -26,13 +26,13 @@ enum Value {
 }
 
 #[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
-struct StandardPlayingCard {
+pub struct StandardPlayingCard {
     pub suit: Suit,
     pub value: Value,
 }
 
 impl StandardPlayingCard {
-    const ALL: [Self; 52] = [
+    pub const ALL: [Self; 52] = [
         Self {
             suit: Suit::Clubs,
             value: Value::Ace,
