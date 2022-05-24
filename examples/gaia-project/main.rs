@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use dotfiles::input::select::SelectPlugin;
 
 mod asset_library;
 mod logic;
@@ -6,7 +7,7 @@ mod types;
 mod view;
 
 use asset_library::AssetLibraryPlugin;
-use logic::input::InputPlugin;
+use logic::LogicPlugin;
 use view::ViewPlugin;
 
 #[derive(Clone, Debug, Eq, Hash, PartialEq)]
@@ -18,15 +19,16 @@ pub enum GameState {
 fn main() {
     App::new()
         .insert_resource(WindowDescriptor {
-            width: 640.,
-            height: 480.,
+            width: 1080.,
+            height: 810.,
             ..Default::default()
         })
         .insert_resource(ClearColor(Color::BLACK))
         .add_plugins(DefaultPlugins)
         .add_plugin(AssetLibraryPlugin)
         .add_plugin(ViewPlugin)
-        .add_plugin(InputPlugin)
+        .add_plugin(LogicPlugin)
+        .add_plugin(SelectPlugin)
         .add_startup_system(init)
         .add_state(GameState::Loading)
         .run();

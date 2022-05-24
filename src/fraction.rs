@@ -1,4 +1,4 @@
-use std::fmt::{self, Display, Write};
+use std::fmt::{self, Display};
 use std::ops::{Add, Div, Mul};
 
 use crate::math::{GreatestCommonDenominator, LeastCommonMultiple};
@@ -61,6 +61,8 @@ where
 
 #[cfg(test)]
 mod tests {
+    use std::fmt::Write;
+
     use super::*;
 
     #[test]
