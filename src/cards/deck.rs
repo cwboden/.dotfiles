@@ -1,3 +1,4 @@
+use rand::Rng;
 use std::collections::VecDeque;
 
 struct Deck<T> {
@@ -34,6 +35,17 @@ impl<T: Clone> Deck<T> {
             .iter()
             .for_each(|c| self.in_cards.push_front(c.clone()));
         self.out_cards.clear();
+    }
+
+    pub fn shuffle(&mut self) {
+        // XXX: Fairly naive implementation of the Fisher-Yates shuffle. There might be a better way
+        // to do this!
+        let mut rng = rand::thread_rng();
+        let mut i = self.in_cards.len();
+        while i >= 2 {
+            i -= 1;
+            self.in_cards.swap(i, rng.gen_range(0..i));
+        }
     }
 }
 
