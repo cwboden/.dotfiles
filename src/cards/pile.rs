@@ -1,6 +1,11 @@
-#[derive(Default)]
-struct Pile<T> {
+pub struct Pile<T> {
     cards: Vec<T>,
+}
+
+impl<T> Default for Pile<T> {
+    fn default() -> Self {
+        Self { cards: Vec::new() }
+    }
 }
 
 impl<T: Clone> Pile<T> {
@@ -12,6 +17,10 @@ impl<T: Clone> Pile<T> {
 
     pub fn peek(&self) -> Option<T> {
         self.cards.last().cloned()
+    }
+
+    pub fn add(&mut self, card: T) {
+        self.cards.push(card);
     }
 }
 
@@ -29,5 +38,13 @@ mod tests {
     #[test]
     fn pile_peek_if_empty() {
         assert_eq!(Pile::<()>::default().peek(), None);
+    }
+
+    #[test]
+    fn pile_peek_added_card() {
+        let mut pile = Pile::new(&[TestCard::X]);
+        pile.add(TestCard::Y);
+
+        assert_eq!(pile.peek(), Some(TestCard::X));
     }
 }

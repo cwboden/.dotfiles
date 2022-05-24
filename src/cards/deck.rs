@@ -1,17 +1,17 @@
 use rand::Rng;
 use std::collections::VecDeque;
 
-struct Deck<T> {
+pub struct Deck<T> {
     in_cards: VecDeque<T>,
     out_cards: VecDeque<T>,
 }
 
 #[derive(Debug, Eq, PartialEq)]
-enum Error {
+pub enum Error {
     DeckEmpty,
 }
 
-type Result<T> = std::result::Result<T, Error>;
+pub type Result<T> = std::result::Result<T, Error>;
 
 impl<T: Clone> Deck<T> {
     pub fn new(cards: &[T]) -> Self {
@@ -55,6 +55,15 @@ impl<T> IntoIterator for Deck<T> {
 
     fn into_iter(self) -> Self::IntoIter {
         self.in_cards.into_iter()
+    }
+}
+
+impl<T: Clone> Clone for Deck<T> {
+    fn clone(&self) -> Self {
+        Self {
+            in_cards: self.in_cards.clone(),
+            out_cards: self.out_cards.clone(),
+        }
     }
 }
 
