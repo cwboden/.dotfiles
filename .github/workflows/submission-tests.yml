@@ -28,12 +28,11 @@ jobs:
           python bootstrap/main.py
 
       - name: See if Bootstrap worked
-        run: python -m unittest discover -s 'bootstrap/' -p '*test.py'
+        run: python -m unittest 'bootstrap/main_integration_test.py'
 
       - name: Run Python unittests
         run: |
-          python -m unittest discover -s 'tools/' -p '*test.py'
-          python -m unittest discover -s 'util/' -p '*test.py'
+          python -m unittest discover -p '*test.py'
 
       - name: Run Rust core tests
         run: cargo test
