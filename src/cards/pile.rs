@@ -45,6 +45,6 @@ mod tests {
         let mut pile = Pile::new(&[TestCard::X]);
         pile.add(TestCard::Y);
 
-        assert_eq!(pile.peek(), Some(TestCard::X));
+        assert_eq!(pile.peek(), Some(TestCard::Y));
     }
 }
