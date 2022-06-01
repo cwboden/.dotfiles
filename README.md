@@ -55,4 +55,3 @@ positions. The idea is to make it easier to prototype simple card games without 
 the deck logic every time.
 
 An in-progress example using a standard 52-card deck might someday be completed.
-
