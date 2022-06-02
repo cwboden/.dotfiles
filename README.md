@@ -32,6 +32,11 @@ projects.
 I recreated a path-finding project from an old class (EECS 281) in Rust. I decided not to follow
 through with all of the I/O required for the class's autograder and used integration tests instead.
 
+Try it out with:
+```sh
+cargo run --example path-finding -- --help
+```
+
 ### Bevy Engine
 Despite it's relative infancy in the game dev scene, I've enjoyed prototyping games and systems in
 [Bevy Engine](https://bevyengine.org/). Most of the projects are incomplete, but you may find some
@@ -45,9 +50,10 @@ primitive, but I've been able to interlace systems like:
  - Claiming federation tokens, with resource rewards being automatically awarded.
  - Paying for various actions like terraforming, buildings, and research.
 
-#### Turns
-A generic turn system. Event-driven turns allow actions to be tied to the start, end, or change of
-arbitrary turn values.
+Try it out with:
+```sh
+cargo run --example gaia-project
+```
 
 #### Cards
 Decks and Piles of arbitrary "Card" objects can be created, shuffled, and reset to initial
@@ -55,3 +61,17 @@ positions. The idea is to make it easier to prototype simple card games without 
 the deck logic every time.
 
 An in-progress example using a standard 52-card deck might someday be completed.
+
+#### Pocket Ops
+Another board game port of Brandon Beran's [Pocket
+Ops](https://boardgamegeek.com/boardgame/216234/pocket-ops), a variant of tic-tac-toe where guessing
+your opponent's move means they won't be able to play a piece!
+
+In it's current state, it's just tic-tac-toe, since I can't think of a good way to obscure your
+moves from an opponent's if playing on the same screen / keyboard, but it has been a fun project to
+practice using Bevy.
+
+Try it out with:
+```sh
+cargo run --example pocket-ops
+```
