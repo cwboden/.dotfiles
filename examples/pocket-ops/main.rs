@@ -4,6 +4,13 @@ use dotfiles::input::select::{SelectPlugin, Selectable, SelectedEntity};
 use strum::IntoEnumIterator;
 use strum_macros::{EnumIter, EnumString};
 
+#[derive(Debug, Clone, Eq, PartialEq, Hash)]
+enum GameState {
+    Loading,
+    Running,
+    Over,
+}
+
 #[derive(Clone, Component, Eq, Hash, PartialEq)]
 struct Coordinate {
     x: u8,
@@ -92,21 +99,35 @@ fn main() {
         .init_resource::<AssetLibrary>()
         .add_plugins(DefaultPlugins)
         .add_plugin(SelectPlugin)
-        .add_startup_system(create_camera)
-        .add_startup_system(load_assets)
-        .add_startup_system(create_board)
-        .add_startup_system(create_ui)
-        .add_system(highlight_selected_square)
-        .add_system(place_piece_on_square)
-        .add_system(update_ui)
-        .add_system(detect_winner)
+        .add_state(GameState::Loading)
         .add_event::<WinEvent>()
+        .add_system_set(SystemSet::on_enter(GameState::Loading).with_system(load_assets))
+        .add_system_set(
+            SystemSet::on_enter(GameState::Running)
+                .with_system(create_camera)
+                .with_system(create_board)
+                .with_system(create_ui),
+        )
+        .add_system_set(
+            SystemSet::on_update(GameState::Running)
+                .with_system(highlight_selected_square)
+                .with_system(place_piece_on_square)
+                .with_system(update_ui)
+                .with_system(detect_winner),
+        )
         .run();
 }
 
-fn load_assets(mut asset_library: ResMut<AssetLibrary>, asset_server: Res<AssetServer>) {
+fn load_assets(
+    mut asset_library: ResMut<AssetLibrary>,
+    asset_server: Res<AssetServer>,
+    mut game_state: ResMut<State<GameState>>,
+) {
     asset_library.yellow = asset_server.load("sprites/circle-yellow.png");
     asset_library.purple = asset_server.load("sprites/circle-purple.png");
+    asset_library.font = asset_server.load("fonts/ClassicConsoleNeue.ttf");
+
+    game_state.set(GameState::Running).unwrap();
 }
 
 fn create_camera(mut commands: Commands) {
@@ -175,13 +196,7 @@ fn create_board(mut commands: Commands) {
         });
 }
 
-fn create_ui(
-    mut commands: Commands,
-    asset_server: Res<AssetServer>,
-    mut asset_library: ResMut<AssetLibrary>,
-) {
-    asset_library.font = asset_server.load("fonts/ClassicConsoleNeue.ttf");
-
+fn create_ui(mut commands: Commands, asset_library: Res<AssetLibrary>) {
     commands
         .spawn_bundle(TextBundle {
             text: Text::with_section(
@@ -199,9 +214,19 @@ fn create_ui(
         .insert(TurnText);
 }
 
-fn update_ui(turn: Res<Turn>, mut query: Query<&mut Text, With<TurnText>>) {
+fn update_ui(
+    turn: Res<Turn>,
+    mut query: Query<&mut Text, With<TurnText>>,
+    mut win_events: EventReader<WinEvent>,
+    mut game_state: ResMut<State<GameState>>,
+) {
     for mut text in query.iter_mut() {
         text.sections[0].value = format!("To Move: {:?}", turn.0);
+
+        for event in win_events.iter() {
+            text.sections[0].value = format!("Winner: {:?}", event.0);
+            game_state.set(GameState::Over).unwrap();
+        }
     }
 }
 
