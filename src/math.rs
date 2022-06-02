@@ -6,8 +6,8 @@ impl GreatestCommonDenominator for u32 {
     fn gcd(&self, other: &Self) -> Self {
         if self < other {
             other.gcd(self)
-        } else if other.clone() == 0u32 {
-            self.clone()
+        } else if *other == 0u32 {
+            *self
         } else {
             other.gcd(&(self % other))
         }

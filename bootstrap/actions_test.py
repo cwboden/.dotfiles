@@ -2,10 +2,18 @@
 import os
 import unittest
 
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.actions import SpyBuildAction
+from bootstrap.actions import MakeDirectoryBuildAction
+from bootstrap.actions import RunShellCommandBuildAction
+from bootstrap.actions import SpyBuildAction
+
+
+class BuildActionTest(unittest.TestCase):
+    def test_to_str(self) -> None:
+        action = SpyBuildAction()
+        self.assertEqual(
+            str(action),
+            "SpyBuildAction",
+        )
 
 
 class MakeDirectoryBuildActionTest(unittest.TestCase):

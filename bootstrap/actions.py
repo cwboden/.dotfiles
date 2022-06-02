@@ -1,7 +1,12 @@
 import os
 import subprocess
+from subprocess import CalledProcessError
 from typing import List
 from typing import Protocol
+
+
+class ActionException(Exception):
+    pass
 
 
 class BuildAction(Protocol):
@@ -9,6 +14,9 @@ class BuildAction(Protocol):
 
     def execute(self) -> None:
         return
+
+    def __str__(self) -> str:
+        return self.__class__.__name__
 
 
 class MakeDirectoryBuildAction(BuildAction):
@@ -28,7 +36,17 @@ class RunShellCommandBuildAction(BuildAction):
         self.command = command
 
     def execute(self) -> None:
-        subprocess.check_call(self.command)
+        completed_process = subprocess.run(self.command, capture_output=True)
+
+        # Add stdout and stderr output if the call fails
+        try:
+            completed_process.check_returncode()
+        except CalledProcessError as e:
+            raise ActionException(
+                f"{completed_process.args!r}\n"
+                f"stdout: {completed_process.stdout!r}\n"
+                f"stderr: {completed_process.stderr!r}"
+            ) from e
 
 
 class MakeSymlinkBuildAction(BuildAction):

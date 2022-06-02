@@ -1,23 +1,13 @@
 #!/usr/bin/python3
 import unittest
-from unittest.mock import MagicMock
 from unittest.mock import patch
 
-import distro
 from parameterized import parameterized
 
-from builder.actions import BuildAction
-from builder.actions import MakeDirectoryBuildAction
-from builder.actions import MakeSymlinkBuildAction
-from builder.actions import RunShellCommandBuildAction
-from builder.actions import SpyBuildAction
-from builder.predicates import AlwaysRunBuildPredicate
-from builder.predicates import BuildPredicate
-from builder.predicates import DirectoryExistsBuildPredicate
-from builder.predicates import FileExistsBuildPredicate
-from builder.predicates import PythonModuleInstalledBuildPredicate
-from builder.units import BuildUnit
-from builder.units import InstallSystemPackagesBuildUnit
+from bootstrap.actions import SpyBuildAction
+from bootstrap.predicates import AlwaysRunBuildPredicate
+from bootstrap.units import BuildUnit
+from bootstrap.units import InstallSystemPackagesBuildUnit
 
 
 class BuildUnitTest(unittest.TestCase):
@@ -28,6 +18,14 @@ class BuildUnitTest(unittest.TestCase):
         unit.build()
 
         spy_action.assert_called()
+
+    def test_to_str(self) -> None:
+        spy_action = SpyBuildAction()
+        unit = BuildUnit(AlwaysRunBuildPredicate(), spy_action)
+
+        self.assertEqual(
+            str(unit), "BuildUnit: { AlwaysRunBuildPredicate -> SpyBuildAction }"
+        )
 
 
 class InstallSystemPackagesBuildUnitTest(unittest.TestCase):

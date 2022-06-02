@@ -3,8 +3,8 @@ import os
 import subprocess
 import unittest
 
-from builder.bootstrap import crawl_for_symlink_sources
-from builder.bootstrap import translate_symlink_to_destination
+from bootstrap.main import crawl_for_symlink_sources
+from bootstrap.main import translate_symlink_to_destination
 
 
 class BootstrapIntegrationTest(unittest.TestCase):
@@ -18,7 +18,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
 
     def test_pre_commit_git_hook_installed(self) -> None:
         subprocess.check_call(
-            ["pre-commit", "run", "--all-files"], stdout=subprocess.DEVNULL
+            ["pre-commit", "run", "--all-files"],
         )
 
     def test_vim_folders_are_created(self) -> None:
