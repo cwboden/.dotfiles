@@ -39,8 +39,6 @@ repos:
       hooks:
           - id: cargo-check
           - id: clippy
-          - id: fmt
-            args: [--unstable-features]
     - repo: https://github.com/jumanjihouse/pre-commit-hook-yamlfmt
       rev: 0.2.1
       hooks:
