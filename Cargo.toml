@@ -12,6 +12,10 @@ path = "examples/path-finding/main.rs"
 name = "gaia-project"
 path = "examples/gaia-project/main.rs"
 
+[[example]]
+name = "cards"
+path = "examples/cards/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dev-dependencies]
@@ -19,6 +23,7 @@ assert_matches = "1.5"
 
 [dependencies]
 bevy = "0.6.1"
+rand = "0.8.5"
 ron = "0.7"
 serde = { version = "1.0", features = ["derive"] }
 strum = "0.13.0"

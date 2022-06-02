@@ -1,3 +1,6 @@
+# Allow unstable features
+  unstable_features = true
+
 # Reorder import statements alphabetically.
 # Default: false
   reorder_imports = true

@@ -102,7 +102,10 @@ fn select_snap_point_system(
     println!("Cleared selected SnapPoint");
 
     for (entity, snap_point) in snap_points.iter() {
-        if let Some(_) = interaction_state.get_interaction_for_entity(entity) {
+        if interaction_state
+            .get_interaction_for_entity(entity)
+            .is_some()
+        {
             hovered_snap_point.point = Some(snap_point.clone());
             println!("Selected SnapPoint");
             break;

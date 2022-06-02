@@ -18,7 +18,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
 
     def test_pre_commit_git_hook_installed(self) -> None:
         subprocess.check_call(
-            ["pre-commit", "run", "--all-files"], stdout=subprocess.DEVNULL
+            ["pre-commit", "run", "--all-files"],
         )
 
     def test_vim_folders_are_created(self) -> None:

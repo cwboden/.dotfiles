@@ -34,7 +34,10 @@ fn select_entity_system(
     }
 
     for entity in selectables.iter() {
-        if let Some(_) = interaction_state.get_interaction_for_entity(entity) {
+        if interaction_state
+            .get_interaction_for_entity(entity)
+            .is_some()
+        {
             println!("Selected entity: {entity:?}");
             selected_state.entity = Some(entity);
         }
