@@ -50,7 +50,7 @@ fn init_pile(mut commands: Commands, asset_server: Res<AssetServer>) {
 
     commands
         .spawn_bundle(Text2dBundle {
-            text: Text::with_section("INITIAL", text_style.clone(), text_alignment),
+            text: Text::with_section("INITIAL", text_style, text_alignment),
             ..Default::default()
         })
         .insert(PileView);
@@ -78,7 +78,7 @@ fn pile_view_system<T: Clone + Resource + ToString>(
 ) {
     for mut text in query.iter_mut() {
         if let Some(card) = pile.peek() {
-            text.sections[0].value = format!("{}", card.to_string());
+            text.sections[0].value = card.to_string();
         }
     }
 }

@@ -16,7 +16,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 impl<T: Clone> Deck<T> {
     pub fn new(cards: &[T]) -> Self {
         Self {
-            in_cards: cards.iter().map(|c| c.clone()).collect(),
+            in_cards: cards.iter().cloned().collect(),
             out_cards: VecDeque::new(),
         }
     }
