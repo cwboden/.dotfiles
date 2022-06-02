@@ -8,7 +8,8 @@ repos:
           - id: check-added-large-files
           - id: check-ast
           - id: check-docstring-first
-          - id: check-executables-have-shebangs
+          # XXX: WSL does not play nice and marks all files as executables :(
+          # - id: check-executables-have-shebangs
           - id: check-yaml
           - id: debug-statements
           - id: detect-private-key
