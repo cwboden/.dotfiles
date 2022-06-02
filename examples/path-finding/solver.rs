@@ -1,11 +1,9 @@
-use std::collections::{HashSet, VecDeque};
-
 use crate::maze::{Cell, Coordinate, Direction, Maze};
 use crate::Algorithm;
+use std::collections::{HashSet, VecDeque};
 
-/// Abstracts the settings into an arbitrary [`SearchList`] where users can
-/// [`pop`] or [`push`] to insert and remove elements respectively in an order
-/// determined by the input [`Algorithm`].
+/// Abstracts the settings into an arbitrary [`SearchList`] where users can [`pop`] or [`push`] to
+/// insert and remove elements respectively in an order determined by the input [`Algorithm`].
 struct SearchList<T> {
     algorithm: Algorithm,
     search_list: VecDeque<T>,
@@ -47,11 +45,7 @@ impl Solver {
         let mut searched_coordinates = HashSet::new();
         searched_coordinates.insert(starting_position);
 
-        Self {
-            maze,
-            search_list,
-            searched_coordinates,
-        }
+        Self { maze, search_list, searched_coordinates }
     }
 
     pub fn run(mut self) -> Vec<Coordinate> {

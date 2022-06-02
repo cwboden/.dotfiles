@@ -1,6 +1,6 @@
-use std::convert::{From, TryInto};
+use std::convert::From;
+use std::convert::TryInto;
 use std::io::BufRead;
-
 use serde::Serialize;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -47,8 +47,7 @@ pub struct Coordinate {
 }
 
 impl Coordinate {
-    /// Returns a new, valid space in the [`Maze`] in the corresponding
-    /// [`Direction`]
+    /// Returns a new, valid space in the [`Maze`] in the corresponding [`Direction`]
     pub fn move_in(self, direction: &Direction) -> Coordinate {
         match direction {
             Direction::North => Coordinate {
@@ -70,6 +69,7 @@ impl Coordinate {
         }
     }
 }
+
 
 pub enum Direction {
     North,

@@ -49,6 +49,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Disable ALE for Qumulo
+" Plug 'dense-analysis/ale'
+
 " Finish the call, all plugins must be before this
 call plug#end()
 
@@ -340,6 +343,11 @@ autocmd FileType c setlocal colorcolumn=100
 autocmd FileType c setlocal textwidth=100
 autocmd FileType h setlocal colorcolumn=100
 autocmd FileType h setlocal textwidth=100
+" }}}
+
+" ALE {{{
+" Disabled for Qumulo
+" let g:ale_linters = {'rust': ['analyzer']}
 " }}}
 
 " vim-lsp {{{
