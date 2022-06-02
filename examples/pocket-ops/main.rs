@@ -1,8 +1,8 @@
 use bevy::prelude::*;
 use dotfiles::input::interaction::{Interactable, InteractionSource, InteractionState};
 use dotfiles::input::select::{SelectPlugin, Selectable, SelectedEntity};
-use std::collections::HashSet;
-use strum_macros::EnumString;
+use strum::IntoEnumIterator;
+use strum_macros::{EnumIter, EnumString};
 
 #[derive(Clone, Component, Eq, Hash, PartialEq)]
 struct Coordinate {
@@ -33,7 +33,7 @@ impl Default for Highlighted {
     }
 }
 
-#[derive(Clone, Copy, Debug, EnumString, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, EnumIter, EnumString, Eq, PartialEq)]
 enum PlayerColor {
     Yellow,
     Purple,
@@ -99,6 +99,8 @@ fn main() {
         .add_system(highlight_selected_square)
         .add_system(place_piece_on_square)
         .add_system(update_ui)
+        .add_system(detect_winner)
+        .add_event::<WinEvent>()
         .run();
 }
 
@@ -158,10 +160,7 @@ fn create_board(mut commands: Commands) {
                             ..Default::default()
                         })
                         .insert(Name::new(format!("Tile ({x}, {y})")))
-                        .insert(Coordinate {
-                            x: x as u8,
-                            y: y as u8,
-                        })
+                        .insert(Coordinate::new(x as u8, y as u8))
                         .insert(Interactable {
                             bounding_box: (
                                 Vec2::new(-(tile_size / 2.0), -(tile_size / 2.0)),
@@ -294,19 +293,19 @@ fn is_winning(coordinates: &[Coordinate]) -> bool {
     false
 }
 
-fn detect_winner(win_events: EventWriter<WinEvent>, query: Query<(&Coordinate, &Contents)>) {
-    let yellow_coordinates: HashSet<Coordinate> = query
-        .iter()
-        .filter(|(_, contents)| contents.piece == Some(PlayerColor::Yellow))
-        .map(|(coordinate, _)| coordinate)
-        .cloned()
-        .collect();
-    let purple_coordinates: HashSet<Coordinate> = query
-        .iter()
-        .filter(|(_, contents)| contents.piece == Some(PlayerColor::Yellow))
-        .map(|(coordinate, _)| coordinate)
-        .cloned()
-        .collect();
+fn detect_winner(mut win_events: EventWriter<WinEvent>, query: Query<(&Coordinate, &Contents)>) {
+    PlayerColor::iter().for_each(|color| {
+        let coordinates: Vec<Coordinate> = query
+            .iter()
+            .filter(|(_, contents)| contents.piece == Some(color))
+            .map(|(coordinate, _)| coordinate)
+            .cloned()
+            .collect();
+        if is_winning(&coordinates) {
+            win_events.send(WinEvent(color));
+            println!("{:?} wins!", color);
+        }
+    });
 }
 
 #[cfg(test)]
