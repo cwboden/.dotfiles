@@ -1,12 +1,23 @@
 use bevy::prelude::*;
 use dotfiles::input::interaction::{Interactable, InteractionSource, InteractionState};
 use dotfiles::input::select::{SelectPlugin, Selectable, SelectedEntity};
+use std::collections::HashSet;
 use strum_macros::EnumString;
 
-#[derive(Component)]
+#[derive(Clone, Component, Eq, Hash, PartialEq)]
 struct Coordinate {
     x: u8,
     y: u8,
+}
+
+impl Coordinate {
+    pub fn new(x: u8, y: u8) -> Self {
+        // Coordinates are on a tic-tac-toe grid, which is 3x3
+        assert!(x < 3);
+        assert!(y < 3);
+
+        Self { x, y }
+    }
 }
 
 #[derive(Component)]
@@ -252,5 +263,89 @@ fn place_piece_on_square(
 
             turn_state.change();
         }
+    }
+}
+
+struct WinEvent(PlayerColor);
+
+fn is_winning(coordinates: &[Coordinate]) -> bool {
+    // Horizontal
+    for y in 0..=2 {
+        if coordinates.iter().filter(|c| c.y == y).count() == 3 {
+            return true;
+        }
+    }
+
+    // Vertical
+    for x in 0..=2 {
+        if coordinates.iter().filter(|c| c.x == x).count() == 3 {
+            return true;
+        }
+    }
+
+    // Diagonals
+    if coordinates.iter().filter(|c| c.x == c.y).count() == 3 {
+        return true;
+    }
+    if coordinates.iter().filter(|c| c.x == (2 - c.y)).count() == 3 {
+        return true;
+    }
+
+    false
+}
+
+fn detect_winner(win_events: EventWriter<WinEvent>, query: Query<(&Coordinate, &Contents)>) {
+    let yellow_coordinates: HashSet<Coordinate> = query
+        .iter()
+        .filter(|(_, contents)| contents.piece == Some(PlayerColor::Yellow))
+        .map(|(coordinate, _)| coordinate)
+        .cloned()
+        .collect();
+    let purple_coordinates: HashSet<Coordinate> = query
+        .iter()
+        .filter(|(_, contents)| contents.piece == Some(PlayerColor::Yellow))
+        .map(|(coordinate, _)| coordinate)
+        .cloned()
+        .collect();
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn is_winning_horizontal() {
+        for y in 0..=2 {
+            assert!(is_winning(&vec![
+                Coordinate::new(0, y),
+                Coordinate::new(1, y),
+                Coordinate::new(2, y),
+            ]));
+        }
+    }
+
+    #[test]
+    fn is_winning_vertical() {
+        for x in 0..=2 {
+            assert!(is_winning(&vec![
+                Coordinate::new(x, 0),
+                Coordinate::new(x, 1),
+                Coordinate::new(x, 2),
+            ]));
+        }
+    }
+
+    #[test]
+    fn is_winning_diagonal() {
+        assert!(is_winning(&vec![
+            Coordinate::new(0, 0),
+            Coordinate::new(1, 1),
+            Coordinate::new(2, 2),
+        ]));
+        assert!(is_winning(&vec![
+            Coordinate::new(0, 2),
+            Coordinate::new(1, 1),
+            Coordinate::new(2, 0),
+        ]));
     }
 }
