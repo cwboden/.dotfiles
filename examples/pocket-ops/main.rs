@@ -44,6 +44,9 @@ impl Default for Turn {
     }
 }
 
+#[derive(Component)]
+struct TurnText;
+
 #[derive(Component, Default)]
 struct Contents {
     piece: Option<PlayerColor>,
@@ -51,8 +54,9 @@ struct Contents {
 
 #[derive(Default)]
 struct AssetLibrary {
-    pub yellow: Handle<Image>,
-    pub purple: Handle<Image>,
+    yellow: Handle<Image>,
+    purple: Handle<Image>,
+    pub font: Handle<Font>,
 }
 
 impl AssetLibrary {
@@ -79,6 +83,7 @@ fn main() {
         .add_startup_system(create_camera)
         .add_startup_system(load_assets)
         .add_startup_system(create_board)
+        .add_startup_system(create_ui)
         .add_system(highlight_selected_square)
         .add_system(place_piece_on_square)
         .run();
@@ -93,6 +98,7 @@ fn create_camera(mut commands: Commands) {
     commands
         .spawn_bundle(OrthographicCameraBundle::new_2d())
         .insert(InteractionSource::default());
+    commands.spawn_bundle(UiCameraBundle::default());
 }
 
 fn create_board(mut commands: Commands) {
@@ -155,6 +161,30 @@ fn create_board(mut commands: Commands) {
                 }
             }
         });
+}
+
+fn create_ui(
+    mut commands: Commands,
+    asset_server: Res<AssetServer>,
+    mut asset_library: ResMut<AssetLibrary>,
+) {
+    asset_library.font = asset_server.load("fonts/ClassicConsoleNeue.ttf");
+
+    commands
+        .spawn_bundle(TextBundle {
+            text: Text::with_section(
+                "To Move: Yellow",
+                TextStyle {
+                    font: asset_library.font.clone(),
+                    font_size: 40.0,
+                    color: Color::BLACK,
+                    ..Default::default()
+                },
+                Default::default(),
+            ),
+            ..Default::default()
+        })
+        .insert(TurnText);
 }
 
 fn highlight_selected_square(
