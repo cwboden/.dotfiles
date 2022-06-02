@@ -1,11 +1,52 @@
 use bevy::prelude::*;
-use dotfiles::input::interaction::{Interactable, InteractionSource};
+use dotfiles::input::interaction::{Interactable, InteractionSource, InteractionState};
 use dotfiles::input::select::{SelectPlugin, Selectable, SelectedEntity};
 
 #[derive(Component)]
 struct Coordinate {
     x: u8,
     y: u8,
+}
+
+#[derive(Component)]
+struct Highlighted {
+    is_highlighted: bool,
+}
+
+impl Default for Highlighted {
+    fn default() -> Self {
+        Self {
+            is_highlighted: false,
+        }
+    }
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+enum PlayerColor {
+    Yellow,
+    Purple,
+}
+
+struct Turn(PlayerColor);
+
+impl Turn {
+    pub fn change(&mut self) {
+        self.0 = match self.0 {
+            PlayerColor::Yellow => PlayerColor::Purple,
+            PlayerColor::Purple => PlayerColor::Yellow,
+        }
+    }
+}
+
+impl Default for Turn {
+    fn default() -> Self {
+        Self(PlayerColor::Yellow)
+    }
+}
+
+#[derive(Component, Default)]
+struct Contents {
+    piece: Option<PlayerColor>,
 }
 
 fn main() {
@@ -16,11 +57,13 @@ fn main() {
             height: 810.0,
             ..Default::default()
         })
+        .init_resource::<Turn>()
         .add_plugins(DefaultPlugins)
         .add_plugin(SelectPlugin)
         .add_startup_system(create_camera)
         .add_startup_system(create_board)
         .add_system(highlight_selected_square)
+        .add_system(place_piece_on_square)
         .run();
 }
 
@@ -84,7 +127,9 @@ fn create_board(mut commands: Commands) {
                                 Vec2::new(tile_size / 2.0, tile_size / 2.0),
                             ),
                         })
-                        .insert(Selectable);
+                        .insert(Selectable)
+                        .insert(Highlighted::default())
+                        .insert(Contents::default());
                 }
             }
         });
@@ -92,13 +137,43 @@ fn create_board(mut commands: Commands) {
 
 fn highlight_selected_square(
     selected_square: Res<SelectedEntity>,
-    mut query: Query<(Entity, &mut Sprite), With<Selectable>>,
+    mut query: Query<(Entity, &mut Sprite, &mut Highlighted), With<Selectable>>,
 ) {
-    for (entity, mut sprite) in query.iter_mut() {
+    for (entity, mut sprite, mut highlighted) in query.iter_mut() {
         if Some(entity) == selected_square.entity {
             sprite.color = Color::TOMATO;
+            highlighted.is_highlighted = true;
         } else {
             sprite.color = Color::GRAY;
+            highlighted.is_highlighted = false;
+        }
+    }
+}
+
+fn place_piece_on_square(
+    mouse_button_input: Res<Input<MouseButton>>,
+    interaction_state: Res<InteractionState>,
+    mut turn_state: ResMut<Turn>,
+    mut query: Query<(Entity, &Highlighted, &mut Contents)>,
+) {
+    // Ignore non-mouse click events
+    // XXX: Eventually we'll want to map this more dynamically to enable controller
+    // remaps
+    if !mouse_button_input.just_pressed(MouseButton::Left) {
+        return;
+    }
+
+    for (entity, highlighted, mut contents) in query.iter_mut() {
+        // Check if we clicked on the highlighted square again
+        if interaction_state
+            .get_interaction_for_entity(entity)
+            .is_some()
+            && highlighted.is_highlighted
+            && contents.piece.is_none()
+        {
+            contents.piece = Some(turn_state.0);
+            println!("Added {:?} piece", turn_state.0);
+            turn_state.change();
         }
     }
 }
