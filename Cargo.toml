@@ -16,6 +16,10 @@ path = "examples/gaia-project/main.rs"
 name = "cards"
 path = "examples/cards/main.rs"
 
+[[example]]
+name = "pocket-ops"
+path = "examples/pocket-ops/main.rs"
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dev-dependencies]
