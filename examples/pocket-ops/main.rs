@@ -1,6 +1,7 @@
 use bevy::prelude::*;
 use dotfiles::input::interaction::{Interactable, InteractionSource, InteractionState};
 use dotfiles::input::select::{SelectPlugin, Selectable, SelectedEntity};
+use strum_macros::EnumString;
 
 #[derive(Component)]
 struct Coordinate {
@@ -21,7 +22,7 @@ impl Default for Highlighted {
     }
 }
 
-#[derive(Clone, Copy, Debug, Eq, PartialEq)]
+#[derive(Clone, Copy, Debug, EnumString, Eq, PartialEq)]
 enum PlayerColor {
     Yellow,
     Purple,
@@ -86,6 +87,7 @@ fn main() {
         .add_startup_system(create_ui)
         .add_system(highlight_selected_square)
         .add_system(place_piece_on_square)
+        .add_system(update_ui)
         .run();
 }
 
@@ -185,6 +187,12 @@ fn create_ui(
             ..Default::default()
         })
         .insert(TurnText);
+}
+
+fn update_ui(turn: Res<Turn>, mut query: Query<&mut Text, With<TurnText>>) {
+    for mut text in query.iter_mut() {
+        text.sections[0].value = format!("To Move: {:?}", turn.0);
+    }
 }
 
 fn highlight_selected_square(
