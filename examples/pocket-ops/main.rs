@@ -49,6 +49,21 @@ struct Contents {
     piece: Option<PlayerColor>,
 }
 
+#[derive(Default)]
+struct AssetLibrary {
+    pub yellow: Handle<Image>,
+    pub purple: Handle<Image>,
+}
+
+impl AssetLibrary {
+    pub fn get_texture(&self, color: PlayerColor) -> Handle<Image> {
+        match color {
+            PlayerColor::Yellow => self.yellow.clone(),
+            PlayerColor::Purple => self.purple.clone(),
+        }
+    }
+}
+
 fn main() {
     App::new()
         .insert_resource(WindowDescriptor {
@@ -58,13 +73,20 @@ fn main() {
             ..Default::default()
         })
         .init_resource::<Turn>()
+        .init_resource::<AssetLibrary>()
         .add_plugins(DefaultPlugins)
         .add_plugin(SelectPlugin)
         .add_startup_system(create_camera)
+        .add_startup_system(load_assets)
         .add_startup_system(create_board)
         .add_system(highlight_selected_square)
         .add_system(place_piece_on_square)
         .run();
+}
+
+fn load_assets(mut asset_library: ResMut<AssetLibrary>, asset_server: Res<AssetServer>) {
+    asset_library.yellow = asset_server.load("sprites/circle-yellow.png");
+    asset_library.purple = asset_server.load("sprites/circle-purple.png");
 }
 
 fn create_camera(mut commands: Commands) {
@@ -151,6 +173,8 @@ fn highlight_selected_square(
 }
 
 fn place_piece_on_square(
+    mut commands: Commands,
+    asset_library: Res<AssetLibrary>,
     mouse_button_input: Res<Input<MouseButton>>,
     interaction_state: Res<InteractionState>,
     mut turn_state: ResMut<Turn>,
@@ -173,6 +197,21 @@ fn place_piece_on_square(
         {
             contents.piece = Some(turn_state.0);
             println!("Added {:?} piece", turn_state.0);
+
+            commands.entity(entity).with_children(|parent| {
+                parent
+                    .spawn_bundle(SpriteBundle {
+                        texture: asset_library.get_texture(turn_state.0),
+                        sprite: Sprite {
+                            custom_size: Some(Vec2::splat(60.0)),
+                            ..Default::default()
+                        },
+                        transform: Transform::from_xyz(0.0, 0.0, 1.0),
+                        ..Default::default()
+                    })
+                    .insert(Name::new("Piece"));
+            });
+
             turn_state.change();
         }
     }
