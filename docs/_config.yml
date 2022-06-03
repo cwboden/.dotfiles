@@ -29,7 +29,7 @@ url: carsonboden.com   # the base hostname & protocol for your site, e.g. http:/
 github_username: cwboden
 
 # Build settings
-theme: minima
+theme: jekyll-theme-midnight
 plugins:
     - jekyll-feed
 
