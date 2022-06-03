@@ -19,13 +19,3 @@ jobs:
                 working-directory: ./docs
         steps:
             - uses: actions/checkout@v2
-
-            - name: Install Yarn
-              uses: borales/actions-yarn@v2.3.0
-              with:
-                  cmd: install
-            - run: yarn global add create-react-app
-            - run: yarn install
-
-            - run: yarn build
-            - run: yarn test
