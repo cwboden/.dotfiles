@@ -3,5 +3,5 @@ distro==1.4.0
 fs==2.4.15
 mypy==0.910
 parameterized==0.8.1
-pre-commit==2.14.0
+pre-commit==2.15.0
 types-setuptools==57.0.2
