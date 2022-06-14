@@ -7,6 +7,7 @@ from datetime import date
 from pathlib import Path
 
 from fs import open_fs
+from parameterized import parameterized
 
 from tools import create_new_blog_post
 
@@ -31,7 +32,28 @@ class CreateNewBlogPostTest(unittest.TestCase):
         create_new_blog_post.main(args)
 
         path_to_file = Path(f"{self.fs_dir_name}/{today}-{post_title}.md")
-        self.assertTrue(path_to_file.exists())
+        self.assertTrue(path_to_file.exists(), f"{path_to_file} does not exist!")
+
+    @parameterized.expand(
+        [
+            ("UPPERCASE", "uppercase"),
+            ("CamelCase", "camelcase"),
+            ("snake_case", "snake-case"),
+            ("punctuation...marks!?", "punctuation-marks"),
+            ("big      space", "big-space"),
+            ("multiple words in sequence", "multiple-words-in-sequence"),
+        ]
+    )
+    def test_create_file_converts_to_kebab_case(
+        self, title_input, title_expected
+    ) -> None:
+        args = create_new_blog_post.parse_args([title_input, self.fs_dir_name])
+
+        today = date.today().strftime("%Y-%m-%d")
+        create_new_blog_post.main(args)
+
+        path_to_file = Path(f"{self.fs_dir_name}/{today}-{title_expected}.md")
+        self.assertTrue(path_to_file.exists(), f"{path_to_file} does not exist!")
 
 
 if __name__ == "__main__":

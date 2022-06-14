@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+import re
 import sys
 from argparse import ArgumentDefaultsHelpFormatter
 from argparse import ArgumentParser
@@ -26,9 +27,29 @@ def parse_args(args: List[str]) -> Namespace:
     return parser.parse_args(args)
 
 
+def kebab_case(s: str) -> str:
+    # Split "snake_case" apart into "snake case"
+    underscore = re.compile(r"_")
+    s = underscore.sub(" ", s)
+
+    # Remove punctuation
+    punctuation = re.compile(r"[?!.,\'\"]")
+    s = punctuation.sub(" ", s)
+
+    # Shorten multiple spaces into one
+    multispace = re.compile(r"\s+")
+    s = multispace.sub(" ", s)
+
+    spaces = re.compile(r" ")
+    return spaces.sub("-", s.strip()).lower()
+
+
 def main(args: Namespace):
     today = date.today().strftime("%Y-%m-%d")
-    path_to_file = Path(f"{args.path}/{today}-{args.title}.md")
+    title = kebab_case(args.title)
+
+    path_to_file = Path(f"{args.path}/{today}-{title}.md")
+
     path_to_file.touch()
 
 
