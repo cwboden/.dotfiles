@@ -1,5 +1,6 @@
 ---
 title: About
+permalink: /about/
 ---
 In my free time, I enjoy curating video games, climbing and bouldering, cooking
 unique, delicious food, competing in ultimate frisbee and volleyball, and

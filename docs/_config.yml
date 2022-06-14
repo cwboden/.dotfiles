@@ -21,7 +21,7 @@ search: true
 author:
     name: *name
     avatar: /assets/img/me.png
-    bio: Developer | Game Addict | Earth Lover
+    bio: Developer, Game Addict, Earth Lover
     location: Seattle, WA
     links: &links
         - label: GitHub
@@ -44,9 +44,17 @@ footer:
     links: *links
 
 defaults:
-    values:
-        author_profile: true
-        show_date: true
+    - scope:
+          path: ''
+      values:
+          layout: single
+          author_profile: true
+          show_date: true
+          read_time: true
+          comments: true
+          share: true
+          related: true
+          toc: true
 
 include:
     - .htaccess
