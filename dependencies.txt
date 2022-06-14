@@ -1,5 +1,8 @@
+build-essential
 cargo
 libasound2-dev
 libudev-dev
 ripgrep
+ruby-full
+zlib1g-dev
 zsh
