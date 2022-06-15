@@ -49,7 +49,7 @@ def kebab_case(s: str) -> str:
     return spaces.sub("-", s.strip()).lower()
 
 
-def main(args: Namespace) -> Path:
+def main(args: Namespace, repo: Repo) -> Path:
     today = date.today().strftime("%Y-%m-%d")
     title = kebab_case(args.title)
 
@@ -59,7 +59,6 @@ def main(args: Namespace) -> Path:
         raise Exception(f"Cannot create new post '{path_to_file}'. Post exists.")
 
     branch_name = f"posts/{today}-{title}"
-    repo = Repo(Path.home().joinpath(".dotfiles/"))
     if repo.is_dirty():
         raise Exception(
             f"Cannot create git branch: '{branch_name}'. Repo has outstanding changes."
@@ -74,4 +73,5 @@ def main(args: Namespace) -> Path:
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
-    main(args)
+    repo = Repo(Path.home().joinpath(".dotfiles"))
+    main(args, repo)
