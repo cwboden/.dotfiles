@@ -7,7 +7,6 @@ from argparse import Namespace
 from datetime import date
 from pathlib import Path
 
-from create_new_blog_post import TEMPLATE_PATH
 from fs import open_fs
 from parameterized import parameterized
 
@@ -87,7 +86,9 @@ class CreateNewBlogPostTest(unittest.TestCase):
 
         new_post_path = create_new_blog_post.main(args, self.repo)
 
-        with open(TEMPLATE_PATH) as template, open(new_post_path) as new_post:
+        with open(create_new_blog_post.TEMPLATE_PATH) as template, open(
+            new_post_path
+        ) as new_post:
             self.assertListEqual(list(template), list(new_post))
 
     def test_cannot_create_branch_if_outstanding_changes_exist(self) -> None:
