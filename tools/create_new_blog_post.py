@@ -9,6 +9,8 @@ from datetime import date
 from pathlib import Path
 from typing import List
 
+from git import Repo
+
 TEMPLATE_PATH: Path = Path.home().joinpath(".dotfiles/tools/blog-post-template.md")
 
 
@@ -55,9 +57,18 @@ def main(args: Namespace) -> Path:
 
     if path_to_file.exists():
         raise Exception(f"Cannot create new post '{path_to_file}'. Post exists.")
-    else:
-        shutil.copyfile(TEMPLATE_PATH, path_to_file)
 
+    branch_name = f"posts/{today}-{title}"
+    repo = Repo(Path.home().joinpath(".dotfiles/"))
+    if repo.is_dirty():
+        raise Exception(
+            f"Cannot create git branch: '{branch_name}'. Repo has outstanding changes."
+        )
+
+    repo.heads.main.checkout()
+    repo.create_head(branch_name).checkout()
+
+    shutil.copyfile(TEMPLATE_PATH, path_to_file)
     return path_to_file
 
 
