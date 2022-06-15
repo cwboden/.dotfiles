@@ -11,7 +11,7 @@ from typing import List
 
 from git import Repo
 
-TEMPLATE_PATH: Path = Path.home().joinpath(".dotfiles/tools/blog-post-template.md")
+TEMPLATE_PATH: Path = Path(__file__).parent.joinpath("blog-post-template.md")
 
 
 def parse_args(args: List[str]) -> Namespace:
