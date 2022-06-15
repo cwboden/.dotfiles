@@ -6,7 +6,7 @@ sidebar:
   - title: "Role"
     text: "Student"
   - title: "Date"
-    text: "June 2017"
+    text: "Jun 2017"
 ---
 
 Attended an abroad program in Germany and designed a series of programs, each

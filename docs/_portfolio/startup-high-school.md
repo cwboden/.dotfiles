@@ -6,7 +6,7 @@ sidebar:
   - title: "Role"
     text: "Co-Director"
   - title: "Date"
-    text: "March 2017"
+    text: "Mar 2017"
 ---
 
 Flagship project of <a href="https://mpowered.umich.edu">MPowered</a> to
