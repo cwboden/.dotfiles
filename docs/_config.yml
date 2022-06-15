@@ -43,9 +43,16 @@ author:
 footer:
     links: *links
 
+collections:
+    portfolio:
+        output: true
+        permalink: /:collection/:path/
+
 defaults:
+    # Blog Posts
     - scope:
           path: ''
+          type: posts
       values:
           layout: single
           author_profile: true
@@ -55,10 +62,19 @@ defaults:
           share: true
           related: true
           toc: true
+    # Portfolio
+    - scope:
+          path: ''
+          type: portfolio
+      values:
+          layout: single
+          author_profile: false
+          share: true
 
 include:
     - .htaccess
     - _pages
+    - _portfolio
 exclude:
     - '*.sublime-project'
     - '*.sublime-workspace'
