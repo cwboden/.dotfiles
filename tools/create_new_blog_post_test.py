@@ -55,6 +55,15 @@ class CreateNewBlogPostTest(unittest.TestCase):
         path_to_file = Path(f"{self.fs_dir_name}/{today}-{title_expected}.md")
         self.assertTrue(path_to_file.exists(), f"{path_to_file} does not exist!")
 
+    def test_cannot_create_file_with_same_name(self) -> None:
+        post_title = "my-blog-post"
+        args = create_new_blog_post.parse_args([post_title, self.fs_dir_name])
+
+        create_new_blog_post.main(args)
+
+        with self.assertRaisesRegex(Exception, "Cannot create new post"):
+            create_new_blog_post.main(args)
+
 
 if __name__ == "__main__":
     unittest.main()

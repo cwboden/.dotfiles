@@ -50,7 +50,10 @@ def main(args: Namespace):
 
     path_to_file = Path(f"{args.path}/{today}-{title}.md")
 
-    path_to_file.touch()
+    if path_to_file.exists():
+        raise Exception(f"Cannot create new post '{path_to_file}'. Post exists.")
+    else:
+        path_to_file.touch()
 
 
 if __name__ == "__main__":
