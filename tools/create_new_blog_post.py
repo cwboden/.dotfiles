@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import re
+import shutil
 import sys
 from argparse import ArgumentDefaultsHelpFormatter
 from argparse import ArgumentParser
@@ -7,6 +8,8 @@ from argparse import Namespace
 from datetime import date
 from pathlib import Path
 from typing import List
+
+TEMPLATE_PATH: Path = Path.home().joinpath(".dotfiles/tools/blog-post-template.md")
 
 
 def parse_args(args: List[str]) -> Namespace:
@@ -44,7 +47,7 @@ def kebab_case(s: str) -> str:
     return spaces.sub("-", s.strip()).lower()
 
 
-def main(args: Namespace):
+def main(args: Namespace) -> Path:
     today = date.today().strftime("%Y-%m-%d")
     title = kebab_case(args.title)
 
@@ -53,7 +56,9 @@ def main(args: Namespace):
     if path_to_file.exists():
         raise Exception(f"Cannot create new post '{path_to_file}'. Post exists.")
     else:
-        path_to_file.touch()
+        shutil.copyfile(TEMPLATE_PATH, path_to_file)
+
+    return path_to_file
 
 
 if __name__ == "__main__":

@@ -6,6 +6,7 @@ import unittest
 from datetime import date
 from pathlib import Path
 
+from create_new_blog_post import TEMPLATE_PATH
 from fs import open_fs
 from parameterized import parameterized
 
@@ -63,6 +64,15 @@ class CreateNewBlogPostTest(unittest.TestCase):
 
         with self.assertRaisesRegex(Exception, "Cannot create new post"):
             create_new_blog_post.main(args)
+
+    def test_created_file_contains_blog_post_template(self) -> None:
+        post_title = "my-blog-post"
+        args = create_new_blog_post.parse_args([post_title, self.fs_dir_name])
+
+        new_post_path = create_new_blog_post.main(args)
+
+        with open(TEMPLATE_PATH) as template, open(new_post_path) as new_post:
+            self.assertListEqual(list(template), list(new_post))
 
 
 if __name__ == "__main__":
