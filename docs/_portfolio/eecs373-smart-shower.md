@@ -19,3 +19,5 @@ The team included four team members and a budget of $200 with the goal of
 designing a marketable product. The source code is not available to the public
 due to the University of Michigan Engineering Honor Code, but the project
 poster, used during the demo day, is below.
+
+<a class="btn btn--primary" target="_blank" href="https://drive.google.com/file/d/1efbnW9kqRgivNw-uoiIQzRIYNuEMVeiD/view?usp=sharing">Poster</a>

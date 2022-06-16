@@ -21,3 +21,7 @@ computational tools like Git or GDB with respect to understanding other
 computational topics.  Essentially, does learning how to use computing tools
 impact understanding of other computing topics?  The report and presentation are
 below.
+
+<a class="btn btn--primary" target="_blank" href="https://drive.google.com/file/d/1dqyvJ8Jg706U6gyReyM0VfF77gEKkV-3/view?usp=sharing">Presentation</a>
+<a class="btn btn--inverse" target="_blank" href="https://drive.google.com/file/d/1tRI8SWdemvetnfvm1HU4KdPOpI0l3RUR/view?usp=sharing">Proposal</a>
+<a class="btn btn--inverse" target="_blank" href="https://drive.google.com/file/d/12xvZMoEeGAwBebiJy5YfnVzY-TOypZRC/view?usp=sharing">Redesign</a>

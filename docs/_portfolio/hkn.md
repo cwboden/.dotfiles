@@ -24,3 +24,5 @@ Furthermore, I sought to orchestrate the reopening of our fundraising cafe,
 which had been closed for the past 4 semester. The electee class was 50% larger
 than the previous semester and a packet of required documents and information
 was sent out to the Office of the Provost to reopen the cafe.
+
+<a class="btn btn--primary" target="_blank" href="https://hkn.eecs.umich.edu/">Website</a>

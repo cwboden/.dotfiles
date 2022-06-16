@@ -18,3 +18,5 @@ during which we spent time creating modules, unit testing, and integrating them
 into the final pipeline. The source code, due to the University of Michigan
 Engineering Honor Code, is not available to the public; however, a detailed
 report of the processor's features is below.
+
+<a class="btn btn--primary" target="_blank" href="https://drive.google.com/file/d/1OQVCtz9N7lD_LYhUPrcOAjIwjPcndfrq/view?usp=sharing">Report</a>

@@ -36,3 +36,6 @@ and thought-provoking projects.  The other lectureres, Professors Brehob and
 Mudge, and I have worked hard this summer to give the class a polish.  We have
 finishing updating the autograder, fixed some issues in the slides, and created
 new reference materials for students to use.
+
+<a class="btn btn--primary" target="_blank" href="http://www.eecs.umich.edu/courses/eecs370/">EECS 370 Course Website</a>
+<a class="btn btn--inverse" target="_blank" href="http://eecs.umich.edu/eecs/courses/eecs470/">EECS 470 Course Website</a>
