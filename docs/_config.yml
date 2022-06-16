@@ -43,9 +43,23 @@ author:
 footer:
     links: *links
 
+collections:
+    portfolio:
+        output: true
+        permalink: /:collection/:path/
+
 defaults:
+    # General Page Layout
+    - scope:
+          path: _pages
+          type: pages
+      values:
+          layout: single
+          author_profile: true
+    # Blog Posts
     - scope:
           path: ''
+          type: posts
       values:
           layout: single
           author_profile: true
@@ -55,6 +69,14 @@ defaults:
           share: true
           related: true
           toc: true
+    # Portfolio
+    - scope:
+          path: ''
+          type: portfolio
+      values:
+          layout: single
+          author_profile: false
+          share: true
 
 include:
     - .htaccess
