@@ -23,6 +23,25 @@ jobs:
             - name: Configure $PYTHONPATH
               run: echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
 
+            - name: Check Python cache
+              uses: actions/cache@v3
+              with:
+                  path: ~/.cache/pip
+                  key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pip-
+
+            - name: Check Cargo cache
+            - uses: actions/cache@v3
+              with:
+                  path: |
+                      ~/.cargo/bin/
+                      ~/.cargo/registry/index/
+                      ~/.cargo/registry/cache/
+                      ~/.cargo/git/db/
+                      target/
+                  key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
             - name: Run Bootstrap
               run: |
                   pip install -r requirements.txt
