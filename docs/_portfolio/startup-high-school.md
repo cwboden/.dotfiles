@@ -2,6 +2,7 @@
 title: "Startup High School"
 header:
   image: /assets/img/portfolio/startup-high-school.jpg
+  teaser: /assets/img/portfolio/startup-high-school-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Co-Director"

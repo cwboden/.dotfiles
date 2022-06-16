@@ -2,6 +2,7 @@
 title: "Computer Science Education Research"
 header:
   image: /assets/img/portfolio/cs-education.png
+  teaser: /assets/img/portfolio/cs-education-thumbnail.png
 sidebar:
   - title: "Role"
     text: "Student"

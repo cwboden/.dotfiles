@@ -2,6 +2,7 @@
 title: "University of Michigan"
 header:
   image: /assets/img/portfolio/michigan.jpg
+  teaser: /assets/img/portfolio/michigan-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Student"

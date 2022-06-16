@@ -2,6 +2,7 @@
 title: "Qualcomm Internship"
 header:
   image: /assets/img/portfolio/qualcomm.jpg
+  teaser: /assets/img/portfolio/qualcomm-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Intern"

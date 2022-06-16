@@ -2,6 +2,7 @@
 title: "Eta Kappa Nu (HKN)"
 header:
   image: /assets/img/portfolio/hkn-logo.png
+  teaser: /assets/img/portfolio/hkn-logo-thumbnail.png
 sidebar:
   - title: "Role"
     text: "Treasurer, Corporate Relations, President, Advisor"

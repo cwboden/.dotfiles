@@ -2,6 +2,7 @@
 title: "Ocient Internship"
 header:
   image: /assets/img/portfolio/ocient.png
+  teaser: /assets/img/portfolio/ocient-thumbnail.png
 sidebar:
   - title: "Role"
     text: "Intern"

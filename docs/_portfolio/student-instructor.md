@@ -1,7 +1,8 @@
 ---
 title: "Student Instructor"
 header:
-  image: /assets/img/portfolio/classroom-3.jpg
+  image: /assets/img/portfolio/classroom.jpg
+  teaser: /assets/img/portfolio/classroom-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Instructional Aide (IA), Graduate Student Instructor (GSI), Lecturer"

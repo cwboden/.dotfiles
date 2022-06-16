@@ -2,6 +2,7 @@
 title: "Amazon Internship"
 header:
   image: /assets/img/portfolio/amazon.png
+  teaser: /assets/img/portfolio/amazon-thumbnail.png
 sidebar:
   - title: "Role"
     text: "SDET Intern"

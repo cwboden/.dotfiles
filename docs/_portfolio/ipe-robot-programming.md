@@ -2,6 +2,7 @@
 title: "IPE Robot Programming"
 header:
   image: /assets/img/portfolio/ipe-robot-programming.jpg
+  teaser: /assets/img/portfolio/ipe-robot-programming-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Student"

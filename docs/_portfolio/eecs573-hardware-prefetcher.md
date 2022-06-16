@@ -2,6 +2,7 @@
 title: "Hardware Prefetcher Research"
 header:
   image: /assets/img/portfolio/cpu-2.jpg
+  teaser: /assets/img/portfolio/cpu-2-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Student"

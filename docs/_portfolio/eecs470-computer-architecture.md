@@ -2,6 +2,7 @@
 title: "Computer Architecture Design"
 header:
   image: /assets/img/portfolio/cpu.jpg
+  teaser: /assets/img/portfolio/cpu-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Student"

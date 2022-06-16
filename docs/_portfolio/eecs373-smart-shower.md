@@ -2,6 +2,7 @@
 title: "Embedded Systems: The Smart Shower"
 header:
   image: /assets/img/portfolio/smart-shower.jpg
+  teaser: /assets/img/portfolio/smart-shower-thumbnail.jpg
 sidebar:
   - title: "Role"
     text: "Student"
