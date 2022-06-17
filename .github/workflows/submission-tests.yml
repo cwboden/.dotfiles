@@ -19,8 +19,10 @@ jobs:
                   python-version: 3.x
                   cache: pip
 
-            - name: Configure $PYTHONPATH
-              run: echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
+            - name: Additional Python setup
+              run: |
+                  pip install -r requirements.txt
+                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
 
             - name: Check pre-commit cache
               uses: actions/cache@v3
@@ -29,9 +31,7 @@ jobs:
                   key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
 
             - name: Bootstrap
-              run: |
-                  pip install -r requirements.txt
-                  python bootstrap/main.py
+              run: python bootstrap/main.py
 
             - name: Ensure Bootstrap worked
               run: python -m unittest 'bootstrap/main_integration_test.py'
@@ -48,12 +48,13 @@ jobs:
                   python-version: 3.x
                   cache: pip
 
-            - name: Configure $PYTHONPATH
-              run: echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
+            - name: Additional Python setup
+              run: |
+                  pip install -r requirements.txt
+                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
 
             - name: Run Python unittests
-              run: |
-                  python -m unittest discover -p '*test.py'
+              run: python -m unittest discover -p '*test.py'
 
     rust:
         runs-on: ubuntu-latest
