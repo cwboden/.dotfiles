@@ -20,7 +20,6 @@ jobs:
               with:
                   python-version: 3.x
                   cache: pip
-              run: pip install -r requirements.txt
 
             - name: Configure $PYTHONPATH
               run: echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
@@ -37,7 +36,9 @@ jobs:
                   key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
             - name: Run Bootstrap
-              run: python bootstrap/main.py
+              run: |
+                  pip install -r requirements.txt
+                  python bootstrap/main.py
 
             - name: See if Bootstrap worked
               run: python -m unittest 'bootstrap/main_integration_test.py'
