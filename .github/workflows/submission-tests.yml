@@ -19,17 +19,11 @@ jobs:
               uses: actions/setup-python@v2
               with:
                   python-version: 3.x
+                  cache: pip
+              run: pip install -r requirements.txt
 
             - name: Configure $PYTHONPATH
               run: echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
-
-            - name: Check Python cache
-              uses: actions/cache@v3
-              with:
-                  path: ~/.cache/pip
-                  key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-                  restore-keys: |
-                      ${{ runner.os }}-pip-
 
             - name: Check Cargo cache
               uses: actions/cache@v3
@@ -43,9 +37,7 @@ jobs:
                   key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
             - name: Run Bootstrap
-              run: |
-                  pip install -r requirements.txt
-                  python bootstrap/main.py
+              run: python bootstrap/main.py
 
             - name: See if Bootstrap worked
               run: python -m unittest 'bootstrap/main_integration_test.py'
