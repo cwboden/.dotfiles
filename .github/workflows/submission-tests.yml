@@ -9,10 +9,9 @@ on:
 
 jobs:
     bootstrap:
-        name: Run Submission Tests
         runs-on: ubuntu-latest
         steps:
-      # Checks out repository under $GITHUB_WORKSPACE
+            # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v2
 
             - name: Set up Python
@@ -41,26 +40,33 @@ jobs:
                   path: ~/.cache/pre-commit
                   key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
 
-            - name: Run Bootstrap
+            - name: Bootstrap
               run: |
                   pip install -r requirements.txt
                   python bootstrap/main.py
 
-            - name: See if Bootstrap worked
+            - name: Ensure Bootstrap worked
               run: python -m unittest 'bootstrap/main_integration_test.py'
 
-            - name: Run Python unittests
-              run: |
-                  python -m unittest discover -p '*test.py'
+    python:
+        runs-on: ubuntu-latest
+        needs: bootstrap
+        steps:
+            - name: Python unittests
+              run: python -m unittest discover -p '*test.py'
 
-            - name: Run Rust core tests
+    rust:
+        runs-on: ubuntu-latest
+        needs: bootstrap
+        steps:
+            - name: Rust core tests
               run: cargo test
 
-            - name: Run Rust integration tests
+            - name: Rust integration tests
               run: python -m unittest discover -s 'examples/' -p '*test.py'
 
-            - name: Run Rust example tests
+            - name: Rust example tests
               run: cargo test --examples
 
-            - name: Run Rust doc tests
+            - name: Rust doc tests
               run: cargo test --doc
