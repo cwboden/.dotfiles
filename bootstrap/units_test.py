@@ -30,29 +30,28 @@ class BuildUnitTest(unittest.TestCase):
 
 class InstallSystemPackagesBuildUnitTest(unittest.TestCase):
     def test_build_possible_on_current_platform(self) -> None:
-        unit = InstallSystemPackagesBuildUnit()
+        unit = InstallSystemPackagesBuildUnit(dependencies=[])
         unit.build()
 
     @parameterized.expand(["Windows", "OSX", "non-existant-system"])
     def test_build_not_possible_on_system(self, system: str) -> None:
-        unit = InstallSystemPackagesBuildUnit(system=system)
+        unit = InstallSystemPackagesBuildUnit(system=system, dependencies=[])
         self.assertRaises(NotImplementedError, unit.build)
 
     @parameterized.expand(["Arch", "Kali", "Red Hat"])
     def test_build_not_possible_on_linux_distribution(
         self, linux_distribution: str
     ) -> None:
-        unit = InstallSystemPackagesBuildUnit(linux_distribution=linux_distribution)
+        unit = InstallSystemPackagesBuildUnit(
+            linux_distribution=linux_distribution, dependencies=[]
+        )
         self.assertRaises(NotImplementedError, unit.build)
 
     @patch("subprocess.check_call")
     def test_skips_already_installed_dependencies(
         self, subprocess_mock: unittest.mock.MagicMock
     ) -> None:
-        unit = InstallSystemPackagesBuildUnit()
-
-        # Definitely installed already
-        unit.dependencies = ["python"]
+        unit = InstallSystemPackagesBuildUnit(dependencies=[])
 
         unit.build()
         subprocess_mock.assert_not_called()

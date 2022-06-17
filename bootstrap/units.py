@@ -1,5 +1,7 @@
 import platform
 import subprocess
+from typing import List
+from typing import Optional
 
 import distro
 
@@ -44,15 +46,21 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
     """Installs packages to whichever distro of Linux is being run"""
 
     def __init__(
-        self, system: str = platform.system(), linux_distribution: str = distro.id()
+        self,
+        system: str = platform.system(),
+        linux_distribution: str = distro.id(),
+        dependencies: Optional[List[str]] = None,
     ):
         self.system = system.lower()
         self.linux_distribution = linux_distribution.lower()
 
-        with open("dependencies.txt", "r") as dependencies_file:
-            self.dependencies = [
-                dependency.strip() for dependency in dependencies_file.readlines()
-            ]
+        if dependencies is None:
+            with open("dependencies.txt", "r") as dependencies_file:
+                self.dependencies = [
+                    dependency.strip() for dependency in dependencies_file.readlines()
+                ]
+        else:
+            self.dependencies = dependencies
 
     def __str__(self) -> str:
         return (
