@@ -35,6 +35,12 @@ jobs:
                       target/
                   key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
 
+            - name: Check pre-commit cache
+              uses: actions/cache@v3
+              with:
+                  path: ~/.cache/pre-commit
+                  key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
+
             - name: Run Bootstrap
               run: |
                   pip install -r requirements.txt
