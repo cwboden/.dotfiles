@@ -7,6 +7,10 @@ from bootstrap.main import crawl_for_symlink_sources
 from bootstrap.main import translate_symlink_to_destination
 
 
+@unittest.skipIf(
+    os.environ.get("SKIP_MAIN_INTEGRATION_TEST"),
+    "Skipped during GitHub Workflow Python unit testing",
+)
 class BootstrapIntegrationTest(unittest.TestCase):
     """
     Assumes Bootstrap has been run on the system. Will check to ensure certain

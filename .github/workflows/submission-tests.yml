@@ -73,4 +73,6 @@ jobs:
                   echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
 
             - name: Run Python unittests
-              run: python -m unittest discover -p '*test.py'
+              run: |
+                  export SKIP_MAIN_INTEGRATION_TEST=1
+                  python -m unittest discover -p '*test.py'
