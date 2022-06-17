@@ -1,5 +1,5 @@
 ---
-name: Submission Approval Tests
+name: Submission Tests
 
 on:
     push:
@@ -7,12 +7,15 @@ on:
     pull_request:
         branches: [main]
 
+concurrency:
+    group: ${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}
+    cancel-in-progress: true
+
 jobs:
     bootstrap:
-        name: Run Submission Tests
         runs-on: ubuntu-latest
         steps:
-      # Checks out repository under $GITHUB_WORKSPACE
+            # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v2
 
             - name: Set up Python
@@ -64,3 +67,23 @@ jobs:
 
             - name: Run Rust doc tests
               run: cargo test --doc
+
+    website:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./docs
+        steps:
+            - uses: actions/checkout@v2
+
+            - name: Set up Ruby
+              uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
+              with:
+                  working-directory: ./docs
+                  ruby-version: '3.1'
+                  bundler-cache: true
+
+            - name: Ensure Site builds correctly
+              run: |
+                  bundle exec jekyll build
+                  bundle exec htmlproofer ./_site --disable-external --allow-hash-href --alt-ignore '/.*/portfolio/.*/'

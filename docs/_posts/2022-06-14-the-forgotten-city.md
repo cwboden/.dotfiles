@@ -5,7 +5,7 @@ last_modified_at: 2022-06-15T14:41:02-05:00
 ---
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-splash.webp">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-splash.webp", alt="The Forgotten City Splash Art">
 </figure>
 
 ## Overview
@@ -40,9 +40,9 @@ good reason, their daily routines are well defined to make them feel like a real
 part of the world.
 
 <figure class="align-center third">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-desius.webp">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-georgius.webp">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-fabia.webp">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-desius.webp", alt="Desius">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-georgius.webp", alt="Georgius">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-fabia.webp", alt="Fabia">
   <figcaption>Some of the shopkeepers, found in the Forum, selling their wares.</figcaption>
 </figure>
 
@@ -71,7 +71,7 @@ empowered to try a variety of approaches, just as people would Quicksave in
 Skyrim before looting a city, fighting a giant, or pickpocketing a shopkeep.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-save-menu.webp">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-save-menu.webp", alt="Save menu">
   <figcaption>The save menu, which I encourage you to use frequently!</figcaption>
 </figure>
 
@@ -99,7 +99,7 @@ on your journey to uncover the truth. At least, unless you disabled that option
 in the settings, like I did.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-statue.webp">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-statue.webp", alt="A golden statue">
   <figcaption>One of hundreds of statues found throughout the city.</figcaption>
 </figure>
 
@@ -153,8 +153,7 @@ Continuously trying to save the city from something that always seems to happen,
 anyways.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl
-  }}/assets/img/the-forgotten-city-sisyphus.jpg" alt="">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-sisyphus.jpg" alt="A statue of what appears to be Sisyphus">
   <figcaption>A not-so-subtle hint at a key theme in the game</figcaption>
 </figure>
 
@@ -201,7 +200,7 @@ difficult moral dilemma of the city: How much should the government interfere
 with personal freedoms for the good of the people?
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-duli.webp">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-duli.webp", alt="Duli">
   <figcaption>Duli, in custody under the rule of Magistrate Sentius</figcaption>
 </figure>
 
