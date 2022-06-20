@@ -1,7 +1,7 @@
 ---
 title: "The Forgotten City: An Intriguing, Philosophical First-Release from Modern Storyteller"
 excerpt: "My thoughts on the gameplay and meaning behind one of 2021's most unique games."
-last_modified_at:
+last_modified_at: 2022-06-20T22:20:20
 categories:
  - Video Games
 tags:
