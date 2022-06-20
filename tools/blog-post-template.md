@@ -8,3 +8,8 @@ tags:
   - simulation
   - philosophy
 ---
+
+|**Release Date:**| |
+|**Developer:**| |
+|**Publisher:**| |
+{: .notice--info}

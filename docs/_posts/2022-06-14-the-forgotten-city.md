@@ -1,7 +1,7 @@
 ---
 title: "The Forgotten City: An Intriguing, Philosophical First-Release from Modern Storyteller"
 excerpt: "My thoughts on the gameplay and meaning behind one of 2021's most unique games."
-last_modified_at: 2022-06-20T22:25:07
+last_modified_at: 2022-06-20T22:44:53
 categories:
  - Video Games
 tags:
@@ -13,6 +13,11 @@ tags:
 <figure class="align-center">
   <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-splash.webp" alt="The Forgotten City Splash Art">
 </figure>
+
+|**Release Date:**|28 Jul 2021|
+|**Developer:**|Modern Storyteller|
+|**Publisher:**|Dear Villagers|
+{: .notice--info}
 
 ## Overview
 First off, let me say that I've been enjoying the game. I will try to avoid any
