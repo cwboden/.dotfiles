@@ -1,5 +1,6 @@
 ---
 title:
+excerpt:
 last_modified_at:
 categories:
  - Video Games

@@ -1,6 +1,7 @@
 ---
 title: Spiritfarer uses Breathtaking Illustrations and Satisfying Gameplay to Minimize "Grind"
-last_modified_at: 2022-06-21T18:21:16
+excerpt: "How quality visuals and an abundance of interwoven mechanics can prevent the burnout associated with management games."
+last_modified_at: 2022-06-21T18:25:57
 categories:
  - Video Games
 tags:
