@@ -1,6 +1,6 @@
-use std::convert::From;
-use std::convert::TryInto;
+use std::convert::{From, TryInto};
 use std::io::BufRead;
+
 use serde::Serialize;
 
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -20,6 +20,7 @@ pub enum Cell {
 }
 
 impl From<char> for Cell {
+    #[must_use]
     fn from(c: char) -> Self {
         match c {
             '.' => Self::Empty,
@@ -47,7 +48,8 @@ pub struct Coordinate {
 }
 
 impl Coordinate {
-    /// Returns a new, valid space in the [`Maze`] in the corresponding [`Direction`]
+    /// Returns a new, valid space in the [`Maze`] in the corresponding
+    /// [`Direction`]
     pub fn move_in(self, direction: &Direction) -> Coordinate {
         match direction {
             Direction::North => Coordinate {
@@ -70,7 +72,6 @@ impl Coordinate {
     }
 }
 
-
 pub enum Direction {
     North,
     East,
@@ -92,6 +93,7 @@ impl Maze {
         self.starting_position = Some(Coordinate { room, row, column });
     }
 
+    #[must_use]
     fn parse_list<T: BufRead>(mut self, reader: T) -> Self {
         for line in reader.lines() {
             let line = line.unwrap();
@@ -137,6 +139,7 @@ impl Maze {
         self
     }
 
+    #[must_use]
     fn parse_map<T: BufRead>(mut self, reader: T) -> Self {
         let mut row_index = 0;
         let mut room_index = 0;
@@ -171,6 +174,7 @@ impl Maze {
         self
     }
 
+    #[must_use]
     pub fn from_reader<T: BufRead>(mut reader: T) -> Self {
         let mut header = [0u8; 6];
         reader.read(&mut header).unwrap();

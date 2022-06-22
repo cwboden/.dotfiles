@@ -1,8 +1,10 @@
 pub trait GreatestCommonDenominator {
+    #[must_use]
     fn gcd(&self, other: &Self) -> Self;
 }
 
 impl GreatestCommonDenominator for u32 {
+    #[must_use]
     fn gcd(&self, other: &Self) -> Self {
         if self < other {
             other.gcd(self)
@@ -15,10 +17,12 @@ impl GreatestCommonDenominator for u32 {
 }
 
 pub trait LeastCommonMultiple {
+    #[must_use]
     fn lcm(&self, other: &Self) -> Self;
 }
 
 impl LeastCommonMultiple for u32 {
+    #[must_use]
     fn lcm(&self, other: &Self) -> Self {
         (self * other) / self.gcd(other)
     }

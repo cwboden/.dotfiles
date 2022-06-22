@@ -21,6 +21,7 @@ type Result<T> = std::result::Result<T, Error>;
 impl<'a, T> Parser<'a, T> {
     const HELP_IDENTIFIERS: [&'static str; 2] = ["-h", "--help"];
 
+    #[must_use]
     pub fn new(output_args: &'a mut T) -> Self {
         Self {
             output_args,

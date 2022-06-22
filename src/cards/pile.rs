@@ -9,6 +9,7 @@ impl<T> Default for Pile<T> {
 }
 
 impl<T: Clone> Pile<T> {
+    #[must_use]
     pub fn new(cards: &[T]) -> Self {
         Self {
             cards: cards.to_vec(),

@@ -1,8 +1,9 @@
 mod maze;
 mod solver;
 
-use ron::ser::{to_writer_pretty, PrettyConfig};
 use std::io::BufReader;
+
+use ron::ser::{to_writer_pretty, PrettyConfig};
 
 use crate::maze::Maze;
 use crate::solver::Solver;
@@ -33,6 +34,7 @@ pub struct PathFindingArgs {
 }
 
 impl PathFindingArgsRaw {
+    #[must_use]
     fn new() -> Self {
         Self {
             algorithm: None,

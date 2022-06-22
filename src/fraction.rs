@@ -30,6 +30,7 @@ impl<T> Fraction<T>
 where
     T: Integer<T>,
 {
+    #[must_use]
     pub fn new(numerator: T, denominator: T) -> Self {
         Self {
             numerator,
@@ -37,6 +38,7 @@ where
         }
     }
 
+    #[must_use]
     pub fn add(&self, other: &Self) -> Self {
         let lcm = self.denominator.lcm(&other.denominator);
 
