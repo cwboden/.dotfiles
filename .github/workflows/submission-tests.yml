@@ -23,10 +23,12 @@ jobs:
               with:
                   filters: |
                       bootstrap:
+                        - 'Cargo.lock'
+                        - 'Cargo.toml'
                         - 'bootstrap/**'
                         - 'dependencies.txt'
+                        - 'poetry.lock'
                         - 'pyproject.toml'
-                        - 'Cargo.toml'
                       python:
                         - '*.py'
                       rust:
