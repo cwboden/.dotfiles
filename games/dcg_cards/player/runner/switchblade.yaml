@@ -1,0 +1,10 @@
+---
+class: Runner
+cost: 3
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Weapon.
+text: Fast.  (Action) Fight. You have +1 Strength for this attack. If you played 'Switchblade' this turn, this attack deals +1 Damage.  (Action) Put 'Switchblade'
+    into your hand.
+title: Switchblade

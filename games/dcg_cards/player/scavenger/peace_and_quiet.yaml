@@ -1,0 +1,8 @@
+---
+class: Scavenger
+cost: 5
+slots: []
+subtype: Event
+tags: Tactic. Utility.
+text: Draw 3 cards. If you are alone, gain 2 resources for each innate or item card you draw.
+title: Peace and Quiet

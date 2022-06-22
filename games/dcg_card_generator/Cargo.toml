@@ -1,0 +1,22 @@
+[package]
+name = "dcg_card_generator"
+version = "0.1.0"
+authors = ["Carson Boden <carson.boden@gmail.com>", "Daniel Jin <danielji@umich.edu"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde_yaml = "^0.8"
+
+dcg_render = { path = "../dcg_render" }
+
+[dependencies.serde]
+version = "^1.0"
+features = ["derive"]
+
+[dependencies.sdl2]
+git = "https://github.com/rust-sdl2/rust-sdl2"
+version = "0.35.2"
+default-features = false
+features = ["ttf", "image", "mixer"]

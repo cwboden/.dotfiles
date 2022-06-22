@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 2
+slots: []
+subtype: Event
+tags: Pharmacutical.
+text: Fast. Deal 3 damage to yourself. Gain +2 Combat and +2 Speed for this turn.
+title: Stim Pack

@@ -1,0 +1,10 @@
+---
+class: Scavenger
+cost: 4
+slots: []
+subtype: Event
+tags: Tactic. Utility. Item.
+text: Place 'Barricade' on your current location.  Uses Supply (4/4). If there is no Supply on 'Barricade', discard it.  When an enemy would enter this
+    location, instead remove 1 Supply, 2 for an elite enemy, from 'Barricade' and deal 1 damage to it. Spawning enemies are dealt 1 damage and placed at
+    a random nearby location.
+title: Barricade

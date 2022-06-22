@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 5
+slots: []
+subtype: Event
+tags: Innate.
+text: Gain +4 Speed for this turn.
+title: Amp Up

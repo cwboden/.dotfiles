@@ -1,0 +1,10 @@
+---
+class: Runner
+cost: 3
+slots:
+    - Spell
+subtype: Asset
+tags: Spell.
+text: (Reaction) When you basic attack or attack with a Melee weapon, test Attunement (3). If you are successful, add the amount you are successful by to
+    this skill test.
+title: 'Trancendence: Might'

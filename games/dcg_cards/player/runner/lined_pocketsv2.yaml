@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 0
+slots: []
+subtype: Asset
+tags: Spirit.
+text: Limit 1 per player. Uses Supply (0/3)  At the beginning of your turn, if you are alone, add 3 Supply to Lined Pockets. Remove these at the end of
+    your turn.
+title: Lined PocketsV2

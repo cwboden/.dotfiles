@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 2
+slots: []
+subtype: Event
+tags: Desperate. Spirit.
+text: Fast. Gain 2 Actions this turn, lose 2 Actions next turn.
+title: Adrenaline Rush

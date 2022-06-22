@@ -1,4 +1,4 @@
-use bevy::app::{Events, ManualEventReader};
+use bevy::ecs::event::{Events, ManualEventReader};
 use bevy::prelude::*;
 use bevy::render::camera::Camera;
 

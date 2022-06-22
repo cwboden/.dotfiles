@@ -1,0 +1,8 @@
+---
+class: Seeker
+cost: 3
+slots: []
+subtype: Event
+tags: Ritual.
+text: Investigate. This investigation uses Attunement. For every 2 points you succeed, discover 1 additional clue.
+title: Seek Guidance

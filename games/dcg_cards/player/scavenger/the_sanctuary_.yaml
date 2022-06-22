@@ -1,0 +1,9 @@
+---
+class: Scavenger
+cost: 3
+slots:
+    - OneHand
+subtype: Asset
+tags: Unique. Item. Sacred.
+text: 'Gain +2 Willpower.  Health: 4. Sanity: 4.'
+title: 'The Sanctuary '

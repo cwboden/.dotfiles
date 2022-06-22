@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 7
+slots:
+    - Relic
+subtype: Asset
+tags: Item.
+text: You have +2 Speed.  (Action) Exhaust 'The Penumbra' and test 5 Attunement. If successful, exhaust all enemies at your location.
+title: The Penumbra

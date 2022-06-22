@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Practiced.
+text: Gain +4 Attunement for this skill test. If successful, you may look at and then reorder the top 3 cards of your deck.
+title: Foresight

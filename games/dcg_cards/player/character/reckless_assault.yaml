@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Desperate.
+text: Gain +6 Combat for this skill test. If this is used on an attack, the targeted enemy gains Retaliate.
+title: Reckless Assault

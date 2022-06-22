@@ -1,0 +1,9 @@
+---
+class: Scavenger
+cost: 3
+slots: []
+subtype: Asset
+tags: Innate.
+text: (Reaction) When you reveal or uncover a room, exhaust 'Kleptomania' and choose 1.  Gain 2 resources Add 1 Supply to a card you control. Restore 2
+    health or 2 sanity to a card you control.
+title: Kleptomania

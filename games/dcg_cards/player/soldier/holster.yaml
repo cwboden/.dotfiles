@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 3
+slots: []
+subtype: Asset
+tags: Item.
+text: Add an extra hand slot that can only hold a weapon.
+title: Holster

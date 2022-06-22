@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Spirit.
+text: Gain +3 Combat or Speed for this skill test.
+title: Blood Rush

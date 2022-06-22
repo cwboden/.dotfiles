@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 2
+slots: []
+subtype: Event
+tags: Spirit.
+text: Fast. Play when you enter a room with 1 or more enemies.  Enemies do not engage with you. Move to an adjacent location.
+title: Slink By

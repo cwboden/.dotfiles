@@ -1,0 +1,9 @@
+---
+class: Scavenger
+cost: 4
+slots: []
+subtype: Asset
+tags: Companion. Unique. Beast.
+text: Gain +2 Intellect when investigating.  Health 3. Sanity 1.  When Max leaves play choose 1. Deal 3 damage to an enemy at your location. Search the
+    top 9 cards of your deck for an item card and draw it. Shuffle your deck after.
+title: Max

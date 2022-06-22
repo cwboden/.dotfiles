@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Innate.
+text: Gain +3 Attunement or Intellect for this skill test.
+title: Calm Mind

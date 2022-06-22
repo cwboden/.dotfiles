@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 4
+slots: []
+subtype: Asset
+tags: Innate.
+text: Gain +2 Speed when evading enemies.  (Reaction) After successfully evading an enemy, exhaust 'Dismissed Disposition' to gain 3 resources
+title: Dismissed Disposition

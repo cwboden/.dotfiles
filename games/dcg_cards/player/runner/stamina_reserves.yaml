@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 5
+slots: []
+subtype: Asset
+tags: Innate.
+text: Uses Stamina (1/3)  (Reaction) At the start of your turn, add 1 Stamina here.  (Anytime) Use on your turn only. Spend 1 Stamina. Move.
+title: Stamina Reserves

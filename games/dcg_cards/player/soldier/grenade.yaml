@@ -1,0 +1,9 @@
+---
+class: Soldier
+cost: 6
+slots: []
+subtype: Event
+tags: 'Item. Weapon. Old World. '
+text: Test (8) Combat. If successful, deal 6 damage to all enemies and players your location or a connecting location. If you fail by (4) or less, deal
+    half damage instead.
+title: Grenade

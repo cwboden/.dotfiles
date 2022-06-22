@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 6
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Tool.
+text: Uses Supply (3/3)  (Anytime) Spend 1 Supply. Investigate. Your location has -2 Shroud
+title: Spanners

@@ -1,0 +1,8 @@
+---
+class: Seeker
+cost: 6
+slots: []
+subtype: Event
+tags: Augury. Spell.
+text: Look at and reorder the top 5 cards of any deck.
+title: Divination

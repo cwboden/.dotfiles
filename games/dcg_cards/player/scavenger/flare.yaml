@@ -1,0 +1,8 @@
+---
+class: Scavenger
+cost: 4
+slots: []
+subtype: Event
+tags: Item. Utility.
+text: Fast. Either reduce the shroud of your location by 4 this round or reduce the Combat and Speed of an enemy by 4 this round.
+title: Flare

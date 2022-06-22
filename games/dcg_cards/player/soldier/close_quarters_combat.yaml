@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 0
+slots: []
+subtype: Event
+tags: Practiced.
+text: (Action) Fight twice. You may use Melee assets for these Fight actions.
+title: Close Quarters Combat

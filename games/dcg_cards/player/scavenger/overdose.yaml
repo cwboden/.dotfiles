@@ -1,0 +1,8 @@
+---
+class: Scavenger
+cost: 6
+slots: []
+subtype: Event
+tags: Item. Narcotic.
+text: Fast. Choose a stat and double its base value until the end of your turn. On your next turn, that stat's base value is 0.
+title: Overdose

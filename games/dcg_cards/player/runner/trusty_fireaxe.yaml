@@ -1,0 +1,10 @@
+---
+class: Runner
+cost: 7
+slots:
+    - TwoHands
+subtype: Asset
+tags: Item. Weapon. Tool.
+text: Whenever you reveal or uncover a room, you have +1 Strength and +1 Speed until the end of your turn.  (Action) Fight. If you revealed or uncovered
+    a room this turn, this attack deals +1 damage.
+title: Trusty Fireaxe

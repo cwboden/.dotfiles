@@ -1,0 +1,9 @@
+---
+class: Researcher
+cost: 10
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Device. Old World.
+text: Uses Charges (5/5)  Investigate. Gain +4 Intellect for this Investigation. You may Investigate at a nearby location. Gain 1 additional clue upon success.
+title: Sensor

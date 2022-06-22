@@ -1,0 +1,9 @@
+---
+class: Seeker
+cost: 7
+slots:
+    - Spell
+subtype: Asset
+tags: Spell.
+text: Uses Casts (4/4)  (Action) Fight. Spend 1 Cast. Use Attunement for this skill test. Gain +3 attunement for this test. If successful, deal +2 damage.
+title: Smite

@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 3
+slots: []
+subtype: Event
+tags: Spell.
+text: Discover 2 clues at your location.
+title: Precognition
