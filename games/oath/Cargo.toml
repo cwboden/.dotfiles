@@ -11,7 +11,7 @@ name = "drag-and-drop"
 path = "examples/drag_and_drop.rs"
 
 [dependencies]
-bevy = { version = "0.6.1", features = ["dynamic"] }
+bevy = { version = "0.7.0", features = ["dynamic"] }
 rand = "0.8"
 
 input = { path = "../../input" }

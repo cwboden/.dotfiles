@@ -1,4 +1,4 @@
-use bevy::app::{Events, ManualEventReader};
+use bevy::ecs::event::{Events, ManualEventReader};
 use bevy::prelude::*;
 use bevy::render::camera::Camera;
 
@@ -34,7 +34,7 @@ pub struct Interaction {
 }
 
 /// Attached to cameras that should be interacted from.
-#[derive(Component, Default)]
+#[derive(Component)]
 pub struct InteractionSource {
     cursor_events: ManualEventReader<CursorMoved>,
 }
