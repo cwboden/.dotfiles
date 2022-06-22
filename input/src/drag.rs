@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::input::interaction::{Interactable, InteractionState};
+use crate::interaction::{Interactable, InteractionState};
 
 /// Allows [`Interactable`] objects tagged with [`Draggable`] to be dragged and
 /// dropped around the screen using the cursor.

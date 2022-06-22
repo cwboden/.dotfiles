@@ -13,8 +13,9 @@ pub mod sector;
 pub mod terraforming;
 
 use federation::{federation_token_system, FederationTokens};
-use input::InputPlugin;
 use payment::{payment_system, ResourcesState};
+
+use self::input::InputPlugin;
 
 pub struct LogicPlugin;
 

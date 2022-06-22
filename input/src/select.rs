@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::input::interaction::{InteractionPlugin, InteractionState};
+use crate::interaction::{InteractionPlugin, InteractionState};
 
 pub struct SelectPlugin;
 

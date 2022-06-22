@@ -10,6 +10,7 @@ members = [
   "argparse/",
   "cards/",
   "gaia_project/",
+  "input/",
   "path_finding/",
 ]
 
@@ -17,6 +18,3 @@ members = [
 
 [dev-dependencies]
 assert_matches = "1.5"
-
-[dependencies]
-bevy = "0.6.1"

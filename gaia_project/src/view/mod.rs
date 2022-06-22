@@ -1,6 +1,6 @@
 use bevy::prelude::*;
-use dotfiles::input::interaction::Interactable;
-use dotfiles::input::select::Selectable;
+use input::interaction::Interactable;
+use input::select::Selectable;
 use strum::IntoEnumIterator;
 
 use crate::asset_library::AssetLibrary;

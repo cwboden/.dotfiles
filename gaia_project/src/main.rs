@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use dotfiles::input::select::SelectPlugin;
+use input::select::SelectPlugin;
 
 mod asset_library;
 mod logic;
