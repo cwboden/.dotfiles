@@ -1,11 +1,9 @@
 use bevy::prelude::*;
-use input::mouse::{
-    DragPlugin, Draggable, DropStrategy, Interactable, InteractionPlugin, InteractionSource,
-    SnapPoint,
-};
+use input::drag::{DragPlugin, Draggable, DropStrategy, SnapPoint};
+use input::interaction::{Interactable, InteractionPlugin, InteractionSource};
 
 fn main() {
-    App::build()
+    App::new()
         .add_plugins(DefaultPlugins)
         .add_plugin(InteractionPlugin)
         .add_plugin(DragPlugin)
@@ -13,6 +11,7 @@ fn main() {
         .run();
 }
 
+#[derive(Component)]
 struct Relic;
 
 fn setup(
