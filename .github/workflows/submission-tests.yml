@@ -65,11 +65,10 @@ jobs:
               run: poetry run python bootstrap/main.py
 
             - name: See if Bootstrap worked
-              run: python -m unittest 'bootstrap/main_integration_test.py'
+              run: poetry run python -m unittest 'bootstrap/main_integration_test.py'
 
             - name: Run Python unittests
-              run: |
-                  python -m unittest discover -p '*test.py'
+              run: poetry run python -m unittest discover -p '*test.py'
 
             - name: Run Rust core tests
               run: cargo test
