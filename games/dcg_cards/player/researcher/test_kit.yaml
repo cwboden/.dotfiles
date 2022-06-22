@@ -1,0 +1,9 @@
+---
+class: Researcher
+cost: 5
+slots:
+    - OneHand
+subtype: Asset
+tags: Item.
+text: Uses Charges (4/4)  Investigate. This Investigation gets -4 difficulty.
+title: Test Kit

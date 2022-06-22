@@ -1,0 +1,12 @@
+---
+name: Jane Doe
+title: The Mechanic
+combat: 3
+attunement: 8
+intellect: 9
+speed: 4
+willpower: 6
+health: 12
+sanity: 18
+text: (Action) Choose a Device asset. Test X Intellect, where X is the resource cost of the asset. If successful, you may spend resources equal to the cost
+    of the asset to fully restore all of its uses.

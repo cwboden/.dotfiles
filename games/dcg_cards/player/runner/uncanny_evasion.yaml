@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 0
+slots: []
+subtype: Event
+tags: Spell.
+text: Fast.  When an enemy attacks you, cancel the attack.
+title: Uncanny Evasion

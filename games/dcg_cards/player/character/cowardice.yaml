@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 20
+slots: []
+subtype: Event
+tags: Treachery. Weakness.
+text: While this is in your hand, gain -3 to all skills. Costs 1 less for each point of health you have remaining.
+title: Cowardice

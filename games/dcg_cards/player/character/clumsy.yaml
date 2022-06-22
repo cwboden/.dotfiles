@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Event
+tags: Treachery. Weakness.
+text: (Cast When Drawn) Choose 2 non-weakness item assets to discard. For each asset you cannot discard, take 3 damage.
+title: Clumsy

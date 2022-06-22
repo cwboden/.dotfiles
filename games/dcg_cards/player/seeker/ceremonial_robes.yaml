@@ -1,0 +1,9 @@
+---
+class: Seeker
+cost: 7
+slots:
+    - Body
+subtype: Asset
+tags: Clothing. Sacred.
+text: Increase the lower of your Attunement or Intellect by 3.
+title: Ceremonial Robes

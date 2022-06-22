@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 8
+slots: []
+subtype: Asset
+tags: Unique. Blessed.
+text: You have +1 action on your turn.  At the start of your turn, test Attunement (10). If successful, gain +2 additional actions on your turn.
+title: The Quickness

@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 10
+slots:
+    - Relic
+subtype: Asset
+tags: Item. Unique.
+text: You have +1 action on your turn.  At the start of your turn, test Attunement (6). For each point you succeed by, gain 1 Action, to a maximum of 3.
+title: The Alacritous

@@ -1,0 +1,10 @@
+---
+class: Scavenger
+cost: 3
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Versatile. Food.
+text: "(Anytime) Discard 'Canned Beans': Restore 3 Health and 1 Sanity  (Anytime) Discard 'Canned Beans': Deal 2 Damage to an enemy at your location  (Anytime)\
+    \ Discard 'Canned Beans': Choose a nearby location. Move an enemy adjacent to the chosen location into it."
+title: Canned Beans

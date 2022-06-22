@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 4
+slots: []
+subtype: Event
+tags: Food.
+text: Heal 6 health distributed among all investigators at your location. Distribute 2 horror among all investigators at your location.
+title: '"Rations"'

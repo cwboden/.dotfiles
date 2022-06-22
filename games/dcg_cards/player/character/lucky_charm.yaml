@@ -1,0 +1,10 @@
+---
+class: Character
+cost: 5
+slots:
+    - Relic
+    - Accessory
+subtype: Asset
+tags: Item. Blessed.
+text: John Doe deck only. (Reaction) When you take damage, test 1 Attunement. If you succeed, heal 1 health.
+title: Lucky Charm

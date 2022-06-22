@@ -1,0 +1,8 @@
+---
+class: Scavenger
+cost: 5
+slots: []
+subtype: Asset
+tags: Innate. Narcotic.
+text: Lose 4 maximum Sanity. Gain +3 Intellect. If you take horror that would reduce your sanity to 0, discard this asset before applying the horror.
+title: Pipe Dreams

@@ -1,0 +1,9 @@
+---
+class: Scavenger
+cost: 4
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Narcotic.
+text: Uses Supply (3/3)  (Action) Spend 1 Supply and exhaust 'Hip Flask'. Gain 3 Sanity, lose 1 Health
+title: Hip Flask

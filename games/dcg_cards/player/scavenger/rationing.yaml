@@ -1,0 +1,8 @@
+---
+class: Scavenger
+cost: 6
+slots: []
+subtype: Asset
+tags: Innate.
+text: Limit 1 per player.  The first asset you play each turn (except this one) costs 3 less.
+title: Rationing

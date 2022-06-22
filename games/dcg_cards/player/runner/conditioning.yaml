@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 5
+slots: []
+subtype: Asset
+tags: Innate.
+text: Uses Exertion (1/3). Gain 1 Exertion in the upkeep phase.  (Anytime) Spend up to 3 Exertion. Gain +2 to Speed, Combat, or Attunement for this skill
+    test per Exertion spent.
+title: Conditioning

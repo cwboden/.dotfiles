@@ -1,0 +1,10 @@
+---
+class: Researcher
+cost: 9
+slots:
+    - OneHand
+    - Relic
+subtype: Asset
+tags: Item. Blessed. Unique.
+text: Gain +2 Intellect.  (Reaction) When you successfully investigate, test (4) Attunement. If successful, gain 1 resource.
+title: The Curiosity

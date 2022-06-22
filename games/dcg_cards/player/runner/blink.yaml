@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 3
+slots: []
+subtype: Event
+tags: Spell.
+text: Disengage from all enemies. Move to a revealed location up to 3 locations away from your current location.
+title: Blink

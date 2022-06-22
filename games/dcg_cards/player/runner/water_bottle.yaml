@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 7
+slots:
+    - OneHand
+subtype: Asset
+tags: Item.
+text: Uses Supply (3/3)  (Anytime) Exhaust 'Water Bottle'. Gain +2 Intellect and +2 Speed until the end of your turn.
+title: Water Bottle

@@ -1,0 +1,11 @@
+---
+class: Soldier
+cost: 6
+slots:
+    - Head
+    - Body
+    - Legs
+subtype: Asset
+tags: 'Item. Old World. '
+text: 'Health: 8 Sanity: 0 '
+title: Combat Suit

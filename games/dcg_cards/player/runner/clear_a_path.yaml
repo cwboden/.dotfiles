@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 2
+slots: []
+subtype: Event
+tags: Tactic.
+text: Place 'Clear a Path' on your location. Locations adjacent to this location are considered adjacent.  At the end of the round, discard 'Clear a Path'.
+title: Clear a Path

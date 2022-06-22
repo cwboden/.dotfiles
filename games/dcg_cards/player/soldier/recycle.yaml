@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 0
+slots: []
+subtype: Event
+tags: Practiced.
+text: Discard one item in your play area. Draw an item.
+title: Recycle

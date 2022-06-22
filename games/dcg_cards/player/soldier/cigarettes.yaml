@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 1
+slots: []
+subtype: Asset
+tags: Item.
+text: Uses Supply (3/3)  (Anytime) Use 1 Supply to gain +2 Willpower for this skill test. Lose 1 health.
+title: Cigarettes

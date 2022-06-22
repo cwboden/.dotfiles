@@ -1,0 +1,9 @@
+---
+class: Seeker
+cost: 7
+slots:
+    - Spell
+subtype: Asset
+tags: Talent. Ritual.
+text: Uses Casts (6/6)  (Action) Investigate. Spend 1 Cast. Use Attunement for this skill test.
+title: Clairvoyance

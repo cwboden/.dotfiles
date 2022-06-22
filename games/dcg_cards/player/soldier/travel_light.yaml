@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 3
+slots: []
+subtype: Asset
+tags: Innate.
+text: Gain +4 Speed.  Lose 1 Speed for each item you control.
+title: Travel Light

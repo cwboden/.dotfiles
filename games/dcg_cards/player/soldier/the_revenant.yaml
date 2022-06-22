@@ -1,0 +1,10 @@
+---
+class: Soldier
+cost: 5
+slots:
+    - Relic
+subtype: Asset
+tags: Item. Cursed. Relic. Unique.
+text: Gain +2 Combat.  (Anytime) Exhaust The Revenant and test 4 Attunement. If you are successful, deal 3 damage to an enemy at your location and 2 damage
+    to yourself.
+title: The Revenant

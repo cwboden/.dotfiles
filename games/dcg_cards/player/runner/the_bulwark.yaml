@@ -1,0 +1,10 @@
+---
+class: Runner
+cost: 8
+slots:
+    - OneHand
+    - Relic
+subtype: Asset
+tags: Item.
+text: You have +1 Strength  (Reaction) When taking Damage, exhaust The Bulwark and test 5 Attunement. Take 1 less Damage for each point you succeed by.
+title: The Bulwark
