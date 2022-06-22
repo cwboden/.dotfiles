@@ -47,7 +47,7 @@ through with all of the I/O required for the class's autograder and used integra
 
 Try it out with:
 ```sh
-cargo run --example path-finding -- --help
+cargo run --package path_finding -- --help
 ```
 
 ## Bevy Engine
