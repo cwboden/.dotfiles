@@ -4,13 +4,15 @@ version = "0.1.0"
 authors = ["Carson Boden <carson.boden@gmail.com>"]
 edition = "2021"
 
+[workspace]
+members = [
+  ".",
+  "gaia_project/",
+]
+
 [[example]]
 name = "path-finding"
 path = "examples/path-finding/main.rs"
-
-[[example]]
-name = "gaia-project"
-path = "examples/gaia-project/main.rs"
 
 [[example]]
 name = "cards"

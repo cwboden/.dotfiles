@@ -65,7 +65,7 @@ primitive, but I've been able to interlace systems like:
 
 Try it out with:
 ```sh
-cargo run --example gaia-project
+cargo run --package gaia_project
 ```
 
 ### Turns
