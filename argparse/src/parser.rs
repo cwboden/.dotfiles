@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use std::io::Write;
 
-use crate::argparse::Argument;
+use crate::Argument;
 
 pub struct Parser<'a, T> {
     output_args: &'a mut T,
