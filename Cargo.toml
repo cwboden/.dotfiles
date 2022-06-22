@@ -6,11 +6,11 @@ members = [
   "cards/",
   "games/gaia_project/",
   "games/oath/",
+  "games/sudoku/",
   "input/",
   "math/",
   "path_finding/",
   "stat_gen/",
-  "sudoku/",
 ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
