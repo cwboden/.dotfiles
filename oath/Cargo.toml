@@ -1,0 +1,17 @@
+[package]
+name = "oath"
+version = "0.1.0"
+authors = ["Carson Boden <carson.boden@gmail.com>", "Steven Roberts <sarj21@gmail.com"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[[example]]
+name = "drag-and-drop"
+path = "examples/drag_and_drop.rs"
+
+[dependencies]
+bevy = { version = "0.6.1", features = ["dynamic"] }
+rand = "0.8"
+
+input = { path = "../input" }
