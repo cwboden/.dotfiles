@@ -4,7 +4,7 @@ members = [
   ".",
   "argparse/",
   "cards/",
-  "gaia_project/",
+  "games/gaia_project/",
   "input/",
   "math/",
   "oath/",

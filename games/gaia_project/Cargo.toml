@@ -11,4 +11,4 @@ bevy = "0.6.1"
 strum = "0.13.0"
 strum_macros = "0.13.0"
 
-input = { path = "../input" }
+input = { path = "../../input" }
