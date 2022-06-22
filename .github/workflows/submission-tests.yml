@@ -62,9 +62,7 @@ jobs:
                   key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
 
             - name: Run Bootstrap
-              run: |
-                  poetry install
-                  poetry run python bootstrap/main.py
+              run: poetry run python bootstrap/main.py
 
             - name: See if Bootstrap worked
               run: python -m unittest 'bootstrap/main_integration_test.py'
