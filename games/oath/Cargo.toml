@@ -14,4 +14,4 @@ path = "examples/drag_and_drop.rs"
 bevy = { version = "0.6.1", features = ["dynamic"] }
 rand = "0.8"
 
-input = { path = "../input" }
+input = { path = "../../input" }
