@@ -28,7 +28,7 @@ impl<T: Clone> Pile<T> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::cards::test::TestCard;
+    use crate::test::TestCard;
 
     #[test]
     fn pile_peek_returns_top_card() {

@@ -90,8 +90,7 @@ impl Amount {
     }
 
     pub fn new_singular(resource: Resource, amount: u8) -> Self {
-        let self_ = Self::new().with(resource, amount);
-        self_
+        Self::new().with(resource, amount)
     }
 
     pub fn get(&self, resource: Resource) -> u8 {
@@ -143,15 +142,15 @@ pub enum FederationToken {
     OneOreOneKnowledgeTwoCredits,
 }
 
-impl Into<Amount> for FederationToken {
-    fn into(self) -> Amount {
-        match self {
-            FederationToken::EightPointsQic => Amount::new_singular(Resource::Qic, 1),
-            FederationToken::EightPointsTwoPower => Amount::new_singular(Resource::PowerTokens, 2),
-            FederationToken::SevenPointsSixCredits => Amount::new_singular(Resource::Credits, 6),
-            FederationToken::SevenPointsTwoOre => Amount::new_singular(Resource::Ore, 2),
-            FederationToken::SixPointsTwoKnowledge => Amount::new_singular(Resource::Knowledge, 2),
-            FederationToken::TwelvePoints => Amount::new_singular(Resource::Ore, 0),
+impl From<FederationToken> for Amount {
+    fn from(token: FederationToken) -> Self {
+        match token {
+            FederationToken::EightPointsQic => Self::new_singular(Resource::Qic, 1),
+            FederationToken::EightPointsTwoPower => Self::new_singular(Resource::PowerTokens, 2),
+            FederationToken::SevenPointsSixCredits => Self::new_singular(Resource::Credits, 6),
+            FederationToken::SevenPointsTwoOre => Self::new_singular(Resource::Ore, 2),
+            FederationToken::SixPointsTwoKnowledge => Self::new_singular(Resource::Knowledge, 2),
+            FederationToken::TwelvePoints => Self::new_singular(Resource::Ore, 0),
             FederationToken::OneOreOneKnowledgeTwoCredits => {
                 panic!("XXX: Cannot convert into an amount with multiple resources yet");
             }

@@ -88,7 +88,7 @@ pub struct CoverActions {
 impl CoverActions {
     pub fn new() -> Self {
         Self {
-            actions: Type::iter().map(|t| CoverAction::new(t)).collect(),
+            actions: Type::iter().map(CoverAction::new).collect(),
         }
     }
 

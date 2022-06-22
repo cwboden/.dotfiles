@@ -1,4 +1,4 @@
-use std::string::ToString;
+
 
 use bevy::prelude::*;
 use strum::IntoEnumIterator;
@@ -34,7 +34,7 @@ pub fn cover_action_view(
         CoverActionType::iter().for_each(|t| {
             index += 1;
             text.sections[index].value =
-                format!("{}: {}\n", t.to_string(), view_state.actions.get(t).is_used);
+                format!("{}: {}\n", t, view_state.actions.get(t).is_used);
         });
     }
 }

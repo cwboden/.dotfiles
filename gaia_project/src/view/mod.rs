@@ -66,7 +66,7 @@ fn spawn_power_bowl_assets(commands: &mut Commands, style: TextStyle) {
                     },
                     TextSection {
                         value: "Bowl G: 0\n".to_string(),
-                        style: style,
+                        style,
                     },
                 ],
                 ..Default::default()
@@ -103,7 +103,7 @@ fn spawn_gauges_assets(commands: &mut Commands, style: TextStyle) {
                     },
                     TextSection {
                         value: "QIC: 0\n".to_string(),
-                        style: style,
+                        style,
                     },
                 ],
                 ..Default::default()
@@ -164,7 +164,7 @@ fn spawn_cover_actions_assets(commands: &mut Commands, style: TextStyle) {
                     },
                     TextSection {
                         value: "GainTechTile: 0\n".to_string(),
-                        style: style.clone(),
+                        style,
                     },
                 ],
                 ..Default::default()
@@ -209,7 +209,7 @@ fn spawn_research_assets(commands: &mut Commands, style: TextStyle) {
                     },
                     TextSection {
                         value: "Science: 0\n".to_string(),
-                        style: style.clone(),
+                        style,
                     },
                 ],
                 ..Default::default()
@@ -254,7 +254,7 @@ fn spawn_federation_tokens_assets(commands: &mut Commands, style: TextStyle) {
                     },
                     TextSection {
                         value: "".to_string(),
-                        style: style,
+                        style,
                     },
                 ],
                 ..Default::default()
@@ -286,7 +286,7 @@ fn init(mut commands: Commands, asset_library: Res<AssetLibrary>) {
     spawn_gauges_assets(&mut commands, style.clone());
     spawn_cover_actions_assets(&mut commands, style.clone());
     spawn_research_assets(&mut commands, style.clone());
-    spawn_federation_tokens_assets(&mut commands, style.clone());
+    spawn_federation_tokens_assets(&mut commands, style);
 
     spawn_planet_assets(&mut commands, asset_library);
 }

@@ -1,5 +1,6 @@
-use rand::Rng;
 use std::collections::VecDeque;
+
+use rand::Rng;
 
 pub struct Deck<T> {
     in_cards: VecDeque<T>,
@@ -38,8 +39,8 @@ impl<T: Clone> Deck<T> {
     }
 
     pub fn shuffle(&mut self) {
-        // XXX: Fairly naive implementation of the Fisher-Yates shuffle. There might be a better way
-        // to do this!
+        // XXX: Fairly naive implementation of the Fisher-Yates shuffle. There might be
+        // a better way to do this!
         let mut rng = rand::thread_rng();
         let mut i = self.in_cards.len();
         while i >= 2 {
@@ -70,7 +71,7 @@ impl<T: Clone> Clone for Deck<T> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::cards::test::TestCard;
+    use crate::test::TestCard;
 
     #[test]
     fn deck_into_iterator() {

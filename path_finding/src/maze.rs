@@ -151,16 +151,13 @@ impl Maze {
                 continue;
             }
 
-            let mut column_index = 0;
-            for character in line.chars() {
+            for (column_index, character) in line.chars().enumerate() {
                 let cell_type = Cell::from(character);
                 self.rooms[room_index].rows[row_index][column_index] = cell_type;
 
                 if cell_type == Cell::StartPosition {
                     self.set_start_position(room_index, row_index, column_index);
                 }
-
-                column_index += 1;
             }
 
             row_index += 1;
@@ -177,7 +174,7 @@ impl Maze {
     #[must_use]
     pub fn from_reader<T: BufRead>(mut reader: T) -> Self {
         let mut header = [0u8; 6];
-        reader.read(&mut header).unwrap();
+        reader.read_exact(&mut header).unwrap();
 
         let (input_format, number_of_rooms, room_size) = match header {
             [
