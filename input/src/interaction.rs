@@ -34,7 +34,7 @@ pub struct Interaction {
 }
 
 /// Attached to cameras that should be interacted from.
-#[derive(Component)]
+#[derive(Component, Default)]
 pub struct InteractionSource {
     cursor_events: ManualEventReader<CursorMoved>,
 }
