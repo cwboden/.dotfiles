@@ -1,7 +1,7 @@
 use std::fmt::{self, Display};
 use std::ops::{Add, Div, Mul};
 
-use crate::math::{GreatestCommonDenominator, LeastCommonMultiple};
+use crate::{GreatestCommonDenominator, LeastCommonMultiple};
 
 pub trait Integer<T>:
     Sized

@@ -1,3 +1,5 @@
+pub mod fraction;
+
 pub trait GreatestCommonDenominator {
     #[must_use]
     fn gcd(&self, other: &Self) -> Self;

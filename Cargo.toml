@@ -1,20 +1,13 @@
-[package]
-name = "dotfiles"
-version = "0.1.0"
-authors = ["Carson Boden <carson.boden@gmail.com>"]
-edition = "2021"
-
 [workspace]
+resolver = "2"
 members = [
   ".",
   "argparse/",
   "cards/",
   "gaia_project/",
   "input/",
+  "math/",
   "path_finding/",
 ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dev-dependencies]
-assert_matches = "1.5"
