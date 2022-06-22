@@ -1,0 +1,13 @@
+[package]
+name = "path_finding"
+version = "0.1.0"
+authors = ["Carson Boden <carson.boden@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+ron = "0.7"
+serde = { version = "1.0", features = ["derive"] }
+
+argparse = { path = "../argparse" }

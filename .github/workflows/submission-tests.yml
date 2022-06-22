@@ -59,9 +59,6 @@ jobs:
             - name: Run Rust core tests
               run: cargo test
 
-            - name: Run Rust integration tests
-              run: python -m unittest discover -s 'examples/' -p '*test.py'
-
             - name: Run Rust example tests
               run: cargo test --examples
 
