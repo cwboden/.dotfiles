@@ -38,7 +38,7 @@ jobs:
 
     bootstrap:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.bootstrap == 'true' }}
+        # if: ${{ needs.detect-changes.outputs.bootstrap == 'true' }}
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
@@ -84,7 +84,7 @@ jobs:
 
     python:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.python == 'true' }}
+        # if: ${{ needs.detect-changes.outputs.python == 'true' }}
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
@@ -121,7 +121,7 @@ jobs:
 
     rust:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.rust == 'true' }}
+        # if: ${{ needs.detect-changes.outputs.rust == 'true' }}
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
@@ -152,7 +152,7 @@ jobs:
 
     website:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.website == 'true' }}
+        # if: ${{ needs.detect-changes.outputs.website == 'true' }}
         runs-on: ubuntu-latest
         defaults:
             run:
