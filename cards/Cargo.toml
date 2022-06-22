@@ -1,21 +1,15 @@
 [package]
-name = "dotfiles"
+name = "cards"
 version = "0.1.0"
 authors = ["Carson Boden <carson.boden@gmail.com>"]
 edition = "2021"
 
-[workspace]
-members = [
-  ".",
-  "cards/",
-  "gaia_project/",
-  "path_finding/",
-]
-
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dev-dependencies]
-assert_matches = "1.5"
 
 [dependencies]
 bevy = "0.6.1"
+rand = "0.8.5"
+strum = "0.13.0"
+strum_macros = "0.13.0"
+
+dotfiles = { path = "../" }

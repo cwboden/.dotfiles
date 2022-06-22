@@ -1,5 +1,5 @@
 use bevy::prelude::*;
-use dotfiles::cards::{CardsPlugin, Deck, StandardPlayingCard};
+use cards::{CardsPlugin, Deck, StandardPlayingCard};
 
 fn main() {
     App::new()
