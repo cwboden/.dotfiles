@@ -117,7 +117,7 @@ jobs:
                   source .venv/bin/activate
 
             - name: Run Python unittests
-              run: find $(pwd) -name "*_test.py" -not -path "**/bootstrap/**" | xargs poetry run python -m unittest
+              run: find `pwd` -name "*_test.py" -not -path "**/bootstrap/**" | xargs poetry run python -m unittest
 
     rust:
         needs: detect-changes
