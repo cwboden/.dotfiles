@@ -84,7 +84,7 @@ jobs:
 
     python:
         needs: detect-changes
-        # if: ${{ needs.detect-changes.outputs.python == 'true' }}
+        if: ${{ needs.detect-changes.outputs.python == 'true' }}
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
