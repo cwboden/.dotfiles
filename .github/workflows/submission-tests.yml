@@ -90,6 +90,9 @@ jobs:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
 
+            - name: Install Ubuntu packages
+              run: sudo apt install $(cat dependencies.txt)
+
             - uses: actions/setup-python@v4
               with:
                   python-version: 3.x
