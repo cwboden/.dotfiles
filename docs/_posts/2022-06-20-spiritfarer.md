@@ -1,7 +1,7 @@
 ---
 title: Spiritfarer uses Breathtaking Illustrations and Satisfying Gameplay to Minimize "Grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-06-23T23:54:17
+last_modified_at: 2022-06-24T22:11:20
 categories:
  - Video Games
 tags:
@@ -11,7 +11,9 @@ tags:
 ---
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-splash.jpg" alt="Spiritfarer Splash Art">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-splash.jpg"
+    alt="Spiritfarer Splash Art">
 </figure>
 
 |**Release Date:**|18 Aug 2021|
@@ -20,13 +22,15 @@ tags:
 {: .notice--info}
 
 ## Overview
-The game...is fun.
+The game...is fun. I will go over the key mechanics in the game that made it
+jump out to me.
 
-## Key Mechanics
+## Resource Management
+At its core, the game is focused on resource management. You have a ship to sail
+around, collecting resources to construct buildings, upgrade dwellings, improve
+your ship, and discover new frontiers.
 
-### Resource Management
-
-#### Teaching a Complex System
+### Teaching a Complex System
 - New buildings / mechanics are slow-dripped to the player
 - High accessibility, almost to a fault in explanation: "tutorials" (spirit
     explaining you how to do something) are fairly common, though they are
@@ -39,7 +43,7 @@ The game...is fun.
     charting courses to new islands, answering the mail. Somehow all feels
     seamless, rarely have to think about "what's next"
 
-#### Balancing Simplicity with Replayability
+### Balancing Simplicity with Replayability
 Management games like Animal Crossing, Stardew Valley, or Factorio are typically
 full of minigames to add some spice to acquiring resources, crafting, etc. The
 implementation of these mini games is an important part of the player experience
@@ -57,12 +61,16 @@ the minigame starts. A meter appears near your character, and you need to hold
 `A` to keep the yellow bar over a moving fish icon.
 
 <figure class="align-center half">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/animal-crossing-fishing.jpg" alt="Fishing minigame in Animal Crossing">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/stardew-valley-fishing.jpg" alt="Fishing minigame in Stardew Valley">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/animal-crossing-fishing.jpg"
+    alt="Fishing minigame in Animal Crossing">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/stardew-valley-fishing.jpg"
+    alt="Fishing minigame in Stardew Valley">
   <figcaption>
     Animal Crossing's fishing is simpler and more approachable, but the added
-    complexity while fishing in Stardew Valley may entice players to practice
-    and return to fishing more often.
+    complexity of fishing in Stardew Valley may entice players to practice and
+    return to it more often.
   </figcaption>
 </figure>
 
@@ -89,8 +97,12 @@ the challenge, it can be difficult to start out as a new player.
 
 <figure class="align-center half">
   <!-- TODO: Take pictures for this on the Switch -->
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-fishing-1.jpg" alt="Fishing minigame in Spiritfarer, pre-bite">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-fishing-2.jpg" alt="Fishing minigame in Spiritfarer, post-bite">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-fishing-1.jpg"
+    alt="Fishing minigame in Spiritfarer, pre-bite">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-fishing-2.jpg"
+    alt="Fishing minigame in Spiritfarer, post-bite">
   <figcaption>
     Spiritfarer strikes a balance between approachability and complexity with
     its fishing minigame.
@@ -102,23 +114,26 @@ Stardew Valley: players can fish whenever they'd like, casting their line into
 the water and pressing `A` when there's a bite. Instead of a meter, the fish
 will move away from the player while you can hold `A` to reel in the fish. If
 the line is in danger of snapping, the entire rod will turn from vibrant yellow
-to deep crimson until, if the player refuses to let go, the line will snap.
+to deep crimson until, if the player refuses to let go, the line will snap. You
+catch the fish by pulling it in close enough without snapping the line.
 
 At its core, Spiritfarer's fishing game is similar to Stardew Valley, but it
 manages to improve the player experience in two ways:
 
-First, the player initially cannot snap the line at all. Early on, the game is
-intent on teaching players *how* to fish, though you are only able to catch a
-subset of fish (as well as lots of trash, like the classic Old Shoe). This
-allows players to learn the minigame with low-stakes, especially since there are
-a bunch of other activities on the ship they could be doing instead.
+First, the player initially cannot snap the line at all, and therefore will
+always catch the first. Early on, the game is intent on teaching players *how*
+to fish, though you are only able to catch a subset of fish (as well as lots of
+trash, like the classic Old Shoe). This allows players to learn the minigame
+with low-stakes, especially since there are a bunch of other activities on the
+ship they could be doing instead.
 
 Second, even once the line-snapping mechanic is introduced, it's still much
 harder to lose the fish than in Stardew Valley. The line will snap if the player
 doesn't respect the line turning red, but otherwise the fish will stay on the
-line. Comparably, in Stardew Valley, the green meter can reach zero, at which
-point the fish will leave. New players will still be able to catch fish, even if
-it takes them longer than someone more experienced.
+line. Comparably, in Stardew Valley, the green meter can reach zero if you
+aren't keeping the bar over the fish enough, at which point it will flee. New
+Spiritfarer players will still be able to catch fish, even if it takes them
+longer than someone more experienced.
 
 By lowering the skill floor, Spiritfarer's fishing is approachable, but still
 allows for deeper player expression. The developers hit a sweet-spot where
@@ -126,27 +141,138 @@ fishing is relaxing but also fun to return to.  I often found myself casting my
 line in new waters, hoping to find some new fish. There's even areas on the map
 for fishing-specific events, but I'll leave that you to to play!
 
-#### Handling Scale
-- Unlike a game like Factorio, the resources required change instead of becoming
-    quadratically more difficult. This prevents there being a significant grind
-    for chaining resources like fiber (fiber into thread into cloth). There can
-    then be changes in how those are combined
+### Handling Scale
+Another tricky balancing act management games have to play is around scaling the
+game with player progress. There should be a sense of active progression
+throughout the game -- players want to feel like they're improving and be able
+to grow with the game.
 
-Core Resources:
-- Wood (Oak, Maple, Ash) -> Planks
-- Thread (Linen, Wool, Cotton, Nebula)
-- Ore (Copper, Iron) -> Ingots
-- Minerals (Coal, Slate, Limestone)
-- Food (Grain, Veggie, Fish, Meat, etc.)
+In a management game, where progress is often gated by the acquisition of
+resources, scale typically revolves around how to balance the sources and sinks
+of resources. This allows players to progress semi-linearly with respect to the
+non-linear scaling of incoming resources.
 
-### Platforming
+In Factorio, for example, creating higher-level components requires
+significantly more materials and time.
+
+<figure class="align-right">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/factorio-assembly-machine-3-recipe.png"
+    alt="Factorio Level 3 assembly machine recipe">
+  <figcaption>
+    Factorio Level 3 assembly machine recipe
+  </figcaption>
+</figure>
+
+A Level 3 assembling machine requires two Level 2 assembling machines, which
+means upgrading all of your Level 2 assembling machines is quite an expensive
+operation.
+
+This works in a game where crafting and automation go hand-in-hand. The player
+is incentivized to build things not by hand, but by a chained-together array
+of mining rigs, belts, and assembly machines that all combine together to make
+Factorio fun! While it can be increasingly expensive to craft upgraded items,
+that is an intentional game mechanic so that players are, well, actually playing
+Factorio.
+
+But for a game like Animal Crossing, for example, where crafting, despite it's
+fun and peppy animation, takes a tedious amount of time (~3 sec per craft). This
+may not seem like a long time, but if you are crafting something expendable,
+like bait, you'll spend minutes crafting supplies that will be used up fairly
+quickly. As a result, Animal Crossing doesn't have many recipes that require
+multiple steps of crafting (i.e. Craft A to make B to make C) so that players
+are rarely spending copious amounts of time crafting, since it's only a minor
+component of the game -- at least, compared to Factorio.
+
+<figure class="align-center">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/animal-crossing-crafting.jpg"
+    alt="Animal Crossing crafting animation">
+  <figcaption>
+    The crafting experience in Animal Crossing prioritizes its whimsical art
+    style and snappy animations.
+  </figcaption>
+</figure>
+
+As a result, crafting in Animal Crossing can -- after enough time -- feel like a
+gateway to playing the game, rather than a fun mechanic to enjoy.  Crafting can
+become a chore because there's not much player expression in the process.
+
+In Factorio, automating crafting is exciting. Once you have a few assembling
+machines doing your bidding, you can stop spending time crafting basic
+components and start thinking about what you'll build next and -- perhaps more
+importantly -- how you'll accomplish it.
+
+But in Animal Crossing, crafting is done out of necessity. If you want to catch
+a bug, you'll need to craft a new net after yours breaks.
+
+The tradeoff, though, similar to the fishing example from the previous section,
+is approachability. Factorio is far from the casual experience that is Animal
+Crossing. And I don't think Factorio is "better" than Animal Crossing or
+vice-versa. The key point is that balancing the feel and speed of progression in
+the game is a necessary consideration for game developers.
+
+So now, let's consider how Spiritfarer does it. First, let's examine all of the
+different materials:
+
+#### Spiritfarer Resources
+
+|Class|Stages|Types|
+|---|---|
+|Wood|Logs, Planks|Maple, Oak, Ash, Pine|
+|Rocks|Rock, Powder|Limestone, Coal, Slate, Quartz, Marble|
+|Metals|Ore, Ingots, Sheets|Copper, Iron, Aluminum, Zinc, Silver, Gold, Pulsar|
+|Cloths|Fibre, Thread, Fabric|Linen, Wool, Cotton, Nebula, Silk|
+|Food|Seeds, Fruits & Veggies, Fish, Meat, Dishes|Apples, Turnips, Corn, Mackerel, and many more|
+
+Wow, looks like a lot! But each "Class" of materials are all harvested and then
+crafted in roughly the same way:
+- Trees, regardless of type, are chopped down into Logs and can then be refined
+  into planks at the Sawmill.
+- Fibre is obtained from plants or sheep, then placed in the Loom to be woven
+  into thread which can be put in the Loom *again* to be re-woven into fabric.
+- Food is placed in the kitchen oven to be turned into a variety of meals.
+
+Each of these processes involves another minigame where players are challenged
+to improve their skills, though the game maintains a low skill floor to ensure
+inexperienced players will not be gated by their inability to saw logs, for
+example.
+
+<figure class="align-center third">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-minigame-sawmill.jpg"
+    alt="Spritfarer Sawmill minigame">
+  <!-- TODO: Take pictures for this on the Switch -->
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-minigame-loom.jpg"
+    alt="Spritfarer Loom minigame">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-minigame-kitchen.jpg"
+    alt="Spritfarer Kitchen minigame">
+  <figcaption>
+    Examples of the various Spiritfarer crafting minigames. From left to right,
+    the Sawmill, the Loom, and the Kitchen.
+  </figcaption>
+</figure>
+
+In the Sawmill minigame, players must align the blade with the dotted, yellow
+line for each log they saw. Based on how well aligned it is, the players will
+get 1 - 4 Planks. Similar to fishing, the design allows experienced players to
+benefit from higher yields as they improve, while preventing players from being
+completely unable to produce wood if they don't get it perfectly right.
+
+- Difficulty scales with the Type rather than the class
+- Same minigame, but a ramp in difficulty
+- Always some yield (e.g. at least one wood from sawing)
+
+## Platforming
 - Focus on management, but platforming is a core part of the game
 - Events require player to platform around their ship to acquire resources
     (lightning, jellyfish, nebula, fireglow)
 - Cleverly coupled with ship layout for buildings, which makes platforming
     considerations another part of the management cycle -- very clever!
 
-### Interwoven Design
+## Interwoven Design
 - Cooking Food -> Spirits -> Abilities
 - Platforming -> Farming -> Crafting
 - Events -> Spirits -> [Tutorial, Character Development]
@@ -162,10 +288,10 @@ Core Resources:
     tutorial-like teaching, character development, and interwoven gameplay which
     makes it feel less like a "minigame" and more like an experience.
 
-### Co-op
+## Co-op
 - 2-player coop (see how this is?)
 
-## The Power of Polish
+## Copious, Consistent Art and Animation
 One of the most striking parts of the game is the art. Hand-drawn, consistent,
 beautiful.
 
@@ -191,31 +317,6 @@ beautiful.
 - Players can walk through the individual spirits' stories at their own pace,
     since the spirits live "naturally" on the boat, but will grow as you provide
     more ameneties, continue their signature quests
-
-## Themes
-
-### Prominence of Death / Loss
-- While a key factor, the game doesn't dwell on this side of things too much
-- Characters are taken to the gate and you hear their final musings about their
-    life and experience, but typically they are full of acceptance
-- Stages of Loss? (Denial, Anger, Bargaining, Depression, Acceptance) Maybe can
-    highlight Gwen or Summer?
-- Most characters don't move through the stages of grief regarding their own
-    passing but instead have some "task" to finish while still in the world.
-    Typically these goals are symbolic for another aspect of their life: e.g.
-    "The dragon" is representative of Summer's cancer. "The darkness" of the
-    jellyfish is representative of Gwen's suicidal anxiety. Atul, who is
-    consistently positive and who's death isn't explained, doesn't seem to have
-    much anxiety around his special event (lightning, though maybe related to a
-    heart attack / defibrilator, given his stature and love of greasy foods)
-- Stella (you) know most of the spirits in some way. Why is that? What does it
-    say about your experience as the Spiritfarer?
-
-### An Inclusive Environment
-- Focus on defining an inclusive world, not pandering / pushing a message
-- Characters come from a variety of backgrounds / identities, but all spirits
-    are accepting within the game
-- Similar to Schitt's Creek?
 
 ## Conclusion
 You might like this game if:
