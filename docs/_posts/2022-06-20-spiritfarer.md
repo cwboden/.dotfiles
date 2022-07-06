@@ -1,7 +1,7 @@
 ---
-title: Spiritfarer uses Breathtaking Illustrations and Satisfying Gameplay to Minimize "Grind"
+title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to minimize (but not avoid) "grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-06-24T22:11:20
+last_modified_at: 2022-07-06T19:28:16
 categories:
  - Video Games
 tags:
@@ -31,17 +31,55 @@ around, collecting resources to construct buildings, upgrade dwellings, improve
 your ship, and discover new frontiers.
 
 ### Teaching a Complex System
-- New buildings / mechanics are slow-dripped to the player
-- High accessibility, almost to a fault in explanation: "tutorials" (spirit
-    explaining you how to do something) are fairly common, though they are
-    important since many game concepts aren't explained at first (catching
-    lightning, for example, is a spirit-gated event)
-- So much to do, they really tightened the gameplay loop and preventing things
-    from feeling stale. Common chores: gardening (two types), cooking meals,
-    weaving thread / cloth, sawing logs, smelting ore, fishing, playing music to
-    plants, diving for cargo, navigating jellyfish storms, feeding passengers,
-    charting courses to new islands, answering the mail. Somehow all feels
-    seamless, rarely have to think about "what's next"
+There are a *lot* of mechanics and projects to attend to on your ship. In fact,
+it's one of the ways Spiritfarer can stay so fun -- there's always something
+aboard calling your name. Whether it's gardening, cooking, weaving, or playing
+music, completing tasks on the ship feels seamless with players rarely having to
+think about "what's next". It just flows.
+
+<figure class="align-center">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-starting-ship.jpg"
+    alt="Spiritfarer ship at the start of the game">
+  <figcaption>
+    The dinghy at the start of the game has some room for only a few buildings
+    so that the player gradually learns about each mechanic in the game.
+  </figcaption>
+</figure>
+
+The abundance of activities could have been overwhelming to a player starting
+the game, but Spiritfarer makes the smart choice to slowly drip these offerings
+out over the course of the game. Most new activities come from new buildings
+created on the ship: once you create the Loom, you can weave; after you have the
+Sawmill, you can manufacture planks; etc.
+
+Each activity has a minigame which players complete to earn the output
+resources. Some are simpler, like watering the plants in the garden. Others can
+be more complex, like smelting ore at the right temperature to create ingots.
+
+In both cases, the player now has something new to do, but they're able to
+introduce it at their own pace. After all, there's no *requirement* to build a
+garden aboard the ship, but curious players looking for a new challenge will do
+so and learn as they go.
+
+Players are also given detailed (though sometimes over-explained) tutorials from
+the spirits that specialize in each craft. For example, the starting spirit,
+Gwen, teaches you how to use the Loom, of which she is also a fan.
+
+<figure class="align-center">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-endgame-ship.jpg"
+    alt="Spiritfarer ship at the end of the game">
+  <figcaption>
+    By the end of the game, the player's ship has grown into a colossal barge,
+    with an abundance of important buildings -- each with their own mechanics --
+    aboard.
+  </figcaption>
+</figure>
+
+The incremental improvements and discovery of new mechanics motivates the
+player to continue playing while also creating a learning curve of complexity
+as both your ship and its horizons expand.
 
 ### Balancing Simplicity with Replayability
 Management games like Animal Crossing, Stardew Valley, or Factorio are typically
@@ -330,3 +368,9 @@ You might not like this game if:
 - You want a game with more action / combat / control-based character expression
 - You don't get attached to characters / that isn't enough to push you to drive
     the story forward
+
+### Personal Issues with Pacing
+Stanley didn't show up until I had no more quests to pursue -- everything gated
+by the bottled ectoplasm
+
+** SCREENSHOTS!! **
