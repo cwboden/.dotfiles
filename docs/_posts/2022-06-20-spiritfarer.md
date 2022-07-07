@@ -1,7 +1,7 @@
 ---
 title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to minimize (but not avoid) "grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-07-06T19:28:16
+last_modified_at: 2022-07-07T23:18:59
 categories:
  - Video Games
 tags:
@@ -24,6 +24,8 @@ tags:
 ## Overview
 The game...is fun. I will go over the key mechanics in the game that made it
 jump out to me.
+
+**TODO**
 
 ## Resource Management
 At its core, the game is focused on resource management. You have a ship to sail
@@ -280,7 +282,6 @@ example.
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-minigame-sawmill.jpg"
     alt="Spritfarer Sawmill minigame">
-  <!-- TODO: Take pictures for this on the Switch -->
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-minigame-loom.jpg"
     alt="Spritfarer Loom minigame">
@@ -299,37 +300,57 @@ get 1 - 4 Planks. Similar to fishing, the design allows experienced players to
 benefit from higher yields as they improve, while preventing players from being
 completely unable to produce wood if they don't get it perfectly right.
 
-- Difficulty scales with the Type rather than the class
-- Same minigame, but a ramp in difficulty
-- Always some yield (e.g. at least one wood from sawing)
+Notably, the scale for Spiritfarer is done via a marginal increase in
+difficulty, rather than quantity. Instead of requiring players to produce more
+of one type of resource, like we saw in Factorio, they must manufacture new
+types of resources using a slightly harder variant of a minigame.
 
-## Platforming
+For example, going back to the Sawmill, the type of wood you first find, Maple,
+is easiest to saw, requiring only one or two precise movements from the player.
+However, the later types of wood, like Oak or Ash, require the player to cut the
+wood more precisely.
+
+Thanks to the variable yield mechanic discussed above, the player will always
+get *some* output, but they will be motivated to continue honing their skills at
+the Sawmill if it means they'll get the coveted 4 planks instead of 1, 2, or 3.
+
+Compared to Animal Crossing, this also means that players can have fun returning
+to a crafting minigame, which helps reduce burnout. While it may not be the
+*most* fun part of the game, (the Crusher, for example, gets old quickly)
+Spiritfarer brings life to an overlooked part of other management games,
+allowing crafting to scale into the lategame without getting stale.
+
+## Interwoven Design
+- Cooking Food -> Spirits -> Abilities
+- Platforming -> Farming -> Crafting
+- Events -> Characters (e.g. Talking w/ Olga + harvesting resources on her)
+- Certain ingredients also tie these mechanics together: Sunflower seeds are
+    grown but then used in the Crusher to become a craftable component.
+    Resources like the Fireglow are acquired from a platforming event, but then
+    must be grown to be used.
+
+- Events -> Spirits -> [Tutorial, Character Development]
+- Some spirits are also linked to certain events, like Gwen and the Jellyfish
+    storms, creating a trifecta of tutorial-like teaching, character
+    development, and interwoven gameplay which makes it feel less like a
+    "minigame" and more like an experience.
+
+### Platforming
 - Focus on management, but platforming is a core part of the game
+- Laying out buildings -> Platforming minigames
 - Events require player to platform around their ship to acquire resources
     (lightning, jellyfish, nebula, fireglow)
 - Cleverly coupled with ship layout for buildings, which makes platforming
     considerations another part of the management cycle -- very clever!
 
-## Interwoven Design
-- Cooking Food -> Spirits -> Abilities
-- Platforming -> Farming -> Crafting
-- Events -> Spirits -> [Tutorial, Character Development]
-- Laying out buildings -> Platforming minigames
-- Events -> Characters (e.g. Talking w/ Olga + harvesting resources on her)
+### Spirit Interaction
+- Encouraged to learn about each spirit, find their favorite food, what they
+    dislike, completing their requests, etc.
 - Linking systems together: food makes spirits happy, you can cook different
     foods, need to feed them anyways, might as well have fun / try to see what
-    they like. Certain ingredients also tie these mechanics together: Sunflower
-    seeds are grown but then used in the Crusher to become a craftable
-    component. Resources like the Fireglow are acquired from a platforming
-    event, but then must be grown to be used. Some spirits are also linked to
-    certain events, like Gwen and the Jellyfish storms, creating a trifecta of
-    tutorial-like teaching, character development, and interwoven gameplay which
-    makes it feel less like a "minigame" and more like an experience.
+    they like.
 
-## Co-op
-- 2-player coop (see how this is?)
-
-## Copious, Consistent Art and Animation
+## Polished, Consistent Art and Experience
 One of the most striking parts of the game is the art. Hand-drawn, consistent,
 beautiful.
 
@@ -342,14 +363,14 @@ beautiful.
     asking the player why they don't fish anymore)
 - Spirits are extemely different, emphasized by their sprites
 
-### In UX
+### User Experience
 - Smart controls / scenes to incentivise / highlight the beauty: pausing and
     showing new islands as they're discovered, pressing a button to disable the
     HUD, outline of character sprites before they become "full spirits"
 - Button mapping is user-oriented for simplicity, 4 core buttons, nothing mapped
     to the d-pad (except movement), nothing mapped to the right-stick
 
-### In the Narrative
+### Narrative Polish
 - Organic characters: Join you on the island for specific character-related
     activities like gathering berries, buying supplies, etc.
 - Players can walk through the individual spirits' stories at their own pace,
@@ -369,8 +390,12 @@ You might not like this game if:
 - You don't get attached to characters / that isn't enough to push you to drive
     the story forward
 
+### Co-op
+- 2-player coop (see how this is?)
+- Didn't try this experience, can research?
+
 ### Personal Issues with Pacing
 Stanley didn't show up until I had no more quests to pursue -- everything gated
 by the bottled ectoplasm
 
-** SCREENSHOTS!! **
+**TODO**
