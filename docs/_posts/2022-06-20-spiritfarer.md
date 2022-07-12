@@ -1,7 +1,7 @@
 ---
 title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to reduce "grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-07-12T00:56:28
+last_modified_at: 2022-07-12T17:08:23
 categories:
  - Video Games
 tags:
@@ -187,7 +187,7 @@ By lowering the skill floor, *Spiritfarer*'s fishing is approachable, but still
 allows for deeper player expression. The developers hit a sweet-spot where
 fishing is relaxing but also fun to return to.  I often found myself casting my
 line in new waters, hoping to find some new fish. There's even areas on the map
-for fishing-specific events, but I'll leave that you to to play!
+for fishing-specific events, but I'll leave that to you to play!
 
 ### Scaling without Staling
 Another tricky balancing act management games have to play is around scaling the
@@ -200,7 +200,7 @@ resources, scale typically revolves around how to balance the sources and sinks
 of resources. This allows players to progress semi-linearly with respect to the
 non-linear scaling of incoming resources.
 
-In Factorio, for example, creating higher-level components requires
+In *Factorio*, for example, creating higher-level components requires
 significantly more materials and time.
 
 <figure class="align-right">
@@ -208,7 +208,7 @@ significantly more materials and time.
     src="{{ site.url }}{{ site.baseurl }}/assets/img/factorio-assembly-machine-3-recipe.png"
     alt="Factorio Level 3 assembly machine recipe">
   <figcaption>
-    Factorio Level 3 assembly machine recipe
+    <em>Factorio</em> Level 3 assembly machine recipe
   </figcaption>
 </figure>
 
@@ -219,9 +219,9 @@ operation.
 This works in a game where crafting and automation go hand-in-hand. The player
 is incentivized to build things not by hand, but by a chained-together array
 of mining rigs, belts, and assembly machines that all combine together to make
-Factorio fun! While it can be increasingly expensive to craft upgraded items,
+*Factorio* fun! While it can be increasingly expensive to craft upgraded items,
 that is an intentional game mechanic so that players are, well, actually playing
-Factorio.
+*Factorio*.
 
 But for a game like *Animal Crossing*, for example, where crafting, despite it's
 fun and peppy animation, takes a tedious amount of time (~3 sec per craft). This
@@ -230,7 +230,7 @@ like bait, you'll spend minutes crafting supplies that will be used up fairly
 quickly. As a result, *Animal Crossing* doesn't have many recipes that require
 multiple steps of crafting (i.e. Craft A to make B to make C) so that players
 are rarely spending copious amounts of time crafting, since it's only a minor
-component of the game -- at least, compared to Factorio.
+component of the game -- at least, compared to *Factorio*.
 
 <figure class="align-center">
   <img
@@ -246,7 +246,7 @@ As a result, crafting in *Animal Crossing* can -- after enough time -- feel like
 a gateway to playing the game, rather than a fun mechanic to enjoy.  Crafting
 can become a chore because there's not much player expression in the process.
 
-In Factorio, automating crafting is exciting. Once you have a few assembling
+In *Factorio*, automating crafting is exciting. Once you have a few assembling
 machines doing your bidding, you can stop spending time crafting basic
 components and start thinking about what you'll build next and -- perhaps more
 importantly -- how you'll accomplish it.
@@ -255,8 +255,8 @@ But in *Animal Crossing*, crafting is done out of necessity. If you want to
 catch a bug, you'll need to craft a new net after yours breaks.
 
 The tradeoff, though, similar to the fishing example from the previous section,
-is approachability. Factorio is far from the casual experience that is Animal
-Crossing. And I don't think Factorio is "better" than *Animal Crossing* or
+is approachability. *Factorio* is far from the casual experience that is Animal
+Crossing. And I don't think *Factorio* is "better" than *Animal Crossing* or
 vice-versa. The key point is that balancing the feel and speed of progression in
 the game is a necessary consideration for game developers.
 
@@ -310,13 +310,13 @@ completely unable to produce wood if they don't get it perfectly right.
 
 Notably, the scale for *Spiritfarer* is done via a marginal increase in
 difficulty, rather than quantity. Instead of requiring players to produce more
-of one type of resource, like we saw in Factorio, they must manufacture new
+of one type of resource, like we saw in *Factorio*, they must manufacture new
 types of resources using a slightly harder variant of a minigame.
 
 For example, going back to the Sawmill, the type of wood you first find, Maple,
 is easiest to saw, requiring only one or two precise movements from the player.
 However, the later types of wood, like Oak or Ash, require the player to cut the
-wood more precisely.
+wood more acutely.
 
 Thanks to the variable yield mechanic discussed above, the player will always
 get *some* output, but they will be motivated to continue honing their skills at
@@ -374,9 +374,9 @@ can sell them, players may cook, crush, sell, or give away their crops through a
 woven, intermingled set of systems.
 
 ### Spirit Interaction
-Making spirits happy isn't the only way each of the characters mingles with the
-other systems in the game. Many spirits are tied to specific minigames or
-events, giving them a specific time to shine and develop as you play.
+Making spirits happy isn't the only way each of the characters touch the other
+systems in the game. Many spirits are tied to specific minigames or events,
+giving them a specific time to shine and develop as you play.
 
 <figure class="align-center">
   <img
@@ -524,6 +524,12 @@ entirely so that the player can bask in the glory of hours of work
 *Spiritfarer*'s art team must have spent bringing the world to life.
 
 #### Controls
+<figure class="align-right">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/nintendo-switch-joy-con.png"
+    alt="A single, Nintendo Switch JoyCon">
+</figure>
+
 In general, the button mappings are oriented for simplicity. There are four core
 action buttons and the left stick / d-pad used for movement. In theory, the game
 could be played with a SNES controller, or in my case, a single Switch JoyCon.
@@ -549,6 +555,7 @@ because I needed them.
 
 Eventually, I was able to get the resource I needed and move on, but the damage
 had been done: I had started to feel burnt out.
+{: .notice--warning}
 
 Now, in general, the game leaves the player with lots to do. Even during my
 downtime, I was still able to get lots of crafting, cooking, planting, and so on
@@ -559,33 +566,61 @@ I think my personal experience of *Spiritfarer*'s pacing is an exception rather
 than a norm, but I encourage you to find out for yourself!
 
 ### Narrative Polish
-For starters, you meet the spirits in "NPC" form, having to guess who they are
-from their silhouette. Once aboard, they reveal themselves, though you can still
+The unique spirits aboard the ship help bring the game to life. Like *Stardew
+Valley*, each player will get to meet all the same spirits (or villagers) during
+the course of their playthrough. While this means there's less variety
+player-to-player, the result is much deeper interaction with each spirit. They
+each have their own personality, likes, dislikes, and activites you'll see them
+engaged in throughout your journey.
+
+For example, when visiting islands to gather supplies, you'll often see the
+spirits gathering berries or buying seeds or thread. This takes some of the
+pressure off of the player to provide *everything* aboard the ship, but it also
+makes spirits feel human. They have desires and actions outside of the player
+and act on them based on the location.
+
+You're also welcome to interact with each spirit as much (or as little) as you'd
+like. They live aboard the ship, meandering around between the different
+buildings (also based on their interests). While you may need to keep them fed,
+if you otherwise don't like a spirit very much, you can just keep your distance.
+
+You first meet the spirits in "NPC" form, having to guess who they are from
+their silhouette. Once aboard, they reveal themselves, though you can still
 remember them via their outline.
 
 <figure class="align-center half">
   <img
-    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-spirit-silhouette.jpg"
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-spirit-shadow.webp"
     alt="A spirit in Spiritfarer before being revealed">
   <img
-    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-spirit-revealed.jpg"
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-spirit-revealed.webp"
     alt="A spirit in Spiritfarer after being revealed">
   <figcaption>
-    The striking silhoette creates clear distinction between spirits, even after
-    they are revealed once aboard the ship.
+    The striking silhouette creates clear distinction between spirits, even
+    after they are revealed once aboard the ship.
   </figcaption>
 </figure>
 
-Spirits feel organic and alive:
-- they join you on the island for activites like gathering berries, buying
-    supplies, etc.
-- they live on the boat and you can talk to them at your leisure. Don't like a
-    spirit? Well, don't talk to them
-- they change as you get to know them, asking for extremely specific requests,
-    you are encouraged to learn more about them
+However, getting to know each spirit is fairly rewarding. As previously
+mentioned, they each have their likes and dislikes, but eventually they'll make
+extremely specific requests, so the player gets to be a part of their final
+moments.
 
-Many of the stories are based on real-life events from the developers. For
-example, !spoiler!
+And what makes the heart-wrenching plotlines of the spirits even more gripping is
+that many of the stories are based on real-life events from the developers.
+
+For example:
+<details>
+  <summary>Minor Spoiler</summary>
+  Alice, an adorable, old hedgehog is based on the grandmother of one of the
+  developers who passed away during the game's creation. Both suffered from
+  dementia, revealed in the game by Alice's frequent asks for the player to
+  build her a house on the ship, even after having already done so.
+</details>
+<br>
+By the end of the game, each spirit had stuck with me in some way. I found them
+extremely memorable and easily distinguishable -- two important accolades of
+character design.
 
 ### Co-op
 The two-player couch co-op in *Spiritfarer* was not something I tried. In my
