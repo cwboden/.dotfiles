@@ -1,7 +1,7 @@
 ---
-title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to minimize (but not avoid) "grind"
+title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to reduce "grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-07-12T00:37:46
+last_modified_at: 2022-07-12T00:56:28
 categories:
  - Video Games
 tags:
@@ -22,10 +22,16 @@ tags:
 {: .notice--info}
 
 ## Overview
-The game...is fun. I will go over the key mechanics in the game that made it
-jump out to me.
+*Spiritfarer* is "a cozy game about dying." You play as Stella, a young woman
+tasked with ferrying the dead, which, while it sounds morbid, actually involves
+a relaxing sail around various islands, completing the cute -- though sometimes
+tedious -- last wishes of spirits before they can move onwards.
 
-**TODO**
+The first thing that often jumps out to players is the sheer beauty of the game.
+Thuder Lotus is known for their hand-drawn visuals which bring incredible
+staying power to *Spiritfarer*. Combined with polish and clever redesigns of the
+Management genre, the game is able to minimize -- though not completely avoid --
+the burnout often associated with this style of game.
 
 ## Resource Management
 At its core, the game is focused on resource management. You have a ship to sail
@@ -553,14 +559,33 @@ I think my personal experience of *Spiritfarer*'s pacing is an exception rather
 than a norm, but I encourage you to find out for yourself!
 
 ### Narrative Polish
-- Spirits are extemely different, emphasized by their sprites
-- Organic characters: Join you on the island for specific character-related
-    activities like gathering berries, buying supplies, etc.
-- Players can walk through the individual spirits' stories at their own pace,
-    since the spirits live "naturally" on the boat, but will grow as you provide
-    more ameneties, continue their signature quests
-- Heartfelt stories, told through gameplay (minor spoiler: the hamster asking
-    for a house multiple times)
+For starters, you meet the spirits in "NPC" form, having to guess who they are
+from their silhouette. Once aboard, they reveal themselves, though you can still
+remember them via their outline.
+
+<figure class="align-center half">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-spirit-silhouette.jpg"
+    alt="A spirit in Spiritfarer before being revealed">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-spirit-revealed.jpg"
+    alt="A spirit in Spiritfarer after being revealed">
+  <figcaption>
+    The striking silhoette creates clear distinction between spirits, even after
+    they are revealed once aboard the ship.
+  </figcaption>
+</figure>
+
+Spirits feel organic and alive:
+- they join you on the island for activites like gathering berries, buying
+    supplies, etc.
+- they live on the boat and you can talk to them at your leisure. Don't like a
+    spirit? Well, don't talk to them
+- they change as you get to know them, asking for extremely specific requests,
+    you are encouraged to learn more about them
+
+Many of the stories are based on real-life events from the developers. For
+example, !spoiler!
 
 ### Co-op
 The two-player couch co-op in *Spiritfarer* was not something I tried. In my
