@@ -1,7 +1,7 @@
 ---
 title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to minimize (but not avoid) "grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-07-08T21:02:51
+last_modified_at: 2022-07-12T00:37:46
 categories:
  - Video Games
 tags:
@@ -457,27 +457,103 @@ like we saw when exploring the skill curve of *Spiritfarer*, it's okay if
 players *don't* make these consideration, but there's a high skill ceiling for
 expression.
 
-## Polished, Consistent Art and Experience
+## Polished, Consistent Experience
 One of the most striking parts of the game is the art. Hand-drawn, consistent,
-beautiful.
+beautiful. But the polish doesn't stop at the art -- both the user and narrative
+experiences shine throughout a player's journey through *Spiritfarer*. It's here
+where the game is able to push the chill energy hardest.
 
 ### In Art
-- Satisfying animations: Opening the oven, sound of watering plants, casting the
-    fishing rod, jumps / flips move into each other. Sometimes they get
-    repetitive, like after many hours of water plants, for example.
-- Relaxing aesthetic. Important for a management game that can cause player
-    burnout. Some characters even remind you to do more chill things (Atul
-    asking the player why they don't fish anymore)
-- Spirits are extemely different, emphasized by their sprites
+We can start with the obvious: the art. If you haven't been blown away by the
+games art, hopefully a few glamour shots will do the trick:
+
+<figure class="align-center">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-glamour-running.jpg"
+    alt="Spiritfarer glamour shot: Running">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-glamour-fishing.jpg"
+    alt="Spiritfarer glamour shot: Fishing">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-glamour-everdoor.webp"
+    alt="Spiritfarer glamour shot: The Everdoor">
+</figure>
+
+A lot of work has been put into making the game look beautiful and cohesive.
+Immersion is constant, since everything is carefully composed within each scene.
+
+In addition, the animations and sounds are extremely satisfying, which is
+important as you will experience many of them over and over, like watering
+plants, cooking food in the oven, or casting the fishing rod.
+
+Sadly, it's hard to convey the artistic experience via text given the nature of
+visual art. I'd recommend watching any gameplay video or, of course, giving the
+game a try!
 
 ### User Experience
-- Smart controls / scenes to incentivise / highlight the beauty: pausing and
-    showing new islands as they're discovered, pressing a button to disable the
-    HUD, outline of character sprites before they become "full spirits"
-- Button mapping is user-oriented for simplicity, 4 core buttons, nothing mapped
-    to the d-pad (except movement), nothing mapped to the right-stick
+Something we *can* talk about more is the player's experience: the controls,
+pacing, and interface (UI).
+
+#### Interface
+The UI serves to highlight the beauty of the game's art. When discovering a new
+island, for example, the game will pause and fade to a distant landscape of the
+nearby isle.
+
+Not only does this force the player to take a breath and enjoy the watercolor
+art, but it also encourages them to explore by giving them a taste of what they
+might find on the island: A resource-heavy island might show a dense forest,
+while an inhabited one would be littered with buildings and lights.
+
+<figure class="align-center">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/spiritfarer-discover-island.jpg"
+    alt="Spiritfarer island discovery">
+  <figcaption>
+    What the player sees when discovering the island of Hummingberg.
+  </figcaption>
+</figure>
+
+To futher highlight the aesthetic, there are even controls to hide the UI
+entirely so that the player can bask in the glory of hours of work
+*Spiritfarer*'s art team must have spent bringing the world to life.
+
+#### Controls
+In general, the button mappings are oriented for simplicity. There are four core
+action buttons and the left stick / d-pad used for movement. In theory, the game
+could be played with a SNES controller, or in my case, a single Switch JoyCon.
+
+It's worth noting that I played *Spiritfarer* on Switch, so only played using a
+controller. Since the game is also on PC, I could imagine certain systems (like
+building placements) to work differently with a mouse and keyboard.
+
+Gameplay felt satisfying from a control perspective -- in particular jumping
+around with all the various flip and glide animations was amazing. My only gripe
+would be how consistently I accidentally watered the wrong plant in the garden,
+though that feels like an extreme nit.
+
+#### Personal Issues with Pacing
+Pacing was, in my experience, the worst part of the game. And part of this I
+take responsibility for: I went pretty hard on optimizing everything onboard the
+ship, and that left me in a few positions where I was out of other tasks to do.
+
+As a result, I was stuck, waiting to discover a key resource that required the
+plot from a particular spirit to advance. This lead to me bouncing between
+islands, gathering resources, sure, but more as a chore to kill time rather than
+because I needed them.
+
+Eventually, I was able to get the resource I needed and move on, but the damage
+had been done: I had started to feel burnt out.
+
+Now, in general, the game leaves the player with lots to do. Even during my
+downtime, I was still able to get lots of crafting, cooking, planting, and so on
+done. But when the drip of excitement dries up in a management game, players
+will often feel like the tasks are chores more than activities or minigames.
+
+I think my personal experience of *Spiritfarer*'s pacing is an exception rather
+than a norm, but I encourage you to find out for yourself!
 
 ### Narrative Polish
+- Spirits are extemely different, emphasized by their sprites
 - Organic characters: Join you on the island for specific character-related
     activities like gathering berries, buying supplies, etc.
 - Players can walk through the individual spirits' stories at their own pace,
@@ -486,25 +562,33 @@ beautiful.
 - Heartfelt stories, told through gameplay (minor spoiler: the hamster asking
     for a house multiple times)
 
-## Conclusion
-You might like this game if:
-- You like relaxing, story-driven, management games with some light platforming
-    thrown in
-- You liked Sea of Thieves, Animal Crossing, Stardew Valley, Project Highrise,
-    LoZ: Windwaker / Phantom Hourglass
-
-You might not like this game if:
-- You want to automate most of your resource management (a la Factorio)
-- You want a game with more action / combat / control-based character expression
-- You don't get attached to characters / that isn't enough to push you to drive
-    the story forward
-
 ### Co-op
-- 2-player coop (see how this is?)
-- Didn't try this experience, can research?
+The two-player couch co-op in *Spiritfarer* was not something I tried. In my
+research, it seemed like the main appeal is to use Dandelion (your pet cat) to
+complete some of the managerial tasks around the ship.
 
-### Personal Issues with Pacing
-Stanley didn't show up until I had no more quests to pursue -- everything gated
-by the bottled ectoplasm
+Frankly, since I never felt inhibited by any of the chores on the ship (I was
+hindered by the narrative pacing, occasionally, which I complained about above),
+it didn't seem like there'd be a ton for a second player to do.
 
-**TODO**
+Again, I welcome experimentation and exploration. If you *loved* the co-op
+experience in *Spiritfarer*, share your thoughts!
+
+## Conclusion
+Hopefully, if you've read this far, you agree with me that *Spiritfarer* tries
+very hard to avoid players burning out. And, for the most part, they did a good
+job. There's a reason the first third of my playthrough was completed in just a
+weekend: the game can rope players into the "just one more task" mindset that
+causes them to lose track of time.
+
+I think this game would appeal to those who want a casual management game, like
+*Animal Crossing*, but with a few additional mechanics, like platforming, and a
+powerful narrative element.
+
+You may instead want to pass on this game if you find repetetive tasks extremely
+exhausting, you want more action or control-intensive player expression, or if a
+narrative isn't enough to push you forward in a game.
+
+Overall, while I believe the game overstays its welcome just a touch (much like
+many of the spirits aboard the ship) I would recommend checking it out and
+seeing how the formula for management games can be redefined.
