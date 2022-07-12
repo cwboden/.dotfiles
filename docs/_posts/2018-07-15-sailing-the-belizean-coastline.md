@@ -1,6 +1,12 @@
 ---
 title: Sailing the Belizean Coastline
-last_modified_at: 2022-07-12T00:10:23
+last_modified_at: 2022-07-12T00:14:12
+categories:
+ - Personal
+tags:
+  - travel
+  - sailing
+  - belize
 ---
 This past week I had the pleasure of sailing around Belize with my family. This
 was the third sailing trip we've done together, but this one involved some of

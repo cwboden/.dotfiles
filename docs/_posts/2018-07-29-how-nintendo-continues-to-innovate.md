@@ -1,6 +1,12 @@
 ---
 title: How Nintendo Continues to Innovate in the Gaming Industry
-last_modified_at: 2022-07-12T00:10:56
+last_modified_at: 2022-07-12T00:14:13
+categories:
+ - Video Games
+tags:
+  - hardware
+  - nintendo
+  - switch
 ---
 
 Nintendo has proved time and time again that they don't need "next-gen" hardware
