@@ -14,7 +14,7 @@ description: Welcome to my homepage -- still under construction!
 url: https://carsonboden.com
 baseurl: ''
 repository: cwboden/.dotfiles
-logo: /assets/img/personal-logo.png
+logo: /assets/vector/personal-logo.png
 
 search: true
 

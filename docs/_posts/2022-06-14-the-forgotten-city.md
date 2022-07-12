@@ -1,12 +1,23 @@
 ---
 title: "The Forgotten City: An Intriguing, Philosophical First-Release from Modern Storyteller"
 excerpt: "My thoughts on the gameplay and meaning behind one of 2021's most unique games."
-last_modified_at: 2022-06-15T14:41:02-05:00
+last_modified_at: 2022-06-20T22:44:53
+categories:
+ - Video Games
+tags:
+  - story
+  - simulation
+  - philosophy
 ---
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-splash.webp", alt="The Forgotten City Splash Art">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-splash.webp" alt="The Forgotten City Splash Art">
 </figure>
+
+|**Release Date:**|28 Jul 2021|
+|**Developer:**|Modern Storyteller|
+|**Publisher:**|Dear Villagers|
+{: .notice--info}
 
 ## Overview
 First off, let me say that I've been enjoying the game. I will try to avoid any
@@ -40,9 +51,9 @@ good reason, their daily routines are well defined to make them feel like a real
 part of the world.
 
 <figure class="align-center third">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-desius.webp", alt="Desius">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-georgius.webp", alt="Georgius">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-fabia.webp", alt="Fabia">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-desius.webp" alt="Desius">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-georgius.webp" alt="Georgius">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-fabia.webp" alt="Fabia">
   <figcaption>Some of the shopkeepers, found in the Forum, selling their wares.</figcaption>
 </figure>
 
@@ -71,7 +82,7 @@ empowered to try a variety of approaches, just as people would Quicksave in
 Skyrim before looting a city, fighting a giant, or pickpocketing a shopkeep.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-save-menu.webp", alt="Save menu">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-save-menu.webp" alt="Save menu">
   <figcaption>The save menu, which I encourage you to use frequently!</figcaption>
 </figure>
 
@@ -99,7 +110,7 @@ on your journey to uncover the truth. At least, unless you disabled that option
 in the settings, like I did.
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-statue.webp", alt="A golden statue">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-statue.webp" alt="A golden statue">
   <figcaption>One of hundreds of statues found throughout the city.</figcaption>
 </figure>
 
@@ -200,7 +211,7 @@ difficult moral dilemma of the city: How much should the government interfere
 with personal freedoms for the good of the people?
 
 <figure class="align-center">
-  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-duli.webp", alt="Duli">
+  <img src="{{ site.url }}{{ site.baseurl }}/assets/img/the-forgotten-city-duli.webp" alt="Duli">
   <figcaption>Duli, in custody under the rule of Magistrate Sentius</figcaption>
 </figure>
 
