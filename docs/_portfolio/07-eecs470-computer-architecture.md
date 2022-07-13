@@ -8,7 +8,7 @@ header:
   actions:
     - label: Report
       url: "https://drive.google.com/file/d/1OQVCtz9N7lD_LYhUPrcOAjIwjPcndfrq/view?usp=sharing"
-excerpt: "Student <br/> Apr 2018"
+excerpt: "Student, <br/> Apr 2018"
 ---
 
 Prototyped and programmed a superscalar, Alpha64-ISA, out-of-order processor

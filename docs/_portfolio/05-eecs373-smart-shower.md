@@ -8,7 +8,7 @@ header:
   actions:
     - label: Poster
       url: "https://drive.google.com/file/d/1efbnW9kqRgivNw-uoiIQzRIYNuEMVeiD/view?usp=sharing"
-excerpt: "Student <br/> Dec 2017"
+excerpt: "Student, <br/> Dec 2017"
 ---
 
 Designed and created a user-detecting smart shower that uses ultrasonic sensors

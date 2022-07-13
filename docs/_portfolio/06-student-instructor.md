@@ -10,7 +10,7 @@ header:
       url: http://www.eecs.umich.edu/courses/eecs370/
     - label: EECS 470 Course Website
       url: http://www.eecs.umich.edu/courses/eecs470/
-excerpt: "Instructional Aide (IA), Graduate Student Instructor (GSI), Lecturer <br/> Jan 2018 - Dec 2019"
+excerpt: "Instructional Aide (IA), Graduate Student Instructor (GSI), Lecturer, <br/> Jan 2018 - Dec 2019"
 ---
 
 Worked as an assistant to professors in EECS 370: Introduction to Computer

@@ -8,7 +8,7 @@ header:
   actions:
     - label: Unofficial Transcript
       url: "https://drive.google.com/file/d/1rRvPePKKocOuhgxDgizivnZv1h4aNYlQ/view?usp=sharing"
-excerpt: "Student <br/> Aug 2015 - Dec 2019"
+excerpt: "Student, <br/> Aug 2015 - Dec 2019"
 ---
 
 Graduated Summa Cum Laude from the University of Michigan with a Bachelor's in

@@ -8,7 +8,7 @@ header:
   actions:
     - label: Report
       url: "https://drive.google.com/file/d/1OQVCtz9N7lD_LYhUPrcOAjIwjPcndfrq/view?usp=sharing"
-excerpt: "Student <br/> Dec 2018"
+excerpt: "Student, <br/> Dec 2018"
 ---
 
 As part of EECS 573: Advanced Topics in Computer Architecture, my lab partner

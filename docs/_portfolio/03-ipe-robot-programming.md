@@ -10,7 +10,7 @@ header:
       url: "https://drive.google.com/file/d/0B-fgDFbTxSARdVdqdG1TTHV3ZWM/view?usp=sharing"
     - label: Poster
       url: "https://drive.google.com/file/d/0B-fgDFbTxSAReF9mZnFVZVk1V28/view?usp=sharing"
-excerpt: "Student <br/> Jun 2017"
+excerpt: "Student, <br/> Jun 2017"
 ---
 
 Attended an abroad program in Germany and designed a series of programs, each

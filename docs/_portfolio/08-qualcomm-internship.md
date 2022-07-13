@@ -5,7 +5,7 @@ header:
   overlay_filter: "0.3"
   overlay_image: /assets/img/portfolio/qualcomm.jpg
   teaser: /assets/img/portfolio/qualcomm-thumbnail.jpg
-excerpt: "Intern <br/> May 2018 - Aug 2018"
+excerpt: "Intern, <br/> May 2018 - Aug 2018"
 ---
 
 Designed testing and debugging frameworks for DDR systems. The automation

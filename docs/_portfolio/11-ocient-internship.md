@@ -8,7 +8,7 @@ header:
   actions:
     - label: Website
       url: "https://www.ocient.com"
-excerpt: "Intern <br/> May 2019 - Aug 2019"
+excerpt: "Intern, <br/> May 2019 - Aug 2019"
 ---
 
 Contributed to the development of an exabyte-scale distributed database.  The

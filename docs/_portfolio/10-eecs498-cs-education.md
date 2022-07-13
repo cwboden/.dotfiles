@@ -12,7 +12,7 @@ header:
       url: "https://drive.google.com/file/d/1tRI8SWdemvetnfvm1HU4KdPOpI0l3RUR/view?usp=sharing"
     - label: Redesign
       url: "https://drive.google.com/file/d/12xvZMoEeGAwBebiJy5YfnVzY-TOypZRC/view?usp=sharing"
-excerpt: "Student <br/> Apr 2019"
+excerpt: "Student, <br/> Apr 2019"
 ---
 
 In this special topics course, we were introduced to many topics in computer

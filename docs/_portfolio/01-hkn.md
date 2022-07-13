@@ -8,7 +8,7 @@ header:
   actions:
    - label: Website
      url: "https://hkn.eecs.umich.edu/"
-excerpt: "Treasurer, Corporate Relations, President, Advisor <br/> Dec 2016 - Present"
+excerpt: "Treasurer, Corporate Relations, President, Advisor, <br/> Dec 2016 - Present"
 ---
 
 The Beta Epsilon chapter of HKN is composed of the top electrical, computer, and

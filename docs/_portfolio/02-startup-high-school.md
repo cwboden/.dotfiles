@@ -8,7 +8,7 @@ header:
   actions:
     - label: Website
       url: "https://mpowered.umich.edu/"
-excerpt: "Co-Director <br/> Mar 2017"
+excerpt: "Co-Director, <br/> Mar 2017"
 ---
 
 Flagship project of <a href="https://mpowered.umich.edu">MPowered</a> to
