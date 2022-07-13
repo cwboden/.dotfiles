@@ -1,5 +1,6 @@
 ---
-layout: splash
+layout: home
+classes: wide
 permalink: /
 header:
   overlay_color: "#000"
@@ -15,15 +16,15 @@ feature_row:
   - image_path: /assets/img/spiritfarer-splash.jpg
     alt: "Latest Review: Spiritfarer"
     title: "Video Games"
-    excerpt: A dive into mechanics, player experience, what "worked", and what didn't.
-    url: /categories/video-games
+    excerpt: Unique mechanics, player experience, what "worked", and what didn't.
+    url: /categories/#video-games
     btn_label: "Read More"
     btn_class: "btn--primary"
   - image_path: /assets/img/code-snippet.png
     alt: "A snippet of code from `gaia_project`"
     title: "Programming"
-    excerpt: Experimentation, abandoned projects, and maybe some nuggets to learn from.
-    url: /categories/programming
+    excerpt: Experimentation, abandoned projects, and some nuggets to learn from.
+    url: /categories/#programming
     btn_label: "Read More"
     btn_class: "btn--primary"
   - image_path: /assets/img/old-books.jpg
