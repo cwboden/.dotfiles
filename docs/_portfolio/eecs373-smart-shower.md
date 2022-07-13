@@ -1,13 +1,14 @@
 ---
 title: "Embedded Systems: The Smart Shower"
 header:
-  image: /assets/img/portfolio/smart-shower.jpg
+  overlay_color: "#000"
+  overlay_filter: "0.3"
+  overlay_image: /assets/img/portfolio/smart-shower.jpg
   teaser: /assets/img/portfolio/smart-shower-thumbnail.jpg
-sidebar:
-  - title: "Role"
-    text: "Student"
-  - title: "Date"
-    text: "Dec 2017"
+  actions:
+    - label: Poster
+      url: "https://drive.google.com/file/d/1efbnW9kqRgivNw-uoiIQzRIYNuEMVeiD/view?usp=sharing"
+excerpt: "Student <br/> Dec 2017"
 ---
 
 Designed and created a user-detecting smart shower that uses ultrasonic sensors
@@ -20,5 +21,3 @@ The team included four team members and a budget of $200 with the goal of
 designing a marketable product. The source code is not available to the public
 due to the University of Michigan Engineering Honor Code, but the project
 poster, used during the demo day, is below.
-
-<a class="btn btn--primary" target="_blank" href="https://drive.google.com/file/d/1efbnW9kqRgivNw-uoiIQzRIYNuEMVeiD/view?usp=sharing">Poster</a>
