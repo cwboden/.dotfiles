@@ -37,7 +37,7 @@ author:
           icon: fab fa-fw fa-steam
           url: https://steamcommunity.com/id/xenonn11
         - label: BGG
-          icon: fab fa-fw fa-chess-pawn
+          icon: fas fa-fw fa-dice
           url: https://boardgamegeek.com/user/xenonn11
 
 footer:
@@ -69,6 +69,7 @@ defaults:
           share: true
           related: true
           toc: true
+          toc_sticky: true
     # Portfolio
     - scope:
           path: ''
@@ -114,11 +115,29 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/Los_Angeles
 
 plugins: &plugins
+    - jekyll-archives
+    - jekyll-feed
+    - jekyll-gist
+    - jekyll-include-cache
     - jekyll-paginate
     - jekyll-sitemap
-    - jekyll-gist
-    - jekyll-feed
     - jemoji
-    - jekyll-include-cache
 
 whitelist: *plugins
+
+category_archive:
+    type: jekyll-archives
+    path: /categories/
+tag_archive:
+    type: jekyll-archives
+    path: /tags/
+jekyll-archives:
+    enabled:
+        - categories
+        - tags
+    layouts:
+        category: archive-taxonomy
+        tag: archive-taxonomy
+    permalinks:
+        category: /categories/:name/
+        tag: /tags/:name/
