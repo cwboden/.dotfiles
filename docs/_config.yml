@@ -115,7 +115,6 @@ markdown_ext: markdown,mkdown,mkdn,mkd,md
 timezone: America/Los_Angeles
 
 plugins: &plugins
-    - jekyll-archives
     - jekyll-feed
     - jekyll-gist
     - jekyll-include-cache
@@ -126,18 +125,8 @@ plugins: &plugins
 whitelist: *plugins
 
 category_archive:
-    type: jekyll-archives
+    type: liquid
     path: /categories/
 tag_archive:
-    type: jekyll-archives
+    type: liquid
     path: /tags/
-jekyll-archives:
-    enabled:
-        - categories
-        - tags
-    layouts:
-        category: archive-taxonomy
-        tag: archive-taxonomy
-    permalinks:
-        category: /categories/:name/
-        tag: /tags/:name/
