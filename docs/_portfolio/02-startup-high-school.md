@@ -1,13 +1,14 @@
 ---
 title: "Startup High School"
 header:
-  image: /assets/img/portfolio/startup-high-school.jpg
+  overlay_color: "#000"
+  overlay_filter: "0.3"
+  overlay_image: /assets/img/portfolio/startup-high-school.jpg
   teaser: /assets/img/portfolio/startup-high-school-thumbnail.jpg
-sidebar:
-  - title: "Role"
-    text: "Co-Director"
-  - title: "Date"
-    text: "Mar 2017"
+  actions:
+    - label: Website
+      url: "https://mpowered.umich.edu/"
+excerpt: "Co-Director, <br/> Mar 2017"
 ---
 
 Flagship project of <a href="https://mpowered.umich.edu">MPowered</a> to
@@ -16,5 +17,3 @@ In our two day entrepreneurial summit and pitch competition, we challenge high
 schoolers to put their mind to the test for cash scholarships. Co-directed a
 team of six individuals to attain sponsorships, reach out to schools, and
 organize event logistics.
-
-<a class="btn btn--primary" target="_blank" href="https://mpowered.umich.edu/">Website</a>

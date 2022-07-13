@@ -1,13 +1,14 @@
 ---
 title: "Eta Kappa Nu (HKN)"
 header:
-  image: /assets/img/portfolio/hkn-logo.png
+  overlay_color: "#000"
+  overlay_filter: "0.3"
+  overlay_image: /assets/img/portfolio/hkn-logo.png
   teaser: /assets/img/portfolio/hkn-logo-thumbnail.png
-sidebar:
-  - title: "Role"
-    text: "Treasurer, Corporate Relations, President, Advisor"
-  - title: "Date"
-    text: "Dec 2016 - Present"
+  actions:
+   - label: Website
+     url: "https://hkn.eecs.umich.edu/"
+excerpt: "Treasurer, Corporate Relations, President, Advisor, <br/> Dec 2016 - Present"
 ---
 
 The Beta Epsilon chapter of HKN is composed of the top electrical, computer, and
@@ -25,5 +26,3 @@ Furthermore, I sought to orchestrate the reopening of our fundraising cafe,
 which had been closed for the past 4 semester. The electee class was 50% larger
 than the previous semester and a packet of required documents and information
 was sent out to the Office of the Provost to reopen the cafe.
-
-<a class="btn btn--primary" target="_blank" href="https://hkn.eecs.umich.edu/">Website</a>

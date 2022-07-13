@@ -1,13 +1,11 @@
 ---
 title: "Amazon Internship"
 header:
-  image: /assets/img/portfolio/amazon.png
+  overlay_color: "#000"
+  overlay_filter: "0.3"
+  overlay_image: /assets/img/portfolio/amazon.png
   teaser: /assets/img/portfolio/amazon-thumbnail.png
-sidebar:
-  - title: "Role"
-    text: "SDET Intern"
-  - title: "Date"
-    text: "Jun 2017 - Sep 2017"
+excerpt: "SDET Intern, <br/> Jun 2017 - Sep 2017"
 ---
 
 Aided in the development of a shadow-testing platform used for internal testing.
