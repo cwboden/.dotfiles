@@ -1,13 +1,11 @@
 ---
 title: "Qualcomm Internship"
 header:
-  image: /assets/img/portfolio/qualcomm.jpg
+  overlay_color: "#000"
+  overlay_filter: "0.3"
+  overlay_image: /assets/img/portfolio/qualcomm.jpg
   teaser: /assets/img/portfolio/qualcomm-thumbnail.jpg
-sidebar:
-  - title: "Role"
-    text: "Intern"
-  - title: "Date"
-    text: "May 2018 - Aug 2018"
+excerpt: "Intern <br/> May 2018 - Aug 2018"
 ---
 
 Designed testing and debugging frameworks for DDR systems. The automation

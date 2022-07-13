@@ -1,13 +1,16 @@
 ---
 title: "Student Instructor"
 header:
-  image: /assets/img/portfolio/classroom.jpg
+  overlay_color: "#000"
+  overlay_filter: "0.8"
+  overlay_image: /assets/img/portfolio/classroom.jpg
   teaser: /assets/img/portfolio/classroom-thumbnail.jpg
-sidebar:
-  - title: "Role"
-    text: "Instructional Aide (IA), Graduate Student Instructor (GSI), Lecturer"
-  - title: "Date"
-    text: "Jan 2018 - Dec 2019"
+  actions:
+    - label: EECS 370 Course Website
+      url: http://www.eecs.umich.edu/courses/eecs370/
+    - label: EECS 470 Course Website
+      url: http://www.eecs.umich.edu/courses/eecs470/
+excerpt: "Instructional Aide (IA), Graduate Student Instructor (GSI), Lecturer <br/> Jan 2018 - Dec 2019"
 ---
 
 Worked as an assistant to professors in EECS 370: Introduction to Computer
@@ -37,6 +40,3 @@ and thought-provoking projects.  The other lectureres, Professors Brehob and
 Mudge, and I have worked hard this summer to give the class a polish.  We have
 finishing updating the autograder, fixed some issues in the slides, and created
 new reference materials for students to use.
-
-<a class="btn btn--primary" target="_blank" href="http://www.eecs.umich.edu/courses/eecs370/">EECS 370 Course Website</a>
-<a class="btn btn--inverse" target="_blank" href="http://eecs.umich.edu/eecs/courses/eecs470/">EECS 470 Course Website</a>

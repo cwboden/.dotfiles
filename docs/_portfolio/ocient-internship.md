@@ -1,13 +1,14 @@
 ---
 title: "Ocient Internship"
 header:
-  image: /assets/img/portfolio/ocient.png
+  overlay_color: "#000"
+  overlay_filter: "0.3"
+  overlay_image: /assets/img/portfolio/ocient.png
   teaser: /assets/img/portfolio/ocient-thumbnail.png
-sidebar:
-  - title: "Role"
-    text: "Intern"
-  - title: "Date"
-    text: "May 2019 - Aug 2019"
+  actions:
+    - label: Website
+      url: "https://www.ocient.com"
+excerpt: "Intern <br/> May 2019 - Aug 2019"
 ---
 
 Contributed to the development of an exabyte-scale distributed database.  The
@@ -29,5 +30,3 @@ nodes that are slowing down the system, and allowing the database to be quickly
 rebuilt from an invalid state.  The improvements not only provided faster
 database speeds for internal testing but also added powerful features of which
 clients can take advantage.
-
-<a class="btn btn--primary" target="_blank" href="http://www.ocient.com/">Website</a>
