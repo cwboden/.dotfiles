@@ -20,6 +20,7 @@ feature_row:
     btn_label: "Read More"
     btn_class: "btn--primary"
   - image_path: /assets/img/code-snippet.png
+    alt: "A snippet of code from `gaia_project`"
     title: "Programming"
     excerpt: Experimentation, abandoned projects, and maybe some nuggets to learn from.
     url: /categories/programming
