@@ -1,7 +1,7 @@
 ---
 title: "*Spiritfarer* uses breathtaking illustrations and satisfying gameplay to reduce grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-07-14T07:04:47
+last_modified_at: 2022-07-14T07:09:33
 categories:
  - Video Games
 tags:
@@ -650,5 +650,6 @@ exhausting, you want more action or control-intensive player expression, or if a
 narrative isn't enough to push you forward in a game.
 
 Overall, while I believe the game overstays its welcome just a touch (much like
-many of the spirits aboard the ship) I would recommend checking it out and
-seeing how the formula for management games can be redefined.
+many of the spirits aboard the ship, or maybe this post) I would recommend
+checking it out and seeing how the formula for management games can be
+redefined.
