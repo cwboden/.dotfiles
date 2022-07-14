@@ -1,7 +1,7 @@
 ---
 title: "How `git` works *(from a work presentation)*"
-excerpt:
-last_modified_at: 2022-07-14T07:00:13
+excerpt: "A text-only version of a talk I gave at work outlining its basic workflows and core technical concepts."
+last_modified_at: 2022-07-14T07:08:23
 categories:
  - Programming
 tags:
