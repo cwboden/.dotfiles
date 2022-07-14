@@ -1,6 +1,6 @@
 ---
-title: Sailing the Belizean Coastline
-last_modified_at: 2022-07-12T00:14:12
+title: Sailing the Belizean coastline
+last_modified_at: 2022-07-14T07:04:47
 categories:
  - Personal
 tags:

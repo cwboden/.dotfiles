@@ -1,6 +1,6 @@
 ---
-title: How Nintendo Continues to Innovate in the Gaming Industry
-last_modified_at: 2022-07-12T00:14:13
+title: How Nintendo continues to innovate in the hardware industry
+last_modified_at: 2022-07-14T07:04:47
 categories:
  - Video Games
 tags:

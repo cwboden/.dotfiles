@@ -1,7 +1,7 @@
 ---
-title: Spiritfarer uses breathtaking illustrations and satisfying gameplay to reduce "grind"
+title: "*Spiritfarer* uses breathtaking illustrations and satisfying gameplay to reduce grind"
 excerpt: "How quality visuals and an abundance of interwoven mechanics can reduce the burnout associated with management games."
-last_modified_at: 2022-07-12T17:08:23
+last_modified_at: 2022-07-14T07:04:47
 categories:
  - Video Games
 tags:
