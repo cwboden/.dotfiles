@@ -1,7 +1,7 @@
 ---
 title: "How `git` works *(from a work presentation)*"
 excerpt: "A text-only version of a talk I gave at work outlining its basic workflows and core technical concepts."
-last_modified_at: 2022-07-14T07:08:23
+last_modified_at: 2022-07-14T07:14:56
 categories:
  - Programming
 tags:
@@ -44,7 +44,7 @@ core branches in your repo: `main` (or `master`) and some `development` branch.
 <figure class="align-center">
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/git-workflow-gitflow.png"
-    alt="">
+    alt="Git Workflow: Gitflow">
 </figure>
 
 The `development` branch is where *all* branches diverge from and are eventually
@@ -70,7 +70,7 @@ deployment environments.
 <figure class="align-center">
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/git-workflow-feature-branches.png"
-    alt="">
+    alt="Git Workflow: Feature Branches">
 </figure>
 
 Rather than merging from `development` into `main` whenever a release is
@@ -92,7 +92,7 @@ was something I learned while researching this presentation:
 <figure class="align-center">
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/git-concept-remotes.png"
-    alt="">
+    alt="Git Concept: Remotes">
 </figure>
 
 Remotes are, true to their name, remote repositories to synchronize your changes
@@ -124,7 +124,7 @@ mark your progress.
 <figure class="align-center">
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/git-concept-branches.png"
-    alt="">
+    alt="Git Concept: Branches">
 </figure>
 
 In the above diagram, we can see a `foo` branch based on commit `B` and then with
@@ -160,7 +160,7 @@ A three-way merge is more complex. We can see an example of one in action below:
 <figure class="align-center">
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/git-concept-merging.png"
-    alt="">
+    alt="Git Concept: Merging">
 </figure>
 
 In this example, there has been some work committed to `main` while we have
@@ -192,7 +192,7 @@ Once you decide to *perform* a merge, now you have a choice of how you'd like
 <figure class="align-center">
   <img
     src="{{ site.url }}{{ site.baseurl }}/assets/img/git-merge-vs-squash-commit.png"
-    alt="">
+    alt="Merge vs. Squash commit">
 </figure>
 
 Merge commits provide granular, in-depth history, since they preserve the work
