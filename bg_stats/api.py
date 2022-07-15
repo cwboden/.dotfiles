@@ -76,6 +76,10 @@ class Play:
     def player_ids(self) -> List[int]:
         return [score.playerRefId for score in self.playerScores]
 
+    @property
+    def play_date(self) -> Date:
+        return DateTime.strptime(self.playDate, "%Y-%m-%d %H:%M:%S").date()
+
 
 @dataclass
 class BgStats:
@@ -100,8 +104,14 @@ class BgStats:
     ) -> List[Play]:
         plays = []
         for play in self.plays:
-            play_date = DateTime.strptime(play.playDate, "%Y-%m-%d %H:%M:%S").date()
+            play_date = play.play_date
             if start <= play_date and play_date <= end:
                 plays.append(play)
 
         return plays
+
+    def get_play_date_earliest(self) -> Date:
+        return self.plays[0].play_date
+
+    def get_play_date_latest(self) -> Date:
+        return self.plays[-1].play_date

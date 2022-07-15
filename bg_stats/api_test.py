@@ -109,6 +109,18 @@ class BgStatsTest(unittest.TestCase):
             ],
         )
 
+    def test_get_play_date_earliest(self) -> None:
+        self.assertEqual(
+            self.stats.get_play_date_earliest(),
+            Date.fromisoformat("2019-08-01"),
+        )
+
+    def test_get_play_date_latest(self) -> None:
+        self.assertEqual(
+            self.stats.get_play_date_latest(),
+            Date.fromisoformat("2019-09-07"),
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
