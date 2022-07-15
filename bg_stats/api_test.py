@@ -56,6 +56,18 @@ class BgStatsTest(unittest.TestCase):
             actual_game_ids,
         )
 
+    def test_get_plays_at_location(self) -> None:
+        location_id = 3
+
+        actual_game_ids = [
+            game.uuid for game in self.stats.get_plays_at_location(location_id)
+        ]
+
+        self.assertEqual(
+            ["e7137e8a-bff1-44b9-97e7-93e1d009de52"],
+            actual_game_ids,
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

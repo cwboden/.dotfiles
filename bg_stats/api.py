@@ -89,3 +89,6 @@ class BgStats:
 
     def get_plays_for_player(self, player_id: int) -> List[Play]:
         return [play for play in self.plays if player_id in play.player_ids]
+
+    def get_plays_at_location(self, location_id: int) -> List[Play]:
+        return [play for play in self.plays if location_id == play.locationRefId]
