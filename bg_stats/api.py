@@ -1,102 +1,81 @@
 import json
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 from typing import List
+from typing import Optional
 
 from dacite import from_dict
 
 
 @dataclass
 class Player:
-    uuid: str
+    bggUsername: Optional[str]
     id: int
-    name: str
     isAnonymous: bool
     modificationDate: str
-    bggUsername: str = ""
+    name: str
+    uuid: str
 
 
 @dataclass
 class Location:
-    uuid: str
     id: int
-    name: str
     modificationDate: str
+    name: str
+    uuid: str
 
 
 @dataclass
 class Game:
-    uuid: str
-    id: int
-    name: str
-    modificationDate: str
     cooperative: bool
     highestWins: bool
-    noPoints: bool
-    usesTeams: bool
-    bggYear: int
-    bggId: int
-    rating: int
-    minPlayerCount: int
+    id: int
+    maxPlayTime: int
     maxPlayerCount: int
     minPlayTime: int
-    maxPlayTime: int
-    minAge: int
-    preferredImage: int
-    copies: List[Any]
-    urlThumb: str = ""
-    urlImage: str = ""
-    bggName: str = ""
-    designers: str = ""
-    metadata: str = ""
-    isBaseGame: int = 0
-    isExpansion: int = 0
+    minPlayerCount: int
+    modificationDate: str
+    name: str
+    noPoints: bool
+    rating: int
+    usesTeams: bool
+    uuid: str
 
 
 @dataclass
 class PlayerScore:
-    score: str
-    winner: bool
     newPlayer: bool
-    startPlayer: bool
     playerRefId: int
-    role: str
     rank: int
-    seatOrder: int
+    role: Optional[str]
+    score: Optional[str]
+    startPlayer: bool
+    winner: bool
 
 
 @dataclass
 class Play:
-    uuid: str
-    modificationDate: str
-    entryDate: str
-    playDate: str
-    usesTeams: bool
+    board: Optional[str]
+    comments: Optional[str]
     durationMin: int
-    ignored: bool
-    manualWinner: bool
-    rounds: int
-    bggId: int
-    importPlayId: int
-    locationRefId: int
+    entryDate: str
     gameRefId: int
-    rating: int
-    nemestatsId: int
+    ignored: bool
+    locationRefId: int
+    modificationDate: str
+    playDate: str
+    playerScores: List[PlayerScore]
+    rounds: int
     scoringSetting: int
-    metaData: str
-    playerScores: List[Any]
-    expansionPlays: List[Any]
-    board: str = ""
-    comments: str = ""
-    bggLastSync: str = ""
+    usesTeams: bool
+    uuid: str
 
 
 @dataclass
 class BgStats:
-    players: List[Player]
-    locations: List[Location]
     games: List[Game]
+    locations: List[Location]
+    players: List[Player]
     plays: List[Play]
 
     @staticmethod
