@@ -1,0 +1,2446 @@
+{
+    "players":
+    [
+        {
+            "uuid": "9e65e6aa-ab2c-49c2-ae39-cbe839e4be01",
+            "id": 1,
+            "name": "player-A",
+            "isAnonymous": false,
+            "modificationDate": "2022-02-03 13:00:54"
+        },
+        {
+            "uuid": "e52e8389-d633-4062-a291-8b2b6eb05525",
+            "id": 2,
+            "name": "player-B",
+            "isAnonymous": false,
+            "modificationDate": "2019-08-05 11:02:22"
+        },
+        {
+            "uuid": "5ae14293-2472-4f7b-bd98-dd4487e63832",
+            "id": 3,
+            "name": "player-C",
+            "isAnonymous": false,
+            "modificationDate": "2019-12-07 16:04:39"
+        },
+        {
+            "uuid": "d189775b-a132-4316-a4c8-9d4e912fbc66",
+            "id": 4,
+            "name": "player-D",
+            "isAnonymous": false,
+            "modificationDate": "2019-10-12 20:37:22"
+        },
+        {
+            "uuid": "d8bd0fcf-0957-4fd9-ac1f-536a9ad82183",
+            "id": 5,
+            "name": "player-E",
+            "isAnonymous": false,
+            "modificationDate": "2020-02-04 15:32:06"
+        },
+        {
+            "uuid": "ed98b381-3865-48c0-91e7-ca86cc42a7c3",
+            "id": 33,
+            "name": "Me",
+            "isAnonymous": false,
+            "modificationDate": "2019-08-05 10:28:51"
+        }
+    ],
+    "locations":
+    [
+        {
+            "uuid": "4aab6e4b-8d20-46ba-bf0f-9f8f72f41790",
+            "id": 1,
+            "name": "location-A",
+            "modificationDate": "2021-12-18 00:13:49"
+        },
+        {
+            "uuid": "4cfd6cf0-46a1-4c9b-9e0f-77d199101817",
+            "id": 2,
+            "name": "location-B",
+            "modificationDate": "2019-08-26 17:42:37"
+        },
+        {
+            "uuid": "d52cae8b-ce3c-4eb0-8806-d44fbd242d29",
+            "id": 3,
+            "name": "location-C",
+            "modificationDate": "2021-10-24 21:04:45"
+        },
+        {
+            "uuid": "043c6fb0-9680-4160-9b02-68f118b6207e",
+            "id": 4,
+            "name": "location-D",
+            "modificationDate": "2019-08-05 11:00:44"
+        },
+        {
+            "uuid": "d14249cd-7ab8-4b1d-a91e-9a1ec1d185c5",
+            "id": 5,
+            "name": "location-E",
+            "modificationDate": "2021-11-25 17:04:20"
+        }
+    ],
+    "games":
+    [
+        {
+            "uuid": "e3916556-6a0a-4655-9d85-3ecca2367c27",
+            "id": 1,
+            "name": "game-A",
+            "modificationDate": "2021-01-21 18:44:43",
+            "cooperative": false,
+            "highestWins": true,
+            "noPoints": false,
+            "usesTeams": false,
+            "rating": 0,
+            "minPlayerCount": 2,
+            "maxPlayerCount": 10,
+            "minPlayTime": 45,
+            "maxPlayTime": 45,
+            "minAge": 8
+        },
+        {
+            "uuid": "7eb602a3-add1-4819-80b9-2948b256bc8d",
+            "id": 2,
+            "name": "game-B",
+            "modificationDate": "2022-07-08 08:40:04",
+            "cooperative": false,
+            "highestWins": true,
+            "noPoints": false,
+            "usesTeams": false,
+            "rating": 0,
+            "minPlayerCount": 2,
+            "maxPlayerCount": 7,
+            "minPlayTime": 30,
+            "maxPlayTime": 30,
+            "minAge": 10
+        },
+        {
+            "uuid": "f2b0a543-a5ee-458f-8084-ca2930b05dab",
+            "id": 3,
+            "name": "game-C",
+            "modificationDate": "2022-07-08 08:40:04",
+            "cooperative": false,
+            "highestWins": true,
+            "noPoints": false,
+            "usesTeams": false,
+            "rating": 0,
+            "minPlayerCount": 2,
+            "maxPlayerCount": 2,
+            "minPlayTime": 30,
+            "maxPlayTime": 30,
+            "minAge": 10
+        },
+        {
+            "uuid": "94bd64d8-9ad0-424e-8dad-f90255be8ea2",
+            "id": 4,
+            "name": "game-D",
+            "modificationDate": "2021-12-04 15:57:01",
+            "cooperative": false,
+            "highestWins": true,
+            "noPoints": false,
+            "usesTeams": false,
+            "rating": 0,
+            "minPlayerCount": 2,
+            "maxPlayerCount": 7,
+            "minPlayTime": 25,
+            "maxPlayTime": 25,
+            "minAge": 8
+        },
+        {
+            "uuid": "2126911b-f78e-4b89-8761-41b60dbd5dc0",
+            "id": 5,
+            "name": "game-E",
+            "modificationDate": "2021-02-08 15:38:20",
+            "cooperative": false,
+            "highestWins": true,
+            "noPoints": false,
+            "usesTeams": false,
+            "rating": 0,
+            "minPlayerCount": 2,
+            "maxPlayerCount": 2,
+            "minPlayTime": 15,
+            "maxPlayTime": 30,
+            "minAge": 14
+        }
+    ],
+    "plays":
+    [
+        {
+            "uuid": "cbe6f05e-6c36-47c9-93c5-99da0fd30fc9",
+            "modificationDate": "2019-08-05 16:29:01",
+            "entryDate": "2019-08-05 16:26:47",
+            "playDate": "2019-08-01 08:00:00",
+            "usesTeams": false,
+            "durationMin": 0,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 2,
+            "board": "Leaders, Cities, Tower of Babel",
+            "comments": "",
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "82",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Petra A",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "50",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Babylon B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "61",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Byzantium B",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "a51fc10c-bdb1-48dc-9bac-6c6afd9101fd",
+            "modificationDate": "2019-08-05 11:13:48",
+            "entryDate": "2019-08-05 11:01:50",
+            "playDate": "2019-08-02 08:00:00",
+            "usesTeams": false,
+            "durationMin": 0,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 1,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "103",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Shapeshifters",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "142",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Alchemists",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "157",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Halflings",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "94",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "role": "Yetis",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "151",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "role": "Engineers",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "762849d4-d4e0-4bef-afcf-a070bac426d5",
+            "modificationDate": "2019-08-05 16:32:14",
+            "entryDate": "2019-08-05 16:29:46",
+            "playDate": "2019-08-02 08:00:00",
+            "usesTeams": false,
+            "durationMin": 0,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 2,
+            "board": "",
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "49",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Ephesos B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "53",
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Rhodes A",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "48",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Babylon B",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "7c4aa11b-aeae-4fbf-8daa-2d78ebd64684",
+            "modificationDate": "2019-08-05 11:13:55",
+            "entryDate": "2019-08-05 10:56:07",
+            "playDate": "2019-08-04 08:00:00",
+            "usesTeams": false,
+            "durationMin": 0,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 1,
+            "board": "",
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "86",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Chaos Magicians",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "110",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Engineers",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "115",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Yetis",
+                    "rank": 0,
+                    "seatOrder": 0,
+                    "startPosition": ""
+                },
+                {
+                    "score": "105",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "role": "Darklings",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "6fc79407-504e-414f-bc6b-f2a20bdc70c7",
+            "modificationDate": "2019-08-05 16:14:25",
+            "entryDate": "2019-08-05 15:09:48",
+            "playDate": "2019-08-05 08:00:00",
+            "usesTeams": false,
+            "durationMin": 61,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 2,
+            "board": "Leaders, Cities, Tower of Babel, Great Projects ",
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "10+4+10+12+2+10+14+4+2",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Olympia B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "-2+3+10+16+3+5+2+2",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Ephesos B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "-4-2+7+9+3+31+5+5",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "role": "Alexandria B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "14+-1+20+10+2+2",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Gizah B",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "80cb8ce5-8669-44af-85d4-ea4db59d10ff",
+            "modificationDate": "2022-05-31 11:30:08",
+            "entryDate": "2019-08-06 15:13:31",
+            "playDate": "2019-08-06 08:00:00",
+            "usesTeams": false,
+            "durationMin": 37,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 2,
+            "board": "Leaders, Cities",
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "9+3+7+13+8+18",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Rhodes B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "10+3+11+1+4+16",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Gizah B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "58",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "role": "Olympia B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "2+7+4+31+18+8",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "role": "Great Wall B",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "f2b8dac7-ae0e-432f-af30-9e9bdc3178c2",
+            "modificationDate": "2022-05-31 11:30:08",
+            "entryDate": "2019-08-06 16:06:46",
+            "playDate": "2019-08-06 08:00:00",
+            "usesTeams": false,
+            "durationMin": 63,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 2,
+            "board": "Leaders, Cities, Tower of Babel, Great Projects, Armada",
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "11+2+27+19+7+1+14+13",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Petra B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "15+3+15+2+3+4+4+1+10",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Alexandria A",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "-1+2+5+5+58+1+9",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "role": "Great Wall B",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "10+2+17+21+4+2+10+1+2",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "role": "Byzantium A",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "b7a8b00e-abee-4111-9484-37ed034e8e40",
+            "modificationDate": "2019-08-08 11:07:47",
+            "entryDate": "2019-08-08 10:47:51",
+            "playDate": "2019-08-08 08:00:00",
+            "usesTeams": false,
+            "durationMin": 3,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "ba1e377d-86d1-46d7-809b-a7212b5e86b8",
+            "modificationDate": "2019-08-08 11:07:56",
+            "entryDate": "2019-08-08 10:53:03",
+            "playDate": "2019-08-08 08:00:00",
+            "usesTeams": false,
+            "durationMin": 4,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "f0e070a9-125b-46d6-91d7-deb86dc3f75a",
+            "modificationDate": "2019-08-08 11:08:04",
+            "entryDate": "2019-08-08 10:58:16",
+            "playDate": "2019-08-08 08:00:00",
+            "usesTeams": false,
+            "durationMin": 4,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 4,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "c6bb0c92-ac2e-4b82-a2b5-4a9de8efbe5f",
+            "modificationDate": "2019-08-12 23:31:36",
+            "entryDate": "2019-08-12 22:45:33",
+            "playDate": "2019-08-12 13:00:00",
+            "usesTeams": false,
+            "durationMin": 25,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 16,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "13",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "2c4e3726-5fbc-4005-b38c-9598a0a77f12",
+            "modificationDate": "2019-08-12 23:32:54",
+            "entryDate": "2019-08-12 23:14:58",
+            "playDate": "2019-08-12 13:00:00",
+            "usesTeams": false,
+            "durationMin": 15,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 16,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "7",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "06c7b4ce-e12a-48a7-b087-5a2eb6767bab",
+            "modificationDate": "2019-08-14 01:42:29",
+            "entryDate": "2019-08-14 00:32:52",
+            "playDate": "2019-08-13 13:00:00",
+            "usesTeams": false,
+            "durationMin": 66,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 5,
+            "importPlayId": 0,
+            "locationRefId": 16,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "26",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "23",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "8bcf2fce-4793-48a6-8b29-9d3b3a0eda6e",
+            "modificationDate": "2019-08-20 19:14:53",
+            "entryDate": "2019-08-20 19:12:41",
+            "playDate": "2019-08-20 10:00:00",
+            "usesTeams": false,
+            "durationMin": 120,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 5,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Wendy Adams",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "role": "Roland Banks",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "ff3ae7d0-f98e-4836-93d1-ad2b777ba800",
+            "modificationDate": "2019-08-22 09:49:05",
+            "entryDate": "2019-08-20 19:12:41",
+            "playDate": "2019-08-21 10:00:00",
+            "usesTeams": false,
+            "durationMin": 90,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 5,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Roland Banks",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Wendy Adams",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "7b832d02-a294-4d70-b3f3-ac1515a0a61b",
+            "modificationDate": "2019-08-22 09:48:36",
+            "entryDate": "2019-08-21 20:52:15",
+            "playDate": "2019-08-21 10:00:00",
+            "usesTeams": false,
+            "durationMin": 60,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 5,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Wendy Adams",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Roland Banks",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "4d70a4b3-fd9e-4ed7-9fde-7af3c9eaffdf",
+            "modificationDate": "2019-08-22 09:48:12",
+            "entryDate": "2019-08-21 22:40:25",
+            "playDate": "2019-08-21 10:00:00",
+            "usesTeams": false,
+            "durationMin": 75,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 5,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Wendy Adams",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Roland Banks",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "89e6e96a-74b6-48b1-8c92-1e9c95a84ddb",
+            "modificationDate": "2019-08-24 00:22:41",
+            "entryDate": "2019-08-23 22:41:41",
+            "playDate": "2019-08-23 10:00:00",
+            "usesTeams": false,
+            "durationMin": 98,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 5,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Wendy Adams",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Roland Banks",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "7ead810d-02e1-4f24-941b-755bc71e95a2",
+            "modificationDate": "2019-08-24 20:28:52",
+            "entryDate": "2019-08-24 19:11:28",
+            "playDate": "2019-08-24 10:00:00",
+            "usesTeams": false,
+            "durationMin": 73,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 5,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "35",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "7+7",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "11",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "3a243d1f-c3b0-45c5-8d1b-f0de5b443463",
+            "modificationDate": "2019-08-24 20:53:07",
+            "entryDate": "2019-08-24 20:41:01",
+            "playDate": "2019-08-24 10:00:00",
+            "usesTeams": false,
+            "durationMin": 5,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 15,
+            "gameRefId": 2,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "2",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "5",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "2",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "875f81b6-af85-4fbc-9d3d-5c0586b07b19",
+            "modificationDate": "2019-08-26 18:22:46",
+            "entryDate": "2019-08-26 17:41:30",
+            "playDate": "2019-08-26 07:00:00",
+            "usesTeams": false,
+            "durationMin": 13,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "86e87a88-8a54-492c-a8ce-cfe1627685e1",
+            "modificationDate": "2019-08-26 18:22:54",
+            "entryDate": "2019-08-26 17:56:00",
+            "playDate": "2019-08-26 07:00:00",
+            "usesTeams": false,
+            "durationMin": 6,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "e32277f5-de80-4675-95e0-4e4844ed40f8",
+            "modificationDate": "2019-08-26 18:23:26",
+            "entryDate": "2019-08-26 18:05:15",
+            "playDate": "2019-08-26 07:00:00",
+            "usesTeams": false,
+            "durationMin": 15,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "465f9ead-f766-4c47-add2-a3671a8a26b5",
+            "modificationDate": "2019-08-26 18:34:37",
+            "entryDate": "2019-08-26 18:24:07",
+            "playDate": "2019-08-26 07:00:00",
+            "usesTeams": false,
+            "durationMin": 10,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "0",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "b645bafc-c5b7-45ac-89fb-a7c3f0e2bf28",
+            "modificationDate": "2019-08-26 20:37:05",
+            "entryDate": "2019-08-26 18:41:57",
+            "playDate": "2019-08-26 07:00:00",
+            "usesTeams": false,
+            "durationMin": 95,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 1,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Missy Dubourde",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Darrin \"Flash\" Williams",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Madame Zostra",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 2,
+                    "role": "Peter Kamamoto",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "role": "Jenny Star",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "5ab87ee6-902b-4517-a329-f4bdf16d9d70",
+            "modificationDate": "2019-08-29 16:57:24",
+            "entryDate": "2019-08-29 16:30:51",
+            "playDate": "2019-08-29 07:00:00",
+            "usesTeams": false,
+            "durationMin": 25,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "25+7+3+3+9+1+5",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "27+3+12+5+9+2",
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": true,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "3abcac56-9502-40bf-b264-558d0d291091",
+            "modificationDate": "2019-08-29 17:27:56",
+            "entryDate": "2019-08-29 17:06:57",
+            "playDate": "2019-08-29 07:00:00",
+            "usesTeams": false,
+            "durationMin": 19,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 1,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "31",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "3",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": true,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "7865f69f-ce65-4ecd-b673-258244e16c28",
+            "modificationDate": "2019-08-30 15:26:10",
+            "entryDate": "2019-08-30 14:55:54",
+            "playDate": "2019-08-30 07:00:00",
+            "usesTeams": false,
+            "durationMin": 18,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "17+9+6+18+2",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "19+6+6+2+9+10",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "52e27bdf-7e37-44d7-ace2-23ce58026e9a",
+            "modificationDate": "2019-08-30 16:33:28",
+            "entryDate": "2019-08-30 15:31:54",
+            "playDate": "2019-08-30 07:00:00",
+            "usesTeams": false,
+            "durationMin": 41,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "55",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "55",
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "c2b9f493-aef1-4f5a-a3b1-36bc8f5cdfb1",
+            "modificationDate": "2019-08-31 19:15:07",
+            "entryDate": "2019-08-31 18:06:30",
+            "playDate": "2019-08-31 07:00:00",
+            "usesTeams": false,
+            "durationMin": 65,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "role": "Daisy Walker",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "\"Skids\" O'Toole",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "912406ae-5cd2-4969-b7b3-cf726e07f8b6",
+            "modificationDate": "2019-09-01 12:05:32",
+            "entryDate": "2019-09-01 11:47:53",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 16,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "30",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "15",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 5,
+                    "rank": 1,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "bab49dc3-bc9b-4d69-b079-09fca34e84da",
+            "modificationDate": "2019-09-01 12:38:44",
+            "entryDate": "2019-09-01 12:09:03",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 27,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "46",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "7",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "24891e12-1f02-4287-9b54-33b0edeab13f",
+            "modificationDate": "2019-09-01 13:18:47",
+            "entryDate": "2019-09-01 12:53:49",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 23,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "9+9+13+14+7+5",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": true,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "32+6+3+9+1",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "acfb02f1-31fc-44c2-8bd7-26dbc42d01a5",
+            "modificationDate": "2019-09-01 13:45:09",
+            "entryDate": "2019-09-01 13:25:08",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 18,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "25+11+14",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "24+2+3+7+13+6",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "2b39c05d-3903-40db-ab5f-c0ec12d070f6",
+            "modificationDate": "2019-09-01 14:14:53",
+            "entryDate": "2019-09-01 13:48:51",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 19,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "32+4+3+11+21+3",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "23+8+3+5+9+11+10",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "29bdb561-25dd-40b6-84cc-5631fe39b6b4",
+            "modificationDate": "2019-09-01 19:14:47",
+            "entryDate": "2019-09-01 19:05:09",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 8,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "2",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "3",
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "1",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "722338d6-2af8-4350-ba51-cd868a0b026f",
+            "modificationDate": "2019-09-01 19:29:45",
+            "entryDate": "2019-09-01 19:14:50",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 14,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "1",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "3",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "1",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "b5ff9bd1-ce20-476c-919c-d5ff2364eb3a",
+            "modificationDate": "2019-09-08 13:03:33",
+            "entryDate": "2019-09-01 19:40:18",
+            "playDate": "2019-09-01 07:00:00",
+            "usesTeams": false,
+            "durationMin": 20,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "8+21-4",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": true,
+                    "playerRefId": 1,
+                    "role": "Grand Mausoleum of the Rodina",
+                    "rank": 0,
+                    "seatOrder": 0,
+                    "startPosition": ""
+                },
+                {
+                    "score": "12+4+9+10+4-1",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Obelisk of the Crescent",
+                    "rank": 0,
+                    "seatOrder": 0,
+                    "startPosition": ""
+                },
+                {
+                    "score": "9+20+4+1+1-3",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Architect's Guild",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "ec6903b3-9452-4b96-85d4-c01c96fb8505",
+            "modificationDate": "2019-09-04 15:05:20",
+            "entryDate": "2019-09-04 14:14:03",
+            "playDate": "2019-09-04 07:00:00",
+            "usesTeams": false,
+            "durationMin": 48,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 4,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "64",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "59",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "86178520-c3f6-44c2-bfd5-f0ff2785ed06",
+            "modificationDate": "2019-09-08 13:04:44",
+            "entryDate": "2019-09-04 15:51:26",
+            "playDate": "2019-09-04 07:00:00",
+            "usesTeams": false,
+            "durationMin": 23,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 1,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "23",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "role": "Architect's Guild",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "25",
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "role": "Barrett Castle",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "-6",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "role": "Fort Ironweed",
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "11",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "role": "Mandras Palace",
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "4862a6c7-6fd5-4d65-8542-fa09b22bebfa",
+            "modificationDate": "2020-01-04 13:53:10",
+            "entryDate": "2019-09-04 16:33:46",
+            "playDate": "2019-09-04 07:00:00",
+            "usesTeams": false,
+            "durationMin": 62,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 5,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "66",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "33",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "50",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "60",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 1,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "1daded88-dfda-449a-ac1c-b00c3941ce6e",
+            "modificationDate": "2019-09-04 18:54:27",
+            "entryDate": "2019-09-04 17:52:12",
+            "playDate": "2019-09-04 07:00:00",
+            "usesTeams": false,
+            "durationMin": 58,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 2,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "106",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "112",
+                    "winner": false,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 2,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "105",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 3,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "119",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "93f65c53-dbcd-45db-90cc-6135c0bdd0e9",
+            "modificationDate": "2019-09-06 13:34:32",
+            "entryDate": "2019-09-06 13:13:00",
+            "playDate": "2019-09-06 07:00:00",
+            "usesTeams": false,
+            "durationMin": 20,
+            "ignored": false,
+            "manualWinner": false,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": "26",
+                    "winner": true,
+                    "newPlayer": false,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": "2",
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        },
+        {
+            "uuid": "e7137e8a-bff1-44b9-97e7-93e1d009de52",
+            "modificationDate": "2019-09-07 20:03:52",
+            "entryDate": "2019-09-07 17:56:28",
+            "playDate": "2019-09-07 07:00:00",
+            "usesTeams": false,
+            "durationMin": 67,
+            "ignored": false,
+            "manualWinner": true,
+            "rounds": 1,
+            "importPlayId": 0,
+            "locationRefId": 2,
+            "gameRefId": 3,
+            "rating": 0,
+            "nemestatsId": 0,
+            "scoringSetting": 0,
+            "metaData": "{\"MetaDataImportSourceName\":\"BGStatsExport-220708082142.json\",\"MetaDataImportSourceType\":\"bgsJsonExport\"}",
+            "playerScores":
+            [
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 33,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": false,
+                    "newPlayer": true,
+                    "startPlayer": true,
+                    "playerRefId": 5,
+                    "rank": 0,
+                    "seatOrder": 0
+                },
+                {
+                    "score": null,
+                    "winner": true,
+                    "newPlayer": true,
+                    "startPlayer": false,
+                    "playerRefId": 4,
+                    "rank": 0,
+                    "seatOrder": 0
+                }
+            ],
+            "expansionPlays": []
+        }
+    ]
+}
