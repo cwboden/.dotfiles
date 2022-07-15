@@ -7,6 +7,7 @@ description = "A collection of my dotfiles"
 [tool.poetry.dependencies]
 python = "^3.7"
 colorama = "0.4.4"
+dacite = "1.6.0"
 distro = "1.4.0"
 fs = "2.4.15"
 GitPython = "3.1.20"

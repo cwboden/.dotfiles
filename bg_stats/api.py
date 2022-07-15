@@ -1,27 +1,32 @@
 import json
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 from typing import List
-from typing import TypedDict
+
+from dacite import from_dict
 
 
-class Player(TypedDict):
+@dataclass
+class Player:
     uuid: str
     id: int
     name: str
     isAnonymous: bool
     modificationDate: str
-    bggUsername: str
+    bggUsername: str = ""
 
 
-class Location(TypedDict):
+@dataclass
+class Location:
     uuid: str
     id: int
     name: str
     modificationDate: str
 
 
-class Game(TypedDict):
+@dataclass
+class Game:
     uuid: str
     id: int
     name: str
@@ -30,15 +35,8 @@ class Game(TypedDict):
     highestWins: bool
     noPoints: bool
     usesTeams: bool
-    urlThumb: str
-    urlImage: str
-    bggName: str
     bggYear: int
     bggId: int
-    designers: str
-    metadata: str
-    isBaseGame: int
-    isExpansion: int
     rating: int
     minPlayerCount: int
     maxPlayerCount: int
@@ -47,9 +45,29 @@ class Game(TypedDict):
     minAge: int
     preferredImage: int
     copies: List[Any]
+    urlThumb: str = ""
+    urlImage: str = ""
+    bggName: str = ""
+    designers: str = ""
+    metadata: str = ""
+    isBaseGame: int = 0
+    isExpansion: int = 0
 
 
-class Play(TypedDict):
+@dataclass
+class PlayerScore:
+    score: str
+    winner: bool
+    newPlayer: bool
+    startPlayer: bool
+    playerRefId: int
+    role: str
+    rank: int
+    seatOrder: int
+
+
+@dataclass
+class Play:
     uuid: str
     modificationDate: str
     entryDate: str
@@ -60,37 +78,28 @@ class Play(TypedDict):
     manualWinner: bool
     rounds: int
     bggId: int
-    bggLastSync: str
     importPlayId: int
     locationRefId: int
     gameRefId: int
-    board: str
-    comments: str
     rating: int
     nemestatsId: int
     scoringSetting: int
     metaData: str
     playerScores: List[Any]
     expansionPlays: List[Any]
+    board: str = ""
+    comments: str = ""
+    bggLastSync: str = ""
 
 
+@dataclass
 class BgStats:
-    def __init__(self, filename: Path):
+    players: List[Player]
+    locations: List[Location]
+    games: List[Game]
+    plays: List[Play]
+
+    @staticmethod
+    def from_file(filename: Path) -> "BgStats":
         with open(filename) as raw_data:
-            self.root = json.load(raw_data)
-
-    @property
-    def players(self) -> List[Player]:
-        return self.root["players"]
-
-    @property
-    def locations(self) -> List[Location]:
-        return self.root["locations"]
-
-    @property
-    def games(self) -> List[Game]:
-        return self.root["games"]
-
-    @property
-    def plays(self) -> List[Play]:
-        return self.root["plays"]
+            return from_dict(BgStats, json.load(raw_data))
