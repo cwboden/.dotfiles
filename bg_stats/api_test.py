@@ -1,5 +1,6 @@
 #!/bin/usr/python3
 import unittest
+from datetime import date as Date
 from pathlib import Path
 
 from bg_stats.api import BgStats
@@ -66,6 +67,46 @@ class BgStatsTest(unittest.TestCase):
         self.assertEqual(
             ["e7137e8a-bff1-44b9-97e7-93e1d009de52"],
             actual_game_ids,
+        )
+
+    def test_get_plays_from_dates_start_only(self) -> None:
+        start = Date.fromisoformat("2019-09-07")
+
+        actual_game_ids = [
+            game.uuid for game in self.stats.get_plays_from_dates(start=start)
+        ]
+
+        self.assertEqual(
+            actual_game_ids,
+            ["e7137e8a-bff1-44b9-97e7-93e1d009de52"],
+        )
+
+    def test_get_plays_from_dates_end_only(self) -> None:
+        end = Date.fromisoformat("2019-08-01")
+
+        actual_game_ids = [
+            game.uuid for game in self.stats.get_plays_from_dates(end=end)
+        ]
+
+        self.assertEqual(
+            actual_game_ids,
+            ["cbe6f05e-6c36-47c9-93c5-99da0fd30fc9"],
+        )
+
+    def test_get_plays_from_dates_full_range(self) -> None:
+        start = Date.fromisoformat("2019-08-13")
+        end = Date.fromisoformat("2019-08-20")
+
+        actual_game_ids = [
+            game.uuid for game in self.stats.get_plays_from_dates(start, end)
+        ]
+
+        self.assertEqual(
+            actual_game_ids,
+            [
+                "06c7b4ce-e12a-48a7-b087-5a2eb6767bab",
+                "8bcf2fce-4793-48a6-8b29-9d3b3a0eda6e",
+            ],
         )
 
 

@@ -1,5 +1,7 @@
 import json
 from dataclasses import dataclass
+from datetime import date as Date
+from datetime import datetime as DateTime
 from pathlib import Path
 from typing import List
 from typing import Optional
@@ -92,3 +94,14 @@ class BgStats:
 
     def get_plays_at_location(self, location_id: int) -> List[Play]:
         return [play for play in self.plays if location_id == play.locationRefId]
+
+    def get_plays_from_dates(
+        self, start: Date = Date.min, end: Date = Date.max
+    ) -> List[Play]:
+        plays = []
+        for play in self.plays:
+            play_date = DateTime.strptime(play.playDate, "%Y-%m-%d %H:%M:%S").date()
+            if start <= play_date and play_date <= end:
+                plays.append(play)
+
+        return plays
