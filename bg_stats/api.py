@@ -70,6 +70,10 @@ class Play:
     usesTeams: bool
     uuid: str
 
+    @property
+    def player_ids(self) -> List[int]:
+        return [score.playerRefId for score in self.playerScores]
+
 
 @dataclass
 class BgStats:
@@ -82,3 +86,6 @@ class BgStats:
     def from_file(filename: Path) -> "BgStats":
         with open(filename) as raw_data:
             return from_dict(BgStats, json.load(raw_data))
+
+    def get_plays_for_player(self, player_id: int) -> List[Play]:
+        return [play for play in self.plays if player_id in play.player_ids]

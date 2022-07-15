@@ -8,6 +8,15 @@ from bg_stats.api import BgStats
 PATH_TO_DATA: Path = Path("BGStatsExport-for-test.json")
 
 
+class PlayTest(unittest.TestCase):
+    def test_get_player_ids(self) -> None:
+        play = BgStats.from_file(PATH_TO_DATA).plays[0]
+        self.assertEqual(
+            [33, 1, 2],
+            play.player_ids,
+        )
+
+
 class BgStatsTest(unittest.TestCase):
     def setUp(self) -> None:
         self.stats = BgStats.from_file(PATH_TO_DATA)
@@ -18,6 +27,34 @@ class BgStatsTest(unittest.TestCase):
         self.assertIsNotNone(self.stats.locations)
         self.assertIsNotNone(self.stats.games)
         self.assertIsNotNone(self.stats.plays)
+
+    def test_get_plays_for_player(self) -> None:
+        player_id = 5
+        expected_game_ids = [
+            "a51fc10c-bdb1-48dc-9bac-6c6afd9101fd",
+            "7c4aa11b-aeae-4fbf-8daa-2d78ebd64684",
+            "f2b8dac7-ae0e-432f-af30-9e9bdc3178c2",
+            "ba1e377d-86d1-46d7-809b-a7212b5e86b8",
+            "8bcf2fce-4793-48a6-8b29-9d3b3a0eda6e",
+            "875f81b6-af85-4fbc-9d3d-5c0586b07b19",
+            "86e87a88-8a54-492c-a8ce-cfe1627685e1",
+            "465f9ead-f766-4c47-add2-a3671a8a26b5",
+            "b645bafc-c5b7-45ac-89fb-a7c3f0e2bf28",
+            "912406ae-5cd2-4969-b7b3-cf726e07f8b6",
+            "24891e12-1f02-4287-9b54-33b0edeab13f",
+            "722338d6-2af8-4350-ba51-cd868a0b026f",
+            "4862a6c7-6fd5-4d65-8542-fa09b22bebfa",
+            "e7137e8a-bff1-44b9-97e7-93e1d009de52",
+        ]
+
+        actual_game_ids = [
+            game.uuid for game in self.stats.get_plays_for_player(player_id)
+        ]
+
+        self.assertEqual(
+            expected_game_ids,
+            actual_game_ids,
+        )
 
 
 if __name__ == "__main__":
