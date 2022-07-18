@@ -3,6 +3,7 @@ import sys
 from argparse import ArgumentParser
 from argparse import Namespace
 from datetime import timedelta as TimeDelta
+from enum import Enum
 from pathlib import Path
 from typing import List
 
@@ -12,9 +13,21 @@ from matplotlib import pyplot
 from bg_stats.api import BgStats
 
 
+class OutputFormat(Enum):
+    GAMES_BY_MONTH = "GAMES_BY_MONTH"
+    GAMES_BY_PLAYS = "GAMES_BY_PLAYS"
+
+
 def parse_args(args: List[str]) -> Namespace:
     parser = ArgumentParser(
         description="Show graphs of board game insights based on BGStats (bgstatsapp.com) data"
+    )
+
+    parser.add_argument(
+        "output_format",
+        type=OutputFormat,
+        choices=list(OutputFormat),
+        help="which type of graph to create",
     )
 
     parser.add_argument(
@@ -36,9 +49,7 @@ def parse_args(args: List[str]) -> Namespace:
     return parser.parse_args(args)
 
 
-def main(args: Namespace) -> None:
-    stats = BgStats.from_file(args.path_to_data)
-
+def plot_games_by_month(stats: BgStats) -> None:
     month_start = stats.get_play_date_earliest()
     month_start.replace(day=1)
 
@@ -65,6 +76,37 @@ def main(args: Namespace) -> None:
 
     pyplot.plot(months, plays_by_month)
     pyplot.ylabel("Plays by Month")
+
+
+def plot_games_by_plays(stats: BgStats) -> None:
+    num_games = len(stats.games)
+    num_plays = [0] * num_games
+    for play in stats.plays:
+        # `gameRefId`s are 1-indexed
+        num_plays[play.gameRefId - 1] += 1
+
+    # Sort bar chart positions by number of plays
+    positions = [
+        index
+        for _, index in sorted(
+            zip(num_plays, range(num_games)), key=lambda pair: pair[0]
+        )
+    ]
+
+    #  for game, num_plays_for_game, position in zip(stats.games, num_plays, positions):
+    #      print(game.name, num_plays_for_game, position)
+
+    pyplot.barh(list(range(num_games)), num_plays)
+    pyplot.yticks(ticks=positions, labels=[game.name for game in stats.games])
+
+
+def main(args: Namespace) -> None:
+    stats = BgStats.from_file(args.path_to_data)
+
+    if args.output_format == OutputFormat.GAMES_BY_MONTH:
+        plot_games_by_month(stats)
+    if args.output_format == OutputFormat.GAMES_BY_PLAYS:
+        plot_games_by_plays(stats)
 
     pyplot.tight_layout()
     pyplot.savefig(args.output_path)
