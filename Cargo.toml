@@ -9,7 +9,6 @@ members = [
   "games/gaia_project/",
   "games/oath/",
   "games/robo_puzzle/",
-  "games/sudoku/",
   "input/",
   "math/",
   "path_finding/",
