@@ -4,8 +4,6 @@ members = [
   ".",
   "argparse/",
   "cards/",
-  "games/dcg_card_generator/",
-  "games/dcg_render/",
   "games/gaia_project/",
   "games/oath/",
   "games/robo_puzzle/",
