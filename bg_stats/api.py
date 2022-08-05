@@ -1,16 +1,23 @@
 import json
+import textwrap
 from dataclasses import dataclass
 from datetime import date as Date
 from datetime import datetime as DateTime
 from pathlib import Path
 from typing import List
 from typing import Optional
+from typing import Protocol
 
 from dacite import from_dict
 
 
+class SqlTable(Protocol):
+    TABLE_NAME: str
+    SQL_SCHEMA: str
+
+
 @dataclass
-class Player:
+class Player(SqlTable):
     bggUsername: Optional[str]
     id: int
     isAnonymous: bool
@@ -18,17 +25,39 @@ class Player:
     name: str
     uuid: str
 
+    TABLE_NAME = "players"
+    SQL_SCHEMA = textwrap.dedent(
+        """
+        bgg_username VARCHAR(64),
+        id INT PRIMARY KEY,
+        is_anonymous BOOL,
+        modification_date DATE,
+        name VARCHAR(128),
+        uuid VARCHAR(64)
+    """
+    )
+
 
 @dataclass
-class Location:
+class Location(SqlTable):
     id: int
     modificationDate: str
     name: str
     uuid: str
 
+    TABLE_NAME = "locations"
+    SQL_SCHEMA = textwrap.dedent(
+        """
+        id INT PRIMARY KEY,
+        modification_date DATE,
+        name VARCHAR(128),
+        uuid VARCHAR(64)
+    """
+    )
+
 
 @dataclass
-class Game:
+class Game(SqlTable):
     cooperative: bool
     highestWins: bool
     id: int
@@ -43,20 +72,28 @@ class Game:
     usesTeams: bool
     uuid: str
 
+    TABLE_NAME = "games"
+    SQL_SCHEMA = textwrap.dedent(
+        """
+        cooperative BOOL,
+        highest_wins BOOL,
+        id INT PRIMARY KEY,
+        max_play_time INT,
+        max_player_count INT,
+        min_play_time INT,
+        min_player_count INT,
+        modification_date DATE,
+        name VARCHAR(128),
+        no_points BOOL,
+        rating INT,
+        uses_teams BOOL,
+        uuid VARCHAR(64)
+    """
+    )
+
 
 @dataclass
-class PlayerScore:
-    newPlayer: bool
-    playerRefId: int
-    rank: int
-    role: Optional[str]
-    score: Optional[str]
-    startPlayer: bool
-    winner: bool
-
-
-@dataclass
-class Play:
+class Play(SqlTable):
     board: Optional[str]
     comments: Optional[str]
     durationMin: int
@@ -66,11 +103,33 @@ class Play:
     locationRefId: int
     modificationDate: str
     playDate: str
-    playerScores: List[PlayerScore]
+    playerScores: List["PlayerScore"]
     rounds: int
     scoringSetting: int
     usesTeams: bool
     uuid: str
+
+    TABLE_NAME = "plays"
+    SQL_SCHEMA = textwrap.dedent(
+        f"""
+        board VARCHAR(128),
+        comments VARCHAR(256),
+        duration_min INT,
+        entry_date DATE,
+        game_ref_id INT,
+        FOREIGN KEY(game_ref_id) REFERENCES {Game.TABLE_NAME}(id),
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        ignored BOOL,
+        location_ref_id INT,
+        FOREIGN KEY(location_ref_id) REFERENCES {Location.TABLE_NAME}(id),
+        modification_date DATE,
+        play_date DATE,
+        rounds INT,
+        scoring_setting INT,
+        uses_teams BOOL,
+        uuid VARCHAR(64)
+    """
+    )
 
     @property
     def player_ids(self) -> List[int]:
@@ -79,6 +138,32 @@ class Play:
     @property
     def play_date(self) -> Date:
         return DateTime.strptime(self.playDate, "%Y-%m-%d %H:%M:%S").date()
+
+
+@dataclass
+class PlayerScore(SqlTable):
+    newPlayer: bool
+    playerRefId: int
+    role: Optional[str]
+    score: Optional[str]
+    startPlayer: bool
+    winner: bool
+
+    TABLE_NAME = "player_scores"
+    SQL_SCHEMA = textwrap.dedent(
+        f"""
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        new_player BOOL,
+        play_ref_id INT,
+        FOREIGN KEY(play_ref_id) REFERENCES {Play.TABLE_NAME}(id),
+        player_ref_id INT,
+        FOREIGN KEY(player_ref_id) REFERENCES {Player.TABLE_NAME}(id),
+        role VARCHAR(64),
+        score INT,
+        start_player BOOL,
+        winner BOOL
+    """
+    )
 
 
 @dataclass
