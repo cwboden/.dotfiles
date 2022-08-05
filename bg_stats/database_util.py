@@ -17,6 +17,7 @@ from bg_stats.api import Location
 from bg_stats.api import Play
 from bg_stats.api import Player
 from bg_stats.api import PlayerScore
+from bg_stats.api import SqlTableEntry
 
 
 def parse_args(args: List[str]) -> Namespace:
@@ -108,6 +109,25 @@ def init_database_if_new(args: Namespace) -> None:
                     cursor.execute(create_table_query)
 
 
+def extract_fields(schema: str) -> str:
+    fields = [
+        field.split(" ")[0]
+        for field in schema.split("\n")[1:-1]
+        if "FOREIGN KEY" not in field and "AUTO_INCREMENT" not in field
+    ]
+    return ",".join(fields)
+
+
+def cook_insert_entry_query(entry: SqlTableEntry) -> str:
+    return textwrap.dedent(
+        f"""
+            INSERT INTO {type(entry).TABLE_NAME}
+            ({extract_fields(type(entry).SQL_SCHEMA)})
+            VALUES {entry.into_schema()}
+        """
+    )
+
+
 def main(args: Namespace) -> None:
     init_database_if_new(args)
     bg_stats = BgStats.from_file(args.path_to_data)
@@ -119,19 +139,22 @@ def main(args: Namespace) -> None:
         database=args.database,
     ) as connection:
         with connection.cursor(buffered=True) as cursor:
-            # Insert Players
-            player_fields = [
-                field.split(" ")[0] for field in Player.SQL_SCHEMA.split("\n")[1:-1]
-            ]
             for player in bg_stats.players:
-                insert_player_query = textwrap.dedent(
-                    f"""
-                    INSERT INTO {Player.TABLE_NAME}
-                    ({",".join(player_fields)})
-                    VALUES {player.into_schema()}
-                """
-                )
-                cursor.execute(insert_player_query)
+                cursor.execute(cook_insert_entry_query(player))
+            for location in bg_stats.locations:
+                cursor.execute(cook_insert_entry_query(location))
+            for game in bg_stats.games:
+                cursor.execute(cook_insert_entry_query(game))
+
+            for play_id, play in enumerate(bg_stats.plays, start=1):
+                cursor.execute(cook_insert_entry_query(play))
+
+                for player_score in play.playerScores:
+                    cursor.execute(
+                        # We apply an extra `format()` to `PlayerScore` since we need to know the
+                        # `play_id` for the play we've just committed.
+                        cook_insert_entry_query(player_score).format(play_id)
+                    )
 
             connection.commit()
 

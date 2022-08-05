@@ -64,11 +64,21 @@ class Location(SqlTableEntry):
     SQL_SCHEMA = textwrap.dedent(
         """
         id INT PRIMARY KEY,
-        modification_date DATE,
+        modification_date DATETIME,
         name VARCHAR(128),
         uuid VARCHAR(64)
     """
     )
+
+    def into_schema(self) -> str:
+        return textwrap.dedent(
+            f"""(
+            {self.id},
+            '{self.modificationDate}',
+            \"{self.name}\",
+            '{self.uuid}'
+        )"""
+        )
 
 
 @dataclass
@@ -106,6 +116,25 @@ class Game(SqlTableEntry):
     """
     )
 
+    def into_schema(self) -> str:
+        return textwrap.dedent(
+            f"""(
+            {self.cooperative},
+            {self.highestWins},
+            {self.id},
+            {self.maxPlayTime},
+            {self.maxPlayerCount},
+            {self.minPlayTime},
+            {self.minPlayerCount},
+            '{self.modificationDate}',
+            \"{self.name}\",
+            {self.noPoints},
+            {self.rating},
+            {self.usesTeams},
+            '{self.uuid}'
+        )"""
+        )
+
 
 @dataclass
 class Play(SqlTableEntry):
@@ -130,21 +159,40 @@ class Play(SqlTableEntry):
         board VARCHAR(128),
         comments VARCHAR(256),
         duration_min INT,
-        entry_date DATE,
+        entry_date DATETIME,
         game_ref_id INT,
         FOREIGN KEY(game_ref_id) REFERENCES {Game.TABLE_NAME}(id),
         id INT AUTO_INCREMENT PRIMARY KEY,
         ignored BOOL,
         location_ref_id INT,
         FOREIGN KEY(location_ref_id) REFERENCES {Location.TABLE_NAME}(id),
-        modification_date DATE,
-        play_date DATE,
+        modification_date DATETIME,
+        play_date DATETIME,
         rounds INT,
         scoring_setting INT,
         uses_teams BOOL,
         uuid VARCHAR(64)
     """
     )
+
+    def into_schema(self) -> str:
+        return textwrap.dedent(
+            f"""(
+            \"{self.board}\",
+            \"{self.comments}\",
+            {self.durationMin},
+            '{self.entryDate}',
+            {self.gameRefId},
+            {self.ignored},
+            {self.locationRefId},
+            '{self.modificationDate}',
+            '{self.playDate}',
+            {self.rounds},
+            {self.scoringSetting},
+            {self.usesTeams},
+            '{self.uuid}'
+        )"""
+        )
 
     @property
     def player_ids(self) -> List[int]:
@@ -179,6 +227,35 @@ class PlayerScore(SqlTableEntry):
         winner BOOL
     """
     )
+
+    def into_schema(self) -> str:
+        role_sanitized = (
+            '"' + self.role.replace('"', "'") + '"' if self.role else "NULL"
+        )
+
+        score_sanitized = self.score
+        if score_sanitized:
+            # Clear off leading 0's, since Python can't interpret them.
+            # Add "+0" in case we have trailing add/subtract symbols or we strip off the only zero.
+            score_sanitized = score_sanitized.lstrip("0") + "+0"
+
+            # XXX: It's typically a bad idea to use `eval`, but since we're using data created by
+            # BGStats, I'm going to assume it's not malicious.
+            score_sanitized = eval(score_sanitized)
+        else:
+            score_sanitized = "NULL"
+
+        return textwrap.dedent(
+            f"""(
+            {self.newPlayer},
+            {{}},
+            {self.playerRefId},
+            {role_sanitized},
+            {score_sanitized},
+            {self.startPlayer},
+            {self.winner}
+        )"""
+        )
 
 
 @dataclass
