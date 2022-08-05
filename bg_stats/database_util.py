@@ -112,6 +112,29 @@ def main(args: Namespace) -> None:
     init_database_if_new(args)
     bg_stats = BgStats.from_file(args.path_to_data)
 
+    with connector.connect(
+        host="localhost",
+        user=args.username,
+        passwd=args.password,
+        database=args.database,
+    ) as connection:
+        with connection.cursor(buffered=True) as cursor:
+            # Insert Players
+            player_fields = [
+                field.split(" ")[0] for field in Player.SQL_SCHEMA.split("\n")[1:-1]
+            ]
+            for player in bg_stats.players:
+                insert_player_query = textwrap.dedent(
+                    f"""
+                    INSERT INTO {Player.TABLE_NAME}
+                    ({",".join(player_fields)})
+                    VALUES {player.into_schema()}
+                """
+                )
+                cursor.execute(insert_player_query)
+
+            connection.commit()
+
 
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])

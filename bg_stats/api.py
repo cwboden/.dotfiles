@@ -11,13 +11,16 @@ from typing import Protocol
 from dacite import from_dict
 
 
-class SqlTable(Protocol):
+class SqlTableEntry(Protocol):
     TABLE_NAME: str
     SQL_SCHEMA: str
 
+    def into_schema(self) -> str:
+        raise NotImplementedError
+
 
 @dataclass
-class Player(SqlTable):
+class Player(SqlTableEntry):
     bggUsername: Optional[str]
     id: int
     isAnonymous: bool
@@ -31,15 +34,27 @@ class Player(SqlTable):
         bgg_username VARCHAR(64),
         id INT PRIMARY KEY,
         is_anonymous BOOL,
-        modification_date DATE,
+        modification_date DATETIME,
         name VARCHAR(128),
         uuid VARCHAR(64)
     """
     )
 
+    def into_schema(self) -> str:
+        return textwrap.dedent(
+            f"""(
+            '{self.bggUsername}',
+            {self.id},
+            {self.isAnonymous},
+            '{self.modificationDate}',
+            \"{self.name}\",
+            '{self.uuid}'
+        )"""
+        )
+
 
 @dataclass
-class Location(SqlTable):
+class Location(SqlTableEntry):
     id: int
     modificationDate: str
     name: str
@@ -57,7 +72,7 @@ class Location(SqlTable):
 
 
 @dataclass
-class Game(SqlTable):
+class Game(SqlTableEntry):
     cooperative: bool
     highestWins: bool
     id: int
@@ -93,7 +108,7 @@ class Game(SqlTable):
 
 
 @dataclass
-class Play(SqlTable):
+class Play(SqlTableEntry):
     board: Optional[str]
     comments: Optional[str]
     durationMin: int
@@ -141,7 +156,7 @@ class Play(SqlTable):
 
 
 @dataclass
-class PlayerScore(SqlTable):
+class PlayerScore(SqlTableEntry):
     newPlayer: bool
     playerRefId: int
     role: Optional[str]
