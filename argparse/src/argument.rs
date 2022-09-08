@@ -1,9 +1,11 @@
 use std::collections::HashSet;
 use std::fmt::{Display, Formatter};
 
+type Callback<T> = Box<dyn Fn(&mut T)>;
+
 pub struct Argument<'a, T> {
     pub identifiers: HashSet<&'a str>,
-    pub callbacks: Vec<Box<dyn Fn(&mut T)>>,
+    pub callbacks: Vec<Callback<T>>,
     pub help_text: Option<&'a str>,
 }
 
