@@ -9,8 +9,7 @@ repos:
           - id: check-ast
             exclude: ^practice/
           - id: check-docstring-first
-          # XXX: WSL does not play nice and marks all files as executables :(
-          # - id: check-executables-have-shebangs
+          - id: check-executables-have-shebangs
           - id: check-yaml
           - id: debug-statements
             exclude: ^practice/
@@ -51,6 +50,8 @@ repos:
       rev: 0.2.1
       hooks:
           - id: yamlfmt
+
+    # TODO: Disabled since the script takes a hold on git's index.lock
     # - repo: local
     #   hooks:
     #       - id: markdown-update-last-modified-at
