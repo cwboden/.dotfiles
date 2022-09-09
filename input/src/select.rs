@@ -16,8 +16,8 @@ impl Plugin for SelectPlugin {
 pub struct Selectable;
 
 #[derive(Default)]
-struct SelectedEntity {
-    entity: Option<Entity>,
+pub struct SelectedEntity {
+    pub entity: Option<Entity>,
 }
 
 fn select_entity_system(

@@ -11,6 +11,7 @@ in all dependencies. I tried to test this using GitHub's Workflows, but I haven'
 install on all platforms.
 
 You should be able to get things started on Ubuntu using the following:
+
 ```sh
 git clone https://github.com/cwboden/.dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
@@ -21,6 +22,7 @@ poetry run python bootstrap/main.py
 ## Running Jekyll Locally
 After bootstrapping, the necessary dependencies should be installed to run the Jekyll server which
 contains the portfolio website and blog. You can start the server by running:
+
 ```sh
 cd ~/.dotfiles/docs/
 bundle exec jekyll serve
@@ -46,6 +48,7 @@ I recreated a path-finding project from an old class (EECS 281) in Rust. I decid
 through with all of the I/O required for the class's autograder and used integration tests instead.
 
 Try it out with:
+
 ```sh
 cargo run --package path_finding -- --help
 ```
@@ -64,13 +67,10 @@ primitive, but I've been able to interlace systems like:
  - Paying for various actions like terraforming, buildings, and research.
 
 Try it out with:
+
 ```sh
 cargo run --package gaia_project
 ```
-
-### Turns
-A generic turn system. Event-driven turns allow actions to be tied to the start, end, or change of
-arbitrary turn values.
 
 ### Cards
 Decks and Piles of arbitrary "Card" objects can be created, shuffled, and reset to initial
@@ -78,3 +78,18 @@ positions. The idea is to make it easier to prototype simple card games without 
 the deck logic every time.
 
 An in-progress example using a standard 52-card deck might someday be completed.
+
+### Pocket Ops
+Another board game port of Brandon Beran's [Pocket
+Ops](https://boardgamegeek.com/boardgame/216234/pocket-ops), a variant of tic-tac-toe where guessing
+your opponent's move means they won't be able to play a piece!
+
+In it's current state, it's just tic-tac-toe, since I can't think of a good way to obscure your
+moves from an opponent's if playing on the same screen / keyboard, but it has been a fun project to
+practice using Bevy.
+
+Try it out with:
+
+```sh
+cargo run --example pocket-ops
+```

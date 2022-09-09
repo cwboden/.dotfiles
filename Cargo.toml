@@ -6,6 +6,7 @@ members = [
   "cards/",
   "games/gaia_project/",
   "games/oath/",
+  "games/pocket_ops/",
   "games/robo_puzzle/",
   "input/",
   "math/",

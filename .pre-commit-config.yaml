@@ -50,11 +50,13 @@ repos:
       rev: 0.2.1
       hooks:
           - id: yamlfmt
-    - repo: local
-      hooks:
-          - id: markdown-update-last-modified-at
-            name: Markdown Update last_modified_at
-            description: Updates the front matter last_modified_at on committed Markdown files.
-            entry: tools/update-last-modified-at.sh
-            language: script
-            types: [markdown]
+
+    # TODO: Disabled since the script takes a hold on git's index.lock
+    # - repo: local
+    #   hooks:
+    #       - id: markdown-update-last-modified-at
+    #         name: Markdown Update last_modified_at
+    #         description: Updates the front matter last_modified_at on committed Markdown files.
+    #         entry: tools/update-last-modified-at.sh
+    #         language: script
+    #         types: [markdown]
