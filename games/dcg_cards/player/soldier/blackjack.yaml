@@ -1,0 +1,9 @@
+---
+class: Soldier
+cost: 4
+slots:
+    - OneHand
+subtype: Asset
+tags: Weapon. Item. Melee.
+text: Improvised.  (Action) Fight. If the enemy you're attacking has less than 5 Combat, gain +2 Combat for this attack.
+title: Blackjack

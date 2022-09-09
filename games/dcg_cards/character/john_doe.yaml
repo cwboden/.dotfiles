@@ -1,0 +1,11 @@
+---
+name: John Doe
+title: Sole Survivor
+combat: 9
+attunement: 4
+intellect: 3
+speed: 8
+willpower: 6
+health: 18
+sanity: 12
+text: (Reaction) When you take an instance of damage, gain resources equal to the damage taken (up to 4). Maximum once per round.

@@ -1,0 +1,9 @@
+---
+class: Seeker
+cost: 2
+slots: []
+subtype: Event
+tags: Spell.
+text: Fast.  When you would take a single instance of damage or horror, test 2X Attunement, where X is the total amount of damage and horror. If successful,
+    reduce the amount to 0.
+title: Barrier

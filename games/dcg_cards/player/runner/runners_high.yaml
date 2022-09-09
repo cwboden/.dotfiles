@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 3
+slots: []
+subtype: Asset
+tags: Innate. Spirit.
+text: "Uses Supply (0/3). Limit 1 per player.  (Reaction) When you pass a Speed test, exhaust Runner's High and add 1 Supply to it. 2 Supply: Gain +2 Speed.\
+    \ 3 Supply: Gain +1 Action per turn.   (Forced) If you have not passed a Speed test during this round, remove all Supply from Runner's High."
+title: Runner's High

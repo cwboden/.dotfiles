@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 6
+slots:
+    - Spell
+subtype: Asset
+tags: Innate. Spirit.
+text: (Reaction) When you pass a Speed test, you may exhaust Spell Slinger take a free action to Play or Activate a Spell card.
+title: Spell Slinger

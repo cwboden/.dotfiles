@@ -1,0 +1,8 @@
+---
+class: Seeker
+cost: 3
+slots: []
+subtype: Event
+tags: Practiced. Ritual.
+text: Choose a Spell or Ritual Asset. Test X Intellect, where X is the cost of the asset. If successful, restore all the asset's Casts.
+title: Clarity

@@ -72,10 +72,9 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
                 ]
 
                 if uninstalled_dependencies:
+                    subprocess.check_call(["sudo", "apt-get", "update"])
                     subprocess.check_call(
-                        ["sudo", "apt", "install"] + uninstalled_dependencies,
-                        stdout=subprocess.DEVNULL,
-                        stderr=subprocess.DEVNULL,
+                        ["sudo", "apt-get", "install"] + uninstalled_dependencies,
                     )
             else:
                 raise NotImplementedError(

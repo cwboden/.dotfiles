@@ -7,11 +7,13 @@ repos:
       hooks:
           - id: check-added-large-files
           - id: check-ast
+            exclude: ^practice/
           - id: check-docstring-first
           # XXX: WSL does not play nice and marks all files as executables :(
           # - id: check-executables-have-shebangs
           - id: check-yaml
           - id: debug-statements
+            exclude: ^practice/
           - id: detect-private-key
           - id: end-of-file-fixer
           - id: mixed-line-ending
@@ -21,20 +23,25 @@ repos:
       rev: v0.960
       hooks:
           - id: mypy
+            exclude: ^practice/
+            additional_dependencies: [types-PyYAML==6.0.8, types-requests==2.27.31, types-setuptools==57.0.2]
     - repo: https://github.com/asottile/reorder_python_imports
       rev: v3.1.0
       hooks:
           - id: reorder-python-imports
+            exclude: ^practice/
     - repo: https://github.com/psf/black
       rev: 22.3.0
       hooks:
           - id: black
             language_version: python3 # Should be a command that runs python3.6+
+            exclude: ^practice/
     - repo: https://github.com/hadialqattan/pycln
       rev: v1.3.3
       hooks:
           - id: pycln
             args: [--config=pyproject.toml]
+            exclude: ^practice/
     - repo: https://github.com/doublify/pre-commit-rust
       rev: v1.0
       hooks:
@@ -44,3 +51,11 @@ repos:
       rev: 0.2.1
       hooks:
           - id: yamlfmt
+    # - repo: local
+    #   hooks:
+    #       - id: markdown-update-last-modified-at
+    #         name: Markdown Update last_modified_at
+    #         description: Updates the front matter last_modified_at on committed Markdown files.
+    #         entry: tools/update-last-modified-at.sh
+    #         language: script
+    #         types: [markdown]

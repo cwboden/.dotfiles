@@ -1,0 +1,10 @@
+---
+class: Researcher
+cost: 6
+slots:
+    - OneHand
+subtype: Asset
+tags: Learned. Item.
+text: "After you discover the last clue in a location, add 1 Discovery to 'Research Journal' (up to 3).   1 Discovery: Draw 1 Card  2 Discoveries: +2 Intellect\
+    \  3 Discoveries: +2 Willpower"
+title: Research Journal

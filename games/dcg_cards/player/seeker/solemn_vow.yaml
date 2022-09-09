@@ -1,0 +1,8 @@
+---
+class: Seeker
+cost: 6
+slots: []
+subtype: Asset
+tags: Sacred.
+text: '0: Health. 6 Sanity.  Horror directed at nearby players may be placed on Solemn Vow.'
+title: Solemn Vow

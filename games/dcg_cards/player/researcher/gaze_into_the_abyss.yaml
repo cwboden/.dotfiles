@@ -1,0 +1,8 @@
+---
+class: Researcher
+cost: 5
+slots: []
+subtype: Event
+tags: Gambit.
+text: Investigate X times, where X is a number 4 or lower. For each time you fail, take 2 horror.
+title: Gaze into the Abyss

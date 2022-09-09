@@ -1,0 +1,9 @@
+---
+class: Soldier
+cost: 10
+slots:
+    - TwoHands
+subtype: Asset
+tags: Item. Weapon. Firearm. Old World.
+text: Uses Ammunition (5/5)  (Action) Fight. Use 1 ammunition. This attack has +4 Combat and +3 Damage.
+title: M4A1

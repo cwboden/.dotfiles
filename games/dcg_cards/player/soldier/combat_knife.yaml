@@ -1,0 +1,9 @@
+---
+class: Soldier
+cost: 5
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Weapon. Melee.
+text: (Action) Fight. This attack has +2 Combat and +1 Damage.
+title: Combat Knife

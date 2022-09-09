@@ -1,0 +1,8 @@
+---
+class: Scavenger
+cost: 3
+slots: []
+subtype: Asset
+tags: Innate.
+text: Limit 1 per player.  When you have 3 or more 'Item' Assets in play, gain +3 to Willpower.
+title: Sense of Security

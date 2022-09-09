@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 0
+slots: []
+subtype: Event
+tags: Practiced.
+text: Play. Put exactly two items into play, reducing the resource cost of both by 3.
+title: Suit Up

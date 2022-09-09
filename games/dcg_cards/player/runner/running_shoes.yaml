@@ -1,0 +1,9 @@
+---
+class: Runner
+cost: 5
+slots:
+    - Legs
+subtype: Asset
+tags: Item. Clothing.
+text: (Reaction) When you enter a room, exhaust 'Running Shoes' to move to an adjacent room.   (Action) Ready 'Running Shoes'
+title: Running Shoes

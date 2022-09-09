@@ -1,0 +1,11 @@
+---
+class: Seeker
+cost: 8
+slots:
+    - Relic
+    - Accessory
+subtype: Asset
+tags: Item. Ritual. Unique.
+text: Gain +2 Attunement.  (Reaction) Test 8 Attunement. If successful, look at the top 3 cards of your deck and draw a Spell or Ritual from them. Shuffle
+    your deck.
+title: The Sign

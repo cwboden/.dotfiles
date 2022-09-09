@@ -1,34 +1,17 @@
-[package]
-name = "dotfiles"
-version = "0.1.0"
-authors = ["Carson Boden <carson.boden@gmail.com>"]
-edition = "2021"
-
-[[example]]
-name = "path-finding"
-path = "examples/path-finding/main.rs"
-
-[[example]]
-name = "gaia-project"
-path = "examples/gaia-project/main.rs"
-
-[[example]]
-name = "cards"
-path = "examples/cards/main.rs"
-
-[[example]]
-name = "pocket-ops"
-path = "examples/pocket-ops/main.rs"
+[workspace]
+resolver = "2"
+members = [
+  ".",
+  "argparse/",
+  "cards/",
+  "games/gaia_project/",
+  "games/oath/",
+  "games/pocket_ops/",
+  "games/robo_puzzle/",
+  "input/",
+  "math/",
+  "path_finding/",
+  "stat_gen/",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dev-dependencies]
-assert_matches = "1.5"
-
-[dependencies]
-bevy = "0.6.1"
-rand = "0.8.5"
-ron = "0.7"
-serde = { version = "1.0", features = ["derive"] }
-strum = "0.13.0"
-strum_macros = "0.13.0"

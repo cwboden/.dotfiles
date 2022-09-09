@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Desperate.
+text: Gain +4 Intellect for this skill test. If you are successful on an investigation, gain 6 resources instead of discovering a clue.
+title: Scavenge for Supplies

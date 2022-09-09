@@ -1,0 +1,10 @@
+---
+class: Runner
+cost: 5
+slots:
+    - Spell
+subtype: Asset
+tags: Ritual. Practiced.
+text: (Reaction) When you play a Spell Event that costs less than 3 resources, you may exhaust Runic Cadence and add a copy of that Event to your hand that
+    lasts until the end of your turn.
+title: Runic Cadence

@@ -1,0 +1,132 @@
+---
+# Theming
+remote_theme: mmistakes/minimal-mistakes
+minimal_mistakes_skin: dark
+
+# Site Settings
+locale: en-US
+title: Carson Boden
+title_separator: '-'
+subtitle: My personal portfolio / blog
+
+name: &name Carson Boden
+description: Welcome to my homepage -- still under construction!
+url: https://carsonboden.com
+baseurl: ''
+repository: cwboden/.dotfiles
+logo: /assets/vector/personal-logo.png
+
+search: true
+
+author:
+    name: *name
+    avatar: /assets/img/me.png
+    bio: Developer, Game Addict, Earth Lover
+    location: Seattle, WA
+    links: &links
+        - label: GitHub
+          icon: fab fa-fw fa-github
+          url: https://github.com/cwboden
+        - label: LinkedIn
+          icon: fab fa-fw fa-linkedin
+          url: https://linkedin.com/in/carson-boden/
+        - label: Spotify
+          icon: fab fa-fw fa-spotify
+          url: https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A
+        - label: Steam
+          icon: fab fa-fw fa-steam
+          url: https://steamcommunity.com/id/xenonn11
+        - label: BGG
+          icon: fas fa-fw fa-dice
+          url: https://boardgamegeek.com/user/xenonn11
+
+footer:
+    links: *links
+
+collections:
+    portfolio:
+        output: true
+        permalink: /:collection/:path/
+
+defaults:
+    # General Page Layout
+    - scope:
+          path: _pages
+          type: pages
+      values:
+          layout: single
+          author_profile: true
+    # Blog Posts
+    - scope:
+          path: ''
+          type: posts
+      values:
+          layout: single
+          author_profile: true
+          show_date: true
+          read_time: true
+          comments: true
+          share: true
+          related: true
+          toc: true
+          toc_sticky: true
+    # Portfolio
+    - scope:
+          path: ''
+          type: portfolio
+      values:
+          layout: single
+          author_profile: false
+          share: true
+
+include:
+    - .htaccess
+    - _pages
+exclude:
+    - '*.sublime-project'
+    - '*.sublime-workspace'
+    - vendor
+    - .asset-cache
+    - .bundle
+    - .jekyll-assets-cache
+    - .sass-cache
+    - assets/js/plugins
+    - assets/js/_main.js
+    - assets/js/vendor
+    - Capfile
+    - CHANGELOG
+    - config
+    - Gemfile
+    - Gruntfile.js
+    - gulpfile.js
+    - LICENSE
+    - log
+    - node_modules
+    - package.json
+    - Rakefile
+    - README
+    - tmp
+keep_files:
+    - .git
+    - .svn
+encoding: utf-8
+markdown_ext: markdown,mkdown,mkdn,mkd,md
+
+timezone: America/Los_Angeles
+
+plugins: &plugins
+    - jekyll-feed
+    - jekyll-gist
+    - jekyll-include-cache
+    - jekyll-paginate
+    - jekyll-sitemap
+    - jemoji
+
+whitelist: *plugins
+
+category_archive:
+    type: liquid
+    path: /categories/
+tag_archive:
+    type: liquid
+    path: /tags/

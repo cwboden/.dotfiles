@@ -1,0 +1,9 @@
+---
+class: Seeker
+cost: 1
+slots: []
+subtype: Event
+tags: Spell.
+text: When each player draws an encounter card during the Mythos phase, you may choose which encounter card goes to each player. Each player may only draw
+    one encounter card.
+title: Precognition

@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 4
+slots: []
+subtype: Event
+tags: Practiced.
+text: Heal 6 health to yourself.
+title: Tourniquet

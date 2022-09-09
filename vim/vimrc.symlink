@@ -331,18 +331,21 @@ let g:rustfmt_autosave_if_config_present = 1
 " Python
 autocmd FileType python setlocal colorcolumn=100
 autocmd FileType python setlocal textwidth=100
-" strip 'qinternal' for python gf
 autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
 
 " Rust (rustfmt defaults)
 autocmd FileType rust setlocal colorcolumn=100
 autocmd FileType rust setlocal textwidth=100
 
-" C (Qumulo C rules)
+" C
 autocmd FileType c setlocal colorcolumn=100
 autocmd FileType c setlocal textwidth=100
 autocmd FileType h setlocal colorcolumn=100
 autocmd FileType h setlocal textwidth=100
+
+" Markdown
+autocmd FileType markdown setlocal colorcolumn=80
+autocmd FileType markdown setlocal textwidth=80
 " }}}
 
 " ALE {{{

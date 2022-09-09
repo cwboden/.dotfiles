@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 7
+slots: []
+subtype: Asset
+tags: Practiced.
+text: Gain +3 Willpower.
+title: Conditioning

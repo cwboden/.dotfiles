@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Spirit.
+text: Gain +4 Speed for this skill test. If successful, you may immediately take a free movement action.
+title: Light on Your Feet

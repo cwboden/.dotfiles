@@ -1,0 +1,8 @@
+---
+class: Character
+cost: 0
+slots: []
+subtype: Skill
+tags: Practiced.
+text: Gain +4 Combat for this skill test. If you are successful on an attack, deal +2 damage.
+title: Decisive Strike

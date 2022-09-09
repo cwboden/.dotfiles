@@ -1,0 +1,8 @@
+---
+class: Soldier
+cost: 0
+slots: []
+subtype: Event
+tags: Desperate.
+text: Discard one item in your play area. Automatically evade an enemy.
+title: Distraction

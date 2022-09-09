@@ -1,0 +1,9 @@
+---
+class: Seeker
+cost: 4
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Sacred.
+text: When you perform a skill test on a Spell or Ritual card, gain +1 to the skill test.
+title: Ritual Manuscript

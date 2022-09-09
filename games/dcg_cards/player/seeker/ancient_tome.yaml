@@ -1,0 +1,10 @@
+---
+class: Seeker
+cost: 4
+slots:
+    - OneHand
+subtype: Asset
+tags: Item. Manuscript.
+text: (Anytime) Exhaust Ancient Tome and test 6 Attunement and 6 Intellect. If you are successful on one of these tests, draw a card. If you succeed on
+    both, instead you may look at the top three cards of your deck and choose one to draw. Shuffle your deck after.
+title: Ancient Tome

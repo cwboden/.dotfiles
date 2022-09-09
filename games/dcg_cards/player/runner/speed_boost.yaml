@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 3
+slots: []
+subtype: Event
+tags: Spirit.
+text: Test Speed (4). Take 1 movement action for every point you succeed by (up to 4).
+title: Speed Boost

@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 3
+slots: []
+subtype: Event
+tags: Spell.
+text: Fight. This attack uses Attunement. Deal +1 damage to an enemy or +4 if the enemy is exhausted.
+title: Shocking Touch

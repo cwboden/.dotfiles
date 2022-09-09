@@ -1,0 +1,8 @@
+---
+class: Seeker
+cost: 0
+slots: []
+subtype: Event
+tags: Spell.
+text: You and a nearby player choose 1.  Restore 3 sanity. Restore 3 health. Draw 1 card. Gain 2 resources.
+title: Rallying Light

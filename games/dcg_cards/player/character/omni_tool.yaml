@@ -1,0 +1,11 @@
+---
+class: Character
+cost: 6
+slots:
+    - Relic
+    - OneHand
+subtype: Skill
+tags: Item. Device.
+text: Jane Doe deck only. Uses charges (3/3) (Reaction) When you initiate a skill test, exhaust Omni Tool and test 6 Attunement. If successful, use intellect
+    for the skill test.
+title: Omni Tool

@@ -1,0 +1,8 @@
+---
+class: Runner
+cost: 0
+slots: []
+subtype: Event
+tags: Gambit.
+text: Fast.   The next 3 events you play cost 3 less (minimum 0).
+title: Combo
