@@ -139,3 +139,22 @@ that's the case.
 ### Quests that Worked
 
 ### Quests that Didn't Work
+
+### Notes from Chat with Cade
+most can be very overpowered but very few are not as good
+
+Yeah, I feel like the stealth quest is made for combos like that, but to me, it
+just makes baron/juggler feel more powerful than it already did
+It's kind of one-dimensional
+
+Re: The Friends Along the Way
+yeah, though on other side, you can see it as 2 free coins
+
+Compared to, I like the "Alter Ego" one where it's Evens and Odds
+Since freezing minions can make them worse but also better
+So it changes your playstyle
+
+ I feel like if you don't complete your quest in like a couple turns, you're
+ pretty hosed (But this is good -> Forces interaction)
+
+ yeah, poison is pretty op rn
