@@ -122,33 +122,57 @@ it".
 The goals scale slightly based on the relative power of rewards. So, for
 example, "Summon X minions" might be 20 for a lower-impact reward but 30 for a
 higher-impact one. This can incentivize players to choose "worse" rewards if it
-means they'll get it earlier and can power through the midgame.
+means they'll get it earlier and can power through the midgame, which often
+times can net a low-placing win.
 
-Remember that getting 4th place or better is typically considered a "Win" since
-there are eight players in each game, so 4th place is in the top 50%.
+Remember that getting 4th place or better is typically considered a "Win" (and
+gives a raise in MMR) since there are eight players in each game, so 4th place
+is in the top 50%.
 {: .notice--info}
 
 ## A Deeper Dive into Quest Design
 While Quests have no doubt shaken up the meta, I think it's important to
 consider if the quests are expanding the game by changing the way players build
-their Warbands or if they are only amplifying existing strategies.
+their Warbands or if they are instead amplifying existing strategies.
 
 The answer is both! But let's explore some of the different Quests to see why
 that's the case.
 
-### Quests that Worked
+### Some Quests that Expanded Player Interaction
 
-### Quests that Didn't Work
+#### Alter Ego
+
+#### Devils in the Details
+
+#### Teal Tiger Sapphire
+
+### Some Quests that Intensified Existing Strategies
+
+#### Staff of Origination
+Win-more card. Got nerfed.
+
+Not really interesting in any way -- why wouldn't you want this?
+
+In theory falls off late game, but you already have a W secured at that point
+
+#### The Friends Along the Way
+Locks players into a specific faction
+
+Alternatively, two free coins per turn (and maybe some boosts)
+
+#### Theotar's Parasol
+Baron / Juggler
+
+### Touching on Quest Goals
+Since these aren't the end goal, not as interesting
+
+They do serve to hinder the player in some ways --> Not completing your quest
+fast means you'll likely fall behind, too
 
 ### Notes from Chat with Cade
-most can be very overpowered but very few are not as good
-
 Yeah, I feel like the stealth quest is made for combos like that, but to me, it
 just makes baron/juggler feel more powerful than it already did
 It's kind of one-dimensional
-
-Re: The Friends Along the Way
-yeah, though on other side, you can see it as 2 free coins
 
 Compared to, I like the "Alter Ego" one where it's Evens and Odds
 Since freezing minions can make them worse but also better
