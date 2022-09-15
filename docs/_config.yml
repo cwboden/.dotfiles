@@ -80,9 +80,9 @@ defaults:
           share: true
 
 analytics:
-    provider: google
+    provider: google-gtag
     google:
-        tracking_id: UA-105099824-1
+        tracking_id: G-6Y67R83K7M
 
 include:
     - .htaccess
