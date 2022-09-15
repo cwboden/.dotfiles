@@ -79,6 +79,11 @@ defaults:
           author_profile: false
           share: true
 
+analytics:
+    provider: google
+    google:
+        tracking_id: UA-105099824-1
+
 include:
     - .htaccess
     - _pages
