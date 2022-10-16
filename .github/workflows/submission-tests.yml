@@ -173,4 +173,4 @@ jobs:
             - name: Ensure Site builds correctly
               run: |
                   bundle exec jekyll build
-                  bundle exec htmlproofer ./_site --disable-external --allow-hash-href --alt-ignore '/.*/portfolio/.*/'
+                  bundle exec htmlproofer ./_site --disable-external --allow-hash-href

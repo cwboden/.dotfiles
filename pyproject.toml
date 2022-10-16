@@ -20,7 +20,7 @@ PyPDF2 = "^2.3.1"
 reportlab = "^3.6.10"
 matplotlib = "^3.5.2"
 mysqlclient = "^2.1.1"
-mysql-connector-python = "^8.0.30"
+mysql-connector-python = "^8.0.31"
 numpy = "^1.22.0"
 
 [tool.poetry.dev-dependencies]

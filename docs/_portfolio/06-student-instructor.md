@@ -7,9 +7,9 @@ header:
   teaser: /assets/img/portfolio/classroom-thumbnail.jpg
   actions:
     - label: EECS 370 Course Website
-      url: http://www.eecs.umich.edu/courses/eecs370/
+      url: https://www.eecs.umich.edu/courses/eecs370/
     - label: EECS 470 Course Website
-      url: http://www.eecs.umich.edu/courses/eecs470/
+      url: https://www.eecs.umich.edu/courses/eecs470/
 excerpt: "Instructional Aide (IA), Graduate Student Instructor (GSI), Lecturer, <br/> Jan 2018 - Dec 2019"
 ---
 
