@@ -57,7 +57,7 @@ earned by the opponent when retreating:
 |**2**|4-6|5-6|
 |**3**|2-3|3-4|
 |**4**|1|2|
-|**6**|0|1-0|
+|**6**|0|0-1|
 
 Not only is this extremely thematic, since a calculated retreat will yield more
 resources for a future battle, it's also a good balance to the randomness of
@@ -255,20 +255,62 @@ The added Epic Mode uses five of the six theaters, chosen randomly, with players
 being dealt ten cards per battle instead of six. Like the standard mode, the
 goal is still to win the majority of theaters, in this case, three of the five.
 
-When I played, we rotated one theater out each round, to keep things balanced
-and semi-predictable. But otherwise, the game is still fairly chaotic.
+The points table for Withdrawl has changed slightly, but the end goal of 12
+Points is the same. Typically, the number of battles is comparable to a Standard
+game, but each battle takes much longer.
 
+|Points|1st Player<br>*(cards)*|2nd Player<br>*(cards)*|
+|:---:|:---:|:---:|
+|**2**|6+|7+|
+|**3**|3-5|4-6|
+|**4**|1-2|2-3|
+|**6**|0|0-1|
+
+When I played, we rotated one theater out each round, to keep things balanced
+and semi-predictable. But otherwise, the game has much added chaos, as
+convoluted combos are now possible with ten cards in hand. Though this, without
+a doubt, makes each battle feel much more "epic"!
+
+In addition, the balance of certain cards changes drastically in Epic Mode.
 Cards that enable players to deploy to any theater, like **Aerodrome** *(Air 4)*
 or the newly-introduced **Supply Lines** *(Economics 2)* become exceptionally
-more powerful, since there are now two more theaters to worry about.
+more powerful, since there are now two more theaters to be able to flex to.
 
-- Play 5 out of the 6 theaters, chosen randomly (we rotated one in each battle)
-- Must win 3 out of the 5 theaters
-- Dealt 10 cards instead of 6
+The biggest downside of Epic Mode in my experience was the increase in time.
+With a much larger decision tree, players may spend a lot more time
+contemplating their moves. A turn timer worked well for this, and even added
+some good flavor, since inaction in a war is not a viable strategy!
 
 ### 3-4 Player Mode
-- Hand split between two players, player with more cards must play
-- At the beginning, they each exchange one card from their hand
-- Communication is open between players
-- Takes much longer, due to communication
-- Talking in code is both fun *and* thematic with the war element
+Epic Mode also adds support for playing with three or four. Players team up,
+with up to two members on each side. The hand is split so that each player gets
+five of the ten cards. Turns between players on the same team don't necessarily
+alternate, but whichever teammate has more cards *must* play (or, if you and
+your partner are tied, it's up to you to decide).
+
+At the beginning, players may exchange one card from their hand, but all other
+communication about player hands must be public, so the enemy can try and listen
+in to strategize. When playing, we found it valuable to talk in code using the
+passed card as a "known secret".
+
+For example, you might say, "The card I passed you is my lowest Strength card,"
+or "I don't have any other cards matching the Theater of that card." It's fun to
+keep your plans hidden as much as possible from your opponent, and it also adds
+another thematic element to the game, a sort of cryptography-adjacent side to
+each battle.
+
+Due to talking in code or strategizing your next move, playing with three or
+four increases the game's play time further, but I felt it was a more worthy
+consideration. It's much more fun to plan your move with a partner where you
+each only have half of the information about your resources, and there's often
+less to consider than when playing with all ten cards on your own.
+
+## Conclusion
+I've been very impressed by *Air, Land, & Sea*. It was easy to pick up, but
+there's deep thought that goes into each battle, which keeps the game fresh. The
+expansion adds additional longevity and let's you expand to play with three or
+four players, which is uncommon for most two-player games.
+
+Furthermore, the small size makes it an easy game to take wherever you go, with
+the expansion nesting easily into the original game box. *\*Chef's Kiss\** If my
+friend didn't already own a copy, I would go out and buy a copy for myself.
