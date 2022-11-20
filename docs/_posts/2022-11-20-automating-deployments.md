@@ -1,6 +1,6 @@
 ---
 title: Automating Deployments with BitBucket / GitHub Pipelines
-excerpt:
+excerpt: A comparison between Monorepos and Multirepos as well as how each can automate deployments in a seamless fashion.
 last_modified_at:
 categories:
  - Programming
