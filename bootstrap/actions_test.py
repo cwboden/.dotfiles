@@ -2,9 +2,9 @@
 import os
 import unittest
 
-from bootstrap.actions import MakeDirectoryBuildAction
-from bootstrap.actions import RunShellCommandBuildAction
-from bootstrap.actions import SpyBuildAction
+from actions import MakeDirectoryBuildAction
+from actions import RunShellCommandBuildAction
+from actions import SpyBuildAction
 
 
 class BuildActionTest(unittest.TestCase):

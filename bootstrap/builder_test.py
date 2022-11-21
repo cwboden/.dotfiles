@@ -2,11 +2,11 @@
 import os
 import unittest
 
-from bootstrap.actions import SpyBuildAction
-from bootstrap.builder import Builder
-from bootstrap.predicates import AlwaysRunBuildPredicate
-from bootstrap.units import BuildUnit
-from bootstrap.units import SaboteurBuildUnit
+from actions import SpyBuildAction
+from builder import Builder
+from predicates import AlwaysRunBuildPredicate
+from units import BuildUnit
+from units import SaboteurBuildUnit
 
 DEVNULL = open(os.devnull, "w")
 

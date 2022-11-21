@@ -2,13 +2,12 @@ import platform
 import subprocess
 
 import distro
-
-from bootstrap.actions import BuildAction
-from bootstrap.actions import MakeDirectoryBuildAction
-from bootstrap.actions import RunShellCommandBuildAction
-from bootstrap.predicates import BuildPredicate
-from bootstrap.predicates import DirectoryExistsBuildPredicate
-from bootstrap.predicates import PythonModuleInstalledBuildPredicate
+from actions import BuildAction
+from actions import MakeDirectoryBuildAction
+from actions import RunShellCommandBuildAction
+from predicates import BuildPredicate
+from predicates import DirectoryExistsBuildPredicate
+from predicates import PythonModuleInstalledBuildPredicate
 
 
 class BuildUnit:

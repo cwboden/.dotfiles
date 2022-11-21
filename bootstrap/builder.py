@@ -2,8 +2,7 @@ import sys
 
 from colorama import Fore
 from colorama import Style
-
-from bootstrap.units import BuildUnit
+from units import BuildUnit
 
 
 class Builder:

@@ -4,10 +4,10 @@ import shutil
 import unittest
 from pathlib import Path
 
-from bootstrap.builder import Builder
-from bootstrap.main import crawl_for_symlink_sources
-from bootstrap.main import create_symlinks
-from bootstrap.main import translate_symlink_to_destination
+from builder import Builder
+from main import crawl_for_symlink_sources
+from main import create_symlinks
+from main import translate_symlink_to_destination
 
 DEVNULL = open(os.devnull, "w")
 
