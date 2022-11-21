@@ -80,11 +80,6 @@ jobs:
                   cd bootstrap
                   poetry install --no-interaction --no-root
 
-            - name: Configure $PYTHONPATH and venv
-              run: |
-                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
-                  source .venv/bin/activate
-
             - name: Check pre-commit cache
               uses: actions/cache@v3
               with:
@@ -94,12 +89,16 @@ jobs:
             - name: Run Bootstrap
               run: |
                   cd bootstrap
+                  poetry shell
                   poetry run python main.py
+                  exit
 
             - name: See if Bootstrap worked
               run: |
                   cd bootstrap
+                  poetry shell
                   poetry run python -m unittest 'main_integration_test.py'
+                  exit
 
     python:
         needs: detect-changes
@@ -146,17 +145,14 @@ jobs:
                     poetry install --no-interaction --no-root
                   done
 
-            - name: Configure $PYTHONPATH and venv
-              run: |
-                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
-                  source .venv/bin/activate
-
             - name: Run Python unittests
               run: |
+                  poetry shell
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
                     cd $(dirname $test)
                     poetry run python -m unittest $test
                   done
+                  exit
 
     rust:
         needs: detect-changes
