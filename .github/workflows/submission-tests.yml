@@ -13,6 +13,7 @@ jobs:
     detect-changes:
         runs-on: ubuntu-latest
         outputs:
+            workflows: ${{ steps.filter.outputs.workflows }}
             bootstrap: ${{ steps.filter.outputs.bootstrap }}
             python: ${{ steps.filter.outputs.python }}
             rust: ${{ steps.filter.outputs.rust }}
