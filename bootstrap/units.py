@@ -49,7 +49,7 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
         self.system = system.lower()
         self.linux_distribution = linux_distribution.lower()
 
-        with open("dependencies.txt", "r") as dependencies_file:
+        with open("../dependencies.txt", "r") as dependencies_file:
             self.dependencies = [
                 dependency.strip() for dependency in dependencies_file.readlines()
             ]
