@@ -144,6 +144,7 @@ jobs:
               run: |
                   for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
                     cd $dir
+                    echo "Installing dependencies from $dir/pyproject.toml"
                     poetry install --no-interaction --no-root
                   done
 
