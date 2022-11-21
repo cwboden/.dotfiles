@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import os
+import subprocess
 from typing import List
 
 from actions import MakeSymlinkBuildAction
@@ -83,6 +84,8 @@ def install_tmux(builder: Builder) -> None:
             ),
         ),
     )
+
+    subprocess.check_call("cat ~/.tmux.conf")
 
     # Install Plugins
     builder.add_unit(
