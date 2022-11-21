@@ -59,6 +59,13 @@ jobs:
                   virtualenvs-in-project: true
                   installer-parallel: true
 
+            - name: Generate `poetry.lock` files
+              run: |
+                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
+                    cd $dir
+                    poetry lock --no-interaction
+                  done
+
             - name: Load cached Python venv
               id: cached-poetry-dependencies
               uses: actions/cache@v3
@@ -68,12 +75,9 @@ jobs:
 
             - name: Install Python dependencies
               if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-              run: poetry install --no-interaction --no-root
-
-            - name: Configure $PYTHONPATH and venv
               run: |
-                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
-                  source .venv/bin/activate
+                  cd bootstrap
+                  poetry install --no-interaction --no-root
 
             - name: Check pre-commit cache
               uses: actions/cache@v3
@@ -82,10 +86,14 @@ jobs:
                   key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
 
             - name: Run Bootstrap
-              run: poetry run python bootstrap/main.py
+              run: |
+                  cd bootstrap
+                  poetry run python main.py
 
             - name: See if Bootstrap worked
-              run: poetry run python -m unittest 'bootstrap/main_integration_test.py'
+              run: |
+                  cd bootstrap
+                  poetry run python -m unittest 'main_integration_test.py'
 
     python:
         needs: detect-changes
@@ -110,6 +118,13 @@ jobs:
                   virtualenvs-in-project: true
                   installer-parallel: true
 
+            - name: Generate `poetry.lock` files
+              run: |
+                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
+                    cd $dir
+                    poetry lock --no-interaction
+                  done
+
             - name: Load cached Python venv
               id: cached-poetry-dependencies
               uses: actions/cache@v3
@@ -119,15 +134,18 @@ jobs:
 
             - name: Install Python dependencies
               if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-              run: poetry install --no-interaction --no-root
-
-            - name: Configure $PYTHONPATH and venv
               run: |
-                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
-                  source .venv/bin/activate
+                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
+                    cd $dir
+                    poetry install --no-interaction --no-root
+                  done
 
             - name: Run Python unittests
-              run: find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**" | xargs poetry run python -m unittest
+              run: |
+                  for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
+                    cd $(dirname $test)
+                    poetry run python -m unittest $test
+                  done
 
     rust:
         needs: detect-changes
