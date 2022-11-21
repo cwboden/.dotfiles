@@ -89,16 +89,14 @@ jobs:
             - name: Run Bootstrap
               run: |
                   cd bootstrap
-                  poetry shell
+                  source $(poetry env info --path)/bin/activate
                   poetry run python main.py
-                  exit
 
             - name: See if Bootstrap worked
               run: |
                   cd bootstrap
-                  poetry shell
+                  source $(poetry env info --path)/bin/activate
                   poetry run python -m unittest 'main_integration_test.py'
-                  exit
 
     python:
         needs: detect-changes
@@ -147,12 +145,11 @@ jobs:
 
             - name: Run Python unittests
               run: |
-                  poetry shell
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
                     cd $(dirname $test)
+                    source $(poetry env info --path)/bin/activate
                     poetry run python -m unittest $test
                   done
-                  exit
 
     rust:
         needs: detect-changes
