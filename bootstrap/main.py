@@ -208,7 +208,7 @@ def main() -> None:
 
     home_dir = os.path.expanduser("~")
     install_zsh(builder, home_dir)
-    create_symlinks(builder, "./", home_dir)
+    create_symlinks(builder, "../", home_dir)
 
     install_vim(builder)
     install_tmux(builder)
