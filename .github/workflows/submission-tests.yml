@@ -59,6 +59,11 @@ jobs:
                   virtualenvs-in-project: true
                   installer-parallel: true
 
+            - name: Configure $PYTHONPATH and venv
+              run: |
+                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
+                  source .venv/bin/activate
+
             - name: Generate `poetry.lock` files
               run: |
                   for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
@@ -117,6 +122,11 @@ jobs:
                   virtualenvs-create: true
                   virtualenvs-in-project: true
                   installer-parallel: true
+
+            - name: Configure $PYTHONPATH and venv
+              run: |
+                  echo "PYTHONPATH=$PYTHONPATH:~/.dotfiles" >> $GITHUB_ENV
+                  source .venv/bin/activate
 
             - name: Generate `poetry.lock` files
               run: |
