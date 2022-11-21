@@ -22,6 +22,9 @@ jobs:
               id: filter
               with:
                   filters: |
+                      # Run Workflow for all suites if the script has changed
+                      workflows:
+                        - '.github/workflows/submission-tests.yml'
                       bootstrap:
                         - 'Cargo.lock'
                         - 'Cargo.toml'
@@ -38,7 +41,9 @@ jobs:
 
     bootstrap:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.bootstrap == 'true' }}
+        if: >-
+            needs.detect-changes.outputs.bootstrap == 'true' ||
+            needs.detect-changes.outputs.workflows == 'true'
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
@@ -84,7 +89,9 @@ jobs:
 
     python:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.python == 'true' }}
+        if: >-
+            needs.detect-changes.outputs.python == 'true' ||
+            needs.detect-changes.outputs.workflows == 'true'
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
@@ -124,7 +131,9 @@ jobs:
 
     rust:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.rust == 'true' }}
+        if: >-
+            needs.detect-changes.outputs.rust == 'true' ||
+            needs.detect-changes.outputs.workflows == 'true'
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
@@ -155,7 +164,9 @@ jobs:
 
     website:
         needs: detect-changes
-        if: ${{ needs.detect-changes.outputs.website == 'true' }}
+        if: >-
+            needs.detect-changes.outputs.website == 'true' ||
+            needs.detect-changes.outputs.workflows == 'true'
         runs-on: ubuntu-latest
         defaults:
             run:
