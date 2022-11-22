@@ -1,11 +1,16 @@
 [tool.poetry]
-name = "dotfiles"
+name = "tools"
 version = "0.1.0"
 authors = [ "Carson Boden <carson.boden@gmail.com>" ]
-description = "A collection of my dotfiles"
+description = "Various tools created for personal use"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+GitPython = "^3.1.20"
+PyPDF2 = "^2.3.1"
+fs = "^2.4.15"
+parameterized = "^0.8.1"
+reportlab = "^3.6.10"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.15.0"

@@ -9,15 +9,14 @@ from argparse import Namespace
 from pathlib import Path
 from typing import List
 
+from api import BgStats
+from api import Game
+from api import Location
+from api import Play
+from api import Player
+from api import PlayerScore
+from api import SqlTableEntry
 from mysql import connector
-
-from bg_stats.api import BgStats
-from bg_stats.api import Game
-from bg_stats.api import Location
-from bg_stats.api import Play
-from bg_stats.api import Player
-from bg_stats.api import PlayerScore
-from bg_stats.api import SqlTableEntry
 
 
 def parse_args(args: List[str]) -> Namespace:

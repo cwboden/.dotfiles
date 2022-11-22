@@ -7,11 +7,11 @@ from argparse import Namespace
 from datetime import date
 from pathlib import Path
 
+import create_new_blog_post
 from fs import open_fs
 from parameterized import parameterized
 
 from git import Repo
-from tools import create_new_blog_post
 
 
 class CreateNewBlogPostTest(unittest.TestCase):

@@ -2,13 +2,12 @@ import platform
 import subprocess
 
 import distro
-
-from bootstrap.actions import BuildAction
-from bootstrap.actions import MakeDirectoryBuildAction
-from bootstrap.actions import RunShellCommandBuildAction
-from bootstrap.predicates import BuildPredicate
-from bootstrap.predicates import DirectoryExistsBuildPredicate
-from bootstrap.predicates import PythonModuleInstalledBuildPredicate
+from actions import BuildAction
+from actions import MakeDirectoryBuildAction
+from actions import RunShellCommandBuildAction
+from predicates import BuildPredicate
+from predicates import DirectoryExistsBuildPredicate
+from predicates import PythonModuleInstalledBuildPredicate
 
 
 class BuildUnit:
@@ -49,7 +48,7 @@ class InstallSystemPackagesBuildUnit(BuildUnit):
         self.system = system.lower()
         self.linux_distribution = linux_distribution.lower()
 
-        with open("dependencies.txt", "r") as dependencies_file:
+        with open("../dependencies.txt", "r") as dependencies_file:
             self.dependencies = [
                 dependency.strip() for dependency in dependencies_file.readlines()
             ]

@@ -58,6 +58,7 @@ class MakeSymlinkBuildAction(BuildAction):
 
     def execute(self) -> None:
         os.symlink(self.source_path, self.dest_path)
+        print(f"Created symlink: {self.source_path} -> {self.dest_path}")
 
 
 class SpyBuildAction(BuildAction):

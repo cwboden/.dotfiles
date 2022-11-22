@@ -14,9 +14,9 @@ You should be able to get things started on Ubuntu using the following:
 
 ```sh
 git clone https://github.com/cwboden/.dotfiles.git ~/.dotfiles
-cd ~/.dotfiles
+cd ~/.dotfiles/bootstrap
 poetry install
-poetry run python bootstrap/main.py
+poetry run python main.py
 ```
 
 ## Running Jekyll Locally

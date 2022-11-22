@@ -3,7 +3,7 @@ import unittest
 from datetime import date as Date
 from pathlib import Path
 
-from bg_stats.api import BgStats
+from api import BgStats
 
 
 PATH_TO_DATA: Path = Path("BGStatsExport-for-test.json")

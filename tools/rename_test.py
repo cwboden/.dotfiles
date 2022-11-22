@@ -8,11 +8,10 @@ from io import StringIO
 from typing import List
 from typing import Union
 
+import rename
 from fs import open_fs
 from fs.base import FS
 from fs.subfs import SubFS
-
-from tools import rename
 
 FILE_1_CONTENTS = """
 old_name

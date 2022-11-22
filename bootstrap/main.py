@@ -2,15 +2,15 @@
 import os
 from typing import List
 
-from bootstrap.actions import MakeSymlinkBuildAction
-from bootstrap.actions import RunShellCommandBuildAction
-from bootstrap.builder import Builder
-from bootstrap.predicates import AlwaysRunBuildPredicate
-from bootstrap.predicates import DirectoryExistsBuildPredicate
-from bootstrap.predicates import FileExistsBuildPredicate
-from bootstrap.units import BuildUnit
-from bootstrap.units import InstallSystemPackagesBuildUnit
-from bootstrap.units import MakeDirectoryBuildUnit
+from actions import MakeSymlinkBuildAction
+from actions import RunShellCommandBuildAction
+from builder import Builder
+from predicates import AlwaysRunBuildPredicate
+from predicates import DirectoryExistsBuildPredicate
+from predicates import FileExistsBuildPredicate
+from units import BuildUnit
+from units import InstallSystemPackagesBuildUnit
+from units import MakeDirectoryBuildUnit
 
 
 def install_common_dependencies(builder: Builder) -> None:
@@ -205,7 +205,7 @@ def main() -> None:
 
     home_dir = os.path.expanduser("~")
     install_zsh(builder, home_dir)
-    create_symlinks(builder, "./", home_dir)
+    create_symlinks(builder, "../", home_dir)
 
     install_vim(builder)
     install_tmux(builder)
