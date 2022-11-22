@@ -150,6 +150,7 @@ jobs:
                     # Ensure package dependencies are available
                     echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
                     source $(poetry env info --path)/bin/activate
+                    echo "Running tests for $test:"
                     poetry run python -m unittest $test
                   done
 
