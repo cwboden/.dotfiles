@@ -125,28 +125,13 @@ jobs:
                   virtualenvs-in-project: true
                   installer-parallel: true
 
-            - name: Generate `poetry.lock` files
-              run: |
-                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
-                    cd $dir
-                    poetry lock --no-interaction
-                  done
-
             # TODO: Add caching back to Python Workflow
 
-            - name: Install Python dependencies
-              if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-              run: |
-                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
-                    cd $dir
-                    echo "Installing dependencies from $dir/pyproject.toml"
-                    poetry install --no-interaction --no-root
-                  done
-
-            - name: Run Python unittests
+            - name: Install Python dependencies and run unittests
               run: |
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
                     cd $(dirname $test)
+                    poetry install --no-interaction --no-root
                     # Ensure package dependencies are available
                     echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
                     source $(poetry env info --path)/bin/activate
