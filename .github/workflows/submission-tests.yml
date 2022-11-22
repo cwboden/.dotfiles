@@ -132,12 +132,7 @@ jobs:
                     poetry lock --no-interaction
                   done
 
-            - name: Load cached Python venv
-              id: cached-poetry-dependencies
-              uses: actions/cache@v3
-              with:
-                  path: .venv
-                  key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+            # TODO: Add caching back to Python Workflow
 
             - name: Install Python dependencies
               if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
