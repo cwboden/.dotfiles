@@ -113,7 +113,9 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Install Ubuntu packages
-              run: sudo apt install $(cat dependencies.txt)
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install $(cat dependencies.txt)
 
             - uses: actions/setup-python@v4
               with:
@@ -160,7 +162,9 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Install Ubuntu packages
-              run: sudo apt install $(cat dependencies.txt)
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install $(cat dependencies.txt)
 
             - name: Generate `Cargo.lock` to check cache dependencies
               run: cargo generate-lockfile
