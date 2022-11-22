@@ -113,7 +113,9 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Install Ubuntu packages
-              run: sudo apt install $(cat dependencies.txt)
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install $(cat dependencies.txt)
 
             - uses: actions/setup-python@v4
               with:
@@ -125,7 +127,17 @@ jobs:
                   virtualenvs-in-project: true
                   installer-parallel: true
 
-            # TODO: Add caching back to Python Workflow
+            - name: Load cached Python venvs
+              id: cached-poetry-dependencies
+              uses: actions/cache@v3
+              with:
+                  path: |
+                      # Python projects must be listed here
+                      .venv
+                      bg_stats/.venv
+                      bootstrap/.venv
+                      tools/.venv
+                  key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
 
             - name: Install Python dependencies and run unittests
               run: |
@@ -150,7 +162,12 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Install Ubuntu packages
-              run: sudo apt install $(cat dependencies.txt)
+              run: |
+                  sudo apt-get update
+                  sudo apt-get install $(cat dependencies.txt)
+
+            - name: Generate `Cargo.lock` to check cache dependencies
+              run: cargo generate-lockfile
 
             - name: Check Cargo cache
               uses: actions/cache@v3
