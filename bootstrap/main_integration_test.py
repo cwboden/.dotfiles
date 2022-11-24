@@ -25,7 +25,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
         print(f"Contents of `.config` directory ('{self.home_dir}/.config'):")
         subprocess.check_call(["tree", f"{self.home_dir}/.config"])
 
-        self.assertTrue(os.path.isfile(f"{self.home_dir}/.config/nvim/init.vim"))
+        self.assertTrue(os.path.exists(f"{self.home_dir}/.config/nvim/init.vim"))
 
     def test_vim_plug_installed(self) -> None:
         print(
