@@ -22,7 +22,7 @@ class BootstrapIntegrationTest(unittest.TestCase):
         )
 
     def test_nvim_init_is_created(self) -> None:
-        self.assertTrue(os.path.isfile(f"{self.home_dir}/.local/share/nvim/init.vim"))
+        self.assertTrue(os.path.isfile(f"{self.home_dir}/.config/nvim/init.vim"))
 
     def test_vim_plug_installed(self) -> None:
         self.assertTrue(
