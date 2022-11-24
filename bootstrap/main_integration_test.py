@@ -36,7 +36,6 @@ class BootstrapIntegrationTest(unittest.TestCase):
         self.assertTrue(
             os.path.exists(f"{self.home_dir}/.local/share/nvim/site/autoload/plug.vim")
         )
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.local/share/nvim/plugged"))
 
     def test_tmux_folders_are_created(self) -> None:
         self.assertTrue(os.path.exists(f"{self.home_dir}/.tmux/"))
