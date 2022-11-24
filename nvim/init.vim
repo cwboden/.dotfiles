@@ -1,15 +1,10 @@
-set nocompatible
-
 filetype plugin indent on
 
-" Vim-Plug Options {{{
+" Vim-Plug Options
 call plug#begin()
 
 " Vim-Plug management for other apps
 Plug 'FooSoft/vim-argwrap'
-
-" Language Server Protocol
-Plug 'prabirshrestha/vim-lsp'
 
 " Appearance
 Plug 'itchyny/lightline.vim'
@@ -35,7 +30,6 @@ Plug 'sheerun/vim-polyglot'
 " Search Utilities
 Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 
 " Style Utilities
@@ -49,40 +43,27 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-" Disable ALE for Qumulo
-" Plug 'dense-analysis/ale'
-
 " Finish the call, all plugins must be before this
 call plug#end()
 
-" }}}
+"
 
-" Language and Encoding {{{
-set encoding=utf-8
-
+" Language and Encoding
 let $LANG='en'
 set langmenu=en
-" }}}
+"
 
-" General Configuration {{{
-set showcmd
-set laststatus=2
+" General Configuration
 set noshowmode
-set autoread
 
-set ruler
 set number
 set relativenumber
 set cursorline
 
 set nowrap
-set history=500
 set so=8
 
-set wildmenu
 set wildmode=list:longest,list:full
-
-set ttimeoutlen=10
 
 " Ignore specific files
 set wildignore=*.o,*~,*.pyc
@@ -108,29 +89,26 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-" }}}
+"
 
-" Swap Files and Backups {{{
+" Swap Files and Backups
 set autowrite
 set nobackup
 set noswapfile
 
-set undodir=$HOME/.vim/undodir//
 set undofile
 
 " Automatically remove extra whitespace
 autocmd BufWritePre * :%s/\s\+$//e
-" }}}
+"
 
-" Appearance {{{
+" Appearance
 if !has('gui_running')
   set t_Co=256
 endif
 
 syntax on
 syntax enable
-
-set background=dark
 
 
 " Avoids freezing the terminal when plugins are not yet installed
@@ -143,52 +121,47 @@ endtry
 set colorcolumn=100
 
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-" }}}
+"
 
-" Indentation {{{
+" Indentation
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 
 set expandtab
-set smarttab
-set autoindent
 set shiftround
 filetype plugin indent on
 
 set backspace=eol,start,indent
 
 set modelines=1
-" }}}
+"
 
-" Folding {{{
+" Folding
 set foldmethod=indent
 set foldnestmax=10
 set foldenable
 set foldlevelstart=10
-" }}}
+"
 
-" Noises and Notifications {{{
+" Noises and Notifications
 set noerrorbells
 set novisualbell
-" }}}
+"
 
-" Searching {{{
+" Searching
 set ignorecase
 set smartcase
 
 set showmatch
-set hlsearch
-set incsearch
-" }}}
+"
 
-" Windows and Tabs {{{
-set hidden
+" Windows and Tabs
 set splitbelow
 set splitright
-" }}}
+"
 
-" Keybindings {{{
+" Keybindings
 let mapleader = "\\"
 let maplocalleader = "\\"
 
@@ -202,12 +175,10 @@ inoremap <S-Tab> <C-V><Tab>
 
 imap jk <Esc>
 imap jj <Esc>
+"
 
-set mouse=a
-" }}}
-
-" Custom Functions {{{
-"   Toggle Between Test Files {{{
+" Custom Functions
+"   Toggle Between Test Files
 function GoToTestFile()
     let test_file = expand('%:r') . '_test.' . expand('%:e')
     execute "e " . fnameescape(l:test_file)
@@ -226,9 +197,9 @@ function ToggleTestFile()
 endfunc
 
 command T call ToggleTestFile()
-"   }}}
+"
 
-"   Toggle Between Rust/C Files {{{
+"   Toggle Between Rust/C Files
 function GoToRustFile()
     let rust_file = expand('%:r') . '.rs'
     execute "e " . fnameescape(l:rust_file)
@@ -247,9 +218,9 @@ function ToggleRustFile()
 endfunc
 
 command R call ToggleRustFile()
-"   }}}
 "
-"   Toggle Between Source / Header / Rust {{{
+"
+"   Toggle Between Source / Header / Rust
 function GoToHeaderFile()
     let header_file = expand('%:r') . '.h'
     execute "e " . fnameescape(l:header_file)
@@ -261,19 +232,19 @@ function GoToSourceFile()
     execute "e " . fnameescape(l:source_file)
 endfunc
 command C call GoToSourceFile()
-"   }}}
+"
 
-"   Jump to Generated Code {{{
+"   Jump to Generated Code
 function JumpToGeneratedCode()
     let generated_file = 'build/debug/' . expand('%') . '.gen.h'
     execute "e " . fnameescape(l:generated_file)
 endfunc
 
 command Gen call JumpToGeneratedCode()
-"   }}}
-" }}}
+"
+"
 
-" Lightline {{{
+" Lightline
 let g:lightline = {
     \   'colorscheme': 'gruvbox',
     \   'active': {
@@ -284,9 +255,9 @@ let g:lightline = {
     \       'left': [ [ 'filename', 'modified' ] ],
     \   }
     \ }
-" }}}
+"
 
-" NERD Tree {{{
+" NERD Tree
 let NerdTreeMinimalUI = 1
 let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.pdf$']
 let NERDTreeAutoDeleteBuffer = 1
@@ -300,34 +271,34 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 map <C-n> :NERDTreeToggle %<CR>
 map <C-f> :NERDTreeFind<CR>
-" }}}
+"
 
-" NERD Commenter {{{
+" NERD Commenter
 let g:NERDSpaceDelims = 1
 let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
-" }}}
+"
 
-" C++ Enhanced Highlight {{{
+" C++ Enhanced Highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
-" }}}
+"
 
-" Arg Wrap {{{
+" Arg Wrap
 let g:argwrap_padded_braces = '[{'
 let g:argwrap_closing_brace = 0
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
-" }}}
+"
 
-" Rust Formatter {{{
+" Rust Formatter
 let g:rustfmt_autosave_if_config_present = 1
-" }}}
+"
 
-" File-Specific Commands {{{
+" File-Specific Commands
 " Python
 autocmd FileType python setlocal colorcolumn=100
 autocmd FileType python setlocal textwidth=100
@@ -346,14 +317,14 @@ autocmd FileType h setlocal textwidth=100
 " Markdown
 autocmd FileType markdown setlocal colorcolumn=80
 autocmd FileType markdown setlocal textwidth=80
-" }}}
+"
 
-" ALE {{{
+" ALE
 " Disabled for Qumulo
 " let g:ale_linters = {'rust': ['analyzer']}
-" }}}
+"
 
-" vim-lsp {{{
+" vim-lsp
 " Use Rust Analyzer
 if executable('rust-analyzer')
     au User lsp_setup call lsp#register_server({
@@ -389,11 +360,11 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" }}}
+"
 
-" Python Black {{{
+" Python Black
 let g:black_fast = 1
 let g:black_quiet = 1
-" }}}
+"
 
 " vim:foldmethod=marker:foldlevel=0
