@@ -27,6 +27,59 @@ def install_common_dependencies(builder: Builder) -> None:
     )
 
 
+def install_nvim(builder: Builder) -> None:
+    # Create NVim folders
+    home_dir = os.path.expanduser("~")
+    base_dir = f"{home_dir}/nvim"
+    builder.add_unit(MakeDirectoryBuildUnit(base_dir))
+    for folder in ["swapfiles", "backups", "undodir"]:
+        builder.add_unit(MakeDirectoryBuildUnit(f"{base_dir}/{folder}"))
+
+    # Symlink `init.vim` into `nvim/`
+    config_dir = f"{home_dir}/.config/nvim"
+    builder.add_unit(MakeDirectoryBuildUnit(config_dir))
+    vim_init_install_path = f"{config_dir}/init.vim"
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate(vim_init_install_path),
+            MakeSymlinkBuildAction(
+                os.path.abspath(f"{home_dir}/.dotfiles/nvim/init.vim"),
+                vim_init_install_path,
+            ),
+        ),
+    )
+
+    # Install VimPlug
+    local_share_path = f"{home_dir}/.local/share/nvim"
+    vimplug_install_dir = f"{local_share_path}/site/autoload/plug.vim"
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate(vimplug_install_dir),
+            RunShellCommandBuildAction(
+                [
+                    "curl",
+                    "-fLo",
+                    vimplug_install_dir,
+                    "--create-dirs",
+                    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
+                ]
+            ),
+        ),
+    )
+    builder.add_unit(
+        BuildUnit(
+            DirectoryExistsBuildPredicate(f"{local_share_path}/plugged"),
+            RunShellCommandBuildAction(
+                [
+                    "nvim",
+                    "+PlugInstall",
+                    "+qa",
+                ]
+            ),
+        ),
+    )
+
+
 def install_vim(builder: Builder) -> None:
     # Create Vim folders
     home_dir = os.path.expanduser("~")
@@ -208,6 +261,7 @@ def main() -> None:
     create_symlinks(builder, "../", home_dir)
 
     install_vim(builder)
+    install_nvim(builder)
     install_tmux(builder)
 
     builder.build()
