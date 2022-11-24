@@ -31,11 +31,6 @@ class BootstrapIntegrationTest(unittest.TestCase):
         self.assertTrue(os.path.exists(f"{self.home_dir}/.config/nvim/init.vim"))
 
     def test_vim_plug_installed(self) -> None:
-        print(
-            f"Contents of NVim Local Share directory ('{self.home_dir}/.local/share/nvim'):"
-        )
-        subprocess.check_call(["tree", f"{self.home_dir}/.local/share/nvim"])
-
         self.assertTrue(
             os.path.exists(f"{self.home_dir}/.local/share/nvim/site/autoload/plug.vim")
         )
