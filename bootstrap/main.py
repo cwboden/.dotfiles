@@ -28,14 +28,8 @@ def install_common_dependencies(builder: Builder) -> None:
 
 
 def install_nvim(builder: Builder) -> None:
-    # Create NVim folders
-    home_dir = os.path.expanduser("~")
-    base_dir = f"{home_dir}/nvim"
-    builder.add_unit(MakeDirectoryBuildUnit(base_dir))
-    for folder in ["swapfiles", "backups", "undodir"]:
-        builder.add_unit(MakeDirectoryBuildUnit(f"{base_dir}/{folder}"))
-
     # Symlink `init.vim` into `nvim/`
+    home_dir = os.path.expanduser("~")
     config_dir = f"{home_dir}/.config/nvim"
     builder.add_unit(MakeDirectoryBuildUnit(config_dir))
     vim_init_install_path = f"{config_dir}/init.vim"
