@@ -64,7 +64,7 @@ fn interaction_state_system(
 
         match windows.get(window_id) {
             Some(window) => {
-                let screen_size = Vec2::from([window.width() as f32, window.height() as f32]);
+                let screen_size = Vec2::from([window.width(), window.height()]);
                 let relative_cursor_position =
                     (cursor_position / screen_size) * 2.0 - Vec2::new(1.0, 1.0);
                 let camera_matrix = transform.compute_matrix();
