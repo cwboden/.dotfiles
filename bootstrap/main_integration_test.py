@@ -21,14 +21,19 @@ class BootstrapIntegrationTest(unittest.TestCase):
             ["pre-commit", "run", "--all-files"],
         )
 
-    def test_vim_folders_are_created(self) -> None:
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/swapfiles"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/backups"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/undodir"))
+    def test_nvim_init_is_created(self) -> None:
+        init_vim_location = f"{self.home_dir}/.config/nvim/init.vim"
+        self.assertTrue(
+            os.path.exists(init_vim_location),
+            msg=f"Could not find '{init_vim_location}'",
+        )
 
     def test_vim_plug_installed(self) -> None:
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/autoload/plug.vim"))
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/plugged"))
+        vim_plug_location = f"{self.home_dir}/.local/share/nvim/site/autoload/plug.vim"
+        self.assertTrue(
+            os.path.exists(vim_plug_location),
+            msg=f"Could not find '{vim_plug_location}'",
+        )
 
     def test_tmux_folders_are_created(self) -> None:
         self.assertTrue(os.path.exists(f"{self.home_dir}/.tmux/"))

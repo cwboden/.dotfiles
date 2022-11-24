@@ -8,6 +8,7 @@ libsdl2-mixer-dev
 libsdl2-ttf-dev
 libudev-dev
 mysql-server
+neovim
 ripgrep
 ruby-full
 zlib1g-dev

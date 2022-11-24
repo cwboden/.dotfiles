@@ -26,6 +26,7 @@ class MakeDirectoryBuildAction(BuildAction):
         self.path = path
 
     def execute(self) -> None:
+        print(f"Creating directory: '{self.path}'")
         os.mkdir(self.path)
 
 
@@ -36,6 +37,7 @@ class RunShellCommandBuildAction(BuildAction):
         self.command = command
 
     def execute(self) -> None:
+        print(f"Running command: '{self.command}'")
         completed_process = subprocess.run(self.command, capture_output=True)
 
         # Add stdout and stderr output if the call fails
@@ -57,8 +59,8 @@ class MakeSymlinkBuildAction(BuildAction):
         self.dest_path = dest_path
 
     def execute(self) -> None:
+        print(f"Creating symlink: '{self.source_path}' -> '{self.dest_path}'")
         os.symlink(self.source_path, self.dest_path)
-        print(f"Created symlink: {self.source_path} -> {self.dest_path}")
 
 
 class SpyBuildAction(BuildAction):

@@ -27,22 +27,33 @@ def install_common_dependencies(builder: Builder) -> None:
     )
 
 
-def install_vim(builder: Builder) -> None:
-    # Create Vim folders
+def install_nvim(builder: Builder) -> None:
+    # Symlink `init.vim` into `nvim/`
     home_dir = os.path.expanduser("~")
-    builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.vim/"))
-    for folder in ["swapfiles", "backups", "undodir"]:
-        builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.vim/{folder}"))
-
-    # Install VimPlug
+    config_dir = f"{home_dir}/.config/nvim"
+    builder.add_unit(MakeDirectoryBuildUnit(config_dir))
+    vim_init_install_path = f"{config_dir}/init.vim"
     builder.add_unit(
         BuildUnit(
-            FileExistsBuildPredicate(f"{home_dir}/.vim/autoload/plug.vim"),
+            FileExistsBuildPredicate(vim_init_install_path),
+            MakeSymlinkBuildAction(
+                os.path.abspath(f"../nvim/init.vim"),
+                vim_init_install_path,
+            ),
+        ),
+    )
+
+    # Install VimPlug
+    local_share_path = f"{home_dir}/.local/share/nvim"
+    vimplug_install_dir = f"{local_share_path}/site/autoload/plug.vim"
+    builder.add_unit(
+        BuildUnit(
+            FileExistsBuildPredicate(vimplug_install_dir),
             RunShellCommandBuildAction(
                 [
                     "curl",
                     "-fLo",
-                    f"{home_dir}/.vim/autoload/plug.vim",
+                    vimplug_install_dir,
                     "--create-dirs",
                     "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
                 ]
@@ -51,10 +62,10 @@ def install_vim(builder: Builder) -> None:
     )
     builder.add_unit(
         BuildUnit(
-            DirectoryExistsBuildPredicate(f"{home_dir}/.vim/plugged"),
+            DirectoryExistsBuildPredicate(f"{local_share_path}/plugged"),
             RunShellCommandBuildAction(
                 [
-                    "vim",
+                    "nvim",
                     "+PlugInstall",
                     "+qa",
                 ]
@@ -207,7 +218,7 @@ def main() -> None:
     install_zsh(builder, home_dir)
     create_symlinks(builder, "../", home_dir)
 
-    install_vim(builder)
+    install_nvim(builder)
     install_tmux(builder)
 
     builder.build()
