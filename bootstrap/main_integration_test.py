@@ -16,18 +16,23 @@ class BootstrapIntegrationTest(unittest.TestCase):
     def setUp(self) -> None:
         self.home_dir = os.path.expanduser("~")
 
-        print(f"Contents of Home directory ('{self.home_dir}'):")
-        subprocess.check_call(["tree", self.home_dir])
-
     def test_pre_commit_git_hook_installed(self) -> None:
         subprocess.check_call(
             ["pre-commit", "run", "--all-files"],
         )
 
     def test_nvim_init_is_created(self) -> None:
+        print(f"Contents of `.config` directory ('{self.home_dir}/.config'):")
+        subprocess.check_call(["tree", f"{self.home_dir}/.config"])
+
         self.assertTrue(os.path.isfile(f"{self.home_dir}/.config/nvim/init.vim"))
 
     def test_vim_plug_installed(self) -> None:
+        print(
+            f"Contents of NVim Local Share directory ('{self.home_dir}/.local/share/nvim'):"
+        )
+        subprocess.check_call(["tree", f"{self.home_dir}/.local/share/nvim"])
+
         self.assertTrue(
             os.path.exists(f"{self.home_dir}/.local/share/nvim/site/autoload/plug.vim")
         )
