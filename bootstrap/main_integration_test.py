@@ -21,23 +21,10 @@ class BootstrapIntegrationTest(unittest.TestCase):
             ["pre-commit", "run", "--all-files"],
         )
 
-    def test_nvim_folders_and_init_are_created(self) -> None:
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/nvim"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/nvim/swapfiles"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/nvim/backups"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/nvim/undodir"))
-
-        self.assertTrue(os.path.isfile(f"{self.home_dir}/nvim/init.vim"))
-
-    def test_vim_folders_are_created(self) -> None:
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/swapfiles"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/backups"))
-        self.assertTrue(os.path.isdir(f"{self.home_dir}/.vim/undodir"))
+    def test_nvim_init_is_created(self) -> None:
+        self.assertTrue(os.path.isfile(f"{self.home_dir}/.local/share/nvim/init.vim"))
 
     def test_vim_plug_installed(self) -> None:
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/autoload/plug.vim"))
-        self.assertTrue(os.path.exists(f"{self.home_dir}/.vim/plugged"))
-
         self.assertTrue(
             os.path.exists(f"{self.home_dir}/.local/share/site/autoload/plug.vim")
         )
