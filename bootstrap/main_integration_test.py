@@ -16,6 +16,9 @@ class BootstrapIntegrationTest(unittest.TestCase):
     def setUp(self) -> None:
         self.home_dir = os.path.expanduser("~")
 
+        print(f"Contents of Home directory ('{self.home_dir}'):")
+        subprocess.check_call(["tree", self.home_dir])
+
     def test_pre_commit_git_hook_installed(self) -> None:
         subprocess.check_call(
             ["pre-commit", "run", "--all-files"],
