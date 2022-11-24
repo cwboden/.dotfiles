@@ -22,12 +22,6 @@ class BootstrapIntegrationTest(unittest.TestCase):
         )
 
     def test_nvim_init_is_created(self) -> None:
-        print(f"Contents of `.config` directory ('{self.home_dir}/.config'):")
-        subprocess.check_call(["tree", f"{self.home_dir}/.config"])
-
-        print("Attempting to find `init.vim`")
-        subprocess.check_call(["find", self.home_dir, "-name", "init.vim"])
-
         init_vim_location = f"{self.home_dir}/.config/nvim/init.vim"
         self.assertTrue(
             os.path.exists(init_vim_location),
