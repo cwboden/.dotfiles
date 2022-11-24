@@ -37,7 +37,7 @@ def install_nvim(builder: Builder) -> None:
         BuildUnit(
             FileExistsBuildPredicate(vim_init_install_path),
             MakeSymlinkBuildAction(
-                os.path.abspath(f"{home_dir}/.dotfiles/nvim/init.vim"),
+                os.path.abspath(f"../nvim/init.vim"),
                 vim_init_install_path,
             ),
         ),
