@@ -46,12 +46,9 @@ Plug 'tpope/vim-fugitive'
 " Finish the call, all plugins must be before this
 call plug#end()
 
-"
-
 " Language and Encoding
 let $LANG='en'
 set langmenu=en
-"
 
 " General Configuration
 set noshowmode
@@ -89,7 +86,6 @@ autocmd FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checkti
 " https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
-"
 
 " Swap Files and Backups
 set autowrite
@@ -100,7 +96,6 @@ set undofile
 
 " Automatically remove extra whitespace
 autocmd BufWritePre * :%s/\s\+$//e
-"
 
 " Appearance
 if !has('gui_running')
@@ -121,7 +116,6 @@ endtry
 set colorcolumn=100
 
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
-"
 
 " Indentation
 set tabstop=4
@@ -135,31 +129,26 @@ filetype plugin indent on
 set backspace=eol,start,indent
 
 set modelines=1
-"
 
 " Folding
 set foldmethod=indent
 set foldnestmax=10
 set foldenable
 set foldlevelstart=10
-"
 
 " Noises and Notifications
 set noerrorbells
 set novisualbell
-"
 
 " Searching
 set ignorecase
 set smartcase
 
 set showmatch
-"
 
 " Windows and Tabs
 set splitbelow
 set splitright
-"
 
 " Keybindings
 let mapleader = "\\"
@@ -175,7 +164,6 @@ inoremap <S-Tab> <C-V><Tab>
 
 imap jk <Esc>
 imap jj <Esc>
-"
 
 " Custom Functions
 "   Toggle Between Test Files
@@ -197,7 +185,6 @@ function ToggleTestFile()
 endfunc
 
 command T call ToggleTestFile()
-"
 
 "   Toggle Between Rust/C Files
 function GoToRustFile()
@@ -218,8 +205,7 @@ function ToggleRustFile()
 endfunc
 
 command R call ToggleRustFile()
-"
-"
+
 "   Toggle Between Source / Header / Rust
 function GoToHeaderFile()
     let header_file = expand('%:r') . '.h'
@@ -232,7 +218,6 @@ function GoToSourceFile()
     execute "e " . fnameescape(l:source_file)
 endfunc
 command C call GoToSourceFile()
-"
 
 "   Jump to Generated Code
 function JumpToGeneratedCode()
@@ -241,8 +226,6 @@ function JumpToGeneratedCode()
 endfunc
 
 command Gen call JumpToGeneratedCode()
-"
-"
 
 " Lightline
 let g:lightline = {
@@ -255,7 +238,6 @@ let g:lightline = {
     \       'left': [ [ 'filename', 'modified' ] ],
     \   }
     \ }
-"
 
 " NERD Tree
 let NerdTreeMinimalUI = 1
@@ -271,7 +253,6 @@ autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
 map <C-n> :NERDTreeToggle %<CR>
 map <C-f> :NERDTreeFind<CR>
-"
 
 " NERD Commenter
 let g:NERDSpaceDelims = 1
@@ -279,24 +260,20 @@ let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
 let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
-"
 
 " C++ Enhanced Highlight
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
-"
 
 " Arg Wrap
 let g:argwrap_padded_braces = '[{'
 let g:argwrap_closing_brace = 0
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
-"
 
 " Rust Formatter
 let g:rustfmt_autosave_if_config_present = 1
-"
 
 " File-Specific Commands
 " Python
@@ -317,54 +294,7 @@ autocmd FileType h setlocal textwidth=100
 " Markdown
 autocmd FileType markdown setlocal colorcolumn=80
 autocmd FileType markdown setlocal textwidth=80
-"
-
-" ALE
-" Disabled for Qumulo
-" let g:ale_linters = {'rust': ['analyzer']}
-"
-
-" vim-lsp
-" Use Rust Analyzer
-if executable('rust-analyzer')
-    au User lsp_setup call lsp#register_server({
-        \   'name': 'Rust Language Server',
-        \   'cmd': {server_info->['rust-analyzer']},
-        \   'whitelist': ['rust'],
-        \ })
-endif
-
-" Some vim-lsp shortcuts
-function! s:on_lsp_buffer_enabled() abort
-    setlocal omnifunc=lsp#complete
-    " setlocal signcolumn=yes
-    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
-    nmap <buffer> gd <plug>(lsp-definition)
-    nmap <buffer> gs <plug>(lsp-document-symbol-search)
-    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
-    nmap <buffer> gr <plug>(lsp-references)
-    nmap <buffer> gi <plug>(lsp-implementation)
-    " Disabled since it interferes with tab switching.
-    " nmap <buffer> gt <plug>(lsp-type-definition)
-    nmap <buffer> <leader>rn <plug>(lsp-rename)
-    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
-    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
-    nmap <buffer> K <plug>(lsp-hover)
-    inoremap <buffer> <expr><c-f> lsp#scroll(+4)
-    inoremap <buffer> <expr><c-d> lsp#scroll(-4)
-endfunction
-
-augroup lsp_install
-    au!
-    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
-    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
-augroup END
-
-"
 
 " Python Black
 let g:black_fast = 1
 let g:black_quiet = 1
-"
-
-" vim:foldmethod=marker:foldlevel=0
