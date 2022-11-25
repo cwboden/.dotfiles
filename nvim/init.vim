@@ -64,140 +64,6 @@ Plug 'tpope/vim-fugitive'
 " Finish the call, all plugins must be before this
 call plug#end()
 
-"  ____  _             _
-" |  _ \| |_   _  __ _(_)_ __
-" | |_) | | | | |/ _` | | '_ \
-" |  __/| | |_| | (_| | | | | |
-" |_|   |_|\__,_|\__, |_|_| |_|
-"                |___/
-"   ____             __ _                       _   _
-"  / ___|___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __
-" | |   / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \
-" | |__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
-"  \____\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
-"                         |___/
-" FIGlet: Plugin Configuration
-
-" Arg Wrap
-let g:argwrap_padded_braces = '[{'
-let g:argwrap_closing_brace = 0
-
-nnoremap <silent> <leader>a :ArgWrap<CR>
-
-" Black (Python)
-let g:black_fast = 1
-let g:black_quiet = 1
-
-" C++ Enhanced Highlight
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-
-" Lightline
-let g:lightline = {
-    \   'colorscheme': 'gruvbox',
-    \   'active': {
-    \       'left': [ [ 'mode', 'paste' ],
-    \           [ 'readonly', 'absolutepath', 'modified' ] ],
-    \   },
-    \   'inactive': {
-    \       'left': [ [ 'filename', 'modified' ] ],
-    \   }
-    \ }
-
-" NERD Tree
-let NerdTreeMinimalUI = 1
-let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.pdf$']
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeDirArrows = 1
-
-"   Close Vim if the only open pane is NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-"   Start NERDTree when Vim is started without file arguments.
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
-
-map <C-n> :NERDTreeToggle %<CR>
-map <C-f> :NERDTreeFind<CR>
-
-" NERD Commenter
-let g:NERDSpaceDelims = 1
-let g:NERDCompactSexyComs = 1
-let g:NERDDefaultAlign = 'left'
-let g:NERDCommentEmptyLines = 1
-let g:NERDTrimTrailingWhitespace = 1
-
-" Rust Tools
-lua require("mason").setup()
-set completeopt=menu,menuone,noselect
-
-lua <<EOF
-
-  -- Set up nvim-cmp.
-  local cmp = require'cmp'
-
-  cmp.setup({
-    snippet = {
-      -- REQUIRED - you must specify a snippet engine
-      expand = function(args)
-        vim.fn["vsnip#anonymous"](args.body)
-      end,
-    },
-    mapping = cmp.mapping.preset.insert({
-      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-      ['<C-f>'] = cmp.mapping.scroll_docs(4),
-      ['<C-Space>'] = cmp.mapping.complete(),
-      ['<C-e>'] = cmp.mapping.abort(),
-      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-    }),
-    sources = cmp.config.sources({
-      { name = 'nvim_lsp' },
-      { name = 'vsnip' },
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Set configuration for specific filetype.
-  cmp.setup.filetype('gitcommit', {
-    sources = cmp.config.sources({
-      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
-    }, {
-      { name = 'buffer' },
-    })
-  })
-
-  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline({ '/', '?' }, {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = {
-      { name = 'buffer' }
-    }
-  })
-
-  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-  cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
-    sources = cmp.config.sources({
-      { name = 'path' }
-    }, {
-      { name = 'cmdline' }
-    })
-  })
-
-  -- Set up lspconfig.
-  local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['rust_analyzer'].setup {
-    capabilities = capabilities
-  }
-
-EOF
-
-" Rust Formatter
-let g:rustfmt_autosave_if_config_present = 1
-
 "   ____                           _
 "  / ___| ___ _ __   ___ _ __ __ _| |
 " | |  _ / _ \ '_ \ / _ \ '__/ _` | |
@@ -404,3 +270,137 @@ function ToggleTestFile()
 endfunc
 
 command T call ToggleTestFile()
+
+"  ____  _             _
+" |  _ \| |_   _  __ _(_)_ __
+" | |_) | | | | |/ _` | | '_ \
+" |  __/| | |_| | (_| | | | | |
+" |_|   |_|\__,_|\__, |_|_| |_|
+"                |___/
+"   ____             __ _                       _   _
+"  / ___|___  _ __  / _(_) __ _ _   _ _ __ __ _| |_(_) ___  _ __
+" | |   / _ \| '_ \| |_| |/ _` | | | | '__/ _` | __| |/ _ \| '_ \
+" | |__| (_) | | | |  _| | (_| | |_| | | | (_| | |_| | (_) | | | |
+"  \____\___/|_| |_|_| |_|\__, |\__,_|_|  \__,_|\__|_|\___/|_| |_|
+"                         |___/
+" FIGlet: Plugin Configuration
+
+" Arg Wrap
+let g:argwrap_padded_braces = '[{'
+let g:argwrap_closing_brace = 0
+
+nnoremap <silent> <leader>a :ArgWrap<CR>
+
+" Black (Python)
+let g:black_fast = 1
+let g:black_quiet = 1
+
+" C++ Enhanced Highlight
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+let g:cpp_class_decl_highlight = 1
+
+" Lightline
+let g:lightline = {
+    \   'colorscheme': 'gruvbox',
+    \   'active': {
+    \       'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'absolutepath', 'modified' ] ],
+    \   },
+    \   'inactive': {
+    \       'left': [ [ 'filename', 'modified' ] ],
+    \   }
+    \ }
+
+" NERD Tree
+let NerdTreeMinimalUI = 1
+let NERDTreeIgnore = ['\.pyc$', '\.o$', '\.pdf$']
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeDirArrows = 1
+
+"   Close Vim if the only open pane is NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"   Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+map <C-n> :NERDTreeToggle %<CR>
+map <C-f> :NERDTreeFind<CR>
+
+" NERD Commenter
+let g:NERDSpaceDelims = 1
+let g:NERDCompactSexyComs = 1
+let g:NERDDefaultAlign = 'left'
+let g:NERDCommentEmptyLines = 1
+let g:NERDTrimTrailingWhitespace = 1
+
+" Rust Tools
+lua require("mason").setup()
+set completeopt=menu,menuone,noselect
+
+lua <<EOF
+
+  -- Set up nvim-cmp.
+  local cmp = require'cmp'
+
+  cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' },
+      { name = 'vsnip' },
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+      { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+    }, {
+      { name = 'buffer' },
+    })
+  })
+
+  -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = 'buffer' }
+    }
+  })
+
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+      { name = 'cmdline' }
+    })
+  })
+
+  -- Set up lspconfig.
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
+  require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities
+  }
+
+EOF
+
+" Rust Formatter
+let g:rustfmt_autosave_if_config_present = 1
