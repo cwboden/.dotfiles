@@ -33,6 +33,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'williamboman/mason.nvim'
+Plug 'onsails/lspkind.nvim'
 
 " Syntax Highlighting
 Plug 'MaxMEllon/vim-jsx-pretty'
@@ -342,7 +343,8 @@ set completeopt=menu,menuone,noselect
 lua <<EOF
 
   -- Set up nvim-cmp.
-  local cmp = require'cmp'
+  local cmp = require('cmp')
+  local lspkind = require('lspkind')
 
   cmp.setup({
     snippet = {
@@ -363,7 +365,14 @@ lua <<EOF
       { name = 'vsnip' },
     }, {
       { name = 'buffer' },
-    })
+    }),
+    formatting = {
+      format = lspkind.cmp_format({
+        mode = 'symbol', -- show only symbol annotations
+        maxwidth = 60, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+        ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+      })
+    }
   })
 
   -- Set configuration for specific filetype.
