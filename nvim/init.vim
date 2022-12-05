@@ -31,8 +31,6 @@ Plug 'hrsh7th/vim-vsnip'
 Plug 'neovim/nvim-lspconfig'
 Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
-Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'williamboman/mason.nvim'
 Plug 'onsails/lspkind.nvim'
 
 " Syntax Highlighting
@@ -337,7 +335,6 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Rust Tools
-lua require("mason").setup()
 set completeopt=menu,menuone,noselect
 
 lua <<EOF
