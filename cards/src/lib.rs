@@ -41,16 +41,12 @@ fn init_pile(mut commands: Commands, asset_server: Res<AssetServer>) {
         font_size: 48.0,
         color: Color::WHITE,
     };
-    let text_alignment = TextAlignment {
-        vertical: VerticalAlign::Center,
-        horizontal: HorizontalAlign::Center,
-    };
 
-    commands.spawn_bundle(OrthographicCameraBundle::new_2d());
+    commands.spawn(Camera2dBundle::new_with_far(-0.1));
 
     commands
-        .spawn_bundle(Text2dBundle {
-            text: Text::with_section("INITIAL", text_style, text_alignment),
+        .spawn(Text2dBundle {
+            text: Text::from_section("INITIAL", text_style),
             ..Default::default()
         })
         .insert(PileView);

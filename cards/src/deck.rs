@@ -1,7 +1,9 @@
 use std::collections::VecDeque;
 
+use bevy::ecs::system::Resource;
 use rand::Rng;
 
+#[derive(Resource)]
 pub struct Deck<T> {
     in_cards: VecDeque<T>,
     out_cards: VecDeque<T>,

@@ -14,7 +14,7 @@ impl Plugin for InteractionPlugin {
 
 /// The "global" state of the interaction system. Used to track the current
 /// mouse position and all interactions created by the system.
-#[derive(Default)]
+#[derive(Default, Resource)]
 pub struct InteractionState {
     pub cursor_position: Vec2,
     interactions: Vec<Interaction>,
@@ -58,7 +58,7 @@ fn interaction_state_system(
             };
 
         let projection_matrix = match camera {
-            Some(camera) => camera.projection_matrix,
+            Some(camera) => camera.projection_matrix(),
             None => unimplemented!(),
         };
 
@@ -101,9 +101,9 @@ fn interaction_system(
     interaction_state.interactions.clear();
 
     for (entity, transform, interactable) in interactables.iter() {
-        let relative_cursor_position = (interaction_state.cursor_position
-            - transform.translation.truncate())
-            / transform.scale.truncate();
+        let (scale, _, translation) = transform.to_scale_rotation_translation();
+        let relative_cursor_position =
+            (interaction_state.cursor_position - translation.truncate()) / scale.truncate();
 
         if rectangle_contains_point(interactable.bounding_box, relative_cursor_position) {
             let new_interaction = Interaction {
