@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "factory"
+version = "0.1.0"
+description = "A game about piecing together factory components to build an engine, of sorts."
+authors = ["Carson Boden <carson.boden@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
