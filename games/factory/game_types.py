@@ -1,5 +1,6 @@
 from enum import Enum
 from typing import Set
+from typing import Tuple
 
 
 class Resource(Enum):
@@ -8,5 +9,4 @@ class Resource(Enum):
     WOOD = 3
 
 
-class Amount:
-    resources: Set[Resource]
+Amount = Set[Tuple[Resource, int]]
