@@ -10,6 +10,12 @@ class SimpleConsumer(Consumer):
     def __init__(self, payment: Amount) -> None:
         self.payment = payment
 
+    def __str__(self) -> str:
+        amounts = "".join(
+            [f"{amount}{resource}" for (resource, amount) in self.payment]
+        )
+        return f"[{amounts}]"
+
     def try_consume(self, game_state: GameState) -> bool:
         # TODO: Payments should probably become it's own system.
         for (resource, amount) in self.payment:
@@ -26,38 +32,36 @@ class SimpleProducer(Producer):
     def __init__(self, production: Amount) -> None:
         self.production = production
 
+    def __str__(self) -> str:
+        amounts = "".join(
+            [f"{amount}{resource}" for (resource, amount) in self.production]
+        )
+        return f"[{amounts}]"
+
     def produce(self, game_state: GameState) -> None:
         for (resource, amount) in self.production:
             game_state.resources[resource] += amount
 
 
 class Forest(Asset):
+    name = "Forest"
     consumer = SimpleConsumer({(Resource.GOLD, 1)})
     producer = SimpleProducer({(Resource.WOOD, 2)})
 
-    def __str__(self) -> str:
-        return f"Forest | [$1] -> [2 wood]"
-
 
 class CoalMine(Asset):
+    name = "Coal Mine"
     consumer = SimpleConsumer({(Resource.GOLD, 1)})
     producer = SimpleProducer({(Resource.COAL, 2)})
 
-    def __str__(self) -> str:
-        return f"Coal Mine | [$1] -> [2 coal]"
-
 
 class Kiln(Asset):
+    name = "Kiln"
     consumer = SimpleConsumer({(Resource.WOOD, 1), (Resource.COAL, 1)})
     producer = SimpleProducer({(Resource.COAL, 4)})
 
-    def __str__(self) -> str:
-        return f"Kiln | [1 wood, 1 coal] -> [4 coal]"
-
 
 class PowerPlant(Asset):
+    name = "Power Plant"
     consumer = SimpleConsumer({(Resource.COAL, 2)})
-    producer = SimpleProducer({(Resource.GOLD, 4)})
-
-    def __str__(self) -> str:
-        return f"Power Plant | [2 coal] -> [$4]"
+    producer = SimpleProducer({(Resource.ENERGY, 4)})

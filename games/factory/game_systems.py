@@ -18,8 +18,12 @@ class Producer(Protocol):
 
 
 class Asset(Protocol):
+    name: str
     consumer: Consumer
     producer: Producer
+
+    def __str__(self) -> str:
+        return f"{self.name} | {self.consumer} -> {self.producer}"
 
     def execute(self, game_state: "GameState") -> None:
         if self.consumer.try_consume(game_state):

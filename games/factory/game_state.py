@@ -14,11 +14,14 @@ class GameState(Printable):
         for resource in list(Resource):
             self.resources[resource] = 0
 
-    def print(self) -> None:
-        print("\nLiquid funds:")
+    def __str__(self) -> str:
+        statements = list()
+        statements.append("\nLiquid funds:")
         for resource, amount in self.resources.items():
-            print(f"{resource.name}: {amount}")
+            statements.append(f"{resource.name} ({resource}): {amount}")
 
-        print("\nYour pipeline:")
+        statements.append("\nYour pipeline:")
         for asset in self.assets:
-            print(f"\t{str(asset)}")
+            statements.append(f"\t{asset}")
+
+        return "\n".join(statements)

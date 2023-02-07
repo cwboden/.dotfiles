@@ -7,7 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+emoji = "^2.2.0"
 
+[tool.poetry.dev-dependencies]
+types-emoji = "^2.1.0"
+mypy = "^1.0.0"
 
 [build-system]
 requires = ["poetry-core"]
