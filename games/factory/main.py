@@ -3,14 +3,27 @@ from typing import Sequence
 
 from game_state import GameConfiguration
 from game_state import GameState
-from units.simple import CoalMine
-from units.simple import Forest
-from units.simple import Kiln
-from units.simple import PowerPlant
+from units.coal import CoalMine
+from units.coal import PowerPlantCoal
+from units.converters import CoalLiquifactor
+from units.converters import Kiln
+from units.oil import OilDerrick
+from units.oil import PowerPlantOil
+from units.wood import Forest
+from units.wood import PowerPlantWood
 
 
-ALL_ASSETS = [Forest(), CoalMine(), Kiln(), PowerPlant()]
-NUM_OPTIONS = 3
+ALL_ASSETS = [
+    CoalLiquifactor(),
+    CoalMine(),
+    Forest(),
+    Kiln(),
+    OilDerrick(),
+    PowerPlantCoal(),
+    PowerPlantOil(),
+    PowerPlantWood(),
+]
+NUM_OPTIONS = 5
 NUM_SEASONS = 4
 
 REQUIRED_ENERGY = [4, 6, 10, 16, 26, 42, 68, 111]

@@ -43,25 +43,13 @@ class SimpleProducer(Producer):
             game_state.resources[resource] += amount
 
 
-class Forest(Asset):
-    name = "Forest"
-    consumer = SimpleConsumer({(Resource.GOLD, 1)})
-    producer = SimpleProducer({(Resource.WOOD, 2)})
-
-
-class CoalMine(Asset):
-    name = "Coal Mine"
-    consumer = SimpleConsumer({(Resource.GOLD, 1)})
-    producer = SimpleProducer({(Resource.COAL, 2)})
-
-
 class Kiln(Asset):
     name = "Kiln"
     consumer = SimpleConsumer({(Resource.WOOD, 1), (Resource.COAL, 1)})
     producer = SimpleProducer({(Resource.COAL, 4)})
 
 
-class PowerPlant(Asset):
-    name = "Power Plant"
-    consumer = SimpleConsumer({(Resource.COAL, 2)})
-    producer = SimpleProducer({(Resource.ENERGY, 4)})
+class CoalLiquifactor(Asset):
+    name = "Coal Liquifactor"
+    consumer = SimpleConsumer({(Resource.GOLD, 1), (Resource.COAL, 1)})
+    producer = SimpleProducer({(Resource.OIL, 1)})

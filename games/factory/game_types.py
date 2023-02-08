@@ -1,3 +1,4 @@
+from enum import auto
 from enum import Enum
 from typing import Set
 from typing import Tuple
@@ -6,10 +7,11 @@ import emoji
 
 
 class Resource(Enum):
-    GOLD = 1
-    COAL = 2
-    WOOD = 3
-    ENERGY = 4
+    GOLD = auto()
+    WOOD = auto()
+    COAL = auto()
+    OIL = auto()
+    ENERGY = auto()
 
     def __str__(self) -> str:
         if self == Resource.GOLD:
@@ -18,6 +20,8 @@ class Resource(Enum):
             return emoji.emojize(":rock:")
         elif self == Resource.WOOD:
             return emoji.emojize(":wood:")
+        elif self == Resource.OIL:
+            return emoji.emojize(":oil_drum:")
         elif self == Resource.ENERGY:
             return emoji.emojize(":high_voltage:")
 
@@ -25,3 +29,8 @@ class Resource(Enum):
 
 
 Amount = Set[Tuple[Resource, int]]
+
+
+class NewAssetLocation(Enum):
+    START = auto()
+    END = auto()

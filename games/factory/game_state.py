@@ -5,9 +5,10 @@ from typing import List
 
 from common import Printable
 from game_systems import Asset
+from game_types import NewAssetLocation
 from game_types import Resource
 
-DELIMITER = "\n#############################################"
+DELIMITER = "\n##################################################"
 
 SELL_RATES = {
     Resource.WOOD: 1,
@@ -56,7 +57,7 @@ class GameState(Printable):
     def _print_header(self) -> None:
         print(DELIMITER)
         print(
-            f"Your town requires {self._required_energy()}{Resource.ENERGY} in {self._seasons_remaining()} seasons (turns)."
+            f"\nYour town requires {self._required_energy()}{Resource.ENERGY} in {self._seasons_remaining()} seasons (turns)."
         )
 
         print("\nResources:")
@@ -93,6 +94,16 @@ class GameState(Printable):
                 print("INVALID INPUT\n")
                 continue
 
+    def _choose_asset_location(self) -> NewAssetLocation:
+        while True:
+            choice = input("Choose where to add the asset, (s)tart / (e)nd: ")
+
+            if choice == "s" or choice == "start":
+                return NewAssetLocation.START
+            if choice == "e" or choice == "end":
+                return NewAssetLocation.END
+            print("INVALID INPUT\n")
+
     def _execute_pipeline(self) -> None:
         for asset in self.assets:
             # TODO: Invert these operations
@@ -102,7 +113,7 @@ class GameState(Printable):
         self.current_season += 1
         if self.current_season == self.num_seasons:
             print(DELIMITER)
-            print(f"\nYEARS END: {self._required_energy()}{Resource.ENERGY} due.")
+            print(f"\nYEAR'S END: {self._required_energy()}{Resource.ENERGY} due.")
             if self.resources[Resource.ENERGY] < self._required_energy():
                 print("Unsufficient energy.")
                 print("\nGAME OVER")
@@ -127,7 +138,12 @@ class GameState(Printable):
             asset_options = self._roll_and_print_asset_options()
             asset_choice = self._get_asset_choice()
 
-            self.assets.append(asset_options[asset_choice - 1])
+            selected_asset = asset_options[asset_choice - 1]
+            location = self._choose_asset_location()
+            if location == NewAssetLocation.START:
+                self.assets = [selected_asset] + self.assets
+            elif location == NewAssetLocation.END:
+                self.assets.append(selected_asset)
 
             self._execute_pipeline()
             self._end_season()
