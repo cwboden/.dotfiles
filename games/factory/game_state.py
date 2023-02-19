@@ -5,6 +5,7 @@ from typing import List
 
 from common import Printable
 from game_systems import Asset
+from game_types import Amount
 from game_types import NewAssetLocation
 from game_types import Resource
 
@@ -23,7 +24,7 @@ class GameConfiguration:
     num_asset_choices: int
     num_seasons: int
     asset_options: List[Asset]
-    required_energy: List[int]
+    required_resources: List[Amount]
 
 
 class GameState(Printable):
@@ -31,7 +32,7 @@ class GameState(Printable):
     assets: List[Asset] = list()
 
     asset_options: List[Asset]
-    required_energy: List[int]
+    required_resources: List[Amount]
     num_asset_choices: int
     num_seasons: int
 
@@ -42,14 +43,14 @@ class GameState(Printable):
         for resource in list(Resource):
             self.resources[resource] = 0
 
-        self.resources[Resource.GOLD] = config.starting_gold
+        self.resources[Resource.MONEY] = config.starting_gold
         self.num_asset_choices = config.num_asset_choices
         self.num_seasons = config.num_seasons
         self.asset_options = config.asset_options
-        self.required_energy = config.required_energy
+        self.required_resources = config.required_resources
 
-    def _required_energy(self) -> int:
-        return self.required_energy[self.current_level]
+    def _required_resources(self) -> Amount:
+        return self.required_resources[self.current_level]
 
     def _seasons_remaining(self) -> int:
         return self.num_seasons - self.current_season
@@ -57,7 +58,7 @@ class GameState(Printable):
     def _print_header(self) -> None:
         print(DELIMITER)
         print(
-            f"\nYour town requires {self._required_energy()}{Resource.ENERGY} in {self._seasons_remaining()} seasons (turns)."
+            f"\nYour town requires {self._required_resources()} in {self._seasons_remaining()} seasons (turns)."
         )
 
         print("\nResources:")
@@ -112,25 +113,29 @@ class GameState(Printable):
     def _end_season(self) -> None:
         self.current_season += 1
         if self.current_season == self.num_seasons:
-            print(DELIMITER)
-            print(f"\nYEAR'S END: {self._required_energy()}{Resource.ENERGY} due.")
-            if self.resources[Resource.ENERGY] < self._required_energy():
-                print("Unsufficient energy.")
-                print("\nGAME OVER")
-                exit(1)
-            else:
-                self.resources[Resource.ENERGY] -= self._required_energy()
+            self._end_year()
 
-                gained_funds = 0
-                for resource, sell_rate in SELL_RATES.items():
-                    gained_funds += sell_rate * self.resources[resource]
-                    self.resources[resource] = 0
+    def _end_year(self) -> None:
+        print(DELIMITER)
+        print(f"\nYEAR'S END: {self._required_resources()}{Resource.ENERGY} due.")
+        if self.resources[Resource.ENERGY] < self._required_resources()[Resource.ENERGY]:
+            print("Unsufficient energy.")
+            print("\nGAME OVER")
+            exit(1)
+        else:
+            self.resources[Resource.ENERGY] -= self._required_resources()[Resource.ENERGY]
 
-                print(f"Excess resources were sold for {gained_funds}{Resource.GOLD}")
-                self.resources[Resource.GOLD] += gained_funds
+        self.current_season = 0
+        self.current_level += 1
 
-                self.current_season = 0
-                self.current_level += 1
+    def _sell_resources(self) -> None:
+        gained_funds = 0
+        for resource, sell_rate in SELL_RATES.items():
+            gained_funds += sell_rate * self.resources[resource]
+            self.resources[resource] = 0
+
+        print(f"Excess resources were sold for {gained_funds}{Resource.MONEY}")
+        self.resources[Resource.MONEY] += gained_funds
 
     def run(self) -> None:
         while True:

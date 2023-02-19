@@ -18,6 +18,7 @@ class Producer(Protocol):
 
 
 class Asset(Protocol):
+    # cost: Amount
     name: str
     consumer: Consumer
     producer: Producer

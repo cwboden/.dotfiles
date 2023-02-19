@@ -1,3 +1,21 @@
+# Overview
+`factory-game` (working name TBD) is a game about energy. The player is forced
+to manage generation, distribution, and future research within the energy space.
+
+Start a game via:
+
+```sh
+poetry run python main.py
+```
+
+## Research
+Would be fun to align real energy ideas within the game.
+
+### Electricity Distribution
+City Substations: ~3MW
+Rural "Network": ~400kW
+
+
 ## Other Ideas
 - All resources are converted into energy every (few?) turns?
 - Must produce enough energy, on those turns when you can convert, perhaps

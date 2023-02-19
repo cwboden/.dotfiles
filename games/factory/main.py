@@ -3,6 +3,8 @@ from typing import Sequence
 
 from game_state import GameConfiguration
 from game_state import GameState
+from game_types import Amount
+from game_types import Resource
 from units.coal import CoalMine
 from units.coal import PowerPlantCoal
 from units.converters import CoalLiquifactor
@@ -26,7 +28,13 @@ ALL_ASSETS = [
 NUM_OPTIONS = 5
 NUM_SEASONS = 4
 
-REQUIRED_ENERGY = [4, 6, 10, 16, 26, 42, 68, 111]
+REQUIRED_RESOURCES = [
+    Amount({(Resource.ENERGY, 4), (Resource.COVERAGE, 1)}),
+    Amount({(Resource.ENERGY, 12), (Resource.COVERAGE, 2)}),
+    Amount({(Resource.ENERGY, 36), (Resource.COVERAGE, 3)}),
+    Amount({(Resource.ENERGY, 72), (Resource.COVERAGE, 5)}),
+    Amount({(Resource.ENERGY, 216), (Resource.COVERAGE, 8)}),
+]
 
 
 def main(args: Sequence[str]) -> None:
@@ -35,7 +43,7 @@ def main(args: Sequence[str]) -> None:
         NUM_OPTIONS,
         NUM_SEASONS,
         ALL_ASSETS,
-        REQUIRED_ENERGY,
+        REQUIRED_RESOURCES,
     )
     state = GameState(config)
     state.run()
