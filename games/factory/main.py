@@ -9,8 +9,6 @@ from units.coal import CoalMine
 from units.coal import PowerPlantCoal
 from units.converters import CoalLiquifactor
 from units.converters import Kiln
-from units.oil import OilDerrick
-from units.oil import PowerPlantOil
 from units.wood import Forest
 from units.wood import PowerPlantWood
 
@@ -20,26 +18,24 @@ ALL_ASSETS = [
     CoalMine(),
     Forest(),
     Kiln(),
-    OilDerrick(),
     PowerPlantCoal(),
-    PowerPlantOil(),
     PowerPlantWood(),
 ]
 NUM_OPTIONS = 5
 NUM_SEASONS = 4
 
 REQUIRED_RESOURCES = [
-    Amount({(Resource.ENERGY, 4), (Resource.COVERAGE, 1)}),
-    Amount({(Resource.ENERGY, 12), (Resource.COVERAGE, 2)}),
-    Amount({(Resource.ENERGY, 36), (Resource.COVERAGE, 3)}),
-    Amount({(Resource.ENERGY, 72), (Resource.COVERAGE, 5)}),
-    Amount({(Resource.ENERGY, 216), (Resource.COVERAGE, 8)}),
+    Amount({Resource.ENERGY: 4, Resource.COVERAGE: 1}),
+    Amount({Resource.ENERGY: 12, Resource.COVERAGE: 2}),
+    Amount({Resource.ENERGY: 36, Resource.COVERAGE: 3}),
+    Amount({Resource.ENERGY: 72, Resource.COVERAGE: 5}),
+    Amount({Resource.ENERGY: 216, Resource.COVERAGE: 8}),
 ]
 
 
 def main(args: Sequence[str]) -> None:
     config = GameConfiguration(
-        5,  # starting gold
+        Amount({Resource.MONEY: 50}),  # starting gold
         NUM_OPTIONS,
         NUM_SEASONS,
         ALL_ASSETS,

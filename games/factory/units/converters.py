@@ -7,11 +7,13 @@ from units.simple import SimpleProducer
 
 class Kiln(Asset):
     name = "Kiln"
-    consumer = SimpleConsumer(Amount({(Resource.WOOD, 1), (Resource.COAL, 1)}))
-    producer = SimpleProducer(Amount({(Resource.COAL, 4)}))
+    cost = Amount({Resource.MONEY: 4})
+    consumer = SimpleConsumer(Amount({Resource.WOOD: 1, Resource.COAL: 1}))
+    producer = SimpleProducer(Amount({Resource.COAL: 4}))
 
 
 class CoalLiquifactor(Asset):
     name = "Coal Liquifactor"
-    consumer = SimpleConsumer(Amount({(Resource.MONEY, 1), (Resource.COAL, 1)}))
-    producer = SimpleProducer(Amount({(Resource.OIL, 1)}))
+    cost = Amount({Resource.MONEY: 6})
+    consumer = SimpleConsumer(Amount({Resource.MONEY: 1, Resource.COAL: 1}))
+    producer = SimpleProducer(Amount({Resource.CRUDE_OIL: 1}))

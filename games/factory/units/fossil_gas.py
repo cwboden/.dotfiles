@@ -5,15 +5,15 @@ from units.simple import SimpleConsumer
 from units.simple import SimpleProducer
 
 
-class CoalMine(Asset):
-    name = "Coal Mine"
+class FossilGasMine(Asset):
+    name = "Fossil Gas Mine"
     cost = Amount({Resource.MONEY: 3})
     consumer = SimpleConsumer(Amount({Resource.MONEY: 1}))
-    producer = SimpleProducer(Amount({Resource.COAL: 2}))
+    producer = SimpleProducer(Amount({Resource.FOSSIL_GAS: 2}))
 
 
 class PowerPlantCoal(Asset):
-    name = "Coal Burning Plant"
+    name = "Fossil Gas Burning Plant"
     cost = Amount({Resource.MONEY: 5})
-    consumer = SimpleConsumer(Amount({Resource.COAL: 2}))
+    consumer = SimpleConsumer(Amount({Resource.FOSSIL_GAS: 2}))
     producer = SimpleProducer(Amount({Resource.STEAM: 4}))

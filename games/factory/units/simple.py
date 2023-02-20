@@ -11,15 +11,14 @@ class SimpleConsumer(Consumer):
     def __str__(self) -> str:
         return str(self.payment)
 
+    def __format__(self, format_spec: str) -> str:
+        return format(str(self), format_spec)
+
     def try_consume(self, game_state: GameState) -> bool:
-        # TODO: Payments should probably become it's own system.
-        for (resource, amount) in self.payment:
-            if game_state.resources[resource] < amount:
-                return False
+        if not game_state.can_pay_for(self.payment):
+            return False
 
-        for (resource, amount) in self.payment:
-            game_state.resources[resource] -= amount
-
+        game_state.pay_for(self.payment)
         return True
 
 
@@ -30,6 +29,8 @@ class SimpleProducer(Producer):
     def __str__(self) -> str:
         return str(self.production)
 
+    def __format__(self, format_spec: str) -> str:
+        return format(str(self), format_spec)
+
     def produce(self, game_state: GameState) -> None:
-        for (resource, amount) in self.production:
-            game_state.resources[resource] += amount
+        game_state.resources.add(self.production)

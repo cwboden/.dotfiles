@@ -1,6 +1,8 @@
 from typing import Protocol
 from typing import TYPE_CHECKING
 
+from game_types import Amount
+
 # We only care about this import for ensuring types line up -- it causes a cyclical dependency if
 # imported at runtime.
 if TYPE_CHECKING:
@@ -18,13 +20,15 @@ class Producer(Protocol):
 
 
 class Asset(Protocol):
-    # cost: Amount
     name: str
+    cost: Amount
     consumer: Consumer
     producer: Producer
 
     def __str__(self) -> str:
-        return f"{self.name} | {self.consumer} -> {self.producer}"
+        return (
+            f"{self.cost:<8}|{self.name:^24}|{self.consumer:>18} -> {self.producer:<18}"
+        )
 
     def execute(self, game_state: "GameState") -> None:
         if self.consumer.try_consume(game_state):

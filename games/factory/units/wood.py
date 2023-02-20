@@ -7,11 +7,13 @@ from units.simple import SimpleProducer
 
 class Forest(Asset):
     name = "Forest"
-    consumer = SimpleConsumer(Amount({(Resource.MONEY, 1)}))
-    producer = SimpleProducer(Amount({(Resource.WOOD, 2)}))
+    cost = Amount({Resource.MONEY: 1})
+    consumer = SimpleConsumer(Amount({Resource.MONEY: 1}))
+    producer = SimpleProducer(Amount({Resource.WOOD: 2}))
 
 
 class PowerPlantWood(Asset):
-    name = "Power Plant (Wood)"
-    consumer = SimpleConsumer(Amount({(Resource.WOOD, 2)}))
-    producer = SimpleProducer(Amount({(Resource.ENERGY, 2)}))
+    name = "Wood Burning Plant"
+    cost = Amount({Resource.MONEY: 3})
+    consumer = SimpleConsumer(Amount({Resource.WOOD: 2}))
+    producer = SimpleProducer(Amount({Resource.STEAM: 2}))
