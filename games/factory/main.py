@@ -7,19 +7,30 @@ from game_types import Amount
 from game_types import Resource
 from units.coal import CoalMine
 from units.coal import PowerPlantCoal
-from units.converters import CoalLiquifactor
 from units.converters import Kiln
+from units.coverage import SmallSubstation
+from units.fossil_gas import FossilGasMine
+from units.fossil_gas import PowerPlantFossilGas
+from units.headquarters import Headquarters
+from units.science import ResearchLab
+from units.science import ThinkTank
+from units.steam import SmallTurbine
 from units.wood import Forest
 from units.wood import PowerPlantWood
 
 
 ALL_ASSETS = [
-    CoalLiquifactor(),
     CoalMine(),
     Forest(),
+    FossilGasMine(),
     Kiln(),
     PowerPlantCoal(),
+    PowerPlantFossilGas(),
     PowerPlantWood(),
+    SmallSubstation(),
+    SmallTurbine(),
+    ThinkTank(),
+    ResearchLab(),
 ]
 NUM_OPTIONS = 5
 NUM_SEASONS = 4
@@ -35,7 +46,8 @@ REQUIRED_RESOURCES = [
 
 def main(args: Sequence[str]) -> None:
     config = GameConfiguration(
-        Amount({Resource.MONEY: 50}),  # starting gold
+        Amount({Resource.MONEY: 10}),  # starting gold
+        [Headquarters()],
         NUM_OPTIONS,
         NUM_SEASONS,
         ALL_ASSETS,

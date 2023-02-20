@@ -95,3 +95,4 @@ class Amount:
 class NewAssetLocation(Enum):
     START = auto()
     END = auto()
+    CANCEL = auto()

@@ -12,6 +12,7 @@ class Kiln(Asset):
     producer = SimpleProducer(Amount({Resource.COAL: 4}))
 
 
+# XXX: Abandoned, since oil isn't a big part of energy production.
 class CoalLiquifactor(Asset):
     name = "Coal Liquifactor"
     cost = Amount({Resource.MONEY: 6})

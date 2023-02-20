@@ -9,11 +9,11 @@ class FossilGasMine(Asset):
     name = "Fossil Gas Mine"
     cost = Amount({Resource.MONEY: 3})
     consumer = SimpleConsumer(Amount({Resource.MONEY: 1}))
-    producer = SimpleProducer(Amount({Resource.FOSSIL_GAS: 2}))
+    producer = SimpleProducer(Amount({Resource.FOSSIL_GAS: 8}))
 
 
-class PowerPlantCoal(Asset):
+class PowerPlantFossilGas(Asset):
     name = "Fossil Gas Burning Plant"
     cost = Amount({Resource.MONEY: 5})
-    consumer = SimpleConsumer(Amount({Resource.FOSSIL_GAS: 2}))
+    consumer = SimpleConsumer(Amount({Resource.FOSSIL_GAS: 6}))
     producer = SimpleProducer(Amount({Resource.STEAM: 4}))
