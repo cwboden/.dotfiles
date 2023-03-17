@@ -34,9 +34,9 @@ games:
 </figure>
 ### 2014: The Stanley Parable
 
-|**Release Date:**| 17 Oct 2013|
-|**Developer:**| Galactic Cafe|
-|**Publisher:**| Galactic Cafe|
+|**Release Date:**|17 Oct 2013|
+|**Developer:**|Galactic Cafe|
+|**Publisher:**|Galactic Cafe|
 {: .notice--info}
 
 *The Stanley Parable* was, for many reasons, one of the major breakthrough games
@@ -100,9 +100,9 @@ video game repertoire.
 </figure>
 ### 2015: Fez
 
-|**Release Date:**|1 May 2013 (PC) |
+|**Release Date:**|1 May 2013 (PC)|
 |**Developer:**|Polytron Corporation|
-|**Publisher:**|Trapdoor |
+|**Publisher:**|Trapdoor|
 {: .notice--info}
 
 Despite some of the [controversy around the release of the game and cancellation
@@ -171,14 +171,37 @@ it's rare to see a game excel in multiple fields.
 </figure>
 ### 2016: Undertale
 
-|**Release Date:**|15 Sep 2015 |
+|**Release Date:**|15 Sep 2015|
 |**Developer:**|Toby Fox|
 |**Publisher:**|Toby Fox|
 {: .notice--info}
 
-- Hard to describe without playing it
-- Also a walking simulator, of sorts, as most of gameplay is narratively driven
-- Inspired by *Earthbound*, based on its art style and humor
+Undertale is a difficult game to describe without playing it. A large part of
+the experience is based on subverting typical expectations from JRPG titles,
+like *Earthbound*, which it was inspired by.
+
+Players are offered the choice to play through the game either using the
+(intentionally) lackluster combat mechanics to defeat enemies, where they use a
+single attack to deal damage. Or they can learn how to befriend enemies,
+finishing combat via "mercy".
+
+The pacifist mechanic expands upon the games narrative-driven experience,
+allowing the player to learn more about common enemies or even bosses like
+Papyrus and Sans. But what drew me to the game is that the player is always
+offered the *choice* to follow up on these experiences. Someone looking to
+min-max the game might complete the entire thing wondering what all of the hype
+was about.
+
+Of course, the player's main guide at the beginning, Toriel, teaches the player
+how to *actually* play the game, by letting them know they shouldn't try to harm
+the creatures of Undertale. But it's not unreasonable that a player might ignore
+that approach as, initially, it also seems fairly dull.
+
+Ultimately, *Undertale* is a game that requires players to get invested in its
+world to really appreciate the game. The goofy humor and heartfelt characters
+may draw many players in, though I've also seen players try to rush through the
+game like a standard JRPG, missing *Undertale*'s "true nature" and some of the
+great moments along the way.
 
 -----
 
@@ -190,14 +213,53 @@ it's rare to see a game excel in multiple fields.
 ### 2017: The Witness
 
 |**Release Date:**|26 Jan 2016|
-|**Developer:**|Thekla, Inc. |
-|**Publisher:**|Thekla, Inc. |
+|**Developer:**|Thekla, Inc.|
+|**Publisher:**|Thekla, Inc.|
 {: .notice--info}
 
-- Encapsulates the feeling of discovery
-- Like *Fez*, there are different stages of completion
-- Technicalogically impressive: Custom engine, work around meshing parts of the island
-    together, performant enough to run on iOS
+The Witness is one of my favorite puzzle games because it encapsulates the
+feeling of discovery using its language-less explanation of puzzles and
+concepts. The simple, "draw a line" puzzle mechanic is remixed in dozens of
+unique ways with each mechanic able to give players that "Aha!" moment.
+
+Early in the game, the puzzles are tight and straightforward, giving players the
+ability to experiment and figure out how new symbols influence the answer to a
+puzzle. As the puzzles increase in difficulty, those ideas may be challenged,
+forcing players to reconsider if the symbol actually means what they previously
+assumed.
+
+<figure class="align-center half">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/the-witness-puzzle-easy.jpg"
+    alt="An easier, starting puzzle from The Witness.">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/the-witness-puzzle-hard.jpg"
+    alt="A more difficult puzzle from The Witness.">
+  <figcaption>
+    The puzzles in <em>The Witness</em> start simple and are well-bounded so
+    players can expiriment and come to a solution. Later puzzles have an
+    expanded amount of possible state, ensuring players prove they understand a
+    concept.
+  </figcaption>
+</figure>
+
+By the end of *The Witness*, symbols are combined into new puzzles with further
+expanded state. To complete some of the game's final puzzles, players must prove
+they understand the intricacies of each mechanic -- and it would be almost
+impossible to give the correct answer without having that understanding due to
+their size.
+
+From a technological perspective, the game is also quite impressive. It runs on
+a custom engine which enables the game to be played on iOS (though I wouldn't
+recommend it). There was also substantial work done to [combine levels into a
+single zone that could also be independently edited within version control](
+https://web.archive.org/web/20120108064326/http://www.gamasutra.com/view/news/39338/Indepth_Concurrent_World_Editing_On_The_Cheap.php).
+
+Like *Fez*, there's lots of stages of completion to the game. The player only
+needs to activate eight of the eleven lasers to reach the end, though even after
+completing the three additional levels, there are still hundreds of puzzles left
+to find, hidden all over the island. Years later, there's still more I haven't
+found in *The Witness*.
 
 -----
 
@@ -209,13 +271,45 @@ it's rare to see a game excel in multiple fields.
 ### 2018: Doki Doki Literature Club
 
 |**Release Date:**| 22 Sep 2017|
-|**Developer:**|Team Salvato |
-|**Publisher:**|Team Salvato |
+|**Developer:**|Team Salvato|
+|**Publisher:**|Team Salvato|
 {: .notice--info}
 
-- Satirized the visual novel formula
-- Free, for some reason? Research more
-- A different type of horror game, with lots of meta references
+This is one of the strangest games I've played. Before spoiling anything, I want
+to call out that [the game is free](https://ddlc.moe/) and a fairly short (~4
+hour) experience. I would recommend against reading into spoilers about the
+game, though be warned there is some graphic self-harm content (which will be
+very *not* obvious from the vibe of the game).
+
+*Doki Doki* can be a hard game to talk about, since the game is a meta-heavy
+experience with multiple plots:
+  - **The Plot**: The story that happens to the characters as part of the visual
+      novel game. The protagonist joins a high school literature club and writes
+      poems in a thinly-veiled dating sim.
+  - **The Meta Plot**: The story that occurs between playthroughs of the game.
+      Monika, the club's leader (but not an option in the dating sim) gains
+      sentinence and modifies the game's code to profess her love for the
+      *human player* of the game.
+
+The plot follows all the tropes of a visual novel. The poems you write are
+clearly meant to reflect the objectified character traits of the different love
+interests in the club. Your childhood friend professes her love to the
+protagonist on the first day of the game. The game's assets are polished and
+hide the game's horror/thriller meta-plot nicely inside of a cutesy anime game.
+
+The meta plot shows the destructive nature of obsession and our flaws. The
+characters in the game are manipulated by Monika to showcase the extremes of
+their negative traits, poisoning the relationships the player forms during the
+visual novel. They're eventually driven to killing themselves or deleted by
+Monika until she's the only option remaining. In a way, the dating sim shell
+still did what is was meant to do -- romance the player -- but in a creepy twist
+on the genre.
+
+Since playing, they have released a "Plus" version of the game with additional
+storylines and endings, though I haven't tried it yet. I'm not sure how much
+would be modified from the main story (or how they'd make certain mechanics work
+on the Switch, for example) but perhaps it's worth revisiting after my trip here
+down memory lane.
 
 -----
 
@@ -231,11 +325,33 @@ it's rare to see a game excel in multiple fields.
 |**Publisher:**|3909 LLC|
 {: .notice--info}
 
-- A modern reimagining of a detective game
-- Balance with the mystery of the game itself vs. the mystery of the lore within
-    the game (e.g. the pocket watch, creatures, etc.)
-- 3 correct mechanic allows players to guess, though there's still distinct
-    evidence of all identities inside the game
+Good detective games can be hard to find. Designers must work to balance the
+game so that it isn't too hard to find important clues or uncover the mystery
+while still enabling player expression and keeping the joy of discovery.
+
+*Return of the Obra Dinn* accomplishes this using an expanding tome of
+identities that the player fills in to denote which characters have perished, by
+what means, and who (if anyone) killed them. The book will inform the player
+they're correct only when three identities are *completely* filled in (identity,
+means of death, and adversary). This ensures players are actually paying
+attention and filling things in while they go, but also allows some guesswork to
+help pave the way.
+
+In addition to the mystery of deaths aboard the Obra Dinn, there are also
+other-worldly forces at work that make the world more interesting to explore.
+For example, one of the the mermaids' shells can be seen from the ship, even
+from the start (though the player will have to deduce this sparkling talisman
+throughout the story). Even aspects of the Momento Mori (the pocketwatch) which
+allows players to see into the snapshots of the past has consistent rules it
+follows, further revealed by the storyline with the monkeypaw, which illustrates
+how a remnant of the deceased is required to look back at the moment they died.
+
+To me, *Obra Dinn* is a modern take on the detective game formula. There are
+innovative ways of enabling player expression (especially those who don't have
+dedicated diorama entries for their demise) while also some in-game mysteries to
+explore, like how the mystical pocket watch enables your investigation. I've
+recently also enjoyed *Case of the Golden Idol* which uses similar mechanics and
+inner-world mysteries to drive an impressive, snapshot-based experience.
 
 -----
 
@@ -247,8 +363,8 @@ it's rare to see a game excel in multiple fields.
 ### 2020: Disco Elysium
 
 |**Release Date:**| 15 Oct 2019|
-|**Developer:**|ZA/UM |
-|**Publisher:**|ZA/UM |
+|**Developer:**|ZA/UM|
+|**Publisher:**|ZA/UM|
 {: .notice--info}
 
 - Impressive collection of in-game history -- over 6,000 years!
@@ -256,6 +372,7 @@ it's rare to see a game excel in multiple fields.
     encourages players to make choices without feeling "bad"
 - Abilities talking to the player is a cool idea, expertly hides missed content
     (since that ability just won't say anything)
+- Focus on reading, great VA content gives it legs
 
 -----
 
@@ -267,8 +384,8 @@ it's rare to see a game excel in multiple fields.
 ### 2021: Inscryption
 
 |**Release Date:**|19 Oct 2021 (PC)|
-|**Developer:**|Daniel Mullins Games |
-|**Publisher:**|Devolver Digital |
+|**Developer:**|Daniel Mullins Games|
+|**Publisher:**|Devolver Digital|
 {: .notice--info}
 
 - First act is, on its own, a great time: Kaycee's mod
@@ -284,9 +401,9 @@ it's rare to see a game excel in multiple fields.
 </figure>
 ### 2022: Neon White
 
-|**Release Date:**|16 Jun 2022 (PC) |
+|**Release Date:**|16 Jun 2022 (PC)|
 |**Developer:**| Angel Matrix|
-|**Publisher:**|Annapurna Interactive |
+|**Publisher:**|Annapurna Interactive|
 {: .notice--info}
 
 - Great movement, high performance makes speedrunning feel seamless
