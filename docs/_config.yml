@@ -125,7 +125,7 @@ plugins: &plugins
     - jekyll-include-cache
     - jekyll-paginate
     - jekyll-sitemap
-    - jemoji
+    - jekyll-spaceship
 
 whitelist: *plugins
 

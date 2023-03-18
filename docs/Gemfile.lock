@@ -157,6 +157,11 @@ GEM
       jekyll (>= 3.8, < 5.0)
     jekyll-sitemap (1.4.0)
       jekyll (>= 3.7, < 5.0)
+    jekyll-spaceship (0.10.2)
+      gemoji (~> 3.0)
+      jekyll (>= 3.6, < 5.0)
+      nokogiri (~> 1.6)
+      rainbow (~> 3.0)
     jekyll-swiss (1.0.0)
     jekyll-theme-architect (0.2.0)
       jekyll (> 3.5, < 5.0)
@@ -219,8 +224,9 @@ GEM
       jekyll (>= 3.5, < 5.0)
       jekyll-feed (~> 0.9)
       jekyll-seo-tag (~> 2.1)
-    nokogiri (1.13.10-x86_64-linux)
     minitest (5.17.0)
+      racc (~> 1.4)
+    nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     octokit (4.25.1)
       faraday (>= 1, < 3)
@@ -273,10 +279,11 @@ DEPENDENCIES
   http_parser.rb (~> 0.6.0)
   jekyll-feed (~> 0.12)
   jekyll-include-cache
+  jekyll-spaceship
   tzinfo (~> 1.2)
   tzinfo-data
   wdm (~> 0.1.1)
   webrick (~> 1.7)
 
 BUNDLED WITH
-   2.3.15
+   2.4.8
