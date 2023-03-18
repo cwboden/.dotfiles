@@ -78,17 +78,18 @@ fn drag_object_system(
 
     for (entity, _draggable, global_transform) in draggables.iter() {
         if let Some(interaction) = interaction_state.get_interaction_for_entity(entity) {
-            let translation = global_transform.translation.truncate() - interaction.cursor_position;
+            let translation =
+                global_transform.translation().truncate() - interaction.cursor_position;
 
             commands.entity(entity).insert(Dragged {
                 translation,
-                origin: global_transform.translation.truncate(),
+                origin: global_transform.translation().truncate(),
             });
         }
     }
 }
 
-#[derive(Component, Default)]
+#[derive(Component, Default, Resource)]
 struct HoveredSnapPoint {
     point: Option<SnapPoint>,
 }

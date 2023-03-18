@@ -1,17 +1,15 @@
 [workspace]
 resolver = "2"
 members = [
-  ".",
   "argparse/",
   "cards/",
-  "games/gaia_project/",
-  "games/oath/",
-  "games/pocket_ops/",
-  "games/robo_puzzle/",
   "input/",
   "math/",
   "path_finding/",
   "stat_gen/",
+]
+exclude = [
+  "games/",
 ]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

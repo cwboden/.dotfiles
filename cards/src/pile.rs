@@ -1,3 +1,6 @@
+use bevy::ecs::system::Resource;
+
+#[derive(Resource)]
 pub struct Pile<T> {
     cards: Vec<T>,
 }
