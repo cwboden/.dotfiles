@@ -1,4 +1,6 @@
 use std::string::ToString;
+
+use bevy::ecs::system::Resource;
 use strum_macros::{Display, EnumIter, EnumString};
 
 #[derive(Clone, Copy, Debug, Display, EnumIter, EnumString, Eq, Hash, PartialEq)]
@@ -26,7 +28,7 @@ pub enum Value {
     Ace,
 }
 
-#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq)]
+#[derive(Clone, Copy, Debug, Eq, Hash, PartialEq, Resource)]
 pub struct StandardPlayingCard {
     pub suit: Suit,
     pub value: Value,
@@ -280,9 +282,11 @@ impl ToString for StandardPlayingCard {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use std::collections::HashSet;
+
     use strum::IntoEnumIterator;
+
+    use super::*;
 
     #[test]
     fn standard_playing_card_all_contains_every_suit_and_value() {

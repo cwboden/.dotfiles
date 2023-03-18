@@ -34,9 +34,9 @@ jobs:
                         - 'poetry.lock'
                         - 'pyproject.toml'
                       python:
-                        - '*.py'
+                        - '**.py'
                       rust:
-                        - '*.rs'
+                        - '**.rs'
                       website:
                         - 'docs/**'
 
