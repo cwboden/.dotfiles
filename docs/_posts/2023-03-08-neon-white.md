@@ -120,9 +120,14 @@ and can destroy breakable objects.
 
 1. `Katana` kills Laser Trap, destroying Door
 1. Collect `Godspeed`
-1. `Godspeed` kills both Laser Traps
 
 ### Through the Looking Glass
+1. `Godspeed` kills both Laser Traps
+
+Note that each `Godspeed` card has four bullets, so the player is challenged to
+shoot each of the three Laser Traps with accuracy, since they'll need `Godspeed`
+to cross the gap, later.
+
 1. Jump out window, `Godspeed` kills Laser Trap, killing Demon
 
 <figure class="align-center">
@@ -132,6 +137,9 @@ and can destroy breakable objects.
 </figure>
 
 1. `Katana` kill Laser Traps on Water platforms, killing `Godspeed` Demon
+
+### Bypassing the `Elevate` Room
+
 1. Collect `Godspeed` and kill Laser Trap chain
 
 <figure class="align-center">
@@ -140,12 +148,17 @@ and can destroy breakable objects.
     alt="">
 </figure>
 
-### Bypassing the `Elevate` Room
-
 1. Discard `Godspeed` to bypass `Elevate` room
 1. `Katana` kills Laser Trap, killing Demon
 1. `Katana` kills Laser Trap, killing `Stomp` Demon
 1. Discard `Stomp`, killing `Stomp` Demon
+
+### Clearing Your Heads
+This is the game-hinted optimization, noted by the Hand in the diagram as well.
+In good form, the hint shows you *where* to go but not how to get there. In this
+case, touching the hint shows the player they can immediately drop onto the goal
+to complete the level.
+
 1. Collect 2 `Purify`s
 
 <figure class="align-center">
@@ -153,8 +166,6 @@ and can destroy breakable objects.
     src="{{ page.image_directory }}/hanging-gardens-ramp-before-drop.jpg"
     alt="">
 </figure>
-
-### Clearing Your Heads
 
 1. Discard both `Purify`s, killing Head Demons, `Stomp` Demons, and Laser Trap
    chains.
