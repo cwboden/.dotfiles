@@ -171,3 +171,22 @@ to complete the level.
    chains.
 1. Run off platform and discard `Stomp`, destroying all demons below and
    reaching the Finish
+
+### Decision Tree
+
+```mermaid!
+flowchart TD
+    1[Shoot Laser Trap<br>Collect Godspeed<br>Shoot Laser Traps]
+    1-->2a[Godspeed through door<br>Katana Laser Trap, killing Demon]
+    1-->2b[Jump out window<br>Shoot Laser Trap, killing Demon]
+    2a-->3
+    2b-->3[Katana Laser Traps, killing Godspeed Demon]
+    3-->4a[Godspeed through door<br>Collect Elevate<br>Shoot Laser Trap chain<br>Discard Elevate to reach platform]
+    3-->4b[Collect Godspeed<br>Shoot Laser Trap chain<br>Discard Godspeeds to reach platform]
+    4a-->5
+    4b-->5[Katana Laser Traps, killing Demon and Stomp Demon<br>Discard Stomp, killing Stomp Demon<br>Collect 2 Purifys]
+    5-->6a[Discard Purify through door<br>Discard Purify, killing first room of Demons<br>Discard Stomp, killing second room of Demons]
+    5-->6b[Discard Purify, killing first room of Demons<br>Discard Purify, killing second room of Demons]
+    6a-->7
+    6b-->7[Discard Stomp, killing Demons below<br>Finish!]
+```
