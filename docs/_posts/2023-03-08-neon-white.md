@@ -5,9 +5,8 @@ last_modified_at:
 categories:
  - Video Games
 tags:
-  - story
-  - simulation
-  - philosophy
+  - shooter
+  - speed-running
 image_directory: "/assets/img/neon-white/"
 ---
 
@@ -38,21 +37,33 @@ To quickly give some context on the game itself:
     alt="">
 </figure>
 
-1. `Katana` kills Laser Trap, destroying Door
-
-Immediately, first-time player are informed of new mechanic they will be
-learning about for over the course of the level. at first, we see that they 1HP
-and can destroy breakable objects.
+Immediately, first-time players are informed of new mechanic -- Laser Traps --
+that they will be learning about over the course of the level. From the spawn
+point, fresh eyes will quickly learn that the Laser Traps have 1HP and can
+destroy breakable objects, like the door you need to move through.
 
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-first-room.jpg"
     alt="The first room in the level">
+  <figcaption>
+    The starting room, which requires the player to trigger a Laser Trap with
+    their `Katana` in order to move forward.
+  </figcaption>
 </figure>
 
-1. Collect `Godspeed`
-1. `Godspeed` kills both Laser Traps
-1. Discard `Godspeed` through Door
+Next, the player turns the corner, picking up a `Godspeed` card and encountering
+a new problem: Laser Traps pointing at them! The model design and placement of
+the lasers will prompt the player to jump the beams, shooting the two traps on
+the way over. With the traps out of the way, the player can then continue into
+the next room, discarding `Godspeed` to break through a door and continue to the
+next section.
+
+In this latest section, the player learns another dimension of the new Laser
+Trap mechanic: it can also kill them! The leisurely walkaround to the door after
+destroying the traps gives new players a chance to process the new mechanic a
+bit more, while more experienced speed-runners might already be thinking about
+how to optimize away the slow walk.
 
 <figure class="align-center">
   <img
@@ -61,6 +72,9 @@ and can destroy breakable objects.
 </figure>
 
 1. `Katana` kills Laser Trap, killing Demon
+The ability to do this is already a little implied by the destroyed door, but
+this confirms it.
+
 1. `Katana` kill Laser Traps on Water platforms, killing `Godspeed` Demon
 
 <figure class="align-center">
@@ -176,17 +190,17 @@ to complete the level.
 
 ```mermaid!
 flowchart TD
-    1[Shoot Laser Trap<br>Collect Godspeed<br>Shoot Laser Traps]
-    1-->2a[Godspeed through door<br>Katana Laser Trap, killing Demon]
-    1-->2b[Jump out window<br>Shoot Laser Trap, killing Demon]
+    1[Katana Laser Trap<br>Use Godspeed on Laser Traps]
+    1-->2a[Discard Godspeed through door<br>Katana Laser Trap, killing demon]
+    1-->2b[Jump out window<br>Shoot Laser Trap, killing demon]
     2a-->3
-    2b-->3[Katana Laser Traps, killing Godspeed Demon]
-    3-->4a[Godspeed through door<br>Collect Elevate<br>Shoot Laser Trap chain<br>Discard Elevate to reach platform]
-    3-->4b[Collect Godspeed<br>Shoot Laser Trap chain<br>Discard Godspeeds to reach platform]
+    2b-->3[Katana Laser Traps, killing demon]
+    3-->4a[Discard Godspeed through door<br>Use Elevate on Laser Traps, then discard]
+    3-->4b[Use Godspeed on Laser Trap chain<br>Discard Godspeeds to reach platform]
     4a-->5
-    4b-->5[Katana Laser Traps, killing Demon and Stomp Demon<br>Discard Stomp, killing Stomp Demon<br>Collect 2 Purifys]
-    5-->6a[Discard Purify through door<br>Discard Purify, killing first room of Demons<br>Discard Stomp, killing second room of Demons]
-    5-->6b[Discard Purify, killing first room of Demons<br>Discard Purify, killing second room of Demons]
+    4b-->5[Katana Laser Traps, killing demons<br>Discard Stomp, killing demon]
+    5-->6a[Discard Purify through door<br>Discard Purify and Stomp, killing demons]
+    5-->6b["Discard Purify, killing room of demons (x2)"]
     6a-->7
-    6b-->7[Discard Stomp, killing Demons below<br>Finish!]
+    6b-->7[Discard Stomp, killing demons below<br>Finish!]
 ```
