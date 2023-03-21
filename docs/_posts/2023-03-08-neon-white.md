@@ -1,5 +1,5 @@
 ---
-title:
+title: "Exploring: The Level Design of *Neon White*"
 excerpt:
 last_modified_at:
 categories:
@@ -16,18 +16,36 @@ image_directory: "/assets/img/neon-white/"
 {: .notice--info}
 
 ## Overview
-Neon White's levels are designed to be explored and discovered, even though the
-default routes are still challenging and zippy. I wanted to take a deep dive
-into one of the levels to highlight where Neon White's level design shines.
+That's not a typo in the title. While the baseline routes through each of *Neon
+White*'s ninety-seven levels are challenging and zippy, they are designed to be
+both carefully explored and naturally discovered, with multiple speedrunning
+optimizations baked into every level.
 
-We'll be looking at *Covenant: Hanging Gardens*, the first level of the sixth
-mission.
+Let's take a look into one of them to highlight the choreographed nature of the
+game's design. We'll be looking at *Covenant: Hanging Gardens*, the first level
+of the sixth mission. But first, here's a quick explanation of the game for the
+uninitiated:
 
-## Neon White Brief
-To quickly give some context on the game itself:
-- FPS focused on speedrunning
-- Levels are short, must kill all Demons and reach the finish line
-- Weapons can be discarded for movement abilities
+### *Neon White* Brief
+As a demon slayer in Heaven, you must complete the level by killing every demon
+and making it to the Finish. The player can pick up weapon cards to shoot at
+demons, though they can also discard those weapons for powerful movement
+abilities.
+
+The movement abilities lead to an exciting, fluid, parkour-like experience,
+similar to *Mirror's Edge*, for example. This is further aided by the fact that
+some demons are deliberately designed to be jumped on, such as the balloon
+demon.
+
+While sadly, there are no balloon demons in this level, it does contain the
+following cards:
+
+|Card|Weapon|Effect|
+|---|---|---|
+|`Elevate`|Pistol|Double jump|
+|`Purify`|Machine Gun|Launch an explosive bomb|
+|`Godspeed`|Rifle|Dash forward, destroying enemies|
+|`Slam`|Uzi|Slam down, releasing a shockwave|
 
 ## The First Pass
 
