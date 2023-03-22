@@ -1,6 +1,6 @@
 ---
 title: "Exploring: The Level Design of *Neon White*"
-excerpt:
+excerpt: "Join me on a closer look at a level and see naturally encourages speedrunning optimization."
 last_modified_at:
 categories:
  - Video Games
@@ -21,9 +21,9 @@ White*'s ninety-seven levels are challenging and zippy, they are designed to be
 both carefully explored and naturally discovered, with multiple speedrunning
 optimizations baked into every level.
 
-Let's take a look into one of them to highlight the choreographed nature of the
-game's design. We'll be looking at *Covenant: Hanging Gardens*, the first level
-of the sixth mission. But first, here's a quick explanation of the game for the
+Let's dive into one of them to highlight the choreographed nature of the game's
+design. We'll be looking at *Covenant: Hanging Gardens*, the first level of the
+sixth mission. But first, here's a quick explanation of the game for the
 uninitiated:
 
 ### *Neon White* Brief
@@ -33,12 +33,12 @@ demons, though they can also discard those weapons for powerful movement
 abilities.
 
 The movement abilities lead to an exciting, fluid, parkour-like experience,
-similar to *Mirror's Edge*, for example. This is further aided by the fact that
-some demons are deliberately designed to be jumped on, such as the balloon
-demon.
+similar to *Mirror's Edge*, for example. This is further **demon**strated by the
+fact that some of them are deliberately designed to be jumped on, such as the
+balloon demon.
 
-While sadly, there are no balloon demons in this level, it does contain the
-following cards:
+While there are, sadly, no balloon demons in this level, it does contain the
+following cards, for reference:
 
 |Card|Weapon|Effect|
 |---|---|---|
@@ -46,6 +46,20 @@ following cards:
 |`Purify`|Machine Gun|Launch an explosive bomb|
 |`Godspeed`|Rifle|Dash forward, destroying enemies|
 |`Slam`|Uzi|Slam down, releasing a shockwave|
+
+### An Extra Dimension of Speed
+It's important to call out that while the levels are each *designed* for speed,
+with players finding the fastest combination of firing and discarding their
+weapon cards, there's no maximum time for any level. It's possible to complete
+most levels at your own pace (including this one).
+
+There's not a ton to explore with this dimension of speedrunning the game, but
+it makes the game much more approachable, regardless of whether someone is a
+speedrunner. And while we will see how different routes are baked into each
+level, we can also appreciate that max times were not set.
+
+Now we can jump into how someone would naturally progress through the level, if
+they were speedrunning the intended route:
 
 ## The First Pass
 
@@ -55,10 +69,11 @@ following cards:
     alt="">
 </figure>
 
-Immediately, first-time players are informed of new mechanic -- Laser Traps --
-that they will be learning about over the course of the level. From the spawn
-point, fresh eyes will quickly learn that the Laser Traps have 1HP and can
-destroy breakable objects, like the door you need to move through.
+Immediately out of the gate, first-time players at *Covenant: Hanging Gardens*
+are informed of a new mechanic -- Laser Traps -- that they will be learning
+about over the course of the level. Fresh eyes will use their `Katana` on it,
+quickly learning that the Laser Traps have 1HP and can destroy breakable
+objects, like the door you need to move through.
 
 <figure class="align-center">
   <img
@@ -89,11 +104,15 @@ how to optimize away the slow walk.
     alt="">
 </figure>
 
-1. `Katana` kills Laser Trap, killing Demon
-The ability to do this is already a little implied by the destroyed door, but
-this confirms it.
+After dashing through the wall with `Godspeed`, we are met with a familiar idea:
+a Laser Trap pointing at a destoyable object. By striking it with `Katana`, the
+player confirms what they already inferred, that the traps can also kill
+enemies.
 
-1. `Katana` kill Laser Traps on Water platforms, killing `Godspeed` Demon
+They'll then move onto some waterfall paths (which speeds up player movement)
+and repeat the process on the `Godspeed` demon. This teaches them another
+important concept, since it takes two Laser Traps to kill the heftier `Godspeed`
+demon.
 
 <figure class="align-center">
   <img
@@ -101,15 +120,26 @@ this confirms it.
     alt="">
 </figure>
 
-1. Collect and discard `Godspeed` through Door, collecting `Elevate`
-1. Shoot Laser Trap chain, destroying Door
-1. Discard `Elevate` to reach destroyed Door
+Moving forward, the player can collect the `Godspeed` card from the now-fallen
+demon and use it to dash through a door into a room. There, aligned in a series,
+is a Rube Goldberg machine of Laser Traps, ending in the door you need to move
+through.
+
+Since the door is on a high platform, you'll need to grab and discard `Elevate`
+to reach the top, making sure to shoot the start of the Laser Trap chain. While
+still the first level that players have encountered a Laser Trap, they are still
+able to piece together a variety of mechanics using small building blocks of
+knowledge.
 
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-elevate-room.jpg"
     alt="">
 </figure>
+
+These mechanics are then expanded further in later levels. For example, in
+*Covenant: Race*, the player must run faster than a huge string of Laser Traps
+to reach the end before being cut-off by the traps.
 
 1. `Katana` kills Laser Trap, killing Demon
 1. `Katana` kills Laser Trap, killing `Stomp` Demon
