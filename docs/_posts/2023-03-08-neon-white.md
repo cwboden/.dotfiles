@@ -27,15 +27,22 @@ sixth mission. But first, here's a quick explanation of the game for the
 uninitiated:
 
 ### *Neon White* Brief
-As a demon slayer in Heaven, you must complete the level by killing every demon
+As a demon slayer in Heaven, you must complete each level by killing every demon
 and making it to the Finish. The player can pick up weapon cards to shoot at
 demons, though they can also discard those weapons for powerful movement
 abilities.
 
-The movement abilities lead to an exciting, fluid, parkour-like experience,
-similar to *Mirror's Edge*, for example. This is further **demon**strated by the
-fact that some of them are deliberately designed to be jumped on, such as the
-balloon demon.
+<figure class="align-left">
+  <img
+    src="{{ page.image_directory }}/balloon-demon.webp"
+    alt="A balloon demon">
+</figure>
+
+The movement abilities, which are also used to vanquish enemies, lead to an
+exciting, fluid, parkour-like experience, similar to *Mirror's Edge*, for
+example. This is further **demon**strated by the fact that some of them are
+deliberately designed to be jumped on, such as the Balloon Demon *(pictured
+here)*.
 
 While there are, sadly, no balloon demons in this level, it does contain the
 following cards, for reference:
@@ -46,6 +53,11 @@ following cards, for reference:
 |`Purify`|Machine Gun|Launch an explosive bomb|
 |`Godspeed`|Rifle|Dash forward, destroying enemies|
 |`Slam`|Uzi|Slam down, releasing a shockwave|
+
+In addition, many of the demons are "infused" with a particular card, so they'll
+always drop them when slain. Demons have characteristics based on their card,
+but for the purposes of this walkthrough, we need only understand which card
+they drop.
 
 ### An Extra Dimension of Speed
 It's important to call out that while the levels are each *designed* for speed,
@@ -60,15 +72,9 @@ level, we can also appreciate that max times were not set.
 
 Now we can jump into how someone would naturally progress through the level, if
 they were speedrunning the intended route:
-
 ## The First Pass
 
-<figure class="align-center">
-  <img
-    src="/assets/vector/neon-white-hanging-gardens-first-path.png"
-    alt="">
-</figure>
-
+### Introducing the Laser Traps
 Immediately out of the gate, first-time players at *Covenant: Hanging Gardens*
 are informed of a new mechanic -- Laser Traps -- that they will be learning
 about over the course of the level. Fresh eyes will use their `Katana` on it,
@@ -87,16 +93,21 @@ objects, like the door you need to move through.
 
 Next, the player turns the corner, picking up a `Godspeed` card and encountering
 a new problem: Laser Traps pointing at them! The model design and placement of
-the lasers will prompt the player to jump the beams, shooting the two traps on
-the way over. With the traps out of the way, the player can then continue into
-the next room, discarding `Godspeed` to break through a door and continue to the
+the lasers prompts the player to jump the beams, shooting the two traps on the
+way over. With the traps taken care of, the player can then continue into the
+next room, discarding `Godspeed` to break through a door and continue to the
 next section.
 
-In this latest section, the player learns another dimension of the new Laser
-Trap mechanic: it can also kill them! The leisurely walkaround to the door after
-destroying the traps gives new players a chance to process the new mechanic a
-bit more, while more experienced speed-runners might already be thinking about
-how to optimize away the slow walk.
+In this hallway, with the lasers, the player learns another dimension of the new
+Laser Traps: it can also kill them! Players can test it out by walking into the
+demonic beams instead of hopping over them -- though their appearance (and that
+the beam in the first room counts as a demon) already invites players to avoid
+and destroy them.
+
+The following leisurely walkaround to the door after destroying the traps gives
+new players a chance to breathe, processing the mechanic a bit more, while more
+experienced speed-runners might already be thinking about how to optimize away
+the slow walk.
 
 <figure class="align-center">
   <img
@@ -105,11 +116,11 @@ how to optimize away the slow walk.
 </figure>
 
 After dashing through the wall with `Godspeed`, we are met with a familiar idea:
-a Laser Trap pointing at a destoyable object. By striking it with `Katana`, the
-player confirms what they already inferred, that the traps can also kill
-enemies.
+a Laser Trap pointing at a destroyable object. By striking it with `Katana`, the
+player confirms what they may have already inferred, that the traps can also
+kill enemies.
 
-They'll then move onto some waterfall paths (which speeds up player movement)
+They'll then move onto some waterfall paths (which speed up player movement)
 and repeat the process on the `Godspeed` demon. This teaches them another
 important concept, since it takes two Laser Traps to kill the heftier `Godspeed`
 demon.
@@ -172,11 +183,20 @@ to reach the end before being cut-off by the traps.
     alt="">
 </figure>
 
+Here is the final, complete path through the level. You may need to download
+this image if you want zoom in. Opening it in another tab also works.
+
+<figure class="align-center">
+  <img
+    src="{{ page.image_directory }}/hanging-gardens-first-path.png"
+    alt="A diagram of the first route throught the level.">
+</figure>
+
 ## My Optimized Route
 
 <figure class="align-center">
   <img
-    src="/assets/vector/neon-white-hanging-gardens-fast-path.png"
+    src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
     alt="">
 </figure>
 
