@@ -98,8 +98,8 @@ way over. With the traps taken care of, the player can then continue into the
 next room, discarding `Godspeed` to break through a door and continue to the
 next section.
 
-In this hallway, with the lasers, the player learns another dimension of the new
-Laser Traps: it can also kill them! Players can test it out by walking into the
+In this hallway, the player learns another dimension of the new Laser Traps: it
+can also instantly kill them! Players can test it out by walking into the
 demonic beams instead of hopping over them -- though their appearance (and that
 the beam in the first room counts as a demon) already invites players to avoid
 and destroy them.
@@ -137,10 +137,12 @@ is a Rube Goldberg machine of Laser Traps, ending in the door you need to move
 through.
 
 Since the door is on a high platform, you'll need to grab and discard `Elevate`
-to reach the top, making sure to shoot the start of the Laser Trap chain. While
-still the first level that players have encountered a Laser Trap, they are still
-able to piece together a variety of mechanics using small building blocks of
-knowledge.
+to reach the top, making sure to shoot the start of the Laser Trap chain.
+
+The framing of the first Laser Trap in this room, similar to the spawn point,
+draws the player's eye, which they then follow like a path of dominoes. Despite
+it being the first level with a Laser Trap, players can piece together a variety
+of mechanics using the building blocks established earlier.
 
 <figure class="align-center">
   <img
@@ -148,14 +150,22 @@ knowledge.
     alt="">
 </figure>
 
-These mechanics are then expanded further in later levels. For example, in
+These ideas are then expanded further in later levels. For example, in
 *Covenant: Race*, the player must run faster than a huge string of Laser Traps
-to reach the end before being cut-off by the traps.
+to reach the end before being cut-off by the traps. Or how some of Neon Yellow's
+signature levels -- where the player is unable to use the cards' movement
+abilities -- use the Laser Traps as gates to different sections.
 
-1. `Katana` kills Laser Trap, killing Demon
-1. `Katana` kills Laser Trap, killing `Stomp` Demon
-1. Discard `Stomp`, killing `Stomp` Demon
-1. Collect 2 `Purify`s
+### Giving the Player a View
+Following the `Elevate` room is a straightforward waterfall path with two
+enemies, pointed at again by the Laser Traps. Weaponless, the player must use
+their `Katana` to destroy the traps and slay the two demons, with the second one
+providing a `Slam` card.
+
+The `Slam` is then immediately discarded, killing another `Slam` demon below and
+continuing on a waterfall path, picking up two `Purify` cards along the way.
+Here is where the player arrives at a vista with the final section of the level
+before them -- a perfect place to contemplate route improvements.
 
 <figure class="align-center">
   <img
@@ -163,9 +173,27 @@ to reach the end before being cut-off by the traps.
     alt="">
 </figure>
 
-1. Discard `Purify`, destroying Door
-1. Discard `Purify`, killing Head Demon, `Stomp` Demon, and Laser Trap chain,
-   destoying door.
+After receiving a Gold Medal on a level in *Neon White*, the game will reward
+you with a hint shaped like a hand, hidden somewhere in the level. Once touching
+the Hand, it will trace a path showing you a faster way to travel. The
+difficulty, though, can often be figuring out *how* to move that way while still
+taking care of the other demons.
+
+We can see that this hint is placed where the player has full vision of the rest
+of the level. It prompts the player to jump down directly to the goal, skipping
+the next section, but doesn't explain how they can skip it. The player must
+think -- from their well-placed vantage point -- about their next move.
+
+The Hand inspires players to start thinking intricately about what parts of the
+level they can zoom through by providing guidance, but not completely
+demonstrating how they can skip the last section. But to round things out,
+let's walkthrough the final, skippable section, for completion's sake.
+
+### Finishing out the Level
+As seen from the vista, the first `Purify` is used to break down the door. The
+player must avoid some laser on their way into the structure, similar to the
+first section of the level. This time, however, they're attached in a chain,
+too.
 
 <figure class="align-center">
   <img
@@ -173,9 +201,10 @@ to reach the end before being cut-off by the traps.
     alt="">
 </figure>
 
-1. Discard `Stomp`, killing Head Demon, `Stomp` Demon, and Laser Trap chain
-1. Run off platform and discard `Stomp`, destroying all demons below and
-   reaching the Finish
+Next, the second `Purify` is discarded to destroy the demons, door, and start of
+the Laser Trap chain at the end of the hallway. The player then collects a
+`Stomp` from one of the demolished demons, quickly discarding it to crush
+another demon/door/laser-chain group.
 
 <figure class="align-center">
   <img
@@ -183,8 +212,14 @@ to reach the end before being cut-off by the traps.
     alt="">
 </figure>
 
-Here is the final, complete path through the level. You may need to download
-this image if you want zoom in. Opening it in another tab also works.
+Finally, the player collects another `Stomp` from the fallen demons and discards
+it to dive below to the Finish, destroying the surrounding nearby demons and
+completing the level. There's not a ton to learn in this section, as it was
+meant to be optimized out, as evidenced by the Hand.
+
+To sum it up, here is a diagram and corresponding path through the level. You
+may need to download this image if you want zoom in. Opening it in another tab
+also works.
 
 <figure class="align-center">
   <img
@@ -253,6 +288,11 @@ to complete the level.
    chains.
 1. Run off platform and discard `Stomp`, destroying all demons below and
    reaching the Finish
+
+## Final Analysis
+
+- 3 shots required at the start of the level, 4 shots in `Godspeed`
+- Near end, 2x `Purify` and `Slam` used in similar ways for each route
 
 ### Decision Tree
 
