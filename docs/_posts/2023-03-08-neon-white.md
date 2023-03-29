@@ -38,7 +38,7 @@ abilities.
     alt="A balloon demon">
 </figure>
 
-The movement abilities, which are also used to vanquish enemies, lead to an
+The movement abilities -- which are also used to vanquish enemies -- lead to an
 exciting, fluid, parkour-like experience, similar to *Mirror's Edge*, for
 example. This is further **demon**strated by the fact that some of them are
 deliberately designed to be jumped on, such as the Balloon Demon *(pictured
@@ -228,47 +228,73 @@ also works.
 </figure>
 
 ## My Optimized Route
+I'll now walk through my theoretical maximum. There are probably further
+improvements to be made, including niche mechanics like deflecting bullets with
+`Katana`, but this will cover what I believe are the intentionally designed
+improvements.
 
-<figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
-    alt="">
-</figure>
-
-1. `Katana` kills Laser Trap, destroying Door
-1. Collect `Godspeed`
+Throughout the game, many of these discovered optimizations are, in reality,
+baked into the level and hidden for the player to explore within their
+attempts. Many of the rooms are intentionally designed to be completed quicker,
+but that's thanks to careful level design and placement of enemies and weapon
+cards.
 
 ### Through the Looking Glass
-1. `Godspeed` kills both Laser Traps
+The first key route improvement is made once the player realizes that the
+foliage-covered windows near the first `Godspeed` are actually open for you to
+jump out of. This enables you to shoot the two Laser Traps you otherwise would
+have dodged, then hop out the window onto some well-placed water paths.
 
-Note that each `Godspeed` card has four bullets, so the player is challenged to
-shoot each of the three Laser Traps with accuracy, since they'll need `Godspeed`
-to cross the gap, later.
-
-1. Jump out window, `Godspeed` kills Laser Trap, killing Demon
+One problem remains, though: the Laser Trap and demon below. Luckily, since the
+player didn't use `Godspeed` on a door, they can deal with the trap from a
+distance with a well-placed shot.
 
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-sniper-shortcut-1.jpg"
-    alt="">
+    alt="Just beyond the window of the first section, gazing out at the next part of the level.">
+  <figcaption>
+    A view from just beyond the windows. The Laser Trap and demon are visible
+    for the last shot before moving onto dealing with the Godspeed demon.
+  </figcaption>
 </figure>
 
-1. `Katana` kill Laser Traps on Water platforms, killing `Godspeed` Demon
+Note that each `Godspeed` card has four bullets, so the player is challenged to
+shoot each of the three Laser Traps with accuracy, since they'll need `Godspeed`
+to cross a gap later in the route. The first section has been crafted to enable
+the player to smuggle out a `Godspeed` card but also with speed.
 
 ### Bypassing the `Elevate` Room
+They'll then swap back to `Katana` to destroy the Laser Traps and killing the
+`Godspeed` demon, just like in the other path. With a second `Godspeed`, in
+hand, we have the ability to dash twice, jumping over the gap and skipping the
+next room -- but just like with the first shortcut, we have to figure out how to
+destroy the demons we're avoiding.
 
-1. Collect `Godspeed` and kill Laser Trap chain
+In this case, we can consider the fact that the `Elevate` room only had a Laser
+Trap chain. As a result, we can clear the room with only a single shot through
+the window. Again, the player is given the choice to discover how they may
+optimize the route, but many of these are built into the level's design.
 
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-sniper-shortcut-2.jpg"
-    alt="">
+    alt="The target inside of the elevate room">
+  <figcaption>
+    With two Godspeeds in hand, the player can dash over the gap to their
+    right. But first, they'll need to target the Laser Trap chain inside.
+  </figcaption>
 </figure>
 
-1. Discard `Godspeed` to bypass `Elevate` room
-1. `Katana` kills Laser Trap, killing Demon
-1. `Katana` kills Laser Trap, killing `Stomp` Demon
-1. Discard `Stomp`, killing `Stomp` Demon
+We then continue on the same waterfall path -- killing a few demons -- until we
+end up at the intersection with the game's mystical Hand, hinting us towards a
+shortcut.
+
+<figure class="align-center">
+  <img
+    src="{{ page.image_directory }}/hanging-gardens-ramp-before-drop.jpg"
+    alt="">
+</figure>
 
 ### Clearing Your Heads
 This is the game-hinted optimization, noted by the Hand in the diagram as well.
@@ -278,16 +304,16 @@ to complete the level.
 
 1. Collect 2 `Purify`s
 
-<figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-ramp-before-drop.jpg"
-    alt="">
-</figure>
-
 1. Discard both `Purify`s, killing Head Demons, `Stomp` Demons, and Laser Trap
    chains.
 1. Run off platform and discard `Stomp`, destroying all demons below and
    reaching the Finish
+
+<figure class="align-center">
+  <img
+    src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
+    alt="">
+</figure>
 
 ## Final Analysis
 
