@@ -7,12 +7,15 @@ on:
             - main
 
 jobs:
-    build_and_deploy:
+    build-and-deploy:
         runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: ./docs
         steps:
             - uses: actions/checkout@v2
 
-      # Use GitHub Actions' cache to cache dependencies on servers
+            # Use GitHub Actions' cache to cache dependencies on servers
             - uses: actions/cache@v1
               with:
                   path: vendor/bundle
@@ -20,7 +23,7 @@ jobs:
                   restore-keys: |
                       ${{ runner.os }}-gems-
 
-      # Use GitHub Deploy Action to build and deploy to Github
+            # Use GitHub Deploy Action to build and deploy to Github
             - uses: jeffreytse/jekyll-deploy-action@master
               with:
                   provider: github
