@@ -1,7 +1,7 @@
 ---
 title: "My Top Single-Player Video Game of each Year"
 excerpt: "A list and brief synopsis of my most noteworthy from each year, starting from 2023."
-last_modified_at:
+last_modified_at: 2023-03-31T09:15:16
 categories:
  - Video Games
 tags:
@@ -567,7 +567,7 @@ you're aware of the narrative.
 
 I liked *Neon White* a lot and plan to do a full, in-depth review of the game.
 I've also released an overview of [how it encourages players to
-discover shortcuts and "trains" the speedrunning eye]({{ site.url }}{{ site.baseurl }}/video%20games/2023/03/08/neon-white.html).
+discover shortcuts and "trains" the speedrunning eye]({{ site.url }}{{ site.baseurl }}/video%20games/2023/03/08/neon-white-level-walkthrough.html).
 
 At a high-level, the game has great-feeling, finely-tuned movement controls and
 the performance makes snap-reloading levels (common in speedrunning) seamless.

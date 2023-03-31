@@ -1,7 +1,7 @@
 ---
 title: "Exploring: The Level Design of *Neon White*"
-excerpt: "Join me on a closer look at a level and see naturally encourages speedrunning optimization."
-last_modified_at:
+excerpt: "Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization."
+last_modified_at: 2023-03-31T02:14:56
 categories:
  - Video Games
 tags:
@@ -10,9 +10,15 @@ tags:
 image_directory: "/assets/img/neon-white/"
 ---
 
-|**Release Date:**| |
-|**Developer:**| |
-|**Publisher:**| |
+<figure class="align-center">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/neon-white-splash.jpg"
+    alt="Neon White splash art">
+</figure>
+
+|**Release Date:**|16 Jun 2022 <em>(PC)</em>|
+|**Developer:**|Angel Matrix|
+|**Publisher:**|Annapurna Interactive|
 {: .notice--info}
 
 ## Overview
@@ -39,10 +45,9 @@ abilities.
 </figure>
 
 The movement abilities -- which are also used to vanquish enemies -- lead to an
-exciting, fluid, parkour-like experience, similar to *Mirror's Edge*, for
-example. This is further **demon**strated by the fact that some of them are
-deliberately designed to be jumped on, such as the Balloon Demon *(pictured
-here)*.
+exciting, fluid, parkour-like experience. This is further **demon**strated by
+the fact that some of them are deliberately designed to be jumped on, such as
+the Balloon Demon *(pictured here)*.
 
 While there are, sadly, no balloon demons in this level, it does contain the
 following cards, for reference:
@@ -65,14 +70,24 @@ with players finding the fastest combination of firing and discarding their
 weapon cards, there's no maximum time for any level. It's possible to complete
 most levels at your own pace (including this one).
 
-There's not a ton to explore with this dimension of speedrunning the game, but
-it makes the game much more approachable, regardless of whether someone is a
+There's not a ton to explore with this dimension of playing through the game,
+but it makes the game much more approachable, regardless of whether someone is a
 speedrunner. And while we will see how different routes are baked into each
 level, we can also appreciate that max times were not set.
 
 Now we can jump into how someone would naturally progress through the level, if
-they were speedrunning the intended route:
+they were tackling the intended route:
+
 ## The First Pass
+Although each level has shortcuts hiding in many places, there is also an
+intentional route that, while slower, is still quite snappy once understanding
+when to use the movement abilities. This gives players a chance to learn new
+mechanics and the level's themes but still practice more advanced skills or look
+for shorter paths.
+
+This will be the default route for the level, which -- along with shortcut
+revealed by the game's mystic Hand, *(discussed later)* -- is enough to pull the
+coveted Platinum time for the level.
 
 ### Introducing the Laser Traps
 Immediately out of the gate, first-time players at *Covenant: Hanging Gardens*
@@ -98,11 +113,11 @@ way over. With the traps taken care of, the player can then continue into the
 next room, discarding `Godspeed` to break through a door and continue to the
 next section.
 
-In this hallway, the player learns another dimension of the new Laser Traps: it
-can also instantly kill them! Players can test it out by walking into the
-demonic beams instead of hopping over them -- though their appearance (and that
-the beam in the first room counts as a demon) already invites players to avoid
-and destroy them.
+In the hallway with the lasers, the player learns another dimension of the new
+Laser Traps: it can also instantly kill them! Players can test it out by walking
+into the demonic beams instead of hopping over them -- though their appearance
+(and that the beam in the first room counts as a demon) -- already invites
+players to avoid and destroy them.
 
 The following leisurely walkaround to the door after destroying the traps gives
 new players a chance to breathe, processing the mechanic a bit more, while more
@@ -170,7 +185,7 @@ before them -- a perfect place to contemplate route improvements.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-ramp-before-drop.jpg"
-    alt="">
+    alt="The edge of a waterfall path, right before the doorway to the remainder of the level">
 </figure>
 
 After receiving a Gold Medal on a level in *Neon White*, the game will reward
@@ -191,7 +206,7 @@ let's walkthrough the final, skippable section, for completion's sake.
 
 ### Finishing out the Level
 As seen from the vista, the first `Purify` is used to break down the door. The
-player must avoid some laser on their way into the structure, similar to the
+player must avoid some lasers on their way into the structure, similar to the
 first section of the level. This time, however, they're attached in a chain,
 too.
 
@@ -204,7 +219,7 @@ too.
 Next, the second `Purify` is discarded to destroy the demons, door, and start of
 the Laser Trap chain at the end of the hallway. The player then collects a
 `Stomp` from one of the demolished demons, quickly discarding it to crush
-another demon/door/laser-chain group.
+another demon, door, and laser chain group.
 
 <figure class="align-center">
   <img
@@ -235,9 +250,8 @@ improvements.
 
 Throughout the game, many of these discovered optimizations are, in reality,
 baked into the level and hidden for the player to explore within their
-attempts. Many of the rooms are intentionally designed to be completed quicker,
-but that's thanks to careful level design and placement of enemies and weapon
-cards.
+attempts. This keeps levels exciting and encourages the player to find shortcuts
+of their own. Let's see what I found:
 
 ### Through the Looking Glass
 The first key route improvement is made once the player realizes that the
@@ -272,7 +286,7 @@ next room -- but just like with the first shortcut, we have to figure out how to
 destroy the demons we're avoiding.
 
 In this case, we can consider the fact that the `Elevate` room only had a Laser
-Trap chain. As a result, we can clear the room with only a single shot through
+Trap chain. As a result, we can clear the room with just a single shot through
 the window. Again, the player is given the choice to discover how they may
 optimize the route, but many of these are built into the level's design.
 
@@ -293,48 +307,88 @@ shortcut.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-ramp-before-drop.jpg"
-    alt="">
+    alt="The ramp next to the Hand where the player can Slam to the end of the level">
 </figure>
 
 ### Clearing Your Heads
-This is the game-hinted optimization, noted by the Hand in the diagram as well.
-In good form, the hint shows you *where* to go but not how to get there. In this
-case, touching the hint shows the player they can immediately drop onto the goal
-to complete the level.
+This is the game-hinted optimization, noted by the Hand in the diagram and
+screenshot.  In good form, the hint shows you *where* to go but not how to get
+there. In this case, touching the hint shows the player they can immediately
+drop onto the goal to complete the level.
 
-1. Collect 2 `Purify`s
+Examining the two `Purify`s in our hand, it's a relatively quick jump to think
+of discarding `Purify` to destroy clusters of enemies, rather than to break down
+doors. With the windows into each room, the player can fire each `Purify` to
+deal with a group of a Head demon, `Stomp` demon, and Laser Trap chain.
 
-1. Discard both `Purify`s, killing Head Demons, `Stomp` Demons, and Laser Trap
-   chains.
-1. Run off platform and discard `Stomp`, destroying all demons below and
-   reaching the Finish
+Then, using the remaining `Stomp`, it's a quick rush to the end, with the
+shockwave cleaning up the last demons at the end of the level very nicely.
+Here's a final diagram of the path:
 
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
-    alt="">
+    alt="My optimized path through the level">
 </figure>
 
-## Final Analysis
+The layout of the level further cements the idea that specific sections are
+unable to be cut out (like most of the waterfall path sections) while other
+parts of the level, with their clustered demons or Laser Trap chains, are
+designed to be dealt with quickly.
 
-- 3 shots required at the start of the level, 4 shots in `Godspeed`
-- Near end, 2x `Purify` and `Slam` used in similar ways for each route
+## Final Analysis
+Hopefully, from this walkthrough of a single level, it's apparent the careful
+craft that was put into the feel of *Neon White*'s exploration and optimization.
+
+Each mission feels fast and fun from start to finish, yet after taking a closer
+look at each level, players will be rewarded with hidden paths and alternate
+ways to deal with the same challenges.
 
 ### Decision Tree
+Here is an (albeit too detailed) decision tree of the path through the level.
+There are likely other options missing, but it is enough to illustrate my
+point that many optimizations are sectioned off. So, when playing each level,
+these "Aha!" moments happens in different places and a different order based on
+what's discovered first.
 
 ```mermaid!
 flowchart TD
     1[Katana Laser Trap<br>Use Godspeed on Laser Traps]
-    1-->2a[Discard Godspeed through door<br>Katana Laser Trap, killing demon]
-    1-->2b[Jump out window<br>Shoot Laser Trap, killing demon]
+    1-->2a[Discard Godspeed through door<br>Use Katana on Laser Trap, killing demon]
+    1-.->2b[Jump out window<br>Shoot Laser Trap, killing demon]
     2a-->3
-    2b-->3[Katana Laser Traps, killing demon]
+    2b-.->3[Use Katana on Laser Traps, killing demon]
     3-->4a[Discard Godspeed through door<br>Use Elevate on Laser Traps, then discard]
-    3-->4b[Use Godspeed on Laser Trap chain<br>Discard Godspeeds to reach platform]
+    3-.->4b[Use Godspeed on Laser Trap chain<br>Discard Godspeeds to reach platform]
     4a-->5
-    4b-->5[Katana Laser Traps, killing demons<br>Discard Stomp, killing demon]
+    4b-.->5[Use Katana on Laser Traps, killing demons<br>Discard Stomp, killing demon]
     5-->6a[Discard Purify through door<br>Discard Purify and Stomp, killing demons]
-    5-->6b["Discard Purify, killing room of demons (x2)"]
+    5-.->6b["Discard Purify, killing room of demons (x2)"]
     6a-->7
-    6b-->7[Discard Stomp, killing demons below<br>Finish!]
+    6b-.->7[Discard Stomp, killing demons below<br>Finish!]
 ```
+
+There is already a push towards speedrunning with the game's medal system as
+well as Gold/Platinum medal requirements for some story progression. But
+designing quicker paths in the level to be discovered by players makes exploring
+exiting.
+
+And this is why the game is so much fun. It's feels amazing to rush through
+levels quickly with the weapon cards' playful movement abities (especially with
+the clubby soundtrack by Machine Girl), but then, players will be encouraged by
+the built-in shortcuts they find to each level and be inspired to find shortcuts
+of their own!
+
+### Conclusion
+*Neon White* makes for an excellent speedrunner -- especially to those new to
+the scene -- by adopting the concepts of optimization and exploration. The
+levels are designed to be mastered many times over, as players discover new,
+shorter routes.
+
+Exceptional amounts of these shortcuts are carefully placed into each level, as
+we saw in *Covenant: Hanging Gardens*. Demons are often clustered together or
+made to be dealt with in an entirely different way than the "standard" route.
+
+The continuous cycle of exploration and optimization makes it so players can't
+help but want to try and improve their time. There's always something new to
+explore in each level as you perfect your theoretical best path.

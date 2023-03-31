@@ -13,7 +13,7 @@ header:
       url: /assets/pdf/resume.pdf
 excerpt: Welcome to my portfolio! I'm a programmer-for-good, lover of games, and write random blog posts in my spare time.
 feature_row:
-  - image_path: /assets/img/spiritfarer-splash.jpg
+  - image_path: /assets/img/neon-white-splash.jpg
     alt: "Latest Review: Spiritfarer"
     title: "Video Games"
     excerpt: Unique mechanics, player experience, what "worked", and what didn't.
