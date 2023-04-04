@@ -137,6 +137,9 @@ tag_archive:
     path: /tags/
 
 jekyll-spaceship:
+    processors:
+        - mermaid-processor
+        - emoji-processor
     mermaid-processor:
         config:
             theme: dark
