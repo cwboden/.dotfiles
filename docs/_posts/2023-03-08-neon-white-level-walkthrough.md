@@ -351,7 +351,7 @@ point that many optimizations are sectioned off. So, when playing each level,
 these "Aha!" moments happens in different places and a different order based on
 what's discovered first.
 
-```mermaid!
+{% mermaid %}
 flowchart TD
     1[Katana Laser Trap<br>Use Godspeed on Laser Traps]
     1-->2a[Discard Godspeed through door<br>Use Katana on Laser Trap, killing demon]
@@ -366,7 +366,7 @@ flowchart TD
     5-.->6b["Discard Purify, killing room of demons (x2)"]
     6a-->7
     6b-.->7[Discard Stomp, killing demons below<br>Finish!]
-```
+{% endmermaid %}
 
 There is already a push towards speedrunning with the game's medal system as
 well as Gold/Platinum medal requirements for some story progression. But
