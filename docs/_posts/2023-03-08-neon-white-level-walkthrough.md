@@ -1,13 +1,13 @@
 ---
 title: "Exploring: The Level Design of *Neon White*"
 excerpt: "Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization."
-last_modified_at: 2023-03-31T02:14:56
+last_modified_at: 2023-04-07T02:59:33
 categories:
  - Video Games
 tags:
   - shooter
   - speed-running
-image_directory: "/assets/img/neon-white/"
+image_directory: /assets/img/neon-white
 ---
 
 <figure class="align-center">
@@ -96,15 +96,12 @@ about over the course of the level. Fresh eyes will use their `Katana` on it,
 quickly learning that the Laser Traps have 1HP and can destroy breakable
 objects, like the door you need to move through.
 
-<figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-first-room.jpg"
-    alt="The first room in the level">
-  <figcaption>
-    The starting room, which requires the player to trigger a Laser Trap with
-    their `Katana` in order to move forward.
-  </figcaption>
-</figure>
+{% include figure
+    image_path='/assets/img/neon-white/hanging-gardens-first-room.jpg'
+    alt='The first room in the level'
+    caption='The starting room, which requires the player to trigger a Laser
+        Trap with their `Katana` in order to move forward.'
+%}
 
 Next, the player turns the corner, picking up a `Godspeed` card and encountering
 a new problem: Laser Traps pointing at them! The model design and placement of
@@ -127,7 +124,7 @@ the slow walk.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-first-enemy.jpg"
-    alt="">
+    alt="The first real enemy encountered within the level.">
 </figure>
 
 After dashing through the wall with `Godspeed`, we are met with a familiar idea:
@@ -143,7 +140,7 @@ demon.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-second-enemy.jpg"
-    alt="">
+    alt="The second enemy, which requires both Laser Traps to kill.">
 </figure>
 
 Moving forward, the player can collect the `Godspeed` card from the now-fallen
@@ -162,7 +159,7 @@ of mechanics using the building blocks established earlier.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-elevate-room.jpg"
-    alt="">
+    alt="The room with Elevate and a chain of Laser Traps.">
 </figure>
 
 These ideas are then expanded further in later levels. For example, in
@@ -213,7 +210,7 @@ too.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-head-room-1.jpg"
-    alt="">
+    alt="A room with Laser Traps to dodge and some demons near a door.">
 </figure>
 
 Next, the second `Purify` is discarded to destroy the demons, door, and start of
@@ -224,7 +221,7 @@ another demon, door, and laser chain group.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-final-stomp.jpg"
-    alt="">
+    alt="The final dash, down to the end of the level.">
 </figure>
 
 Finally, the player collects another `Stomp` from the fallen demons and discards
@@ -237,9 +234,11 @@ may need to download this image if you want zoom in. Opening it in another tab
 also works.
 
 <figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-first-path.png"
-    alt="A diagram of the first route throught the level.">
+  <a href="{{ page.image_directory }}/hanging-gardens-first-path.png">
+    <img
+        src="{{ page.image_directory }}/hanging-gardens-first-path.png"
+        alt="A diagram of the first route throught the level.">
+  </a>
 </figure>
 
 ## My Optimized Route
@@ -326,9 +325,11 @@ shockwave cleaning up the last demons at the end of the level very nicely.
 Here's a final diagram of the path:
 
 <figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
-    alt="My optimized path through the level">
+  <a href="{{ page.image_directory }}/hanging-gardens-fast-path.png">
+    <img
+        src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
+        alt="My optimized path through the level">
+  </a>
 </figure>
 
 The layout of the level further cements the idea that specific sections are
@@ -351,7 +352,7 @@ point that many optimizations are sectioned off. So, when playing each level,
 these "Aha!" moments happens in different places and a different order based on
 what's discovered first.
 
-```mermaid!
+{% mermaid %}
 flowchart TD
     1[Katana Laser Trap<br>Use Godspeed on Laser Traps]
     1-->2a[Discard Godspeed through door<br>Use Katana on Laser Trap, killing demon]
@@ -366,7 +367,7 @@ flowchart TD
     5-.->6b["Discard Purify, killing room of demons (x2)"]
     6a-->7
     6b-.->7[Discard Stomp, killing demons below<br>Finish!]
-```
+{% endmermaid %}
 
 There is already a push towards speedrunning with the game's medal system as
 well as Gold/Platinum medal requirements for some story progression. But

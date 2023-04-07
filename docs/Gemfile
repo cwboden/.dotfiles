@@ -4,7 +4,7 @@ group :jekyll_plugins do
   gem "github-pages"
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll-include-cache"
-  gem "jekyll-spaceship"
+  gem "jekyll-mermaid", :github => 'cwboden/jekyll-mermaid', :branch => 'master'
 end
 
 gem "html-proofer"
