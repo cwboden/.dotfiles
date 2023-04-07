@@ -237,9 +237,11 @@ may need to download this image if you want zoom in. Opening it in another tab
 also works.
 
 <figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-first-path.png"
-    alt="A diagram of the first route throught the level.">
+  <a href="{{ page.image_directory }}/hanging-gardens-first-path.png">
+    <img
+        src="{{ page.image_directory }}/hanging-gardens-first-path.png"
+        alt="A diagram of the first route throught the level.">
+  </a>
 </figure>
 
 ## My Optimized Route
@@ -326,9 +328,11 @@ shockwave cleaning up the last demons at the end of the level very nicely.
 Here's a final diagram of the path:
 
 <figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
-    alt="My optimized path through the level">
+  <a href="{{ page.image_directory }}/hanging-gardens-fast-path.png">
+    <img
+        src="{{ page.image_directory }}/hanging-gardens-fast-path.png"
+        alt="My optimized path through the level">
+  </a>
 </figure>
 
 The layout of the level further cements the idea that specific sections are
