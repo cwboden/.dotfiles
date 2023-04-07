@@ -127,7 +127,7 @@ the slow walk.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-first-enemy.jpg"
-    alt="">
+    alt="The first real enemy encountered within the level.">
 </figure>
 
 After dashing through the wall with `Godspeed`, we are met with a familiar idea:
@@ -143,7 +143,7 @@ demon.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-second-enemy.jpg"
-    alt="">
+    alt="The second enemy, which requires both Laser Traps to kill.">
 </figure>
 
 Moving forward, the player can collect the `Godspeed` card from the now-fallen
@@ -162,7 +162,7 @@ of mechanics using the building blocks established earlier.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-elevate-room.jpg"
-    alt="">
+    alt="The room with Elevate and a chain of Laser Traps.">
 </figure>
 
 These ideas are then expanded further in later levels. For example, in
@@ -213,7 +213,7 @@ too.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-head-room-1.jpg"
-    alt="">
+    alt="A room with Laser Traps to dodge and some demons near a door.">
 </figure>
 
 Next, the second `Purify` is discarded to destroy the demons, door, and start of
@@ -224,7 +224,7 @@ another demon, door, and laser chain group.
 <figure class="align-center">
   <img
     src="{{ page.image_directory }}/hanging-gardens-final-stomp.jpg"
-    alt="">
+    alt="The final dash, down to the end of the level.">
 </figure>
 
 Finally, the player collects another `Stomp` from the fallen demons and discards
