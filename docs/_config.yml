@@ -136,14 +136,6 @@ tag_archive:
     type: liquid
     path: /tags/
 
-jekyll-spaceship:
-    processors:
-        - mermaid-processor
-        - emoji-processor
-    mermaid-processor:
-        config:
-            theme: dark
-
 mermaid:
     src: https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs
     theme: dark
