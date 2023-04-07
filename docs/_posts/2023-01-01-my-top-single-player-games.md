@@ -1,7 +1,7 @@
 ---
 title: "My Top Single-Player Video Game of each Year"
-excerpt: "A list and brief synopsis of my most noteworthy from each year, starting from 2023."
-last_modified_at: 2023-03-31T09:15:16
+excerpt: "A list and brief synopsis of my most noteworthy from each year, starting from 2014."
+last_modified_at: 2023-04-07T03:22:15
 categories:
  - Video Games
 tags:
