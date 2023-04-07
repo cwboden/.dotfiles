@@ -1,7 +1,7 @@
 ---
 title: "Exploring: The Level Design of *Neon White*"
 excerpt: "Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization."
-last_modified_at: 2023-03-31T02:14:56
+last_modified_at: 2023-04-07T02:59:33
 categories:
  - Video Games
 tags:
