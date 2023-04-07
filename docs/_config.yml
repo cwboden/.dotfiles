@@ -48,6 +48,13 @@ collections:
         output: true
         permalink: /:collection/:path/
 
+comments:
+    provider: utterances
+    utterances:
+        theme: dark-blue
+        issue_term: title
+        label: comment
+
 defaults:
     # General Page Layout
     - scope:
