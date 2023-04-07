@@ -7,7 +7,7 @@ categories:
 tags:
   - shooter
   - speed-running
-image_directory: "/assets/img/neon-white/"
+image_directory: /assets/img/neon-white
 ---
 
 <figure class="align-center">
@@ -96,15 +96,12 @@ about over the course of the level. Fresh eyes will use their `Katana` on it,
 quickly learning that the Laser Traps have 1HP and can destroy breakable
 objects, like the door you need to move through.
 
-<figure class="align-center">
-  <img
-    src="{{ page.image_directory }}/hanging-gardens-first-room.jpg"
-    alt="The first room in the level">
-  <figcaption>
-    The starting room, which requires the player to trigger a Laser Trap with
-    their `Katana` in order to move forward.
-  </figcaption>
-</figure>
+{% include figure
+    image_path='/assets/img/neon-white/hanging-gardens-first-room.jpg'
+    alt='The first room in the level'
+    caption='The starting room, which requires the player to trigger a Laser
+        Trap with their `Katana` in order to move forward.'
+%}
 
 Next, the player turns the corner, picking up a `Godspeed` card and encountering
 a new problem: Laser Traps pointing at them! The model design and placement of
