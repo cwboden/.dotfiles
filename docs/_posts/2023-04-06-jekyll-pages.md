@@ -130,23 +130,100 @@ Jekyll expects. This is where markup languages come in:
 ### Markdown
 Markdown is the most ubiquitous markup language today, mainly due to the
 readability of its source code. The basic syntax makes it easy to perform common
-word-processing formats like **bold**, _italics_, or `code`, which Jekyll
-transforms into the forms you see on the page.
+word-processing formats like `**bold**`, `_italics_`, or \`code\` which Jekyll
+transforms into what you see on the page.
 
-The syntax has become commonplace, even outside of Markdown, with platforms like
-[Reddit](https://www.markdownguide.org/tools/reddit/),
+The syntax has become commonplace, even outside of Markdown documents, with
+platforms like [Reddit](https://www.markdownguide.org/tools/reddit/),
 [Slack](https://slack.com/), or [Slab](https://slab.com/) applying Markdown
 formatting right inside of a message or article. You can learn more advanced
 syntax on [their documentation
 page](https://www.markdownguide.org/cheat-sheet/).
 
+Posts are written in Markdown, so they can be stored as code but then processed
+by Jekyll to render a richer experience. For example, [here's the source code
+for this page](https://github.com/cwboden/.dotfiles/blob/main/2023-04-06-jekyll-pages/docs/_posts/2023-04-06-jekyll-pages.md).
+{: .notice--info}
+
 ### Liquid
-#### What is it?
+[Liquid](https://github.com/Shopify/liquid) is a lesser known markup language --
+also powered by Ruby -- and incorporated into Jekyll's standard build process.
+It's used for templating, allowing users to pass in data objects and produce
+similarly shaped pages or page elements.
+
+For example, each post in this blog has properties like `title` and `excerpt`
+which Jekyll uses, along with the Liquid templates defined by the theme, to
+create the feed of recent posts on the home page.
+{: .notice--info}
+
+This guide won't walk through customization via Liquid, since there are already
+dozens of great examples from existing open source themes. If you like how this
+page looks, I use Michael Rose's [Minimal
+Mistakes](https://github.com/mmistakes/minimal-mistakes).
 
 ### Mermaid
-#### What is it?
+The final markup language I highly recommend is
+[Mermaid](https://mermaid.js.org/). It's a lightweight diagramming language
+built in JavaScript that uses Markdown-inspired syntax.
+
+I find Mermaid's declarative approach to diagrams much easier to edit than
+full-fledged, responsive applications like LucidChart. Though for more complex
+diagramming, Mermaid can get difficult to read.
+
+This smaller block of code, though, is fairly easy to read -- even without
+knowing the syntax -- and will create the following diagram:
+
+```
+flowchart TD
+    A[Free Time] -->B(Write a blog post)
+    B --> C{Any new ideas?}
+    C --> D[Game Development]
+    C --> E[More Neon White]
+    C --> |This one!| F[Jekyll Sites]
+```
+
+{% mermaid %}
+flowchart TD
+    A[Free Time] -->B(Write a blog post)
+    B --> C{Any new ideas?}
+    C -->D[Game Development]
+    C -->E[More Neon White]
+    C -->|This one!| F[Jekyll Sites]
+{% endmermaid %}
+
+Mermaid doesn't work natively with Jekyll, though we can add the
+`jekyll-mermaid` gem to the project to add a Liquid template we can use.
+
+I had some issues with the existing `jekyll-mermaid` package, so cut my own fork
+that uses the latest version of Mermaid and lets users specify a theme. You can
+specify a custom fork of the gem by adding the `github` and `branch` properties
+to your Gemfile:
+{: .notice--info}
+
+```rb
+gem "jekyll-mermaid", :github => 'cwboden/jekyll-mermaid', :branch => 'master'
+```
 
 ## GitHub Pages
+As mentioned above, GitHub Pages is powered by Jekyll. We can combine a few
+technologies here to quickly spin up a blog! [Their
+walkthrough](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll)
+is comprehensive, though I'll call out some additional notes from my experience,
+below.
+
 ### "Safe" Deploy Process
+GitHub by default uses a Jekyll "safe" deployment (specified with the `--safe`
+flag when building via Jekyll). This makes the setup from their guide much
+simpler, since GitHub Actions handles most of the deployment process.
+
+However, as it blocks any plugins not on GitHub's allow list, it prevents
+any custom behavior from being loaded. This is a problem if you're hoping to add
+specific plugins like `jekyll-mermaid`.
+
+Fortunately, there's a way to deploy via custom GitHub Workflows, meaning we can
+get around this problem.
+
 ### Deploying manually via GitHub Action
+
+
 ### Utterances Integration
