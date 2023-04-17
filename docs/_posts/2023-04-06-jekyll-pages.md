@@ -1,7 +1,7 @@
 ---
 title: "A Guide to Hosting Static Content via Jekyll & GitHub Pages"
 excerpt: "How it works, deeper customizations with manual deployments"
-last_modified_at:
+last_modified_at: 2023-04-17T05:13:21
 categories:
  - Programming
 tags:
@@ -12,8 +12,19 @@ tags:
  - liquid
 ---
 
-## Overview
+{% include figure
+    image_path='/assets/img/jekyll-site-droste.png'
+    alt='A Droste Effect cascading image of my Jekyll site on this page.'
+%}
 
+## Overview
+It's been over a year since I've migrated my personal site to Jekyll. I had
+originally considered using React, as a way to practice a widely used
+technology, but quickly learned that there wasn't actually much reactivity that
+I needed from my site (and so, not much to practice on).
+
+It was then that I stumbled upon Jekyll and learned the appeal (and different
+approach) of static content sites. Here is some of what I've learned:
 
 ## Static Content
 On the web, there are two main types of content: static and dynamic. The core
@@ -21,13 +32,14 @@ difference is in how content changes or responds to the user. In a static
 website, content is stable and consistent for every user. Dynamic sites,
 however, might pull content on-the-fly based on the specific user.
 
-When the internet was still in its infancy, static content reigned surpreme
+When the internet was still in its infancy, static content reigned supreme
 since processing power was limited and web browsers didn't have consistent
 library support. Most users could load HTML, maybe with some custom CSS, but
 (at the time) weren't prepared to run code from the client-side.
 
 However, as computers improved, the needle has since shifted nowadays towards
-dynamic content, leaving many to forget about the appeal of static sites.
+shiny, new, dynamic content, leaving many to forget about the appeal of static
+sites.
 
 {% mermaid %}
 sequenceDiagram
@@ -91,32 +103,33 @@ common markup languages like Markdown or Liquid _(discussed more below)_ into a
 complete website, ready to be hosted by most web servers. It's what powers
 GitHub pages, which is also used to create this blog site.
 
-The Jekyll gem is written in Ruby, though we won't be engaging with that much,
-since you don't _need_ to learn Ruby to use Jekyll (though it can help for some
-customization). The core organization of a Jekyll site is via the file system:
+The Jekyll gem is written in Ruby, though, since you don't _need_ to learn Ruby
+to use Jekyll (though it can help for some customization), we won't be engaging
+with that much. The core simplicity of managing a Jekyll site is its
+organization via the file system:
 
 ```
 docs/
-├── assets
-│   └── <content files like images, fonts, etc.>
+├── assets/
+│   └── <images, fonts, diagrams, etc.>
 ├── _config.yml
 ├── Gemfile
-├── _pages
+├── _pages/
 │   ├── 404.md
 │   └── about.md
-└── _posts
+└── _posts/
     ├── 2022-07-13-git-basics.md
     ├── 2022-11-20-automating-deployments.md
     └── 2023-04-06-jekyll-pages.md
 ```
 
 Files in `_pages/` are turned into single, standalone pages needed by users. An
-"About" page is a classic, as would be a "FAQ" or even a 404 page which users
-will find if clicking a malformed link.
+"About" page is a classic, as would be a "FAQ" or even the 404 page that users
+find when clicking a malformed link.
 
-Everything in `_posts/` is the "most-dynamic" content. They must follow the
-format `YEAR-MONTH-DAY-title.MARKUP` so that Jekyll can sort and organize the
-posts accordingly.
+Everything in `_posts/` is the blog content. They must follow the format
+`YEAR-MONTH-DAY-title.MARKUP` so that Jekyll can sort and organize the posts
+accordingly.
 
 There are other possible folders, like `_sass/` or `_layouts/`, which can be
 used for custom components and theming, but we won't cover that in this article.
@@ -125,7 +138,7 @@ quite comprehensive.
 {: .notice--info}
 
 In order to write posts, though, we need to be familiar with the format that
-Jekyll expects. This is where markup languages come in:
+Jekyll expects. This is where markup comes in:
 
 ### Markdown
 Markdown is the most ubiquitous markup language today, mainly due to the
@@ -170,7 +183,7 @@ I find Mermaid's declarative approach to diagrams much easier to edit than
 full-fledged, responsive applications like LucidChart. Though for more complex
 diagramming, Mermaid can get difficult to read.
 
-This smaller block of code, though, is fairly easy to read -- even without
+This smaller block of code, though, is fairly easy to parse -- even without
 knowing the syntax -- and will create the following diagram:
 
 ```
@@ -195,8 +208,8 @@ Mermaid doesn't work natively with Jekyll, though we can add the
 `jekyll-mermaid` gem to the project to add a Liquid template we can use.
 
 I had some issues with the existing `jekyll-mermaid` package, so cut my own fork
-that uses the latest version of Mermaid and lets users specify a theme. You can
-specify a custom fork of the gem by adding the `github` and `branch` properties
+that uses the latest version of Mermaid. You can specify a custom fork of the
+gem by adding the `github` and `branch` properties
 to your Gemfile:
 {: .notice--info}
 
@@ -208,8 +221,8 @@ gem "jekyll-mermaid", :github => 'cwboden/jekyll-mermaid', :branch => 'master'
 As mentioned above, GitHub Pages is powered by Jekyll. We can combine a few
 technologies here to quickly spin up a blog! [Their
 walkthrough](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll)
-is comprehensive, though I'll call out some additional notes from my experience,
-below.
+is comprehensive, so I won't rewrite the basic setup in this post, though I'll
+call out some additional notes from my experience, below.
 
 ### "Safe" Deploy Process
 GitHub by default uses a Jekyll "safe" deployment (specified with the `--safe`
@@ -222,8 +235,49 @@ specific plugins like `jekyll-mermaid`.
 
 Fortunately, there's a way to deploy via custom GitHub Workflows, meaning we can
 get around this problem.
+{: .notice--success}
 
-### Deploying manually via GitHub Action
+### Deploying via GitHub Workflows
+GitHub has a feature called Workflows, enabling repositories to run commands on
+cloud resources. This can be great for automating tests, generating build
+artifacts, and scripted deployments.
 
+You can read [more about build and deployment automation via GitHub Workflows in
+this post]({{ site.url }}/programming/2022/11/20/automating-deployments.html).
+Or check out [the source files,
+here](https://github.com/cwboden/.dotfiles/tree/main/.github/workflows).
+{: .notice--info}
+
+In our case of deploying a Jekyll site, we're fortunate that `jeffreytse` has
+already provided [a useful action for deploying the
+site](https://github.com/jeffreytse/jekyll-deploy-action). With just one code
+block, we can trigger a fresh build and deploy anytime we merge into `main`:
+
+{% raw %}
+```yaml
+# Use GitHub Deploy Action to build and deploy to Github Page
+- uses: jeffreytse/jekyll-deploy-action@master
+  with:
+    provider: github
+    token: ${{ secrets.GITHUB_TOKEN }} # Your Personal Access Token (PAT)
+    jekyll_src: ./docs
+```
+{% endraw %}
+
+And there we have it! By integrating a few technologies we can automate the
+translation of simple-to-write Markdown documents into a rich, static site
+experience.
+{: .notice--success}
 
 ### Utterances Integration
+As an added bonus, I recently learned about
+[Utterances](https://github.com/utterance/utterances) and wanted to share. It's
+a comment widget built novelly on top of GitHub Issues.
+
+This was an extremely lightweight way to add comment support to articles, though
+it does require any poster to login to a GitHub account. The fact that it uses
+the Issues API on the backend, though, means that it can bring discussions about
+bugs and blog posts together -- fun, yet wacky!
+
+The widget is down below:
+{: .notice--info}
