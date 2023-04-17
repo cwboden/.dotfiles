@@ -155,7 +155,7 @@ page](https://www.markdownguide.org/cheat-sheet/).
 
 Posts are written in Markdown, so they can be stored as code but then processed
 by Jekyll to render a richer experience. For example, [here's the source code
-for this page](https://github.com/cwboden/.dotfiles/blob/main/2023-04-06-jekyll-pages/docs/_posts/2023-04-06-jekyll-pages.md).
+for this page](https://github.com/cwboden/.dotfiles/blob/main/docs/_posts/2023-04-06-jekyll-pages.md).
 {: .notice--info}
 
 ### Liquid
