@@ -10,7 +10,7 @@ title_separator: '-'
 subtitle: My personal portfolio / blog
 
 name: &name Carson Boden
-description: Welcome to my homepage -- still under construction!
+description: My personal portfolio / blog
 url: https://carsonboden.com
 baseurl: ''
 repository: cwboden/.dotfiles
