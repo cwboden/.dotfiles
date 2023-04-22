@@ -1,7 +1,7 @@
 ---
 title: "A Guide to Hosting Static Content via Jekyll & GitHub Pages"
-excerpt: "How it works, deeper customizations with manual deployments"
-last_modified_at: 2023-04-17T05:13:21
+excerpt: "How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments."
+last_modified_at: 2023-04-22T07:06:49
 categories:
  - Programming
 tags:
