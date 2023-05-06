@@ -13,7 +13,7 @@ be had and sometimes I get bored of projects and drop them.
 {: .notice--info}
 
 A pixelated knock-off of Asher Vollmer's
-[*Threes!*](http://play.threesgame.com/), with a few minor differences. Combine
+[*Threes!*](https://play.threesgame.com/), with a few minor differences. Combine
 **1**s and **2**s to create **3**s, then join like numbers together to see how
 high of a number you can get! In this version you win once you can get a **96**.
 
