@@ -1,0 +1,186 @@
+title Thrixel
+author Carson Boden
+homepage www.carsonboden.com
+
+verbose_logging
+require_player_movement
+
+========
+OBJECTS
+========
+
+Background
+white #add8e6
+11111
+10001
+10001
+10001
+11111
+
+Wall
+#0c0c0c black
+00000
+01110
+01110
+01110
+00000
+
+Temp
+purple
+.....
+.....
+..0..
+.....
+.....
+
+OneSpawner
+red
+.....
+.....
+..0..
+.....
+.....
+
+TwoSpawner
+blue
+.....
+.....
+..0..
+.....
+.....
+
+One
+red
+..0..
+..0..
+..0..
+..0..
+..0..
+
+Two
+blue
+.000.
+...0.
+.000.
+.0...
+.000.
+
+Three
+gray
+.00..
+...0.
+.00..
+...0.
+.00..
+
+Six
+black
+..000
+.0...
+.000.
+.0..0
+..00.
+
+Twelve
+brown
+0.000
+0...0
+0.000
+0.0..
+0.000
+
+TwentyFour
+pink
+00..0
+.0.00
+00000
+0...0
+00..0
+
+FortyEight
+green
+.0.00
+00.00
+00..0
+.0.00
+.0.00
+
+
+NinetySix
+purple
+00.00
+00.0.
+00.00
+.0.00
+00.00
+
+=======
+LEGEND
+=======
+
+. = Background
+# = Wall
+* = OneSpawner
+1 = One
+2 = Two
+
+Number = One or Two or Three or Six or Twelve or TwentyFour or FortyEight or NinetySix
+Player = Number
+
+Spawner = OneSpawner or TwoSpawner
+SpawnableNumber = One or Two
+
+Collidable = Number or Spawner or Wall
+
+=======
+SOUNDS
+=======
+Player Move 44993907
+Three Create 70860900
+Six Create 54486300
+Twelve Create 72449500
+TwentyFour Create 1392300
+FortyEight Create 98974900
+NinetySix Create 41074900
+
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Wall, Temp, Number, Spawner
+
+======
+RULES
+======
+
+[ > One | Two | Collidable ] -> [ | Three | Collidable ]
+[ > Two | One | Collidable ] -> [ | Three | Collidable ]
+[ > Three | Three | Collidable ] -> [ | Six | Collidable ]
+[ > Six | Six | Collidable ] -> [ | Twelve | Collidable ]
+[ > Twelve | Twelve | Collidable ] -> [ | TwentyFour | Collidable ]
+[ > TwentyFour | TwentyFour | Collidable ] -> [ | FortyEight | Collidable ]
+[ > FortyEight | FortyEight | Collidable ] -> [ | NinetySix | Collidable ]
+
+(Probably a simpler way to write this:)
+late random [ Background no Wall no Number no Spawner ] [ OneSpawner ] -> [ Temp ] [ One ]
+late random [ Background no Wall no Number no Spawner ] [ TwoSpawner ] -> [ Temp ] [ Two ]
+late [ Temp ] -> [ random Spawner Background ]
+
+==============
+WINCONDITIONS
+==============
+
+SOME NinetySix
+
+=======
+LEVELS
+=======
+
+######
+#....#
+#..2.#
+#.1..#
+#...*#
+######
