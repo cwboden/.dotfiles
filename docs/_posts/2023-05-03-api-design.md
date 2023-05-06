@@ -1,7 +1,7 @@
 ---
 title: A Deep Dive into API Design and Auto-Generation
-excerpt: How to design and version APIs with a touch of automated client and server creation.
-last_modified_at: 2023-05-04T09:02:21
+excerpt: How to design and version APIs along with a touch of automated client and server creation.
+last_modified_at: 2023-05-06T01:02:43
 categories:
  - Programming
 tags:
