@@ -29,5 +29,5 @@ encourage you to check it (and [this GDC
 talk](https://www.youtube.com/watch?v=W_okgL6HJX8), from which I learned about
 it) out.  I'm excited to see what else is possible with this engine.
 
-[Play]({{ site.url }}/thrixel/)
+[Play]({{ site.url }}/thrixel.html)
 {: .btn .btn--light-outline }
