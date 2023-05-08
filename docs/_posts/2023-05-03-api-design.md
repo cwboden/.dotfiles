@@ -84,36 +84,58 @@ For example, consider the differences in these two architectures:
 
 {% mermaid %}
 flowchart LR
-    M[fooService<br>barService<br>fooBarService]
-    NM[newFooService<br>newBarService<br>newFooBarService]
+    M(fooService<br>barService<br>fooBarService)
+    NM(newFooService<br>newBarService<br>newFooBarService)
     M -..-> NM
 {% endmermaid %}
 
 <br>
-**Microservices:**
+**Service-Oriented:**
 
 {% mermaid %}
 flowchart LR
-    F[fooService]
-    NF[newFooService]
-    F -..-> NF
-{% endmermaid %}
-{% mermaid %}
-flowchart LR
-    B[barService]
-    NB[newBarService]
-    B -..-> NB
-{% endmermaid %}
-{% mermaid %}
-flowchart LR
-    FB[fooBarService]
-    NFB[newFooBarService]
-    FB -..-> NFB
+    subgraph V0[my-foo-bar-service]
+        F(fooService)
+        B(barService)
+        FB(fooBarService)
+        FB ---> B
+        FB ---> F
+    end
+    subgraph V1[a single service upgrades]
+        NF1(fooService)
+        NB1(newBarService)
+        NFB1(fooBarService)
+        NFB1 ---> NB1
+        NFB1 ---> NF1
+    end
+    subgraph V2[two services upgrade]
+        NF2(newFooService)
+        NB2(barService)
+        NFB2(newFooBarService)
+        NFB2 ---> NB2
+        NFB2 ---> NF2
+    end
+    subgraph V3[all services upgrade]
+        NF3(newFooService)
+        NB3(newBarService)
+        NFB3(newFooBarService)
+        NFB3 ---> NB3
+        NFB3 ---> NF3
+    end
+    V0 -..-> V1
+    V0 -..-> V2
+    V0 -..-> V3
 {% endmermaid %}
 
 <br>
-Each box represents an individually deployed module and how it would change when
-upgrading.
+Each of the rounded boxes represents an individually deployed module and how its
+dependencies might change when upgrading. We can see that the fleet of smaller
+deployments has more "state" it must support.
+
+Much of contemporary web architecture has been moving towards making deployment
+units smaller, which can reduce downtime and improve efficiency, especially at
+scale. But we can also see how this architecture has drawbacks without good
+version management.
 
 If we assume that `fooBarService` calls into both `fooService` and `barService`,
 we can better understand how multirepos must respect API contracts more closely.
@@ -237,7 +259,8 @@ contracts can be broken:
 ## Breaking API Changes
 In general, to consider if a change will be breaking, it can be good to think of
 it from the perspective, **"will an older client be unable to perform existing
-behavior?"** Some examples can make this reasoning more clear:
+behavior?"**
+{: .notice--success }
 
 ### Removing an Operation
 This is probably the most obvious example of a breaking change.
