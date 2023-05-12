@@ -41,13 +41,16 @@ storytelling
 
 Notably, the origin of the name comes from the *Demon's Souls* and *Dark Souls*
 series by FromSoftware. For clarity, those *specific* games are instead referred
-to as **Soulsborne** games (derived to include the critically acclaimed
-*Bloodborne*, also by FromSoftware).
+to as **Soulsborne** games (derived to also include FromSoftware's critically
+acclaimed *Bloodborne*).
 
 I challenge the notion that high difficulty is a ***requirement*** for
 *Souls*-like games and will argue that it is instead an expectation from
 contemporary gamers.
 {: .notice--warning }
+
+I'll expand on some other common themes that are found in *Souls*-like games,
+though there's no official definition.
 
 ### Redesigned Rest Points
 One of the ways that *Souls*-like games are so unique (and classifiable) is the
@@ -57,37 +60,60 @@ In *Souls*-like games, the player is typically restricted from healing or
 resting except at designated sites. However, when the player chooses to do so,
 they will ***also*** heal all enemies across the entire gameworld.
 
-This creates a powerful and exciting tension, since players can't kill a few
-enemies, then just run back to the nearest checkpoint to heal up. To further
-compound the effect, [enemies often take serious investment to
+The recovery mechanic creates a powerful and exciting tension, since players
+can't kill a few enemies, then just run back to the nearest checkpoint to heal
+up. To further compound the effect, [enemies often take serious investment to
 kill](#methodical-combat-using-stamina), meaning players must decide if a rest
 will be worth fighting through familiar foes again.
 
-This is one of the ways that difficulty in *Souls*-like have become a
-presumption (but, I argue, still not a requirement). Experienced gamers *expect*
-high-difficulty enemies in order to foster the kill-or-be-killed tension of
-combat.
+This is also one of the ways that difficulty in *Souls*-like have become a
+presumption: As genre-experienced gamers grew in experience and more casual
+players were pushed out, more difficult enemies were required to continue
+fostering the kill-or-be-killed tension of combat.
 {: .notice--info }
 
-In other genres, players
+{% capture tangent-health %}
+Most games with a notion of "health" or "lives" have a way of using that
+resource to incentivize an experience. In a first-person shooter focused on
+energy and excitement, for example, a game might use cover-based combat and
+a health bar which quickly recovers when hiding.
+
+These two mechanics together keeps combat snappy, since players need only
+take a quick pause and then can jump back into the action. We can see this
+done in plenty of AAA titles like *Uncharted*, *Call of Duty*, and
+*Battlefield*.
+
+But a designer could instead use spacious levels and remove the ability to
+recover health, creating a much slower, tense game. Players will want to
+surprise their enemies to avoid losing as much health as they can.
+
+We can see this design used at great success in *Counter-Strike* or even
+*Call of Duty* sub-games like *"One in the Chamber"* where players have only
+one health and a pistol with a single bullet.
+
+Here are some other ideas of how health mechanics can be used in some other
+genres:
 
 |Genre|Recovery Mechanic|Experience Objective|
 |-----|-----|---|
-|Multiplayer FPS|Hide & Heal|Quickly get player back into the fight, keeping combat snappy and engaging.|
-|Platformer|Collect Pickup|Introduce tension between challenge of collecting the item and the risk of failing to do so (e.g. 1-UP).|
-|Fighter|Respawn|Incentivize players to fight tooth-and-nail to inflict as much damage before losing a stock.|
-|Rhythm|Rebuild Multiplier|Encourage mastery of die-hard players while tolerating higher levels of failure, keeping accessibility high.|
+|Platformer|Collect Pickup|Introduce tension between challenge of collecting the item and the risk of failing to do so. *(e.g. a difficult to reach 1-UP)*|
+|Fighter|Respawn / Lives|Incentivize players to fight tooth-and-nail to inflict as much damage before losing a stock. *(e.g. 2 KO's in one life)*|
+|Rhythm|Rebuild Multiplier|Encourage mastery of die-hard players while tolerating higher levels of failure. *(e.g. scores climb quadratically with skill)*|
+|MOBA|Return to Base|Healing is always an option, at the cost of not exerting influence around the map. *(e.g. not around to stop your opponent)*|
+{% endcapture %}
+<details>
+  <summary>
+    <strong>A tangent on using Health to build an experience</strong>
+  </summary>
+  {{ tangent-health | markdownify }}
+</details>
 
 There is a difference between engine-orchestrated game *saves* (which might
 track internal events) and player-chosen *rests*, which only serve to replenish
 missing resources and respawn all enemies.
 {: .notice }
 
-- Rest points where all enemies respawn
-- Currency for player upgrades which is lost on death
 - Otherwise difficult to heal (Estus Flask)
-- Creates tension in combat, rather than players often returning to a rest-point
-    to heal after killing a few enemies
 
 ### Methodical Combat using Stamina
 - Methodical, punishing combat
@@ -96,6 +122,8 @@ missing resources and respawn all enemies.
 ### Environmental Storytelling
 - Deep lore, since no exposition dump to the player
 - Exploration
+- Mechanically, tension between the player and the world grows further with
+    currency that's lost when you die
 
 ## Things in Common
 - Isometric *Souls*-like Action-Adventure Games
@@ -156,8 +184,12 @@ the FINAL boss.
 |TUNIC|Death's Door|
 |:---|:---|
 |Flask|Life Seeds|
-|Puzzle/Mystery|Narrative|
+|Puzzle/Mystery|Narrative (e.g. Splash art has more characters)|
 |Health/Stamina Bars|Retro Pip-based Resources|
+
+### How Each Changes the Formula
+
+### Standout Mechanics
 
 ## *TUNIC*
 
