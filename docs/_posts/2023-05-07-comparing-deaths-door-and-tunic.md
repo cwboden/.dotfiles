@@ -31,13 +31,12 @@ format, we should clarify what it is. The definition has plenty of room for
 interpretation, so for the purposes of this article, I will be using ***my***
 definition of *Souls*-like.
 
-At a high-level, though, a good starting definition might be:
+At a high-level, though, a good start might be:
 
-A *Souls*-like is a subgenre of action role-playing and action-adventure games
-known for high levels of difficulty and emphasis on environmental
-storytelling
-<br>&emsp;-- [Wikipedia](https://en.wikipedia.org/wiki/Soulslike)
-{: .notice--info }
+> A *Souls*-like is a subgenre of action role-playing and action-adventure games
+> known for high levels of difficulty and emphasis on environmental
+> storytelling
+> <br>&emsp;-- [Wikipedia](https://en.wikipedia.org/wiki/Soulslike)
 
 Notably, the origin of the name comes from the *Demon's Souls* and *Dark Souls*
 series by FromSoftware. For clarity, those *specific* games are instead referred
@@ -56,14 +55,9 @@ though there's no official definition.
 One of the ways that *Souls*-like games are so unique (and classifiable) is the
 way in which players must heal their character.
 
-There is a difference between engine-orchestrated game *saves* (which might
-track internal events) and player-chosen *rests*, which only serve to replenish
-missing resources and respawn all enemies.
-{: .notice }
-
-In *Souls*-like games, the player is typically restricted from healing or
-resting except at designated sites. However, when the player chooses to do so,
-they will ***also*** heal all enemies across the entire gameworld.
+The player is typically restricted from healing or resting except at designated
+sites. However, when the player chooses to do so, they will ***also*** heal all
+enemies across the entire gameworld.
 
 The recovery mechanic creates a powerful and exciting tension, since players
 can't kill a few enemies, then just run back to the nearest checkpoint to heal
@@ -82,6 +76,7 @@ Most games with a notion of "health" or "lives" have a way of using that
 resource to incentivize an experience. In a first-person shooter focused on
 energy and excitement, for example, a game might use cover-based combat and
 a health bar which quickly recovers when hiding.
+{: .notice }
 
 These two mechanics together keeps combat snappy, since players need only
 take a quick pause and then can jump back into the action. We can see this
@@ -115,21 +110,35 @@ genres:
 
 ### Methodical Combat using Stamina
 In order to maximize the impact of limited recovery, enemies in *Souls*-like
-games require players to methodically overpower them. Attacks from both the
-player and enemies are slow and telegraphed.
+games require players to carefully overpower them. Attacks from both the player
+and enemies are slow and will leave combatants wide open as the animation winds
+up and after the attack finishes.
 
 Pattern recognition and patience is key to combat, rather than speed and damage
-output, commonly seen in hack-and-slash melee fights. Players must analyze their
+output, seen in, say, hack-and-slash melee fighters. Players must analyze their
 enemies to find a moment of vulnerability to get a few hits in before retreating
 to safety.
+{: .notice--info }
 
-Becomes more difficult with the heavy usage of stamina. Players will be
+The heavy usage of a stamina resource adds more difficulty. Players will be
 vulnerable or unable to perform specific abilities when out of stamina. But they
-also need to use the stamina to be effective in combat to do things like
-dodge-roll, make empowered attacks, or block enemies.
+also need to use the stamina to be effective in combat via dodge-rolls,
+empowered attacks, or by blocking enemies.
 
-- Big boss fights
-- Otherwise difficult to heal (Estus Flask)
+{% include figure
+    image_path='/assets/img/dark-souls-3-first-boss.jpg'
+    alt='Iudex Gundyr, the first boss of Dark Souls III.'
+    caption='Iudex Gundyr, the first boss of *Dark Souls III*. He eclipses the
+        player, giving the appearance and feel of an unfair opponent.'
+%}
+
+This all culminates the epic boss battles, which crank the tension of combat up
+to eleven. Huge enemies make the player feel small and outmatched during these
+fights.
+
+The bosses force players to methodically manage their stamina and analyze the
+incoming attack patterns. All this under the overwhelming odds of some
+unspeakable horror.
 
 ### Environmental Storytelling
 The mechanics of *Souls*-like games create a world unwelcoming to the player.
@@ -139,27 +148,45 @@ checkpoint.
 
 Games in this genre also typically avoid exposition dumps to the player,
 choosing instead to encourage player exploration in the unforgiving world to
-find both useful trinkets and the lore surrounding it in their search.
+find useful trinkets and the lore surrounding it in their search.
+{: .notice--info }
 
 Mechanically, another tension emerges between the player and the world grows
 further with currency that's lost when you die. In the eponymous *Dark Souls*,
 players collect souls which can be used to upgrade character stats, but are also
-dropped when defeated. Upon dying, players must now crawl back through
-already-defeated enemies with the hope that they'll reach their cache of lost
-souls.
+dropped when defeated. Upon dying, players must crawl back and re-slay
+enemies with the hope of reaching their cache of lost souls.
 
 And if they die again, then their cache is lost forever. Releasing some of that
 tension (since players likely won't have many souls otherwise at this point) but
 also creating a serious setback for the player. Imagine if you lost XP or levels
 upon death in an RPG. It'd make the game that much harder.
 
-## Things in Common
-- Isometric *Souls*-like Action-Adventure Games
-- Cutesy, animal protagonist
-- Multiple endings
+{% include figure
+    image_path='/assets/img/hollow-knight-shade.jpg'
+    alt='A Shade, from Hollow Knight, which must be defeated to recover your
+        Geo.'
+    caption='In Hollow Knight, players spawn a Shade when dying, which must be
+        defeated to recover all Geo, a valuable currency the player can use to
+        unlock additional abilities.'
+%}
 
-Minor Similarities:
-- Feature Night/Day cycle (not ongoing, but active, triggered by the player)
+## A Re-expression of the Genre
+So we have some basic ideas for what makes a *Souls*-like game. The player has
+less health as a resource, and must defeat enemies with minimal damage, as
+resting will also heal all the enemies!
+
+We'll now look at how these two games expand on the genre, exhibiting ways to
+tweak the formula as well as attempts that didn't pan out.
+{: .notice }
+
+Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, action-adventure
+games starring a cutesy, animal protagonist.
+
+### A Primer on *Death's Door*
+### A Primer on *TUNIC*
+
+- Multiple endings
 
 ### *Souls*-like Influence
 
@@ -215,6 +242,8 @@ the FINAL boss.
 |Flask|Life Seeds|
 |Puzzle/Mystery|Narrative (e.g. Splash art has more characters)|
 |Health/Stamina Bars|Retro Pip-based Resources|
+
+- Otherwise difficult to heal (Estus Flask)
 
 ### How Each Changes the Formula
 
