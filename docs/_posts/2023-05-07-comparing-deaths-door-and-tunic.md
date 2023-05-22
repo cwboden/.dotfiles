@@ -56,6 +56,11 @@ though there's no official definition.
 One of the ways that *Souls*-like games are so unique (and classifiable) is the
 way in which players must heal their character.
 
+There is a difference between engine-orchestrated game *saves* (which might
+track internal events) and player-chosen *rests*, which only serve to replenish
+missing resources and respawn all enemies.
+{: .notice }
+
 In *Souls*-like games, the player is typically restricted from healing or
 resting except at designated sites. However, when the player chooses to do so,
 they will ***also*** heal all enemies across the entire gameworld.
@@ -108,22 +113,45 @@ genres:
   {{ tangent-health | markdownify }}
 </details>
 
-There is a difference between engine-orchestrated game *saves* (which might
-track internal events) and player-chosen *rests*, which only serve to replenish
-missing resources and respawn all enemies.
-{: .notice }
+### Methodical Combat using Stamina
+In order to maximize the impact of limited recovery, enemies in *Souls*-like
+games require players to methodically overpower them. Attacks from both the
+player and enemies are slow and telegraphed.
 
+Pattern recognition and patience is key to combat, rather than speed and damage
+output, commonly seen in hack-and-slash melee fights. Players must analyze their
+enemies to find a moment of vulnerability to get a few hits in before retreating
+to safety.
+
+Becomes more difficult with the heavy usage of stamina. Players will be
+vulnerable or unable to perform specific abilities when out of stamina. But they
+also need to use the stamina to be effective in combat to do things like
+dodge-roll, make empowered attacks, or block enemies.
+
+- Big boss fights
 - Otherwise difficult to heal (Estus Flask)
 
-### Methodical Combat using Stamina
-- Methodical, punishing combat
-- Big boss fights
-
 ### Environmental Storytelling
-- Deep lore, since no exposition dump to the player
-- Exploration
-- Mechanically, tension between the player and the world grows further with
-    currency that's lost when you die
+The mechanics of *Souls*-like games create a world unwelcoming to the player.
+Enemies feel more powerful since players don't have many ways to heal. Every hit
+taken is one fewer they'll be able to handle as they press onwards to the next
+checkpoint.
+
+Games in this genre also typically avoid exposition dumps to the player,
+choosing instead to encourage player exploration in the unforgiving world to
+find both useful trinkets and the lore surrounding it in their search.
+
+Mechanically, another tension emerges between the player and the world grows
+further with currency that's lost when you die. In the eponymous *Dark Souls*,
+players collect souls which can be used to upgrade character stats, but are also
+dropped when defeated. Upon dying, players must now crawl back through
+already-defeated enemies with the hope that they'll reach their cache of lost
+souls.
+
+And if they die again, then their cache is lost forever. Releasing some of that
+tension (since players likely won't have many souls otherwise at this point) but
+also creating a serious setback for the player. Imagine if you lost XP or levels
+upon death in an RPG. It'd make the game that much harder.
 
 ## Things in Common
 - Isometric *Souls*-like Action-Adventure Games
@@ -137,7 +165,7 @@ Minor Similarities:
 
 ### Common Boss Organization
 I will postulate that most *Souls*-like games follow this (general) approach to
-presenting bosses to the player.
+presenting bosses to the player:
 
 {% mermaid %}
 {% raw %}
@@ -160,15 +188,16 @@ flowchart LR
 {% endraw %}
 {% endmermaid %}
 
-Initially, a Tutorial boss is used to demonstrate how this different "type" of
-gameplay works. Players are used to dealing with enemies from the standard
-gameplay loop, but what changes when fighting a boss?
+Initially, a Tutorial boss is used to demonstrate how the *Souls*-like gameplay
+loop works (and how it differs from other Action-Adventure games). Players are
+used to dealing with enemies from earlier in their adventure, but what changes
+when fighting a boss?
 
-Often, these bosses become standard enemies in the remainder of the game. (e.g.
-Rudeling from *TUNIC*)
+Often, the tutorial bosses become standard enemies in the remainder of the game.
+(e.g. Rudeling from *TUNIC*) Such as *Sekiro*'s Chained Ogre.
 
 Then, the player continues with the game until they are confronted with their
-first "real" boss.
+first "real" boss. This is where the game shows how difficult bosses can be.
 
 Afterwards, they have proved themselves worthy enough to enter any part of the
 world. From here, most bosses are able to be tackled in any order.
