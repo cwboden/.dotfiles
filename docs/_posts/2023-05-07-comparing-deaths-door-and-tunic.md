@@ -132,9 +132,9 @@ empowered attacks, or by blocking enemies.
         player, giving the appearance and feel of an unfair opponent.'
 %}
 
-This all culminates the epic boss battles, which crank the tension of combat up
-to eleven. Huge enemies make the player feel small and outmatched during these
-fights.
+This all culminates in the frequent and epically intensifying boss battles,
+which crank the tension of combat up to eleven. Huge enemies make the player
+feel small and outmatched during these fights.
 
 The bosses force players to methodically manage their stamina and analyze the
 incoming attack patterns. All this under the overwhelming odds of some
@@ -184,9 +184,27 @@ Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, action-adventure
 games starring a cutesy, animal protagonist.
 
 ### A Primer on *Death's Door*
+TODO Explain:
+
+The Steam page description of the game is as follows:
+> Reaping souls of the dead and punching a clock might get monotonous but it's
+> honest work for a Crow. The job gets lively when your assigned soul is stolen
+> and you must track down a desperate thief to a realm untouched by death -
+> where creatures grow far past their expiry.
+
+More narratively focused
+
 ### A Primer on *TUNIC*
+> Explore a land filled with lost legends, ancient powers, and ferocious
+> monsters in *TUNIC*, an isometric action game about a small fox on a big
+> adventure.
+
+The description of *TUNIC* makes it sound like a very similar game to *Death's
+Door*. And while that's true at a high-level, we'll see how they differ.
 
 - Multiple endings
+
+More puzzle focused
 
 ### *Souls*-like Influence
 
@@ -215,13 +233,19 @@ flowchart LR
 {% endraw %}
 {% endmermaid %}
 
-Initially, a Tutorial boss is used to demonstrate how the *Souls*-like gameplay
-loop works (and how it differs from other Action-Adventure games). Players are
-used to dealing with enemies from earlier in their adventure, but what changes
-when fighting a boss?
+Initially, a Tutorial boss is used to demonstrate the boss dimension of
+*Souls*-like gameplay (and how it differs from other Action-Adventure games).
+Players are used to dealing with enemies from earlier in their adventure, but
+what changes when fighting a boss?
 
-Often, the tutorial bosses become standard enemies in the remainder of the game.
-(e.g. Rudeling from *TUNIC*) Such as *Sekiro*'s Chained Ogre.
+<figure class="align-right">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/tunic-rudeling.png"
+    alt="A drawing of a Rudeling from Tunic's player manual.">
+</figure>
+
+Often, the tutorial bosses become standard enemies in the remainder of the game,
+like with the Rudeling *(right)* from *TUNIC* or *Sekiro*'s Chained Ogre.
 
 Then, the player continues with the game until they are confronted with their
 first "real" boss. This is where the game shows how difficult bosses can be.
@@ -229,11 +253,12 @@ first "real" boss. This is where the game shows how difficult bosses can be.
 Afterwards, they have proved themselves worthy enough to enter any part of the
 world. From here, most bosses are able to be tackled in any order.
 
-Once obtaining the necessary
-[MacGuffins](https://en.wikipedia.org/wiki/MacGuffin), the player will typically
-then "present" these tokens to fight the "gatekeeper" boss. A boss meant to
-guard the final levels of the game, where the player will afterwards confront
-the FINAL boss.
+Once defeating these core bosses, and obtaining the necessary
+[MacGuffins](https://en.wikipedia.org/wiki/MacGuffin) (in *Death's Door* you
+need three "giant" souls and in *TUNIC* you need the three colored hexagons),
+the player will typically then "present" these tokens to fight the "gatekeeper"
+boss. A guardian of the last levels of the game; and where the player will
+confront the final boss.
 
 ## Differences Between the Games
 
@@ -249,20 +274,37 @@ the FINAL boss.
 
 ### Standout Mechanics
 
-## *TUNIC*
+## Appendix
+Below are some diagrams referenced above. They are a bit too large to squeeze
+into a paragraph and can interrupt the reader.
 
-The description of *TUNIC* makes it sound like a very similar game to *Death's
-Door*. And while that's true at a high-level, we'll see how they differ.
+### *Death's Door* Bosses
 
-Explore a land filled with lost legends, ancient powers, and ferocious monsters
-in *TUNIC*, an isometric action game about a small fox on a big adventure.
-{: .notice }
+{% mermaid %}
+{% raw %}
+flowchart TD
+    T(Grove of Spirits<br><em><strong>DEMONIC FOREST SPIRIT</strong></em>)
+    T --> 1
+    1[Lost Cemetery<br><em><strong>GUARDIAN OF THE DOOR</strong></em>]
+    1 --> A
+    1 --> B
+    1 --> C
+    A[Ceramic Manor<br>Inner Furnace<br><em><strong>THE URN WITCH</strong></em>]
+    style A fill:#8b0000
+    B[Mushroom Dungeon<br>Flooded Fortress<br><em><strong>THE FROG KING</strong></em>]
+    style B fill:#013220
+    C[Castle Lockstone<br>Old Watchtowers<br><em><strong>BETTY</strong></em>]
+    style C fill:#00008b
+    A --> P
+    B --> P
+    C --> P
+    P[Lost Cemetery<br><em><strong>THE GREY CROW</strong></em>]
+    P --> F
+    F{{Hall of Doors<br><em><strong>THE LORD OF DOORS</strong></em>}}
+{% endraw %}
+{% endmermaid %}
 
-Reaping souls of the dead and punching a clock might get monotonous but it's
-honest work for a Crow. The job gets lively when your assigned soul is stolen
-and you must track down a desperate thief to a realm untouched by death - where
-creatures grow far past their expiry.
-{: .notice }
+### *TUNIC* Bosses
 
 {% mermaid %}
 {% raw %}
@@ -291,28 +333,3 @@ flowchart TD
 {% endraw %}
 {% endmermaid %}
 
-## *Death's Door*
-
-{% mermaid %}
-{% raw %}
-flowchart TD
-    T(Grove of Spirits<br><em><strong>DEMONIC FOREST SPIRIT</strong></em>)
-    T --> 1
-    1[Lost Cemetery<br><em><strong>GUARDIAN OF THE DOOR</strong></em>]
-    1 --> A
-    1 --> B
-    1 --> C
-    A[Ceramic Manor<br>Inner Furnace<br><em><strong>THE URN WITCH</strong></em>]
-    style A fill:#8b0000
-    B[Mushroom Dungeon<br>Flooded Fortress<br><em><strong>THE FROG KING</strong></em>]
-    style B fill:#013220
-    C[Castle Lockstone<br>Old Watchtowers<br><em><strong>BETTY</strong></em>]
-    style C fill:#00008b
-    A --> P
-    B --> P
-    C --> P
-    P[Lost Cemetery<br><em><strong>THE GREY CROW</strong></em>]
-    P --> F
-    F{{Hall of Doors<br><em><strong>THE LORD OF DOORS</strong></em>}}
-{% endraw %}
-{% endmermaid %}
