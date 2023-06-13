@@ -248,7 +248,7 @@ Let's look now at how these two games expand on the genre, exhibiting ways to
 tweak the formula as well as attempts that didn't pan out.
 {: .notice }
 
-Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, action-adventure
+Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, Action-Adventure
 games starring a cutesy, animal protagonist. However, despite the similar core
 gameplay and appearance, each game varies in its execution.
 
@@ -438,14 +438,38 @@ Most entries in the *Soulsborne* series avoid explicitly explaining exposition
 to the player, instead choosing to embed story into the items and dungeon
 designs.
 
-*Death's Door* departs from this approach, using mostly cutscenes to express the
-narrative.
+*Death's Door* departs from this design, using mostly cutscenes to express the
+narrative. Unlike most *Souls*-likes, though, the NPCs are whimsical and
+charming, making them a fun contrast against the gameplay and black-and-white
+overworld of The Hub.
 
-While there are some examples of environmental storytelling in the game's
+<video preload autoplay muted loop width="100%">
+  <source src="/assets/video/deaths-door-pothead.webm" type="video/webm">
+</video>
+
+Above, Pothead gives a delightful introduction to The Ceramic Manor, though also
+dumps a fair bit of exposition onto the player, rather than letting them explore
+on their own.
+
+While there are some examples of environmental storytelling using the game's
 collectible Shiny Things, like the Engagement Ring and Old Photograph found in
-the Urn Witch's Manor, most items don't inspire much to the imagination, like
-the Corrupted Antler or Rusty Trowel.
+the Urn Witch's Manor (perhaps a failed relationship caused her to become
+evil?), most items don't inspire much to the imagination, like the Corrupted
+Antler or Rusty Trowel (old, discarded things, loosely related to their
+environment).
 {: .notice--warning }
+
+As a result, the characters of *Death's Door* are memorable, but the story is
+not. It uses the typical Action-Adventure trope of "good protagonist" versus the
+"ruler corrupted by power".
+
+*TUNIC*, on the other hand, continues to follow the *Souls*-like template,
+leveraging environmental storytelling to weave a mystery that the player pieces
+together throughout their journey.
+
+By coupling puzzles and narrative elements together, the "Aha!" moments are
+especially rewarding, since the player both solves a puzzle *and* uncovers more
+of the enigmatic forces behind the gameworld.
 
 ### Standout Mechanics
 

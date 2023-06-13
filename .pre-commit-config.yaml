@@ -5,7 +5,13 @@ repos:
     - repo: https://github.com/pre-commit/pre-commit-hooks
       rev: v4.2.0
       hooks:
+            # Most files >500KB are not allowed
           - id: check-added-large-files
+            exclude: ^docs/assets/video/
+            # Videos are allowed to be <=1MB
+          - id: check-added-large-files
+            files: docs/assets/video/
+            args: [ '--maxkb=1000' ]
           - id: check-ast
             exclude: ^practice/
           - id: check-docstring-first
