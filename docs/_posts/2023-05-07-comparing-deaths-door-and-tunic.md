@@ -5,9 +5,9 @@ last_modified_at:
 categories:
  - Video Games
 tags:
+  - souls-like
   - story
-  - simulation
-  - philosophy
+  - puzzle
 ---
 
 {% include figure
@@ -35,12 +35,12 @@ At a high-level, though, a good start might be:
 
 > A *Souls*-like is a subgenre of action role-playing and action-adventure games
 > known for high levels of difficulty and emphasis on environmental
-> storytelling
+> storytelling.
 > <br>&emsp;-- [Wikipedia](https://en.wikipedia.org/wiki/Soulslike)
 
-Notably, the origin of the name comes from the *Demon's Souls* and *Dark Souls*
-series by FromSoftware. For clarity, those *specific* games are instead referred
-to as **Soulsborne** games (derived to also include FromSoftware's critically
+The origin of the name comes from the *Demon's Souls* and *Dark Souls* series by
+FromSoftware. For clarity, those *specific* games are instead referred to as
+**Soulsborne** games (derived to also include FromSoftware's critically
 acclaimed *Bloodborne*).
 
 I challenge the notion that high difficulty is a ***requirement*** for
@@ -56,8 +56,8 @@ One of the ways that *Souls*-like games are so unique (and classifiable) is the
 way in which players must heal their character.
 
 The player is typically restricted from healing or resting except at designated
-sites. However, when the player chooses to do so, they will ***also*** heal all
-enemies across the entire gameworld.
+sites. However, when the player chooses to do so, they will ***also*** heal or
+revive all enemies across the entire gameworld.
 
 The recovery mechanic creates a powerful and exciting tension, since players
 can't kill a few enemies, then just run back to the nearest checkpoint to heal
@@ -115,9 +115,9 @@ and enemies are slow and will leave combatants wide open as the animation winds
 up and after the attack finishes.
 
 Pattern recognition and patience is key to combat, rather than speed and damage
-output, seen in, say, hack-and-slash melee fighters. Players must analyze their
-enemies to find a moment of vulnerability to get a few hits in before retreating
-to safety.
+output seen in hack-and-slash melee fighters. Players must analyze their enemies
+to find a moment of vulnerability to get a few hits in before retreating to
+safety.
 {: .notice--info }
 
 The heavy usage of a stamina resource adds more difficulty. Players will be
@@ -134,82 +134,15 @@ empowered attacks, or by blocking enemies.
 
 This all culminates in the frequent and epically intensifying boss battles,
 which crank the tension of combat up to eleven. Huge enemies make the player
-feel small and outmatched during these fights.
+feel small and outmatched during these fights. And they're made even more
+tense with the resource management of combat.
 
 The bosses force players to methodically manage their stamina and analyze the
-incoming attack patterns. All this under the overwhelming odds of some
-unspeakable horror.
-
-### Environmental Storytelling
-The mechanics of *Souls*-like games create a world unwelcoming to the player.
-Enemies feel more powerful since players don't have many ways to heal. Every hit
-taken is one fewer they'll be able to handle as they press onwards to the next
-checkpoint.
-
-Games in this genre also typically avoid exposition dumps to the player,
-choosing instead to encourage player exploration in the unforgiving world to
-find useful trinkets and the lore surrounding it in their search.
-{: .notice--info }
-
-Mechanically, another tension emerges between the player and the world grows
-further with currency that's lost when you die. In the eponymous *Dark Souls*,
-players collect souls which can be used to upgrade character stats, but are also
-dropped when defeated. Upon dying, players must crawl back and re-slay
-enemies with the hope of reaching their cache of lost souls.
-
-And if they die again, then their cache is lost forever. Releasing some of that
-tension (since players likely won't have many souls otherwise at this point) but
-also creating a serious setback for the player. Imagine if you lost XP or levels
-upon death in an RPG. It'd make the game that much harder.
-
-{% include figure
-    image_path='/assets/img/hollow-knight-shade.jpg'
-    alt='A Shade, from Hollow Knight, which must be defeated to recover your
-        Geo.'
-    caption='In Hollow Knight, players spawn a Shade when dying, which must be
-        defeated to recover all Geo, a valuable currency the player can use to
-        unlock additional abilities.'
-%}
-
-## A Re-expression of the Genre
-So we have some basic ideas for what makes a *Souls*-like game. The player has
-less health as a resource, and must defeat enemies with minimal damage, as
-resting will also heal all the enemies!
-
-We'll now look at how these two games expand on the genre, exhibiting ways to
-tweak the formula as well as attempts that didn't pan out.
-{: .notice }
-
-Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, action-adventure
-games starring a cutesy, animal protagonist.
-
-### A Primer on *Death's Door*
-TODO Explain:
-
-The Steam page description of the game is as follows:
-> Reaping souls of the dead and punching a clock might get monotonous but it's
-> honest work for a Crow. The job gets lively when your assigned soul is stolen
-> and you must track down a desperate thief to a realm untouched by death -
-> where creatures grow far past their expiry.
-
-More narratively focused
-
-### A Primer on *TUNIC*
-> Explore a land filled with lost legends, ancient powers, and ferocious
-> monsters in *TUNIC*, an isometric action game about a small fox on a big
-> adventure.
-
-The description of *TUNIC* makes it sound like a very similar game to *Death's
-Door*. And while that's true at a high-level, we'll see how they differ.
-
-- Multiple endings
-
-More puzzle focused
-
-### *Souls*-like Influence
+incoming attack patterns in order to strike in between each devastating attack.
+All this against the overwhelming odds of some unspeakable horror.
 
 ### Common Boss Organization
-I will postulate that most *Souls*-like games follow this (general) approach to
+I postulate that most *Souls*-like games follow this (general) approach to
 presenting bosses to the player:
 
 {% mermaid %}
@@ -250,35 +183,295 @@ like with the Rudeling *(right)* from *TUNIC* or *Sekiro*'s Chained Ogre.
 Then, the player continues with the game until they are confronted with their
 first "real" boss. This is where the game shows how difficult bosses can be.
 
-Afterwards, they have proved themselves worthy enough to enter any part of the
-world. From here, most bosses are able to be tackled in any order.
+Afterwards, the player has proven themselves worthy enough to enter any part of
+the world. From here, most bosses are able to be tackled in any order.
 
 Once defeating these core bosses, and obtaining the necessary
-[MacGuffins](https://en.wikipedia.org/wiki/MacGuffin) (in *Death's Door* you
-need three "giant" souls and in *TUNIC* you need the three colored hexagons),
+[MacGuffins](https://en.wikipedia.org/wiki/MacGuffin) (e.g. in *Death's Door*
+you need three "giant" souls; in *TUNIC* you need the three colored hexagons),
 the player will typically then "present" these tokens to fight the "gatekeeper"
 boss. A guardian of the last levels of the game; and where the player will
 confront the final boss.
 
-## Differences Between the Games
+We can see that both *Death's Door* and *TUNIC* both follow this pattern via the
+[boss diagrams in the appendix](#deaths-door-bosses).
 
-|TUNIC|Death's Door|
-|:---|:---|
-|Flask|Life Seeds|
-|Puzzle/Mystery|Narrative (e.g. Splash art has more characters)|
-|Health/Stamina Bars|Retro Pip-based Resources|
+### Environmental Storytelling
+The mechanics of *Souls*-like games create a world unwelcoming to the player.
+Enemies feel more powerful since players don't have many ways to heal. Every hit
+taken is one fewer they'll be able to handle as they press onwards to the next
+checkpoint.
 
-- Otherwise difficult to heal (Estus Flask)
+Another tension emerges between the player and the world with currency that's
+lost when you die. In the eponymous *Dark Souls*, players collect souls which
+can be used to upgrade character stats, but are also dropped when defeated. Upon
+dying, players must crawl back and re-slay enemies with the hope of reaching
+their cache of lost souls.
 
-### How Each Changes the Formula
+And if they die again, then their cache is lost forever. Releasing some of that
+tension (since players likely won't have many souls otherwise at this point) but
+also creating a serious setback for the player. Imagine if you lost XP or levels
+upon death in an RPG. It'd make the game that much harder.
+
+{% include figure
+    image_path='/assets/img/hollow-knight-shade.jpg'
+    alt='A Shade, from Hollow Knight, which must be defeated to recover your
+        Geo.'
+    caption='In Hollow Knight, a Shade spawns when dying, which must be defeated
+        to recover all Geo, a valuable currency the player can use to unlock
+        additional abilities.'
+%}
+
+Games in this genre also typically avoid exposition dumps to the player,
+choosing instead to encourage player exploration in the unforgiving world to
+find useful trinkets and the lore surrounding it in their search.
+{: .notice--info }
+
+In *Bloodborne*, for example, the player encounters a child, desperately asking
+the player to recover her missing mother's favorite brooch. This piece of
+jewelry can later be found on the mutilated corpse, cast aside by the area's
+boss. But the most impressive twist comes when the player discovers the wife's
+name engraved next to the boss's, indicating a twisted transformation of a once
+loving couple.
+
+None of this, however, is confirmed by the game, but rather an inference the
+player makes by connecting pieces of the environment together. Some players may
+choose to ignore this dimension of the game entirely, but at the very least,
+environmental storytelling lets players explore the game at their own pace.
+
+## A Re-expression of the Genre
+We now have some basic ideas for what makes a *Souls*-like game. The player has
+less health as a resource, and must defeat unforgiving enemies with minimal
+damage, as resting will also heal all the enemies!
+
+Let's look now at how these two games expand on the genre, exhibiting ways to
+tweak the formula as well as attempts that didn't pan out.
+{: .notice }
+
+Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, action-adventure
+games starring a cutesy, animal protagonist. However, despite the similar core
+gameplay and appearance, each game varies in its execution.
+
+### A Primer on *Death's Door*
+When also considering the developers' previous game, [*Titan
+Souls*](https://en.wikipedia.org/wiki/Titan_Souls), it's clear the designers are
+heavily inspired by *Souls*-like games, looking to put a new spin on the genre.
+
+<figure class="align-center half">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/deaths-door-text.jpg"
+    alt="A Dark Souls inspired text overlay within Death's Door">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/dark-souls-3-lord-of-cinder.png"
+    alt="Fishing minigame in Stardew Valley">
+  <figcaption>
+    Even from early in the game, it's clear where <em>Death's Door</em> gets its
+    roots from, using the same dramatic text overlays from <em>Dark Souls</em>.
+  </figcaption>
+</figure>
+
+The Steam page description of the game is as follows:
+> Reaping souls of the dead and punching a clock might get monotonous but it's
+> honest work for a Crow. The job gets lively when your assigned soul is stolen
+> and you must track down a desperate thief to a realm untouched by death --
+> where creatures grow far past their expiry.
+
+Compared to other *Souls*-likes, as well as *TUNIC*, *Death's Door* is much more
+narratively driven, using cutscenes and a variety of memorable characters to
+push a stronger, first-degree storyline contrasting the slower, environmental
+narratives of previous entries.
+
+### A Primer on *TUNIC*
+On the other hand, *TUNIC*'s narrative (as well as most of its mechanics) are
+rarely shown to the player. Instead, the player must figure things out for
+themselves via environmental puzzles sprinkled throughout the world.
+
+<figure>
+  <a href="/assets/img/tunic-manual-p20.avif">
+    <img
+        src="/assets/img/tunic-manual-p20.avif"
+        alt="Page 20 of TUNIC's in-game manual."
+        alt="My optimized path through the level">
+  </a>
+  <figcaption>
+    Page 20 of <em>TUNIC</em>'s in-game manual. Players must parse what they can
+    out of the game's strange and unique language.
+  </figcaption>
+</figure>
+
+*TUNIC* is described on Steam as:
+> Explore a land filled with lost legends, ancient powers, and ferocious
+> monsters in *TUNIC*, an isometric action game about a small fox on a big
+> adventure.
+
+The blurb is quite vague, though given *TUNIC*'s more puzzle-y nature, its hard
+to dive deep into gameplay without giving too much away.
+
+Let's now examine how each game refines the genre and see how the puzzles of
+*TUNIC* meshed better with a *Souls*-like than the overt narrative of *Death's
+Door*.
+
+### Different Takes on Health
+As mentioned above, the healing and stamina resources are key to the
+*Souls*-like genre, creating an exciting tension between the player and an
+unwelcoming world.
+
+*TUNIC* follows the formula, giving the player a Magic Potion highly reminiscent
+of *Dark Souls*' Estus Flask. Players can drink from the flask to recover
+health, though much like attacking or dodging, the lengthy animation can leave
+players open for a counterattack if not planned carefully.
+
+<figure class="align-center third">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/tunic-magic-potion.png"
+    alt="The Magic Potion from TUNIC.">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/dark-souls-estus-flask.jpg"
+    alt="The Estus Flask from Dark Souls.">
+  <img
+    src="{{ site.url }}{{ site.baseurl }}/assets/img/zelda-heart-container.png"
+    alt="A Heart Container from The Legend of Zelda.">
+  <figcaption>
+    The Magic Potion <em>(left)</em> from <em>TUNIC</em>, which borrows its
+    mechanics from <em>Dark Souls</em>' Estus Flask <em>(middle)</em> with a
+    touch of stylistic <em>Zelda</em> flair <em>(right)</em>.
+  </figcaption>
+</figure>
+
+Like in *Dark Souls*, the flask also refills at rest points, giving players a
+few extra hits they can take in combat, though it can be risky if enemies are
+right in your face.
+
+*Death's Door* takes a different approach, giving players Life Seeds which can
+be planted in pots around the map and then consumed to heal to full health. The
+plants bloom again anytime the player dies, making them into more of a
+checkpoint mechanic.
+
+This works well with *Death's Door*'s old-school, pip-based health mechanic.
+***Any*** hit in combat deals exactly one damage, forcing the player to be wary
+of simple enemies and boss attacks all the same.
+{: .notice--info }
+
+{% include figure
+    image_path='/assets/img/deaths-door-life-seed.jpg'
+    alt="A planted Life Seed in Death's Door, ready for consumption."
+    caption="A planted Life Seed in <em>Death's Door</em>, ready for
+        consumption."
+%}
+
+The Life Seeds add some player choice to the mix; using all your seeds in one
+region will mean you won't be able to heal as often in another. They also become
+a collectible currency, encouraging the player to seek out seeds to improve
+their odds.
+
+Neither of these approaches is strictly *better*, though it's refreshing to see
+a new take from *Death's Door*, setting itself apart from other *Souls*-likes.
+
+### Difficulty as an Aesthetic
+While [Wikipedia's definition](#what-defines-a-souls-like-game) attributes high
+difficulty to *Souls*-like games, I believe it's defined more by the tension
+between the player and the world which gives a *feeling* of overwhelming odds
+while enabling the player to advance onwards, despite their losses.
+
+Let's revisit the loss of Souls in *Dark Souls*. Yes, it is frustrating as a
+player to have your progress set back, but since enemies respawn when resting,
+there's an infinite number of Souls that can be harvested.
+
+As a result, the player will *feel* the pain of death, intensified further by
+the loss of some progress, but they can still advance onwards. If a player
+wanted to, they could stay in one place, collecting Souls and then resting until
+leveling up so that enemies are more tenable.
+
+I believe this gameplay loop is grindy and not the intended experience of
+*Souls*-like, but we'll see how *Death's Door* and *TUNIC* have smoothed out
+this approach.
+{: .notice }
+
+Both of the games we've been examining cut this paradigm out; players won't
+lose any resources when dying. But they're both still able to keep the tension
+between the world and player in other ways.
+
+*Death's Door*, for example, doesn't allow players to recover health within boss
+battles, since there are no Life Seed pots. Experienced and novice players alike
+will be forced to learn how to read telegraphed attacks, since there's little
+room for error.
+
+{% include figure
+    image_path='/assets/img/deaths-door-shrine.jpg'
+    alt="A Shrine from Death's Door"
+    caption="A Shrine from <em>Death's Door</em>, which is one of the few ways
+        to gain more health in the game."
+%}
+
+Players *can* however, search for Shrines hidden around the world to increase
+the amount of hits they can take in a battle. This allows them to press on,
+upgrading their character without having to grind for excess Souls.
+
+*TUNIC* instead chooses to builds this tension using sparse checkpoints around
+the map. Players will still lose progress, since, in many cases, you'll need to
+defeat the same set of enemies again when making your way back into each
+section.
+
+Trudging through the Quarry is especially memorable to me, since I was sent all
+the way back to the beginning so many times.
+{: .notice--info }
+
+{% include figure
+    image_path='/assets/img/tunic-quarry-map.jpg'
+    alt="A map of the Quarry region in TUNIC."
+    caption="A map of the Quarry region, from <em>TUNIC</em>, which has only a
+        single usable checkpoint location <em>(red arrow)</em>, even for the
+        boss!"
+%}
+
+While players won't be able to grind to make combat easier (since killing
+enemies doesn't level you up), they can find a variety of power-ups hidden
+throughout the world to increase their power.
+
+Both games find ways to keep the feel of difficulty while still providing
+alternate avenues to advance. The refined design opens the genre to more casual
+players (especially when paired with the cute, isometric artstyle) while
+maintaining the core aesthetic of *Souls*-like gameplay.
+
+### Approach to the Narrative
+Most entries in the *Soulsborne* series avoid explicitly explaining exposition
+to the player, instead choosing to embed story into the items and dungeon
+designs.
+
+*Death's Door* departs from this approach, using mostly cutscenes to express the
+narrative.
+
+While there are some examples of environmental storytelling in the game's
+collectible Shiny Things, like the Engagement Ring and Old Photograph found in
+the Urn Witch's Manor, most items don't inspire much to the imagination, like
+the Corrupted Antler or Rusty Trowel.
+{: .notice--warning }
 
 ### Standout Mechanics
+
+*TUNIC* has it's own language created just for the game.
+> One of the ways I wanted to help players feel like they were in a world that
+> wasn’t meant for them was to fill the game with a strange, unreadable
+> language...like you were playing something you shouldn’t.
+> <br>&emsp;-- [Andrew Shouldice, *TUNIC*'s lead developer](https://blog.playstation.com/2022/09/21/the-creation-of-tunics-invaluable-in-game-manual/)
+
+## Conclusion
+Design choices made by *TUNIC* tend to mesh better with the *Souls*-like genre.
+The puzzles pair well with the mystery and environmental storytelling, which is
+great way of intensifying the player's natural desire to explore the gameworld.
+
+*Death's Door*'s heavy-handed narrative drives the game forward, but
+is ultimately forgettable. Despite taking larger steps away from the
+*Souls*-like genre, it fails to innovate in those areas, instead borrowing
+tropes from other games.
 
 ## Appendix
 Below are some diagrams referenced above. They are a bit too large to squeeze
 into a paragraph and can interrupt the reader.
 
 ### *Death's Door* Bosses
+Below is a layout of the levels and bosses encountered within *Death's Door*. It
+follows, to a T, [the layout described above](#common-boss-organization).
 
 {% mermaid %}
 {% raw %}
@@ -305,6 +498,8 @@ flowchart TD
 {% endmermaid %}
 
 ### *TUNIC* Bosses
+The *TUNIC* layout is also similar, though there's an extra set of levels
+squeezed in between the guardian and final boss.
 
 {% mermaid %}
 {% raw %}
