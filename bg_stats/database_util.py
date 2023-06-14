@@ -81,7 +81,7 @@ def init_database_if_new(args: Namespace) -> None:
             cursor.execute("SHOW TABLES")
             existing_tables = [table for (table,) in cursor]
 
-            for (name, schema) in zip(
+            for name, schema in zip(
                 [
                     Player.TABLE_NAME,
                     Location.TABLE_NAME,
