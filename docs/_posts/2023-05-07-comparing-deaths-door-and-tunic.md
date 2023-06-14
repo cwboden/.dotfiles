@@ -1,7 +1,7 @@
 ---
 title: "Exploring the *Souls*-like Genre via *Death's Door* and *TUNIC*"
 excerpt: "Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre."
-last_modified_at:
+last_modified_at: 2023-06-13T11:31:15
 categories:
  - Video Games
 tags:
