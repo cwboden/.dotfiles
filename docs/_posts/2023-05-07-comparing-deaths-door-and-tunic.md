@@ -15,15 +15,25 @@ tags:
     alt="The splash art for both Death's Door and TUNIC."
 %}
 
-## Overview
-
-I recently finished playing *TUNIC*, which reminded me a lot of *Death's Door*.
-
 | |<em><strong>Death's Door</strong></em>|<em><strong>TUNIC</strong></em>|
 |**Release Date:**|20 Jul 2021 <em>(PC)</em>|16 Mar 2022 <em>(PC)</em>|
 |**Developer:**|Acid Nerve|Isometricorp Games|
 |**Publisher:**|Devolver Digital|Finji|
 {: .notice--info }
+
+## Overview
+
+I recently finished playing *TUNIC*, which reminded me a lot of *Death's Door*,
+a game which I enjoyed but otherwise forgot about until considering how similar
+it is to *TUNIC*.
+
+Both are isometric, *Souls*-like, Action-Adventure games starring a cutesy,
+animal protagonist. However, despite the similar core gameplay and appearance,
+each game varies in its execution.
+
+This post aims to highlight why *TUNIC* stuck with me more than *Death's Door*,
+especially given their apparent similarity.
+{: .notice }
 
 ## What Defines a *Souls*-like Game?
 Since we'll be discussing how *Death's Door* and *TUNIC* each follow this
@@ -248,10 +258,6 @@ Let's look now at how these two games expand on the genre, exhibiting ways to
 tweak the formula as well as attempts that didn't pan out.
 {: .notice }
 
-Both *Death's Door* and *TUNIC* are isometric, *Souls*-like, Action-Adventure
-games starring a cutesy, animal protagonist. However, despite the similar core
-gameplay and appearance, each game varies in its execution.
-
 ### A Primer on *Death's Door*
 When also considering the developers' previous game, [*Titan
 Souls*](https://en.wikipedia.org/wiki/Titan_Souls), it's clear the designers are
@@ -352,12 +358,17 @@ This works well with *Death's Door*'s old-school, pip-based health mechanic.
 of simple enemies and boss attacks all the same.
 {: .notice--info }
 
-{% include figure
-    image_path='/assets/img/deaths-door-life-seed.jpg'
-    alt="A planted Life Seed in Death's Door, ready for consumption."
-    caption="A planted Life Seed in <em>Death's Door</em>, ready for
-        consumption."
-%}
+<figure class="align-center">
+  <a href="/assets/img/deaths-door-life-seed.jpg">
+    <img
+      src="/assets/img/deaths-door-life-seed.jpg"
+      alt="A planted Life Seed in Death's Door, ready for consumption."
+    >
+  </a>
+  <figcaption>
+    A planted Life Seed in <em>Death's Door</em>, ready for consumption.
+  </figcaption>
+</figure>
 
 The Life Seeds add some player choice to the mix; using all your seeds in one
 region will mean you won't be able to heal as often in another. They also become
@@ -436,12 +447,12 @@ maintaining the core aesthetic of *Souls*-like gameplay.
 ### Approach to the Narrative
 Most entries in the *Soulsborne* series avoid explicitly explaining exposition
 to the player, instead choosing to embed story into the items and dungeon
-designs.
+architecture.
 
 *Death's Door* departs from this design, using mostly cutscenes to express the
 narrative. Unlike most *Souls*-likes, though, the NPCs are whimsical and
 charming, making them a fun contrast against the gameplay and black-and-white
-overworld of The Hub.
+overworld the player spawns from.
 
 <video preload autoplay muted loop width="100%">
   <source src="/assets/video/deaths-door-pothead.webm" type="video/webm">
@@ -452,11 +463,11 @@ dumps a fair bit of exposition onto the player, rather than letting them explore
 on their own.
 
 While there are some examples of environmental storytelling using the game's
-collectible Shiny Things, like the Engagement Ring and Old Photograph found in
-the Urn Witch's Manor (perhaps a failed relationship caused her to become
-evil?), most items don't inspire much to the imagination, like the Corrupted
-Antler or Rusty Trowel (old, discarded things, loosely related to their
-environment).
+collectible [Shiny Things](https://deaths-door-game.fandom.com/wiki/Items),
+like the Engagement Ring and Old Photograph found in the Urn Witch's Manor
+(perhaps a failed relationship caused her to become evil?), most items don't
+inspire much thought, like the Corrupted Antler or Rusty Trowel (old, discarded
+things, loosely related to their environment).
 {: .notice--warning }
 
 As a result, the characters of *Death's Door* are memorable, but the story is
@@ -464,20 +475,103 @@ not. It uses the typical Action-Adventure trope of "good protagonist" versus the
 "ruler corrupted by power".
 
 *TUNIC*, on the other hand, continues to follow the *Souls*-like template,
-leveraging environmental storytelling to weave a mystery that the player pieces
-together throughout their journey.
+leveraging environmental storytelling to weave a mystery and letting the player
+piece together their own interpretation throughout their journey.
+
+<figure class="align-center">
+  <a href="/assets/img/tunic-old-house.webp">
+    <img
+      src="/assets/img/tunic-old-house.webp"
+      alt='The inside of the Old House, from TUNIC.'
+    >
+  </a>
+  <figcaption>
+    The inside of the Old House, from <em>TUNIC</em>. The unexplained remnants
+    of a home leave much to the imagination. The player can fill in the gaps
+    with their own thoughts.
+  </figcaption>
+</figure>
+
+For example, the Old House is an important location full of a few puzzles
+(which I won't spoil) and a variety of decorations to which the player gives
+their own meaning.
+
+My explanation is that the protagonist of *TUNIC* grew up in this house before
+the land was overrun by monsters. This made sense to me since you can sleep in
+the bed and the chest is empty (because you already have what was inside?)
+{: .notice--primary }
 
 By coupling puzzles and narrative elements together, the "Aha!" moments are
 especially rewarding, since the player both solves a puzzle *and* uncovers more
 of the enigmatic forces behind the gameworld.
 
-### Standout Mechanics
+Although *Death's Door* tries to shake up the genre by altering some of it's
+core gameplay pillars, *TUNIC*'s faith to the formula delivers a more memorable
+experience. This is largely, too, due to how *TUNIC* innovates with *new*
+mechanics to add to the atmosphere of mystery and exploration.
 
-*TUNIC* has it's own language created just for the game.
+### Standout Mechanics
+Part of what made *TUNIC* a more standout title is the ideas it blends with the
+*Souls*-like genre to create a new experience. To be clear, *Death's Door* is
+still a fun, incredibly polished, isometric *Souls*-like. But it doesn't quite
+stick with you after completion.
+
+I had a great time playing *Death's Door*, but it really only came back to mind
+after completing *TUNIC* and realizing how similar the two games were.
+{: .notice--info }
+
+Aside from the Life Seeds -- which we've already discussed -- *Death's Door*
+delivers a more casual take on a *Souls*-like without many fresh ideas. Here are
+a few small remaining distinguishers:
+
+- Players can roll without spending stamina, giving them more leeway to play
+  defensively.
+- Weapons can be upgraded via challenges to unlock powerful new effects.
+- There are lots of silly achievements, like completing the game using the
+  umbrella as your only weapon.
+
+Both games also have a secret ending *(I won't say more than that!)* but
+*TUNIC* builds to it more naturally, since players are pushed to explore the
+puzzle-centric gameworld, compared to the narrative-focused *Death's Door*.
+{: .notice--info }
+
+By contrast, *TUNIC* has three dynamite ideas which separate it from other
+*Souls*-likes, yet mesh seamlessly into the experience, though I can only talk
+about two of them without spoiling the game.
+
+The first, most apparent differentiator is the unique language created for the
+game. It makes the world feel unwelcoming, as many *Souls*-likes do, but also
+mysterious and puzzling.
+
+{% include figure
+    image_path='/assets/img/tunic-language.avif'
+    alt='A sign from TUNIC, in a strange and unknown language.'
+    caption='A sign from <em>TUNIC</em> in a strange and unknown language.'
+%}
+
 > One of the ways I wanted to help players feel like they were in a world that
 > wasn’t meant for them was to fill the game with a strange, unreadable
 > language...like you were playing something you shouldn’t.
 > <br>&emsp;-- [Andrew Shouldice, *TUNIC*'s lead developer](https://blog.playstation.com/2022/09/21/the-creation-of-tunics-invaluable-in-game-manual/)
+
+The second innovation is the in-game manual, referenced previously. It's truly
+a culmination of both the core mechanics of *Souls*-likes and the focus on
+puzzle-solving unique to *TUNIC*.
+
+Each page of the manual is a collectible to find within the gameworld, offering
+environmental storytelling (via beautiful illustrations and sparse English
+text), a guide for the player (like instructions for moves you could always
+use, but never knew how), and puzzles (which often don't make sense initially,
+but reveal themselves later).
+
+Players will pore over each manual page trying to find anything that might help
+them on their adventure. And these clues can often be extremely subtle, giving
+that "Aha!" moment, regardless of if someone is looking for an answer or
+decrypting the lore.
+
+As for the third, perhaps this post may inspire you to play for yourself and
+find out! I think you'll be rewarded for your effort.
+{: .notice--primary }
 
 ## Conclusion
 Design choices made by *TUNIC* tend to mesh better with the *Souls*-like genre.
@@ -488,6 +582,9 @@ great way of intensifying the player's natural desire to explore the gameworld.
 is ultimately forgettable. Despite taking larger steps away from the
 *Souls*-like genre, it fails to innovate in those areas, instead borrowing
 tropes from other games.
+
+While both games are polished and enjoyable, I hold *TUNIC* in higher esteem
+and would recommend it over *Death's Door*.
 
 ## Appendix
 Below are some diagrams referenced above. They are a bit too large to squeeze
@@ -551,4 +648,3 @@ flowchart TD
     F{{"Oubliette<br><strong><em>THE HEIR</em> (again)</strong>"}}
 {% endraw %}
 {% endmermaid %}
-
