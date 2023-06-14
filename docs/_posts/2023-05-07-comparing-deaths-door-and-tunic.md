@@ -82,11 +82,15 @@ fostering the kill-or-be-killed tension of combat.
 {: .notice--info }
 
 {% capture tangent-health %}
+This section isn't too related to *Souls*-likes, *Death's Door*, nor *TUNIC*,
+but I wanted to publish it anyways, since I think there's some interesting
+takeaways.
+{: .notice--info }
+
 Most games with a notion of "health" or "lives" have a way of using that
 resource to incentivize an experience. In a first-person shooter focused on
 energy and excitement, for example, a game might use cover-based combat and
 a health bar which quickly recovers when hiding.
-{: .notice }
 
 These two mechanics together keeps combat snappy, since players need only
 take a quick pause and then can jump back into the action. We can see this
@@ -108,7 +112,7 @@ genres:
 |-----|-----|---|
 |Platformer|Collect Pickup|Introduce tension between challenge of collecting the item and the risk of failing to do so. *(e.g. a difficult to reach 1-UP)*|
 |Fighter|Respawn / Lives|Incentivize players to fight tooth-and-nail to inflict as much damage before losing a stock. *(e.g. 2 KO's in one life)*|
-|Rhythm|Rebuild Multiplier|Encourage mastery of die-hard players while tolerating higher levels of failure. *(e.g. scores climb quadratically with skill)*|
+|Rhythm|Rebuild Multiplier|Encourage mastery of die-hard players while tolerating higher levels of failure from novices. *(e.g. scores climb quadratically with skill)*|
 |MOBA|Return to Base|Healing is always an option, at the cost of not exerting influence around the map. *(e.g. not around to stop your opponent)*|
 {% endcapture %}
 <details>
@@ -138,8 +142,10 @@ empowered attacks, or by blocking enemies.
 {% include figure
     image_path='/assets/img/dark-souls-3-first-boss.jpg'
     alt='Iudex Gundyr, the first boss of Dark Souls III.'
-    caption='Iudex Gundyr, the first boss of *Dark Souls III*. He eclipses the
-        player, giving the appearance and feel of an unfair opponent.'
+    caption='Iudex Gundyr, the first boss of *Dark Souls III*. The player must
+        carefully manager their attacks in stamina to defeat the boss. He also
+        eclipses the player, giving the appearance and feel of an unfair
+        opponent.'
 %}
 
 This all culminates in the frequent and epically intensifying boss battles,
@@ -199,18 +205,18 @@ the world. From here, most bosses are able to be tackled in any order.
 Once defeating these core bosses, and obtaining the necessary
 [MacGuffins](https://en.wikipedia.org/wiki/MacGuffin) (e.g. in *Death's Door*
 you need three "giant" souls; in *TUNIC* you need the three colored hexagons),
-the player will typically then "present" these tokens to fight the "gatekeeper"
-boss. A guardian of the last levels of the game; and where the player will
+the player will typically then present these tokens to fight the "gatekeeper"
+boss: a guardian of the last levels of the game, and where the player will
 confront the final boss.
 
 We can see that both *Death's Door* and *TUNIC* both follow this pattern via the
 [boss diagrams in the appendix](#deaths-door-bosses).
 
 ### Environmental Storytelling
-The mechanics of *Souls*-like games create a world unwelcoming to the player.
-Enemies feel more powerful since players don't have many ways to heal. Every hit
-taken is one fewer they'll be able to handle as they press onwards to the next
-checkpoint.
+The mechanics of *Souls*-like games are also designed to create a world
+unwelcoming to the player. Enemies feel more powerful since players don't have
+many ways to heal. Every hit taken is one fewer they'll be able to handle as
+they press onwards to the next checkpoint.
 
 Another tension emerges between the player and the world with currency that's
 lost when you die. In the eponymous *Dark Souls*, players collect souls which
@@ -235,7 +241,6 @@ upon death in an RPG. It'd make the game that much harder.
 Games in this genre also typically avoid exposition dumps to the player,
 choosing instead to encourage player exploration in the unforgiving world to
 find useful trinkets and the lore surrounding it in their search.
-{: .notice--info }
 
 In *Bloodborne*, for example, the player encounters a child, desperately asking
 the player to recover her missing mother's favorite brooch. This piece of
@@ -248,6 +253,7 @@ None of this, however, is confirmed by the game, but rather an inference the
 player makes by connecting pieces of the environment together. Some players may
 choose to ignore this dimension of the game entirely, but at the very least,
 environmental storytelling lets players explore the game at their own pace.
+{: .notice--info }
 
 ## A Re-expression of the Genre
 We now have some basic ideas for what makes a *Souls*-like game. The player has
@@ -259,7 +265,7 @@ tweak the formula as well as attempts that didn't pan out.
 {: .notice }
 
 ### A Primer on *Death's Door*
-When also considering the developers' previous game, [*Titan
+When also considering the developers' previous work, [*Titan
 Souls*](https://en.wikipedia.org/wiki/Titan_Souls), it's clear the designers are
 heavily inspired by *Souls*-like games, looking to put a new spin on the genre.
 
@@ -435,9 +441,9 @@ the way back to the beginning so many times.
         boss!"
 %}
 
-While players won't be able to grind to make combat easier (since killing
-enemies doesn't level you up), they can find a variety of power-ups hidden
-throughout the world to increase their power.
+While players of *TUNIC* won't be able to grind to make combat easier (since
+killing enemies doesn't level you up), they can find a variety of power-ups
+hidden throughout the world to increase their stats.
 
 Both games find ways to keep the feel of difficulty while still providing
 alternate avenues to advance. The refined design opens the genre to more casual
@@ -566,8 +572,8 @@ but reveal themselves later).
 
 Players will pore over each manual page trying to find anything that might help
 them on their adventure. And these clues can often be extremely subtle, giving
-that "Aha!" moment, regardless of if someone is looking for an answer or
-decrypting the lore.
+that "Aha!" moment, regardless of if someone is looking for an answer to a
+puzzle or decrypting the lore.
 
 As for the third, perhaps this post may inspire you to play for yourself and
 find out! I think you'll be rewarded for your effort.
@@ -585,6 +591,10 @@ tropes from other games.
 
 While both games are polished and enjoyable, I hold *TUNIC* in higher esteem
 and would recommend it over *Death's Door*.
+
+That being said, if you enjoyed one, you'll likely enjoy the other! I look
+forward to the next entry from either studio and how they'll refine the
+*Souls*-like formula next.
 
 ## Appendix
 Below are some diagrams referenced above. They are a bit too large to squeeze
