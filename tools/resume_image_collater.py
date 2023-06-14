@@ -26,7 +26,6 @@ class ResumeImageAdder:
                 add_image_to_resume(file_name)
 
     def add_image_to_resume(self, image_path):
-
         temp_file_name = tempfile.gettempdir() + "logo.pdf"
         logo_canvas = canvas.Canvas(temp_file_name)
         logo_canvas.drawImage(image_path, 15, 15)
