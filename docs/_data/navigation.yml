@@ -2,7 +2,5 @@
 main:
     - title: Portfolio
       url: /portfolio/
-    - title: About
-      url: /about/
     - title: Arcade
       url: /arcade/
