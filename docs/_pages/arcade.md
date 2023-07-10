@@ -6,9 +6,26 @@ permalink: /arcade/
 A small collection of games I have tinkered with. Sometimes there is learning to
 be had and sometimes I get bored of projects and drop them.
 
+## Hogger
+
+|**Release Date:**|10 Jul 2023|
+|**Developer:**|Self|
+{: .notice--info}
+
+An abandoned entry to [GMTK's 2023 Game Jam](https://itch.io/jam/gmtk-2023). I
+don't think it had enough substance to submit, but it was fun to create
+something, no matter how small.
+
+This year's theme was "Roles Reversed", which I attempted to use to make a
+puzzle-forward commentary on cars and nature in a play on Konami's famous
+[*Frogger (1981)*](https://en.wikipedia.org/wiki/Frogger).
+
+[Play]({{ site.url }}/hogger.html)
+{: .btn .btn--light-outline }
+
 ## Thrixel
 
-|**Release Date:**|06 May 2022|
+|**Release Date:**|06 May 2023|
 |**Developer:**|Self|
 {: .notice--info}
 
