@@ -1,0 +1,158 @@
+title Hogger
+author Carson Boden
+homepage www.carsonboden.com
+
+========
+OBJECTS
+========
+
+Background
+black
+
+Water
+darkblue
+
+Log
+brown darkbrown lightbrown
+22221
+00000
+00000
+01000
+11111
+
+Frog
+green
+0.0.0
+00000
+.000.
+00000
+0...0
+
+DeadFrog
+red
+0.0.0
+00000
+.000.
+00000
+0...0
+
+Player
+black orange white
+.....
+.111.
+21111
+11111
+.0.0.
+
+=======
+LEGEND
+=======
+
+. = Background
+~ = Water
+P = Player
+L = Log
+F = Frog
+
+Impassable = Water or DeadFrog
+
+=======
+SOUNDS
+=======
+
+Player move 36772507
+Frog destroy 23745504
+
+================
+COLLISIONLAYERS
+================
+
+Background
+Water
+Log
+Frog, DeadFrog
+Player
+
+======
+RULES
+======
+
+[ > Player | Frog ] -> [ | Player DeadFrog ]
+
+[ > Player | Impassable ] -> [ Player | Impassable ]
+
+==============
+WINCONDITIONS
+==============
+
+no Frog
+
+=======
+LEVELS
+=======
+
+MESSAGE A wild road hog in it's natural habitat
+
+~~~~~~~~
+~~~~~~~~
+.P....F.
+........
+~~~~~~~~
+
+MESSAGE The first victim: a frog, merely looking to cross the road.
+
+~~~~~~~~~~
+.......~~~
+.P...F..~~
+~~~~..F.~~
+~~~~~...~~
+~~~~~...~~
+~~~~~...~~
+
+MESSAGE Only picking at its prey, the Hogger is too proud to run its kill over again.
+MESSAGE But where won't this beast go in pursuit of poor, helpless frogs?
+
+~~~~~~~~~~~~~~~
+.P....FF....FF.
+...FF....FF....
+~~~~~~~~~~~~~~~
+
+MESSAGE Truly relentless.
+MESSAGE Perhaps a fork in the road can stop the rampage?
+
+~~~~~~
+.F..F.
+.F..F.
+~~..~~
+~~..~~
+~~..~~
+~~..~~
+~~.P~~
+
+MESSAGE Alas.
+MESSAGE The frogs dash into the side streets, but the Hogger follows.
+
+~~~~~~~
+p...fff
+~~.~~f~
+~~.~~.~
+~~....~
+~~~~~.~
+
+MESSAGE The tiny alleyways are no match for the fearless screeches of the beast's jet-black feet.
+
+~~~~~.~~~~~
+p...ff....f
+~~.~~f~~.~~
+~~.~~.~~.~~
+~~.~~.~~.~~
+~~.~~.~~.~~
+~~ff...ff~~
+~~.~~~~~.~~
+
+MESSAGE The beast hungers now for something more...
+MESSAGE Not just the road and everything on it.
+MESSAGE More than the empty lots it's claimed as territory.
+MESSAGE The ultimate prize: A community built with an identical thirst.
+MESSAGE To rely on and provide for the Hogger.
+MESSAGE Game Over
