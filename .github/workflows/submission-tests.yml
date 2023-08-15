@@ -59,10 +59,9 @@ jobs:
             - name: Install devenv.sh
               run: nix profile install tarball+https://install.devenv.sh/latest
               shell: sh
+            - run: devenv ci
             - name: See if Bootstrap worked
-              run: |
-                  devenv ci
-                  poetry run python -m unittest 'main_integration_test.py'
+              run: devenv shell poetry run python -m unittest 'main_integration_test.py'
 
     python:
         needs: detect-changes
