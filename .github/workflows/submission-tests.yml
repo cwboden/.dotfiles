@@ -42,58 +42,23 @@ jobs:
 
     bootstrap:
         needs: detect-changes
+        strategy:
+            matrix:
+                os: [ubuntu-latest, macos-latest]
         if: >-
             needs.detect-changes.outputs.bootstrap == 'true' ||
             needs.detect-changes.outputs.workflows == 'true'
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
-
-            - uses: actions/setup-python@v4
+            - uses: cachix/install-nix-action@v22
+            - uses: cachix/cachix-action@v12
               with:
-                  python-version: 3.x
-
-            - uses: snok/install-poetry@v1
-              with:
-                  virtualenvs-create: true
-                  virtualenvs-in-project: true
-                  installer-parallel: true
-
-            - name: Generate `poetry.lock` files
-              run: |
-                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
-                    cd $dir
-                    poetry lock --no-interaction
-                  done
-
-            - name: Load cached Python venv
-              id: cached-poetry-dependencies
-              uses: actions/cache@v3
-              with:
-                  path: bootstrap/.venv
-                  key: venv-${{ runner.os }}-${{ hashFiles('bootstrap/poetry.lock') }}
-
-            - name: Install Python dependencies
-              if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-              run: |
-                  cd bootstrap
-                  poetry install --no-interaction --no-root
-
-            - name: Check pre-commit cache
-              uses: actions/cache@v3
-              with:
-                  path: ~/.cache/pre-commit
-                  key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
-
-            - name: Run Bootstrap
-              run: |
-                  cd bootstrap
-                  # Ensure package dependencies are available
-                  echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-                  source $(poetry env info --path)/bin/activate
-                  poetry run python main.py
-
+                name: devenv
+            - name: Install devenv.sh
+              run: nix profile install tarball+https://install.devenv.sh/latest
+              shell: sh
             - name: See if Bootstrap worked
               run: |
                   cd bootstrap
@@ -161,10 +126,15 @@ jobs:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
 
-            - name: Install Ubuntu packages
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install $(cat dependencies.txt)
+            - uses: cachix/install-nix-action@v22
+
+            - uses: cachix/cachix-action@v12
+              with:
+                name: devenv
+
+            - name: Install devenv.sh
+              run: nix profile install tarball+https://install.devenv.sh/latest
+              shell: sh
 
             - name: Generate `Cargo.lock` to check cache dependencies
               run: cargo generate-lockfile
