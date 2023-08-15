@@ -43,3 +43,12 @@ for file in $config_files; do
     source $file
 done
 unset config_files
+
+if [ -e /home/cwboden/.nix-profile/etc/profile.d/nix.sh ]; then . /home/cwboden/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+source ~/.autoenv/activate.sh
+
+# Activate `direnv` (https://direnv.net/docs/hook.html)
+eval "$(direnv hook zsh)"
+
+# Activate Home Manager
+. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"

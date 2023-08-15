@@ -1,6 +1,20 @@
 { inputs, pkgs, ... }:
 
 {
+  packages = [
+    # CLI Tools
+    pkgs.tmux
+    pkgs.zsh
+    pkgs.neovim
+
+    # Python3 package management
+    pkgs.poetry
+
+    # Spell check library
+    pkgs.hunspell
+    pkgs.hunspellDicts.en_US
+  ];
+
   languages.c.enable = true;
   languages.cplusplus.enable = true;
 
@@ -16,11 +30,7 @@
         excludes = [ "^practice/" ];
         enable = true;
       };
-      clippy.enable = true;
       hunspell.enable = true;
-      markdownlint = {
-        enable = true;
-      };
       mdsh.enable = true;
       mypy = {
         enable = true;
@@ -30,7 +40,6 @@
       rustfmt.enable = true;
       shellcheck.enable = true;
       shfmt.enable = true;
-      yamllint.enable = true;
     };
   };
 }
