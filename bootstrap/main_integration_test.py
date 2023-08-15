@@ -3,8 +3,7 @@ import os
 import subprocess
 import unittest
 
-from main import crawl_for_symlink_sources
-from main import translate_symlink_to_destination
+from main import crawl_for_symlink_sources, translate_symlink_to_destination
 
 
 class BootstrapIntegrationTest(unittest.TestCase):

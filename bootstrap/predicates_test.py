@@ -2,10 +2,9 @@
 import os
 import unittest
 
-from predicates import AlwaysRunBuildPredicate
-from predicates import DirectoryExistsBuildPredicate
-from predicates import FileExistsBuildPredicate
-from predicates import PythonModuleInstalledBuildPredicate
+from predicates import (AlwaysRunBuildPredicate, DirectoryExistsBuildPredicate,
+                        FileExistsBuildPredicate,
+                        PythonModuleInstalledBuildPredicate)
 
 
 class BuildPredicateTest(unittest.TestCase):

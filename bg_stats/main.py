@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 import sys
-from argparse import ArgumentParser
-from argparse import Namespace
+import textwrap
+from argparse import ArgumentParser, Namespace
 from datetime import timedelta as TimeDelta
 from enum import Enum
 from pathlib import Path
@@ -19,7 +19,10 @@ class OutputFormat(Enum):
 
 def parse_args(args: List[str]) -> Namespace:
     parser = ArgumentParser(
-        description="Show graphs of board game insights based on BGStats (bgstatsapp.com) data"
+        description=textwrap.dedent("""
+            Show graphs of board game insights based on BGStats (bgstatsapp.com)
+            path_to_data
+        """)
     )
 
     parser.add_argument(

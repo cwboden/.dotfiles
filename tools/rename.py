@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 import subprocess
 import sys
-from argparse import ArgumentParser
-from argparse import Namespace
+from argparse import ArgumentParser, Namespace
 from pathlib import Path
-from subprocess import CalledProcessError
-from subprocess import CompletedProcess
+from subprocess import CalledProcessError, CompletedProcess
 from typing import List
 
 

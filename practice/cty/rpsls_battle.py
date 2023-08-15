@@ -6,6 +6,7 @@ import math
 import random
 import string
 
+
 def play():
     timestoplay = -1
     if (timestoplay != -1):

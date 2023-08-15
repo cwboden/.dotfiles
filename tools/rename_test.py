@@ -5,8 +5,7 @@ import string
 import textwrap
 import unittest
 from io import StringIO
-from typing import List
-from typing import Union
+from typing import List, Union
 
 import rename
 from fs import open_fs

@@ -4,9 +4,7 @@ from dataclasses import dataclass
 from datetime import date as Date
 from datetime import datetime as DateTime
 from pathlib import Path
-from typing import List
-from typing import Optional
-from typing import Protocol
+from typing import List, Optional, Protocol
 
 from dacite import from_dict
 
@@ -235,12 +233,12 @@ class PlayerScore(SqlTableEntry):
 
         score_sanitized = self.score
         if score_sanitized:
-            # Clear off leading 0's, since Python can't interpret them.
-            # Add "+0" in case we have trailing add/subtract symbols or we strip off the only zero.
+            # Clear off leading 0's, since Python can't interpret them. Add "+0" in
+            # case we have trailing add/subtract symbols or we strip off the only zero.
             score_sanitized = score_sanitized.lstrip("0") + "+0"
 
-            # XXX: It's typically a bad idea to use `eval`, but since we're using data created by
-            # BGStats, I'm going to assume it's not malicious.
+            # XXX: It's typically a bad idea to use `eval`, but since we're using data
+            # created by BGStats, I'm going to assume it's not malicious.
             score_sanitized = eval(score_sanitized)
         else:
             score_sanitized = "NULL"

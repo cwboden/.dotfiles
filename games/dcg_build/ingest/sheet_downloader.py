@@ -1,21 +1,13 @@
 import os
-import pickle
 import string
+import textwrap
 import time
-from typing import Dict
-from typing import List
-from typing import Sequence
-from typing import Union
+from typing import Dict, List, Sequence, Union
 
 import yaml
-from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from gsheets import Sheets
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 
 
 class SheetDownloader:
@@ -178,7 +170,6 @@ class SheetDownloader:
             "Runner": "player",
             "Seeker": "player",
             "Researcher": "player",
-            "Soldier": "player",
             "Player Characters": "SKIP",  # cannot generate player cards
             "Encounters": "encounter",
             "Enemies": "enemy",
@@ -237,9 +228,9 @@ class SheetDownloader:
                             print("==> !! Could not read values from spreadsheet:")
                             print(f"==>    {err}")
                             retry_time = 10
-                            print(
-                                f" !! Waiting for {retry_time} seconds and trying again..."
-                            )
+                            print(textwrap.dedent(f"""
+                                !! Waiting for {retry_time} seconds and trying again...
+                            """))
                             time.sleep(retry_time)
 
                     # not sure why this for loop has to be here tbh

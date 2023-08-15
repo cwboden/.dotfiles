@@ -18,25 +18,29 @@
   languages.c.enable = true;
   languages.cplusplus.enable = true;
 
-  languages.python.enable = true;
-  languages.python.version = "3.11.3";
+  languages.python = {
+    enable = true;
+    version = "3.11.3";
+    poetry = {
+      enable = true;
+      activate.enable = true;
+    };
+  };
 
   languages.rust.enable = true;
   languages.rust.channel = "stable";
 
   pre-commit = {
     hooks = {
-      black = {
-        excludes = [ "^practice/" ];
-        enable = true;
-      };
-      hunspell.enable = true;
+      # Spellcheck. Maybe someday?
+      # hunspell.enable = true;
+      isort.enable = true;
       mdsh.enable = true;
-      mypy = {
+      nixpkgs-fmt.enable = true;
+      ruff = {
         enable = true;
         excludes = [ "^practice/" ];
       };
-      nixpkgs-fmt.enable = true;
       rustfmt.enable = true;
       shellcheck.enable = true;
       shfmt.enable = true;

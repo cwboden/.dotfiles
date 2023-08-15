@@ -1,13 +1,12 @@
 import platform
 import subprocess
+import textwrap
 
 import distro
-from actions import BuildAction
-from actions import MakeDirectoryBuildAction
-from actions import RunShellCommandBuildAction
-from predicates import BuildPredicate
-from predicates import DirectoryExistsBuildPredicate
-from predicates import PythonModuleInstalledBuildPredicate
+from actions import (BuildAction, MakeDirectoryBuildAction,
+                     RunShellCommandBuildAction)
+from predicates import (BuildPredicate, DirectoryExistsBuildPredicate,
+                        PythonModuleInstalledBuildPredicate)
 
 
 class BuildUnit:
@@ -20,7 +19,9 @@ class BuildUnit:
             self.action.execute()
 
     def __str__(self) -> str:
-        return f"{self.__class__.__name__}: {{ {str(self.predicate)} -> {str(self.action)} }}"
+        return textwrap.dedent(f"""
+            {self.__class__.__name__}: {{ {str(self.predicate)} -> {str(self.action)} }}
+        """)
 
 
 class MakeDirectoryBuildUnit(BuildUnit):

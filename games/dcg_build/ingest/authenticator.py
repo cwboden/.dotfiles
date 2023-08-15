@@ -1,19 +1,9 @@
 import os
 import pickle
-import string
-from typing import Dict
-from typing import List
-from typing import Sequence
-from typing import Union
 
-import yaml
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
 from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from gsheets import Sheets
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 
 
 class Authenticator:
@@ -50,7 +40,7 @@ class Authenticator:
                         r"client_secrets.json", Authenticator.SCOPES
                     )
                     creds = flow.run_local_server(port=0)
-                except FileNotFoundError as e:
+                except FileNotFoundError:
                     print(
                         "\nERROR: Couldn't find 'client_secrets.json'\n"
                         "Make sure you have downloaded your credentials from "

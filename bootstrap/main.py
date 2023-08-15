@@ -2,15 +2,12 @@
 import os
 from typing import List
 
-from actions import MakeSymlinkBuildAction
-from actions import RunShellCommandBuildAction
+from actions import MakeSymlinkBuildAction, RunShellCommandBuildAction
 from builder import Builder
-from predicates import AlwaysRunBuildPredicate
-from predicates import DirectoryExistsBuildPredicate
-from predicates import FileExistsBuildPredicate
-from units import BuildUnit
-from units import InstallSystemPackagesBuildUnit
-from units import MakeDirectoryBuildUnit
+from predicates import (AlwaysRunBuildPredicate, DirectoryExistsBuildPredicate,
+                        FileExistsBuildPredicate)
+from units import (BuildUnit, InstallSystemPackagesBuildUnit,
+                   MakeDirectoryBuildUnit)
 
 
 def install_common_dependencies(builder: Builder) -> None:
@@ -37,7 +34,7 @@ def install_nvim(builder: Builder) -> None:
         BuildUnit(
             FileExistsBuildPredicate(vim_init_install_path),
             MakeSymlinkBuildAction(
-                os.path.abspath(f"../nvim/init.vim"),
+                os.path.abspath("../nvim/init.vim"),
                 vim_init_install_path,
             ),
         ),
