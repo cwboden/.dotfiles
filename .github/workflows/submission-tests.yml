@@ -61,7 +61,9 @@ jobs:
               shell: sh
             - run: devenv ci
             - name: See if Bootstrap worked
-              run: devenv shell poetry run python -m unittest 'main_integration_test.py'
+              run: |
+                cd bootstrap
+                devenv shell poetry run python -m unittest 'main_integration_test.py'
 
     python:
         needs: detect-changes
