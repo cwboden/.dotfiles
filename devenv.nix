@@ -6,6 +6,7 @@
     pkgs.tmux
     pkgs.zsh
     pkgs.neovim
+    pkgs.ripgrep
 
     # Python3 package management
     pkgs.poetry
@@ -13,6 +14,14 @@
     # Spell check library
     pkgs.hunspell
     pkgs.hunspellDicts.en_US
+
+    # C libraries
+    # -> game dev
+    pkgs.SDL2
+    pkgs.SDL2_image
+    pkgs.SDL2_mixer
+    pkgs.SDL2_ttf
+    pkgs.alsaLib
   ];
 
   languages.c.enable = true;
@@ -26,6 +35,8 @@
       activate.enable = true;
     };
   };
+
+  languages.ruby.enable = true;
 
   languages.rust.enable = true;
   languages.rust.channel = "stable";
