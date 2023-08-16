@@ -63,6 +63,8 @@ jobs:
             - name: See if Bootstrap worked
               run: |
                 cd bootstrap
+                # Ensure package dependencies are available
+                echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
                 devenv shell poetry run python -m unittest 'main_integration_test.py'
 
     python:
