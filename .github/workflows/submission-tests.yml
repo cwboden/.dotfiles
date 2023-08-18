@@ -103,7 +103,7 @@ jobs:
                     echo "Running tests for $test:"
                     poetry run python -m unittest $test
                   done
-              shell: devenv shell
+              shell: devenv shell {0}
 
     rust:
         needs: detect-changes
@@ -128,32 +128,17 @@ jobs:
               run: nix profile install tarball+https://install.devenv.sh/latest
               shell: sh
 
-            - name: Generate `Cargo.lock` to check cache dependencies
-              run: cargo generate-lockfile
-              shell: devenv shell
-
-            - name: Check Cargo cache
-              uses: actions/cache@v3
-              with:
-                  path: |
-                      ~/.cargo/bin/
-                      ~/.cargo/registry/index/
-                      ~/.cargo/registry/cache/
-                      ~/.cargo/git/db/
-                      target/
-                  key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
             - name: Run Rust core tests
               run: cargo test
-              shell: devenv shell
+              shell: devenv shell {0}
 
             - name: Run Rust example tests
               run: cargo test --examples
-              shell: devenv shell
+              shell: devenv shell {0}
 
             - name: Run Rust doc tests
               run: cargo test --doc
-              shell: devenv shell
+              shell: devenv shell {0}
 
     website:
         needs: detect-changes

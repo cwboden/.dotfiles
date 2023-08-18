@@ -10,12 +10,6 @@ filetype plugin indent on
 
 call plug#begin()
 
-" Appearance
-Plug 'itchyny/lightline.vim'
-Plug 'morhetz/gruvbox'
-Plug 'ryanoasis/vim-devicons'
-Plug 'shinchu/lightline-gruvbox.vim'
-
 " Keybindings and Navigation
 Plug 'ervandew/supertab'
 Plug 'christoomey/vim-tmux-navigator'
@@ -33,32 +27,13 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'onsails/lspkind.nvim'
 
-" Syntax Highlighting
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'leafgarland/typescript-vim'
-Plug 'mtdl9/vim-log-highlighting'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'ron-rs/ron.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'sheerun/vim-polyglot'
-
 " Search Utilities
 Plug 'jremmen/vim-ripgrep'
-Plug 'junegunn/fzf'
-Plug 'preservim/nerdtree'
 
 " Style Utilities
 Plug 'FooSoft/vim-argwrap'
 Plug 'fadein/vim-FIGlet'
 Plug 'preservim/nerdcommenter'
-Plug 'psf/black'
-
-" Version Control Utilities
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 
 " Finish the call, all plugins must be before this
 call plug#end()
