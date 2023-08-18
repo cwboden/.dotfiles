@@ -65,13 +65,6 @@ jobs:
 
             - run: devenv ci
 
-            - name: See if Bootstrap worked
-              run: |
-                cd bootstrap
-                # Ensure package dependencies are available
-                echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-                devenv shell poetry run python -m unittest 'main_integration_test.py'
-
     python:
         needs: detect-changes
         if: >-
@@ -103,7 +96,7 @@ jobs:
                     echo "Running tests for $test:"
                     poetry run python -m unittest $test
                   done
-              shell: devenv shell {0}
+              shell: sudo devenv shell {0}
 
     rust:
         needs: detect-changes
@@ -130,15 +123,15 @@ jobs:
 
             - name: Run Rust core tests
               run: cargo test
-              shell: devenv shell {0}
+              shell: sudo devenv shell {0}
 
             - name: Run Rust example tests
               run: cargo test --examples
-              shell: devenv shell {0}
+              shell: sudo devenv shell {0}
 
             - name: Run Rust doc tests
               run: cargo test --doc
-              shell: devenv shell {0}
+              shell: sudo devenv shell {0}
 
     website:
         needs: detect-changes

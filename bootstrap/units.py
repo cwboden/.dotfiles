@@ -1,8 +1,5 @@
-import platform
-import subprocess
 import textwrap
 
-import distro
 from actions import (BuildAction, MakeDirectoryBuildAction,
                      RunShellCommandBuildAction)
 from predicates import (BuildPredicate, DirectoryExistsBuildPredicate,
@@ -38,50 +35,6 @@ class InstallPythonModuleBuildUnit(BuildUnit):
     def __init__(self, module: str):
         self.predicate = PythonModuleInstalledBuildPredicate(module)
         self.action = RunShellCommandBuildAction(["pip", "install", module])
-
-
-class InstallSystemPackagesBuildUnit(BuildUnit):
-    """Installs packages to whichever distro of Linux is being run"""
-
-    def __init__(
-        self, system: str = platform.system(), linux_distribution: str = distro.id()
-    ):
-        self.system = system.lower()
-        self.linux_distribution = linux_distribution.lower()
-
-        with open("../dependencies.txt", "r") as dependencies_file:
-            self.dependencies = [
-                dependency.strip() for dependency in dependencies_file.readlines()
-            ]
-
-    def __str__(self) -> str:
-        return (
-            f"{self.__class__.__name__}: {{ {self.system}-{self.linux_distribution} }}"
-        )
-
-    def build(self) -> None:
-        if self.system == "linux":
-            if self.linux_distribution == "ubuntu":
-                installed_packages = subprocess.check_output(["dpkg", "-l"]).decode(
-                    "utf-8"
-                )
-                uninstalled_dependencies = [
-                    dependency
-                    for dependency in self.dependencies
-                    if dependency not in installed_packages
-                ]
-
-                if uninstalled_dependencies:
-                    subprocess.check_call(["sudo", "apt-get", "update"])
-                    subprocess.check_call(
-                        ["sudo", "apt-get", "install"] + uninstalled_dependencies,
-                    )
-            else:
-                raise NotImplementedError(
-                    f"Bootstrap not yet supported on {self.linux_distribution}!"
-                )
-        else:
-            raise NotImplementedError(f"Bootstrap not yet supported on {self.system}!")
 
 
 class SaboteurBuildUnitException(Exception):

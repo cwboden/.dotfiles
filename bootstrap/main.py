@@ -2,26 +2,10 @@
 import os
 from typing import List
 
-from actions import MakeSymlinkBuildAction, RunShellCommandBuildAction
+from actions import MakeSymlinkBuildAction
 from builder import Builder
-from predicates import (AlwaysRunBuildPredicate, DirectoryExistsBuildPredicate,
-                        FileExistsBuildPredicate)
-from units import (BuildUnit, InstallSystemPackagesBuildUnit,
-                   MakeDirectoryBuildUnit)
-
-
-def install_common_dependencies(builder: Builder) -> None:
-    """Installs common dependencies for Linux, Python, Git, etc."""
-
-    builder.add_unit(InstallSystemPackagesBuildUnit())
-
-    # Install Git Hook for pre-commit
-    builder.add_unit(
-        BuildUnit(
-            FileExistsBuildPredicate(".git/hooks/pre-commit"),
-            RunShellCommandBuildAction(["pre-commit", "install"]),
-        ),
-    )
+from predicates import FileExistsBuildPredicate
+from units import BuildUnit, MakeDirectoryBuildUnit
 
 
 def install_nvim(builder: Builder) -> None:
@@ -36,122 +20,6 @@ def install_nvim(builder: Builder) -> None:
             MakeSymlinkBuildAction(
                 os.path.abspath("../nvim/init.vim"),
                 vim_init_install_path,
-            ),
-        ),
-    )
-
-    # Install VimPlug
-    local_share_path = f"{home_dir}/.local/share/nvim"
-    vimplug_install_dir = f"{local_share_path}/site/autoload/plug.vim"
-    builder.add_unit(
-        BuildUnit(
-            FileExistsBuildPredicate(vimplug_install_dir),
-            RunShellCommandBuildAction(
-                [
-                    "curl",
-                    "-fLo",
-                    vimplug_install_dir,
-                    "--create-dirs",
-                    "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim",
-                ]
-            ),
-        ),
-    )
-    builder.add_unit(
-        BuildUnit(
-            DirectoryExistsBuildPredicate(f"{local_share_path}/plugged"),
-            RunShellCommandBuildAction(
-                [
-                    "nvim",
-                    "+PlugInstall",
-                    "+qa",
-                ]
-            ),
-        ),
-    )
-
-
-def install_tmux(builder: Builder) -> None:
-    # Create Tmux folders
-    home_dir = os.path.expanduser("~")
-    builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.tmux/"))
-    builder.add_unit(MakeDirectoryBuildUnit(f"{home_dir}/.tmux/plugins"))
-
-    # Install Tmux Plugin Manager (TPM)
-    builder.add_unit(
-        BuildUnit(
-            DirectoryExistsBuildPredicate(f"{home_dir}/.tmux/plugins/tpm/"),
-            RunShellCommandBuildAction(
-                [
-                    "git",
-                    "clone",
-                    "https://github.com/tmux-plugins/tpm",
-                    f"{home_dir}/.tmux/plugins/tpm",
-                ]
-            ),
-        ),
-    )
-
-    # Install Plugins
-    builder.add_unit(
-        BuildUnit(
-            AlwaysRunBuildPredicate(),
-            RunShellCommandBuildAction(
-                [
-                    f"{home_dir}/.tmux/plugins/tpm/bin/install_plugins",
-                ]
-            ),
-        ),
-    )
-
-
-def install_zsh(builder: Builder, home_dir: str) -> None:
-    zsh_installer_path = "/tmp/zsh_installer.sh"
-
-    # Download installer
-    builder.add_unit(
-        BuildUnit(
-            FileExistsBuildPredicate(zsh_installer_path),
-            RunShellCommandBuildAction(
-                [
-                    "wget",
-                    "-O",
-                    zsh_installer_path,
-                    "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh",
-                ]
-            ),
-        ),
-    )
-
-    # Run installer
-    builder.add_unit(
-        BuildUnit(
-            DirectoryExistsBuildPredicate(f"{home_dir}/.oh-my-zsh"),
-            RunShellCommandBuildAction(
-                [
-                    "sh",
-                    zsh_installer_path,
-                    "--unattended",
-                    "--keep-zshrc",
-                ]
-            ),
-        ),
-    )
-
-    # Install powerlevel10k theme
-    builder.add_unit(
-        BuildUnit(
-            DirectoryExistsBuildPredicate(
-                f"{home_dir}/.oh-my-zsh/custom/themes/powerlevel10k"
-            ),
-            RunShellCommandBuildAction(
-                [
-                    "git",
-                    "clone",
-                    "--depth=1",
-                    "https://github.com/romkatv/powerlevel10k.git",
-                    f"{home_dir}/.oh-my-zsh/custom/themes/powerlevel10k",
-                ]
             ),
         ),
     )
@@ -209,14 +77,10 @@ def create_symlinks(builder: Builder, source_dir: str, dest_dir: str) -> None:
 def main() -> None:
     builder = Builder()
 
-    install_common_dependencies(builder)
-
     home_dir = os.path.expanduser("~")
-    install_zsh(builder, home_dir)
     create_symlinks(builder, "../", home_dir)
 
     install_nvim(builder)
-    install_tmux(builder)
 
     builder.build()
 
