@@ -10,9 +10,6 @@
     pkgs.fish
     pkgs.fishPlugins.tide
 
-    # Python3 package management
-    pkgs.poetry
-
     # Spell check library
     pkgs.hunspell
     pkgs.hunspellDicts.en_US
@@ -22,7 +19,6 @@
     pkgs.SDL2_image
     pkgs.SDL2_mixer
     pkgs.SDL2_ttf
-    pkgs.alsaLib
 
     # Vim & Plugins
     pkgs.neovim
@@ -31,9 +27,11 @@
     pkgs.vimPlugins.lightline-gruvbox-vim
     pkgs.vimPlugins.lightline-lsp
     pkgs.vimPlugins.lightline-vim
+    pkgs.vimPlugins.nerdcommenter
     pkgs.vimPlugins.nerdtree
     pkgs.vimPlugins.nerdtree-git-plugin
     pkgs.vimPlugins.rust-vim
+    pkgs.vimPlugins.vim-argwrap
     pkgs.vimPlugins.vim-devicons
     pkgs.vimPlugins.vim-fugitive
     pkgs.vimPlugins.vim-gitgutter
