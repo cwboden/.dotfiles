@@ -87,6 +87,7 @@ jobs:
               
             - name: Install Python dependencies and run unittests
               run: |
+                  devenv shell
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
                     cd $(dirname $test)
                     poetry install --no-interaction --no-root
@@ -96,7 +97,6 @@ jobs:
                     echo "Running tests for $test:"
                     poetry run python -m unittest $test
                   done
-              shell: devenv shell sudo {0}
 
     rust:
         needs: detect-changes
@@ -122,16 +122,13 @@ jobs:
               shell: sh
 
             - name: Run Rust core tests
-              run: cargo test
-              shell: devenv shell sudo {0}
+              run: devenv shell cargo test
 
             - name: Run Rust example tests
-              run: cargo test --examples
-              shell: devenv shell sudo {0}
+              run: devenv shell cargo test --examples
 
             - name: Run Rust doc tests
-              run: cargo test --doc
-              shell: devenv shell sudo {0}
+              run: devenv shell cargo test --doc
 
     website:
         needs: detect-changes
