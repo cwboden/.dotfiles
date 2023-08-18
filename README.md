@@ -1,4 +1,6 @@
 # My Dotfiles
+[![Submission Tests](https://github.com/cwboden/.dotfiles/actions/workflows/submission-tests.yml/badge.svg)](https://github.com/cwboden/.dotfiles/actions/workflows/submission-tests.yml)
+
 The collection of all my dotfiles.
 
 I also use this repo for personal projects and tinkering. Having all of my projects in one place

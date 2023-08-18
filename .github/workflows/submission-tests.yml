@@ -96,7 +96,7 @@ jobs:
                     echo "Running tests for $test:"
                     poetry run python -m unittest $test
                   done
-              shell: sudo devenv shell {0}
+              shell: devenv shell sudo {0}
 
     rust:
         needs: detect-changes
@@ -123,15 +123,15 @@ jobs:
 
             - name: Run Rust core tests
               run: cargo test
-              shell: sudo devenv shell {0}
+              shell: devenv shell sudo {0}
 
             - name: Run Rust example tests
               run: cargo test --examples
-              shell: sudo devenv shell {0}
+              shell: devenv shell sudo {0}
 
             - name: Run Rust doc tests
               run: cargo test --doc
-              shell: sudo devenv shell {0}
+              shell: devenv shell sudo {0}
 
     website:
         needs: detect-changes
