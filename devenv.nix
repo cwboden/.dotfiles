@@ -1,12 +1,14 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, environment, ... }:
 
 {
   packages = [
     # CLI Tools
-    pkgs.tmux
-    pkgs.zsh
-    pkgs.neovim
     pkgs.ripgrep
+    pkgs.tmux
+
+    # Shell & Plugins
+    pkgs.fish
+    pkgs.fishPlugins.tide
 
     # Python3 package management
     pkgs.poetry
@@ -15,13 +17,27 @@
     pkgs.hunspell
     pkgs.hunspellDicts.en_US
 
-    # C libraries
-    # -> game dev
+    # C libraries for Game Dev
     pkgs.SDL2
     pkgs.SDL2_image
     pkgs.SDL2_mixer
     pkgs.SDL2_ttf
     pkgs.alsaLib
+
+    # Vim & Plugins
+    pkgs.neovim
+    pkgs.vimPlugins.fzf-vim
+    pkgs.vimPlugins.gruvbox-nvim
+    pkgs.vimPlugins.lightline-gruvbox-vim
+    pkgs.vimPlugins.lightline-lsp
+    pkgs.vimPlugins.lightline-vim
+    pkgs.vimPlugins.nerdtree
+    pkgs.vimPlugins.nerdtree-git-plugin
+    pkgs.vimPlugins.rust-vim
+    pkgs.vimPlugins.vim-devicons
+    pkgs.vimPlugins.vim-fugitive
+    pkgs.vimPlugins.vim-gitgutter
+    pkgs.vimPlugins.vim-polyglot
   ];
 
   languages.c.enable = true;

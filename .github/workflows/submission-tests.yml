@@ -52,14 +52,19 @@ jobs:
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
+              
             - uses: cachix/install-nix-action@v22
+
             - uses: cachix/cachix-action@v12
               with:
                 name: devenv
+
             - name: Install devenv.sh
               run: nix profile install tarball+https://install.devenv.sh/latest
               shell: sh
+
             - run: devenv ci
+
             - name: See if Bootstrap worked
               run: |
                 cd bootstrap
@@ -77,33 +82,16 @@ jobs:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
 
-            - name: Install Ubuntu packages
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install $(cat dependencies.txt)
+            - uses: cachix/install-nix-action@v22
 
-            - uses: actions/setup-python@v4
+            - uses: cachix/cachix-action@v12
               with:
-                  python-version: 3.x
+                name: devenv
 
-            - uses: snok/install-poetry@v1
-              with:
-                  virtualenvs-create: true
-                  virtualenvs-in-project: true
-                  installer-parallel: true
-
-            - name: Load cached Python venvs
-              id: cached-poetry-dependencies
-              uses: actions/cache@v3
-              with:
-                  path: |
-                      # Python projects must be listed here
-                      .venv
-                      bg_stats/.venv
-                      bootstrap/.venv
-                      tools/.venv
-                  key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-
+            - name: Install devenv.sh
+              run: nix profile install tarball+https://install.devenv.sh/latest
+              shell: sh
+              
             - name: Install Python dependencies and run unittests
               run: |
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
@@ -115,13 +103,17 @@ jobs:
                     echo "Running tests for $test:"
                     poetry run python -m unittest $test
                   done
+              shell: devenv shell
 
     rust:
         needs: detect-changes
+
         if: >-
             needs.detect-changes.outputs.rust == 'true' ||
             needs.detect-changes.outputs.workflows == 'true'
+
         runs-on: ubuntu-latest
+
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
@@ -138,6 +130,7 @@ jobs:
 
             - name: Generate `Cargo.lock` to check cache dependencies
               run: cargo generate-lockfile
+              shell: devenv shell
 
             - name: Check Cargo cache
               uses: actions/cache@v3
@@ -152,12 +145,15 @@ jobs:
 
             - name: Run Rust core tests
               run: cargo test
+              shell: devenv shell
 
             - name: Run Rust example tests
               run: cargo test --examples
+              shell: devenv shell
 
             - name: Run Rust doc tests
               run: cargo test --doc
+              shell: devenv shell
 
     website:
         needs: detect-changes
