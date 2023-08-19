@@ -42,13 +42,15 @@ jobs:
 
     bootstrap:
         needs: detect-changes
-        strategy:
-            matrix:
-                os: [ubuntu-latest, macos-latest]
+        # TODO: Run on OSX; Currently issues with alsa-lib
+        # strategy:
+        #     matrix:
+        #         os: [ubuntu-latest, macos-latest]
         if: >-
             needs.detect-changes.outputs.bootstrap == 'true' ||
             needs.detect-changes.outputs.workflows == 'true'
-        runs-on: ${{ matrix.os }}
+        # runs-on: ${{ matrix.os }}
+        runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
@@ -85,17 +87,12 @@ jobs:
               run: nix profile install tarball+https://install.devenv.sh/latest
               shell: sh
               
-            - name: Install Python dependencies and run unittests
+            - name: Run unittests
               run: |
-                  devenv shell
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
                     cd $(dirname $test)
-                    poetry install --no-interaction --no-root
-                    # Ensure package dependencies are available
-                    echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-                    source $(poetry env info --path)/bin/activate
                     echo "Running tests for $test:"
-                    poetry run python -m unittest $test
+                    devenv shell poetry run python -m unittest $test
                   done
 
     rust:

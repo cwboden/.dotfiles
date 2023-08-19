@@ -19,6 +19,7 @@
     pkgs.SDL2_image
     pkgs.SDL2_mixer
     pkgs.SDL2_ttf
+    pkgs.alsa-lib
 
     # Vim & Plugins
     pkgs.neovim
