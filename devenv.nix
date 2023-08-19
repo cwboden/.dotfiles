@@ -20,6 +20,7 @@
     pkgs.SDL2_mixer
     pkgs.SDL2_ttf
     pkgs.alsa-lib
+    pkgs.libudev-zero
 
     # Vim & Plugins
     pkgs.neovim

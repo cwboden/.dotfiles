@@ -90,9 +90,8 @@ jobs:
             - name: Run unittests
               run: |
                   for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
-                    cd $(dirname $test)
                     echo "Running tests for $test:"
-                    devenv shell poetry run python -m unittest $test
+                    devenv shell cd $(dirname $test) && poetry run python -m unittest $test
                   done
 
     rust:
