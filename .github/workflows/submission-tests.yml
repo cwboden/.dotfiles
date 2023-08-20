@@ -34,4 +34,5 @@ jobs:
               run: nix profile install tarball+https://install.devenv.sh/latest
 
             # Run CI
-            - run: devenv shell poetry run python ci.py HEAD main
+            - run: devenv shell poetry run python ci.py HEAD main $GITHUB_WORKSPACE
+              working-directory: bootstrap/

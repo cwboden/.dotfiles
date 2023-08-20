@@ -9,11 +9,16 @@ def log(string: str) -> None:
 
 branch_sha = sys.argv[1]
 target_sha = sys.argv[2]
+root = Path(sys.argv[3])
 
-merge_base = subprocess.check_output(["git", "merge-base", branch_sha, target_sha])
+merge_base = subprocess.check_output(["git", "merge-base", branch_sha, target_sha], cwd = root)
 changed_files = subprocess.check_output(["git", "diff", "--name-only", branch_sha,
-                                         target_sha]).decode('utf-8').split('\n')
-directories = [ Path(file) for file in changed_files ]
+                                         target_sha], cwd = root).decode('utf-8').split('\n')
+log("Changed files:")
+for file in changed_files:
+    log(f" => {file}")
+
+directories = [ (root / file) for file in changed_files ]
 
 ci_environments = set()
 while directories:
