@@ -6,14 +6,7 @@
   home.username = "cwboden";
   home.homeDirectory = "/home/cwboden";
 
-  # This value determines the Home Manager release that your configuration is
-  # compatible with. This helps avoid breakage when a new Home Manager release
-  # introduces backwards incompatible changes.
-  #
-  # You should not change this value, even if you update Home Manager. If you do
-  # want to update the value, then make sure to first check the Home Manager
-  # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "23.05"; # Refer to documentation on `stateVersion` before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -30,21 +23,10 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.tmux
   ];
 
-  # Home Manager is pretty good at managing dotfiles. The primary way to manage
-  # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
     ".config/nvim/init.vim".source = ~/.dotfiles/nvim/init.vim;
 
     ".config/fish/conf.d/keychain.fish".text = ''
@@ -56,21 +38,20 @@
           keychain --eval $SSH_KEYS_TO_AUTOLOAD | source
       end
     '';
+
+    ".gitconfig.local".source = ~/.dotfiles/git/gitconfig.local;
+    ".gitconfig".source = ~/.dotfiles/git/gitconfig;
+    ".gitexcludes".source = ~/.dotfiles/git/gitexcludes;
+    ".gitmessage.txt".source = ~/.dotfiles/git/gitmessage.txt;
+
+    ".tmux.conf".source = ~/.dotfiles/tmux/tmux.conf;
   };
 
-  # You can also manage environment variables but you will have to manually
-  # source
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/cwboden/etc/profile.d/hm-session-vars.sh
-  #
-  # if you don't want to manage your shell through Home Manager.
   home.sessionVariables = {
     EDITOR = "nvim";
     SHELL = "fish";
+
+    JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64/bin/java";
 
     SSH_KEYS_TO_AUTOLOAD = "~/.ssh/id_ed25519";
   };
@@ -110,4 +91,10 @@
   };
 
   programs.direnv.enable = true;
+
+  programs.git = {
+    enable = true;
+    userName = "Carson Boden";
+    userEmail = "carson.boden@gmail.com";
+  };
 }
