@@ -18,6 +18,10 @@ jobs:
         # runs-on: ${{ matrix.os }}
         runs-on: ubuntu-latest
         steps:
+            # Checks out `main` branch for comparison
+            - uses: actions/checkout@v3
+              ref: main
+
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
 
@@ -33,6 +37,6 @@ jobs:
             - name: Install devenv.sh
               run: nix profile install tarball+https://install.devenv.sh/latest
 
-            # Run CI
-            - run: devenv shell poetry run python ci.py HEAD origin/main $GITHUB_WORKSPACE
+            - name: Run CI
+              run: devenv shell poetry run python ci.py HEAD origin/main $GITHUB_WORKSPACE
               working-directory: bootstrap/

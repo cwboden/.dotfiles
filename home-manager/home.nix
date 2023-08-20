@@ -46,6 +46,16 @@
     #   org.gradle.daemon.idletimeout=3600000
     # '';
     ".config/nvim/init.vim".source = ~/.dotfiles/nvim/init.vim;
+
+    ".config/fish/conf.d/keychain.fish".text = ''
+      if status is-login
+          and status is-interactive
+          # To add a key, set -Ua SSH_KEYS_TO_AUTOLOAD keypath
+          # To remove a key, set -U --erase
+          SSH_KEYS_TO_AUTOLOAD[index_of_key]
+          keychain --eval $SSH_KEYS_TO_AUTOLOAD | source
+      end
+    '';
   };
 
   # You can also manage environment variables but you will have to manually
@@ -61,6 +71,8 @@
   home.sessionVariables = {
     EDITOR = "nvim";
     SHELL = "fish";
+
+    SSH_KEYS_TO_AUTOLOAD = "~/.ssh/id_ed25519";
   };
 
   # Let Home Manager install and manage itself.
