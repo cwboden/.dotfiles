@@ -18,12 +18,11 @@ jobs:
         # runs-on: ${{ matrix.os }}
         runs-on: ubuntu-latest
         steps:
-            # Checks out `main` branch for comparison
-            - uses: actions/checkout@v3
-              ref: main
-
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
+              with:
+                  # Checkout all history, so we can compare to `main`
+                  fetch-depth: 0
 
             # Installs Nix, the package provider
             - uses: cachix/install-nix-action@v22
