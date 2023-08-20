@@ -67,10 +67,10 @@ while directories:
 
 environments = []
 for directory in sorted(ci_environments):
-    log(f"Executing `devenv ci` from {directory}/...")
+    log(f"Executing `devenv ci` from {directory.relative_to(root)}/...")
     environments.append(
         (
-            str(directory),
+            str(directory.relative_to(root)),
             subprocess.Popen(
                 ["devenv", "ci"],
                 cwd = directory,
@@ -81,11 +81,11 @@ for directory in sorted(ci_environments):
 
 print('\n' + ('=' * 88) + '\n')
 log("Waiting for CI environments:\n")
-for (directory, process) in environments:
+for (rel_dir, process) in environments:
     if process.wait() == 0:
-        log(f"{directory:40}: success")
+        log(f"{rel_dir:40}: success")
     else:
-        log(f"{directory:40}: FAILURE")
+        log(f"{rel_dir:40}: FAILURE")
         print(process.stderr)
 
 
