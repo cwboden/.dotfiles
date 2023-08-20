@@ -8,9 +8,10 @@ from argparse import ArgumentParser, Namespace
 from pathlib import Path
 from typing import List
 
+from mysql import connector
+
 from api import (BgStats, Game, Location, Play, Player, PlayerScore,
                  SqlTableEntry)
-from mysql import connector
 
 
 def parse_args(args: List[str]) -> Namespace:

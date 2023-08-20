@@ -7,9 +7,10 @@ from enum import Enum
 from pathlib import Path
 from typing import List
 
-from api import BgStats
 from matplotlib import dates as Dates
 from matplotlib import pyplot
+
+from api import BgStats
 
 
 class OutputFormat(Enum):
