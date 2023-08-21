@@ -1,5 +1,11 @@
 #!/usr/bin/sh
 
+# CI ONLY / HACK:
+# Override username / homeDirectory
+if [ -n "$CI" ]; then
+    sed -i 's/cwboden/runner/g' home-manager/home.nix
+fi
+
 # Download and install Nix
 sudo install -d -m755 -o $(id -u) -g $(id -g) /nix
 curl -L https://nixos.org/nix/install | sh
