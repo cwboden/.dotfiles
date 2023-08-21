@@ -29,13 +29,13 @@
 
   home.file = {
     ".bashrc".text = ''
-      . /home/cwboden/.nix-profile/etc/profile.d/nix.sh
+      . ~/.nix-profile/etc/profile.d/nix.sh
       home-manager switch
       # Embed fish shell to avoid needing to `chsh`
       fish; exit
     '';
 
-    ".config/nvim/init.vim".source = ~/.dotfiles/nvim/init.vim;
+    ".config/nvim/init.vim".source = ../nvim/init.vim;
 
     ".config/fish/conf.d/keychain.fish".text = ''
       if status is-login
@@ -46,12 +46,12 @@
       end
     '';
 
-    ".gitconfig.local".source = ~/.dotfiles/git/gitconfig.local;
-    ".gitconfig".source = ~/.dotfiles/git/gitconfig;
-    ".gitexcludes".source = ~/.dotfiles/git/gitexcludes;
-    ".gitmessage.txt".source = ~/.dotfiles/git/gitmessage.txt;
+    ".gitconfig.local".source = ../git/gitconfig.local;
+    ".gitconfig".source = ../git/gitconfig;
+    ".gitexcludes".source = ../git/gitexcludes;
+    ".gitmessage.txt".source = ../git/gitmessage.txt;
 
-    ".tmux.conf".source = ~/.dotfiles/tmux/tmux.conf;
+    ".tmux.conf".source = ../tmux/tmux.conf;
   };
 
   home.sessionVariables = {
