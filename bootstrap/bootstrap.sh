@@ -3,7 +3,11 @@
 # CI ONLY / HACK:
 # Override username / homeDirectory
 if [ -n "$CI" ]; then
+    # Home Manager expects USER to be `runner` in the CI pipeline
     sed -i 's/cwboden/runner/g' home-manager/home.nix
+
+    # The runner also creates a `.bashrc` which we must remove
+    rm ~/.basrc
 fi
 
 # Download and install Nix
