@@ -24,17 +24,24 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
     pkgs.tmux
+    pkgs.keychain
   ];
 
   home.file = {
+    ".bashrc".text = ''
+      . /home/cwboden/.nix-profile/etc/profile.d/nix.sh
+      home-manager switch
+      # Embed fish shell to avoid needing to `chsh`
+      fish; exit
+    '';
+
     ".config/nvim/init.vim".source = ~/.dotfiles/nvim/init.vim;
 
     ".config/fish/conf.d/keychain.fish".text = ''
       if status is-login
-          and status is-interactive
+              and status is-interactive
           # To add a key, set -Ua SSH_KEYS_TO_AUTOLOAD keypath
-          # To remove a key, set -U --erase
-          SSH_KEYS_TO_AUTOLOAD[index_of_key]
+          # To remove a key, set -U --erase SSH_KEYS_TO_AUTOLOAD[index_of_key]
           keychain --eval $SSH_KEYS_TO_AUTOLOAD | source
       end
     '';

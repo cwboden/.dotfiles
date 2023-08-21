@@ -24,18 +24,13 @@ jobs:
                   # Checkout all history, so we can compare to `main`
                   fetch-depth: 0
 
-            # Installs Nix, the package provider
-            - uses: cachix/install-nix-action@v22
+            # Bootstraps environment, as outlined in `README.md`
+            - name: Bootstrap Environment
+              run: ./bootstrap/bootstrap.sh
 
-            # Adds a cache for `devenv`, the package manager
-            - uses: cachix/cachix-action@v12
-              with:
-                name: devenv
+            # Imports cache to improve build/compile times
+            - uses: DeterminateSystems/magic-nix-cache-action@main
 
-            # Installs `devenv` to run CI in environments
-            - name: Install devenv.sh
-              run: nix profile install tarball+https://install.devenv.sh/latest
-
-            - name: Run CI
+            - name: Run Continuous Integration
               run: devenv shell poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
               working-directory: bootstrap/
