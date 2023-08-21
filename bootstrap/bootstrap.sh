@@ -24,7 +24,7 @@ nix-channel --update
 nix-shell '<home-manager>' -A install
 
 # Source profile to start Home Manager
-. /home/cwboden/.nix-profile/etc/profile.d/nix.sh
+. ~/.nix-profile/etc/profile.d/nix.sh
 
 # Enter `fish` shell
 fish
