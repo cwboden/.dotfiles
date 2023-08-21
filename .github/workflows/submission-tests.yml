@@ -28,9 +28,6 @@ jobs:
             - name: Bootstrap Environment
               run: ./bootstrap/bootstrap.sh
 
-            # Imports cache to improve build/compile times
-            - uses: DeterminateSystems/magic-nix-cache-action@main
-
             - name: Run Continuous Integration
               run: devenv shell poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
               working-directory: bootstrap/
