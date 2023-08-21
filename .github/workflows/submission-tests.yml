@@ -29,5 +29,6 @@ jobs:
               run: ./bootstrap/bootstrap.sh
 
             - name: Run Continuous Integration
-              run: devenv shell poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
+              run: poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
               working-directory: bootstrap/
+              shell: "fish devenv shell {0}"
