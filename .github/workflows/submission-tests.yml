@@ -32,5 +32,6 @@ jobs:
               run: |
                   # New step runner must re-source Nix Home Manager
                   . ~/.nix-profile/etc/profile.d/nix.sh
-                  fish devenv shell poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
+                  home-manager switch
+                  devenv shell poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
               working-directory: bootstrap/
