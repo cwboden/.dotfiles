@@ -16,7 +16,7 @@ nix-env -if https://install.devenv.sh/latest
 
 # Link the Home Manager config to this repository
 mkdir -p ~/.config/home-manager/
-ln -s home-manager/home.nix ~/.config/home-manager/home.nix
+ln -s $(pwd)/home-manager/home.nix ~/.config/home-manager/home.nix
 
 # Download and install Home Manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
