@@ -7,7 +7,7 @@ if [ -n "$CI" ]; then
     sed -i 's/cwboden/runner/g' home-manager/home.nix
 
     # The runner also creates a `.bashrc` which we must remove
-    rm ~/.basrc
+    rm ~/.bashrc
 fi
 
 # Download and install Nix
