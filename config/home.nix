@@ -25,6 +25,9 @@
     # '')
     pkgs.tmux
     pkgs.keychain
+
+    # For Python LSP in Vim
+    pkgs.python311Packages.jedi-language-server
   ];
 
   home.file = {
@@ -35,7 +38,7 @@
       fish; exit
     '';
 
-    ".config/nvim/init.vim".source = ../nvim/init.vim;
+    ".config/nvim/init.vim".source = ./init.vim;
 
     ".config/fish/conf.d/keychain.fish".text = ''
       if status is-login
@@ -46,12 +49,12 @@
       end
     '';
 
-    ".gitconfig.local".source = ../git/gitconfig.local;
-    ".gitconfig".source = ../git/gitconfig;
-    ".gitexcludes".source = ../git/gitexcludes;
-    ".gitmessage.txt".source = ../git/gitmessage.txt;
+    ".gitconfig.local".source = ./gitconfig.local;
+    ".gitconfig".source = ./gitconfig;
+    ".gitexcludes".source = ./gitexcludes;
+    ".gitmessage.txt".source = ./gitmessage.txt;
 
-    ".tmux.conf".source = ../tmux/tmux.conf;
+    ".tmux.conf".source = ./tmux.conf;
   };
 
   home.sessionVariables = {
@@ -71,20 +74,30 @@
     viAlias = true;
     vimAlias = true;
     plugins = with pkgs.vimPlugins; [
+      cmp-buffer
+      cmp-cmdline
+      cmp-nvim-lsp
+      cmp-path
+      cmp-vsnip
       fzf-vim
       gruvbox-nvim
       lightline-gruvbox-vim
       lightline-lsp
       lightline-vim
+      lspkind-nvim
       nerdcommenter
       nerdtree
       nerdtree-git-plugin
+      nvim-cmp
+      nvim-lspconfig
+      rust-tools-nvim
       rust-vim
       vim-argwrap
       vim-devicons
       vim-fugitive
       vim-gitgutter
       vim-polyglot
+      vim-vsnip
     ];
   };
 

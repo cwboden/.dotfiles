@@ -1,43 +1,5 @@
 filetype plugin indent on
 
-"  ____  _             _
-" |  _ \| |_   _  __ _(_)_ __  ___
-" | |_) | | | | |/ _` | | '_ \/ __|
-" |  __/| | |_| | (_| | | | | \__ \
-" |_|   |_|\__,_|\__, |_|_| |_|___/
-"                |___/
-" FIGlet: Plugins
-
-call plug#begin()
-
-" Keybindings and Navigation
-Plug 'ervandew/supertab'
-Plug 'christoomey/vim-tmux-navigator'
-
-" Language Server Protocol Configuration
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/cmp-nvim-lsp'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'neovim/nvim-lspconfig'
-Plug 'neovim/nvim-lspconfig'
-Plug 'simrat39/rust-tools.nvim'
-Plug 'onsails/lspkind.nvim'
-
-" Search Utilities
-Plug 'jremmen/vim-ripgrep'
-
-" Style Utilities
-Plug 'FooSoft/vim-argwrap'
-Plug 'fadein/vim-FIGlet'
-Plug 'preservim/nerdcommenter'
-
-" Finish the call, all plugins must be before this
-call plug#end()
-
 "   ____                           _
 "  / ___| ___ _ __   ___ _ __ __ _| |
 " | |  _ / _ \ '_ \ / _ \ '__/ _` | |
@@ -190,20 +152,13 @@ autocmd FileChangedShellPost *
 "  \____\___/|_| |_| |_|_| |_| |_|\__,_|_| |_|\__,_|___/
 " FIGlet: File-Specific Commands
 
-" C
-autocmd FileType c setlocal colorcolumn=100
-autocmd FileType c setlocal textwidth=100
-autocmd FileType h setlocal colorcolumn=100
-autocmd FileType h setlocal textwidth=100
-
 " Markdown
 autocmd FileType markdown setlocal colorcolumn=80
 autocmd FileType markdown setlocal textwidth=80
 
 " Python
-autocmd FileType python setlocal colorcolumn=100
-autocmd FileType python setlocal textwidth=100
-autocmd FileType python setlocal includeexpr=substitute(substitute(v:fname,'qinternal.','','g'),'\\.','/','g')
+autocmd FileType python setlocal colorcolumn=88
+autocmd FileType python setlocal textwidth=88
 
 " Rust (rustfmt defaults)
 autocmd FileType rust setlocal colorcolumn=100
@@ -265,15 +220,6 @@ let g:argwrap_closing_brace = 0
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
-" Black (Python)
-let g:black_fast = 1
-let g:black_quiet = 1
-
-" C++ Enhanced Highlight
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-
 " Lightline
 let g:lightline = {
     \   'colorscheme': 'gruvbox',
@@ -299,7 +245,7 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
-map <C-n> :NERDTreeToggle %<CR>
+map <C-n> :NERDTreeToggle<CR>
 map <C-f> :NERDTreeFind<CR>
 
 " NERD Commenter
