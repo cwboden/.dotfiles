@@ -1,0 +1,118 @@
+---
+# Via https://en.wikipedia.org/wiki/List_of_Link_light_rail_stations
+
+# Sorted by latitude, north to south
+stations:
+    - name: Northgate
+      address: 10200 1st Avenue Northeast, Seattle, Washington, United States
+      latlong:
+          latitude: 47.703026
+          longitude: -122.3283092
+
+    - name: Roosevelt
+      address: 6501 12th Avenue Northeast, Seattle, Washington, United States
+      latlong:
+          latitude: 47.6757289
+          longitude: -122.3156774
+
+    - name: U District
+      address: 4300 Brooklyn Avenue Northeast, Seattle, Washington, United States
+      latlong:
+          latitude: 47.6602178
+          longitude: -122.3139612
+
+    - name: Univ. of Washington
+      address: 3720 Montlake Boulevard Northeast, Seattle, Washington, United States
+      latlong:
+          latitude: 47.6498198
+          longitude: -122.30382710844981
+
+    - name: Capitol Hill
+      address: 140 Broadway East, Seattle, Washington, United States
+      latlong:
+          latitude: 47.6230757
+          longitude: -122.3209261
+
+    - name: Westlake
+      address: Pine Street & 4th Avenue, Seattle, Washington, United States
+      latlong:
+          latitude: 46.2798168
+          longitude: -92.6611715
+
+    - name: University Street
+      address: 3rd Avenue & University Street, Seattle, Washington, United States
+      latlong:
+          latitude: 40.784581
+          longitude: -73.9497946
+
+    - name: Pioneer Square
+      address: 3rd Avenue and James Street, Seattle, Washington, United States
+      latlong:
+          latitude: 47.6021771
+          longitude: -122.3310393
+
+    - name: ID / Chinatown
+      address: 5th Avenue S & S Jackson Street, Seattle, Washington, United States
+      latlong:
+          latitude: 45.7734497
+          longitude: -108.5053854
+
+    - name: Stadium
+      address: 501 South Royal Brougham Way, Seattle, Washington, United States
+      latlong:
+          latitude: 47.59111075
+          longitude: -122.32718290060447
+
+    - name: SODO
+      address: 500 South Lander Street, Seattle, Washington, United States
+      latlong:
+          latitude: 47.581260150000006
+          longitude: -122.3274051000403
+
+    - name: Beacon Hill
+      address: 2702 Beacon Avenue South, Seattle, Washington, United States
+      latlong:
+          latitude: 47.579271
+          longitude: -122.3117942
+
+    - name: Mount Baker
+      address: 3000 Rainier Avenue South, Seattle, Washington, United States
+      latlong:
+          latitude: 47.5558186
+          longitude: -122.2833964
+
+    - name: Columbia City
+      address: 4818 Martin Luther King Jr Way, Seattle, Washington, United States
+      latlong:
+          latitude: 47.3334
+          longitude: -122.1733
+
+    - name: Othello Station
+      address: 7100 Martin Luther King Jr Way, Seattle, Washington, United States
+      latlong:
+          latitude: 47.32165
+          longitude: -122.16535
+
+    - name: Rainier Beach
+      address: 9132 Martin Luther King Jr Way, Seattle, Washington, United States
+      latlong:
+          latitude: 47.31214
+          longitude: -122.16457
+
+    - name: Tukwila Int'l Blvd.
+      address: 15426 35th Avenue South, Tukwila, Washington, United States
+      latlong:
+          latitude: 47.2751
+          longitude: -122.1717
+
+    - name: SeaTac / Airport
+      address: International Blvd + South 176th Street, SeaTac, Washington, United States
+      latlong:
+          latitude: 47.2643
+          longitude: -122.1749
+
+    - name: Angle Lake
+      address: 28th Avenue South + South 200th Street, SeaTac, Washington, United States
+      latlong:
+          latitude: 47.2522
+          longitude: -122.1751
