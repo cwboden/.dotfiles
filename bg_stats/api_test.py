@@ -5,7 +5,6 @@ from pathlib import Path
 
 from api import BgStats
 
-
 PATH_TO_DATA: Path = Path("BGStatsExport-for-test.json")
 
 

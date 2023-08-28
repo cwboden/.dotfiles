@@ -1,33 +1,19 @@
 #!/usr/bin/python3
-import csv
-import glob
 import os.path
-import pickle
-import shutil
-import string
 import subprocess
 from argparse import ArgumentParser
-from typing import Dict
-from typing import List
-from typing import Sequence
-from typing import Union
+from typing import Dict, List
 
-from google.auth.transport.requests import Request
 from google.oauth2 import credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
-from googleapiclient.discovery import build
-from gsheets import Sheets
 from ingest.authenticator import Authenticator
 from ingest.sheet_downloader import SheetDownloader
-from PIL import Image
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 from stitch import CardImageStitcher
 
 
 def parse_args():
     parser = ArgumentParser(
-        description="Generate Tabletop Simulator card sheets via a customer Rust library."
+        description=
+            "Generate Tabletop Simulator card sheets via a customer Rust library."
     )
     parser.add_argument(
         "-b",

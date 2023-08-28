@@ -1,7 +1,7 @@
 import sys
 
-from colorama import Fore
-from colorama import Style
+from colorama import Fore, Style
+
 from units import BuildUnit
 
 

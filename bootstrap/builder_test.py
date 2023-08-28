@@ -5,8 +5,7 @@ import unittest
 from actions import SpyBuildAction
 from builder import Builder
 from predicates import AlwaysRunBuildPredicate
-from units import BuildUnit
-from units import SaboteurBuildUnit
+from units import BuildUnit, SaboteurBuildUnit
 
 DEVNULL = open(os.devnull, "w")
 

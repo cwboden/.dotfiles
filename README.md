@@ -1,4 +1,6 @@
 # My Dotfiles
+[![Submission Tests](https://github.com/cwboden/.dotfiles/actions/workflows/submission-tests.yml/badge.svg)](https://github.com/cwboden/.dotfiles/actions/workflows/submission-tests.yml)
+
 The collection of all my dotfiles.
 
 I also use this repo for personal projects and tinkering. Having all of my projects in one place
@@ -14,9 +16,8 @@ You should be able to get things started on Ubuntu using the following:
 
 ```sh
 git clone https://github.com/cwboden/.dotfiles.git ~/.dotfiles
-cd ~/.dotfiles/bootstrap
-poetry install
-poetry run python main.py
+cd ~/.dotfiles
+./bootstrap/bootstrap.sh
 ```
 
 ## Running Jekyll Locally

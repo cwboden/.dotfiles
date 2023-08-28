@@ -2,9 +2,8 @@
 import os
 import unittest
 
-from actions import MakeDirectoryBuildAction
-from actions import RunShellCommandBuildAction
-from actions import SpyBuildAction
+from actions import (MakeDirectoryBuildAction, RunShellCommandBuildAction,
+                     SpyBuildAction)
 
 
 class BuildActionTest(unittest.TestCase):

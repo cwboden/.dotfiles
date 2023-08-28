@@ -9,8 +9,7 @@ import os
 import tempfile
 from optparse import OptionParser
 
-from PyPDF2 import PdfFileReader
-from PyPDF2 import PdfFileWriter
+from PyPDF2 import PdfFileReader, PdfFileWriter
 from reportlab.pdfgen import canvas
 
 
@@ -20,10 +19,10 @@ class ResumeImageAdder:
         self.options = parser.parse_args()
 
         if self.options.image:
-            add_image_to_resume(self.options.image)
+            self.add_image_to_resume(self.options.image)
         else:
             for file_name in os.listdir(self.options.folder):
-                add_image_to_resume(file_name)
+                self.add_image_to_resume(file_name)
 
     def add_image_to_resume(self, image_path):
         temp_file_name = tempfile.gettempdir() + "logo.pdf"

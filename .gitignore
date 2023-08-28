@@ -141,9 +141,6 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-# Poetry
-poetry.lock
-
 #
 # Rust
 #
@@ -215,3 +212,13 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+# Devenv
+.devenv*
+devenv.local.nix
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

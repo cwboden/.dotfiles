@@ -1,8 +1,7 @@
 import os
 import subprocess
 from subprocess import CalledProcessError
-from typing import List
-from typing import Protocol
+from typing import List, Protocol
 
 
 class ActionException(Exception):

@@ -2,11 +2,11 @@
 import unittest
 from unittest.mock import patch
 
-from actions import SpyBuildAction
 from parameterized import parameterized
+
+from actions import SpyBuildAction
 from predicates import AlwaysRunBuildPredicate
-from units import BuildUnit
-from units import InstallSystemPackagesBuildUnit
+from units import BuildUnit, InstallSystemPackagesBuildUnit
 
 
 class BuildUnitTest(unittest.TestCase):

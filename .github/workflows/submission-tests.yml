@@ -10,205 +10,28 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-    detect-changes:
-        runs-on: ubuntu-latest
-        outputs:
-            workflows: ${{ steps.filter.outputs.workflows }}
-            bootstrap: ${{ steps.filter.outputs.bootstrap }}
-            python: ${{ steps.filter.outputs.python }}
-            rust: ${{ steps.filter.outputs.rust }}
-            website: ${{ steps.filter.outputs.website }}
-        steps:
-            - uses: dorny/paths-filter@v2
-              id: filter
-              with:
-                  filters: |
-                      # Run Workflow for all suites if the script has changed
-                      workflows:
-                        - '.github/workflows/submission-tests.yml'
-                      bootstrap:
-                        - 'Cargo.lock'
-                        - 'Cargo.toml'
-                        - 'bootstrap/**'
-                        - 'dependencies.txt'
-                        - 'poetry.lock'
-                        - 'pyproject.toml'
-                      python:
-                        - '**.py'
-                      rust:
-                        - '**.rs'
-                      website:
-                        - 'docs/**'
-
     bootstrap:
-        needs: detect-changes
-        if: >-
-            needs.detect-changes.outputs.bootstrap == 'true' ||
-            needs.detect-changes.outputs.workflows == 'true'
+        # TODO: Run on OSX; Currently issues with alsa-lib
+        # strategy:
+        #     matrix:
+        #         os: [ubuntu-latest, macos-latest]
+        # runs-on: ${{ matrix.os }}
         runs-on: ubuntu-latest
         steps:
             # Checks out repository under $GITHUB_WORKSPACE
             - uses: actions/checkout@v3
-
-            - uses: actions/setup-python@v4
               with:
-                  python-version: 3.x
+                  # Checkout all history, so we can compare to `main`
+                  fetch-depth: 0
 
-            - uses: snok/install-poetry@v1
-              with:
-                  virtualenvs-create: true
-                  virtualenvs-in-project: true
-                  installer-parallel: true
+            # Bootstraps environment, as outlined in `README.md`
+            - name: Bootstrap Environment
+              run: ./bootstrap/bootstrap.sh
 
-            - name: Generate `poetry.lock` files
+            - name: Run Continuous Integration
               run: |
-                  for dir in $(find $GITHUB_WORKSPACE -name pyproject.toml | xargs dirname); do
-                    cd $dir
-                    poetry lock --no-interaction
-                  done
-
-            - name: Load cached Python venv
-              id: cached-poetry-dependencies
-              uses: actions/cache@v3
-              with:
-                  path: bootstrap/.venv
-                  key: venv-${{ runner.os }}-${{ hashFiles('bootstrap/poetry.lock') }}
-
-            - name: Install Python dependencies
-              if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-              run: |
-                  cd bootstrap
-                  poetry install --no-interaction --no-root
-
-            - name: Check pre-commit cache
-              uses: actions/cache@v3
-              with:
-                  path: ~/.cache/pre-commit
-                  key: ${{ runner.os }}-pre-commit-${{ hashFiles('**/.pre-commit-config.yaml') }}
-
-            - name: Run Bootstrap
-              run: |
-                  cd bootstrap
-                  # Ensure package dependencies are available
-                  echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-                  source $(poetry env info --path)/bin/activate
-                  poetry run python main.py
-
-            - name: See if Bootstrap worked
-              run: |
-                  cd bootstrap
-                  # Ensure package dependencies are available
-                  echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-                  source $(poetry env info --path)/bin/activate
-                  poetry run python -m unittest 'main_integration_test.py'
-
-    python:
-        needs: detect-changes
-        if: >-
-            needs.detect-changes.outputs.python == 'true' ||
-            needs.detect-changes.outputs.workflows == 'true'
-        runs-on: ubuntu-latest
-        steps:
-            # Checks out repository under $GITHUB_WORKSPACE
-            - uses: actions/checkout@v3
-
-            - name: Install Ubuntu packages
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install $(cat dependencies.txt)
-
-            - uses: actions/setup-python@v4
-              with:
-                  python-version: 3.x
-
-            - uses: snok/install-poetry@v1
-              with:
-                  virtualenvs-create: true
-                  virtualenvs-in-project: true
-                  installer-parallel: true
-
-            - name: Load cached Python venvs
-              id: cached-poetry-dependencies
-              uses: actions/cache@v3
-              with:
-                  path: |
-                      # Python projects must be listed here
-                      .venv
-                      bg_stats/.venv
-                      bootstrap/.venv
-                      tools/.venv
-                  key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
-
-            - name: Install Python dependencies and run unittests
-              run: |
-                  for test in $(find $GITHUB_WORKSPACE -name "*_test.py" -not -path "**/bootstrap/**" -not -path "**/.venv/**"); do
-                    cd $(dirname $test)
-                    poetry install --no-interaction --no-root
-                    # Ensure package dependencies are available
-                    echo "PYTHONPATH=$PYTHONPATH:$(pwd)" >> $GITHUB_ENV
-                    source $(poetry env info --path)/bin/activate
-                    echo "Running tests for $test:"
-                    poetry run python -m unittest $test
-                  done
-
-    rust:
-        needs: detect-changes
-        if: >-
-            needs.detect-changes.outputs.rust == 'true' ||
-            needs.detect-changes.outputs.workflows == 'true'
-        runs-on: ubuntu-latest
-        steps:
-            # Checks out repository under $GITHUB_WORKSPACE
-            - uses: actions/checkout@v3
-
-            - name: Install Ubuntu packages
-              run: |
-                  sudo apt-get update
-                  sudo apt-get install $(cat dependencies.txt)
-
-            - name: Generate `Cargo.lock` to check cache dependencies
-              run: cargo generate-lockfile
-
-            - name: Check Cargo cache
-              uses: actions/cache@v3
-              with:
-                  path: |
-                      ~/.cargo/bin/
-                      ~/.cargo/registry/index/
-                      ~/.cargo/registry/cache/
-                      ~/.cargo/git/db/
-                      target/
-                  key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-
-            - name: Run Rust core tests
-              run: cargo test
-
-            - name: Run Rust example tests
-              run: cargo test --examples
-
-            - name: Run Rust doc tests
-              run: cargo test --doc
-
-    website:
-        needs: detect-changes
-        if: >-
-            needs.detect-changes.outputs.website == 'true' ||
-            needs.detect-changes.outputs.workflows == 'true'
-        runs-on: ubuntu-latest
-        defaults:
-            run:
-                working-directory: ./docs
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Set up Ruby
-              uses: ruby/setup-ruby@359bebbc29cbe6c87da6bc9ea3bc930432750108
-              with:
-                  working-directory: ./docs
-                  ruby-version: '3.1'
-                  bundler-cache: true
-
-            - name: Ensure Site builds correctly
-              run: |
-                  bundle exec jekyll build
-                  bundle exec htmlproofer ./_site --disable-external --allow-hash-href
+                  # New step runner must re-source Nix Home Manager
+                  . ~/.nix-profile/etc/profile.d/nix.sh
+                  home-manager switch
+                  devenv shell poetry run python ci.py HEAD origin/main --root $GITHUB_WORKSPACE
+              working-directory: bootstrap/

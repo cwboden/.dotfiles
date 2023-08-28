@@ -4,19 +4,14 @@ This can then be queried for that juicy, juicy data.
 """
 import sys
 import textwrap
-from argparse import ArgumentParser
-from argparse import Namespace
+from argparse import ArgumentParser, Namespace
 from pathlib import Path
 from typing import List
 
-from api import BgStats
-from api import Game
-from api import Location
-from api import Play
-from api import Player
-from api import PlayerScore
-from api import SqlTableEntry
 from mysql import connector
+
+from api import (BgStats, Game, Location, Play, Player, PlayerScore,
+                 SqlTableEntry)
 
 
 def parse_args(args: List[str]) -> Namespace:
@@ -150,8 +145,8 @@ def main(args: Namespace) -> None:
 
                 for player_score in play.playerScores:
                     cursor.execute(
-                        # We apply an extra `format()` to `PlayerScore` since we need to know the
-                        # `play_id` for the play we've just committed.
+                        # We apply an extra `format()` to `PlayerScore` since we need to
+                        # know the `play_id` for the play we've just committed.
                         cook_insert_entry_query(player_score).format(play_id)
                     )
 
