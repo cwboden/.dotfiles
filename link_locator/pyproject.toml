@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "link-locator"
+version = "0.1.0"
+description = "Given an address, tells you how many minutes away it is from the nearest Link station."
+authors = ["Carson Boden <carson.boden@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "link_locator"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pyyaml = "^6.0.1"
+api-client = "^1.3.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
