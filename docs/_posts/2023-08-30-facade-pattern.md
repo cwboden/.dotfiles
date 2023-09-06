@@ -1,5 +1,5 @@
 ---
-title: Using the Facade Pattern to Split Tightly-Coupled Services
+title: Using the ***Facade*** Pattern to Split Tightly-Coupled Services
 excerpt: Incrementally transition a monolithic service into multiple, smaller chunks.
 last_modified_at: 2023-08-30T01:02:43
 categories:
@@ -8,6 +8,7 @@ tags:
   - api
   - architecture
   - design-patterns
+  - facade
 ---
 
 As services grow, there are often tendencies to expand existing API surfaces,
@@ -19,15 +20,19 @@ distinct layers.
 
 Let's take, for example, a persisted `StoreSummary` entity which contains a
 myriad of information, though most users only require a small section, like the
-contact information for the manager or the shop's hours. This makes changes to
-the `StoreSummary` class or its associated components *(like a `Controller`)*
-expensive, since it forces downstream users to use the latest definition of
-`StoreSummary`, even if the data they care about is unchanged.
+contact information for the manager or the shop's hours.
+
+This makes changes to the `StoreSummary` class or its associated components
+*(like the Provider)* expensive, since it forces downstream users to use the
+latest definition of `StoreSummary`, even if the data they care about is
+unchanged.
+{: .notice--warning }
 
 This diagram demonstrates some possible "sub-types" of data that are currently
 part of `StoreSummary` but should be split out:
 
 {% mermaid %}
+{% raw %}
 flowchart LR
     SP{{StoreProvider}}
     SS>StoreSummary]
@@ -43,6 +48,7 @@ flowchart LR
     SH>StoreHours]
     ST>StoreTags]
     SN>StoreNotes]
+{% endraw %}
 {% endmermaid %}
 
 Solving this problem can feel difficult at first, since it seems like we'd need
@@ -66,19 +72,23 @@ We do this by:
 1. Extracting the ***Facade*** Provider logic out of the top-level Provider; now
    it can live as a standalone service!
 
+### First Iteration
 Now let's look at an example. Below, we've introduced a ***Facade*** for three
 of our sub-types. The ***Facade*** Providers can each call into `StoreProvider`
 to fetch the data they need, but then only expose the sub-type to callers.
 
 Any user of `StoreContact`, for example, is now explicitly using that sub-type,
 rather than fetching a `StoreSummary` and then fishing for the data it needs.
+
 This has the added benefit of reducing test setup, since we don't need an
 *entire* `StoreSummary` to validate our system's behavior.
+{: .notice--success }
 
 We can also see that these chunks can be done iteratively. For example, users of
 any `StoreNotes` data still currently rely on `StoreSummary` directly:
 
 {% mermaid %}
+{% raw %}
 flowchart LR
     SP{{StoreProvider}}
 
@@ -107,11 +117,13 @@ flowchart LR
 
     SN>StoreNotes]
     SS -.-> SN
+{% endraw %}
 {% endmermaid %}
 
+### Second Iteration
 In the next snapshot of our development process, described by the following
-diagram, we have since created a Facade for `StoreNotes` as well as extracted
-the `StoreContact`/`TagsProviders` out into their own service.
+diagram, we have since created a ***Facade*** for `StoreNotes` as well as
+extracted the `StoreContact`/`TagsProviders` out into their own service.
 
 By this point of development, the `StoreProvider` and the associated
 `StoreSummary` type are completely enveloped by the ***Facade***. Modifications
@@ -124,6 +136,7 @@ following best practices, like consuming their own database. By using the
 existing users.
 
 {% mermaid %}
+{% raw %}
 flowchart LR
     SP{{StoreProvider}}
 
@@ -138,17 +151,18 @@ flowchart LR
 
     SCP{{StoreContactProvider}}
     SC>StoreContact]
-    SCP --> SC
+    SCP ---> SC
 
-    SCP{{StoreTagsProvider}}
+    STP{{StoreTagsProvider}}
     ST>StoreTags]
-    STP --> ST
+    STP ---> ST
 
     SH>StoreHours]
     SHP --> SH
 
     SN>StoreNotes]
     SNP --> SN
+{% endraw %}
 {% endmermaid %}
 
 ## Leveraging Kotlin Delegation
@@ -193,9 +207,12 @@ to function, calling through to the sub-service, though any users that only need
 `StoreStatus` can be migrated to depend directly on `StoreHoursProvider`
 instead.
 
-To sum things up, the Facade Pattern is helpful for:
+{% capture notice-text %}
+To sum things up, the ***Facade*** Pattern is helpful for:
 - Splitting large, tightly-coupled services into smaller chunks incrementally.
-- Easily maintaining backwards compatibility with existing callers of these
-- endpoints.
+- Easily maintaining backwards compatibility with existing callers.
 - Shoring up Providers to take advantage of modern best practices.
-{: .notice--success }
+{% endcapture %}
+<div class="notice--success">
+  {{ notice-text | markdownify }}
+</div>
