@@ -1,0 +1,1005 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Exploring Quest Design in Hearthstone Battlegrounds Season 2 - Carson Boden</title>
+<meta name="description" content="The newly-added quests have added some spice to Battlegrounds. I walk through which parts of the design worked to enhance the game vs. added more of the same.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="Exploring Quest Design in Hearthstone Battlegrounds Season 2">
+<meta property="og:url" content="https://carsonboden.com/video%20games/2022/09/13/hearthstone-battlegrounds-s2.html">
+
+
+  <meta property="og:description" content="The newly-added quests have added some spice to Battlegrounds. I walk through which parts of the design worked to enhance the game vs. added more of the same.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-09-13T00:00:00-07:00">
+
+
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/video%20games/2022/09/13/hearthstone-battlegrounds-s2.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Exploring Quest Design in Hearthstone Battlegrounds Season 2">
+    <meta itemprop="description" content="The newly-added quests have added some spice to Battlegrounds. I walk through which parts of the design worked to enhance the game vs. added more of the same.">
+    <meta itemprop="datePublished" content="2022-09-13T00:00:00-07:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/video%20games/2022/09/13/hearthstone-battlegrounds-s2.html" class="u-url" itemprop="url">Exploring Quest Design in <em>Hearthstone Battlegrounds</em> Season 2
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-09-13T00:00:00-07:00">September 13, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          9 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#success-and-growth-of-battlegrounds">Success and Growth of Battlegrounds</a><ul><li><a href="#brief-summary-of-gameplay">Brief Summary of Gameplay</a></li><li><a href="#previous-expansions">Previous Expansions</a></li><li><a href="#overview-of-quests">Overview of Quests</a></li></ul></li><li><a href="#expanding-player-interaction">Expanding Player Interaction</a><ul><li><a href="#alter-ego">Alter Ego</a></li><li><a href="#devils-in-the-details">Devils in the Details</a></li><li><a href="#teal-tiger-sapphire">Teal Tiger Sapphire</a></li></ul></li><li><a href="#intensifying-existing-strategies">Intensifying Existing Strategies</a><ul><li><a href="#staff-of-origination">Staff of Origination</a></li><li><a href="#the-friends-along-the-way">The Friends Along the Way</a></li><li><a href="#theotars-parasol">Theotar’s Parasol</a></li></ul></li><li><a href="#touching-on-quest-goals">Touching on Quest Goals</a></li><li><a href="#the-future-of-quests">The Future of Quests</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-board.webp" alt="An example playfield of Hearthstone's Battlegrounds mode." />
+</figure>
+
+<table class="notice--info">
+  <tbody>
+    <tr>
+      <td><strong>Release Date:</strong></td>
+      <td>30 Aug 2022</td>
+    </tr>
+    <tr>
+      <td><strong>Developer:</strong></td>
+      <td>Blizzard Entertainment</td>
+    </tr>
+    <tr>
+      <td><strong>Publisher:</strong></td>
+      <td>Activision Blizzard</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="success-and-growth-of-battlegrounds">Success and Growth of <em>Battlegrounds</em></h2>
+<p>After almost 3 years in the running (including Beta access), <em>Hearthstone
+Battlegrounds</em> has become one of the game’s cornerstone modes, largely in part
+to it’s ease of entry.</p>
+
+<p>Unlike the game’s <em>Standard</em> mode, <em>Battlegrounds</em> doesn’t require players to
+build a deck, but instead form their Warband of minions to fight other players
+during the game itself. As a result, there’s not the same disparity between
+casual and long-term players when it comes to a sizeable collection of cards for
+building high-quality decks like there is in <em>Standard</em>.</p>
+
+<p>This makes it easy to invite a friend to jump into a game without needing to
+unlock cards for a given class or buy packs for the cards they’re missing in
+their collection. Better yet, players who haven’t played in a while won’t need
+to craft all their old cards into new ones, but can jump right into the same
+playing field as everyone else!</p>
+
+<h3 id="brief-summary-of-gameplay">Brief Summary of Gameplay</h3>
+<p>In <em>Battlegrounds</em>, players compete against 7 others to be the last one
+standing. Each round consists of two phases.</p>
+
+<p>During the Recruit Phase, players buy minions from Bob’s Tavern to add to their
+Warband. Minions cost 3 Gold, though can later be sold back to Bob for 1 Gold.
+Players start their first turn with 3 Gold, which increases by 1 Gold each turn
+until reaching a max of 10 Gold.</p>
+
+<p>In the Combat Phase, players are pitted 1v1 against a different, random opponent
+in the game. Minions from each player take turns randomly attacking enemies
+until one side has none remaining, at which point the winner attacks the loser.</p>
+
+<p>Players must balance purchasing enough minions to avoid losing in Comabt and
+depleting their health with upgrading Bob’s Tavern to improve the quantity and
+quality of offered minions. Rounds continue, with players fighting different
+opponents until only the victor remains.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-victory.webp" alt="The Battlegrounds victory screen" />
+</figure>
+
+<h3 id="previous-expansions">Previous Expansions</h3>
+<p>Since the initial release in late 2019, Blizzard has added a variety of factions
+to <em>Battlegrounds</em>. The new factions enabled the set of cards in the game
+(previously a fixed list of the 5 available factions) to vary, changing the meta
+each game.</p>
+
+<p class="notice--info">For example, high-health minions become more powerful if Murlocs are not
+present, since Murlocs can consistently get the <strong>Poison</strong> buff, which destroys
+minions when they take any damage.</p>
+
+<p>The new factions also brought in fresh ideas to the format, since the game’s
+cards were first based off of existing cards from <em>Standard Hearthstone</em>. The
+Quilboar faction, for example, added small buff spells called Bloodgems which
+give permanent stats. The Naga, on the other hand, provide Spellcrafts, which
+are more powerful, yet only buff a minion for one turn.</p>
+
+<p>The development team also explored more powerful buffs with their Darkmoon Faire
+expansion. During this special format <em>(no longer available)</em>, players would
+choose one of three powerful spells every four turns, adding it to their hand.
+This format was the standard for <em>Battlegrounds</em> for a while and was later
+sprinkled into about 25% of matches for <em>Battlegrounds</em> Season 1.</p>
+
+<figure class="align-center third">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-might-of-stormwind.webp" alt="Darkmoon Prize: Might of Stormwind" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-gruul-rules.webp" alt="Darkmoon Prize: Gruul Rules" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-give-a-dog-a-bone.webp" alt="Darkmoon Prize: Give a Dog a Bone" />
+  <figcaption>
+    Some examples of Darkmoon Prizes from the Darkmoon Faire expansion.
+  </figcaption>
+</figure>
+
+<h3 id="overview-of-quests">Overview of Quests</h3>
+<p>For those who haven’t played the newest update to <em>Battlegrounds</em>, here’s a
+quick explanation of how Quests work:</p>
+
+<p>On your fourth turn, players are asked to choose from one of three quests. Each
+quest has a goal, like “Lose or tie 3 combats” or “Spend 25 gold” which, once
+completed, gives the player a reward, such as “You only need 2 copies of a
+minion to make it Golden” or “After you Discover a card, get an extra copy of
+it”.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-quest-choices.jpg" alt="The example of the Quest selection options in Battlegrounds." />
+  <figcaption>
+    On Turn 4, players must choose a Quest to help them scale later in the game.
+  </figcaption>
+</figure>
+
+<p>The goals scale slightly based on the relative power of rewards. So, for
+example, “Summon X minions” might be 20 for a lower-impact reward but 30 for a
+higher-impact one. This can incentivize players to choose “worse” rewards if it
+means they’ll get it earlier and can power through the midgame, which often
+times can net a low-placing win.</p>
+
+<p class="notice--info">Remember that getting 4th place or better is typically considered a “Win” (and
+gives a raise in MMR) since there are eight players in each game, so 4th place
+is in the top 50%.</p>
+
+<p>While Quests have no doubt shaken up the meta, I think it’s important to
+consider if the quests are expanding the game by changing the way players build
+their Warbands or if they are instead amplifying existing strategies.</p>
+
+<p>The answer is both! But let’s explore some of the different Quests to see why
+that’s the case.</p>
+
+<h2 id="expanding-player-interaction">Expanding Player Interaction</h2>
+<p>These Quests change how players interact with the game. Players will need to
+adapt their strategy to handle new bonuses (and obstacles) that each Quest
+provides.</p>
+
+<figure class="align-center third">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-alter-ego.png" alt="Battlegrounds Reward: Alter Ego" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-devils-in-the-details.png" alt="Battlegrounds Reward: Devils in the Details" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-teal-tiger-sapphire.png" alt="Battlegrounds Reward: Teal Tiger Sapphire" />
+</figure>
+
+<h3 id="alter-ego">Alter Ego</h3>
+<p>I like Alter Ego because of the interaction with Freeze. If you Freeze a
+buffed minion, it’ll lose the buff next turn, due to the swapping mechanic. But
+similarly, freezing an un-buffed minion will cause it to be buffed the following
+turn.</p>
+
+<p>In this way, players may reconsider which minions they’re Freezing. Perhaps a
+player wants to buy a buffed minion to empower their board and wait for a
+triple, but if they’ll have to Freeze it for next turn, when it won’t have the
+buff, it’s not worth it.</p>
+
+<h3 id="devils-in-the-details">Devils in the Details</h3>
+<p>Initially, this reward feels like a straight buff that you can stack onto the
+right and left minions. It’s possibly good for hard-to-buff cleave minions or
+long-term buff minions that can’t buff themselves.</p>
+
+<p>However, once players begin Freezing important minions they want to buy next
+turn, they’ll realize the devil really <em>is</em> in the details: Those Frozen minions
+each have a chance of being consumed!</p>
+
+<p>Similar to <strong>Alter Ego</strong>, players will rethink how they’ll be Freezing minions.
+Is the Freeze worth it if the minion could be consumed? Is it better to re-roll
+until there’s a good set of stats in the Tavern to absorb instead? The Quest
+changes how player’s deal with the Tavern if they want to maximize their chance
+for a win.</p>
+
+<h3 id="teal-tiger-sapphire">Teal Tiger Sapphire</h3>
+<p>Many players can erroneously get caught in the cycle of spending all of their
+money each turn Refreshing for a specific minion. But with this Quest, players
+are incentivized to!</p>
+
+<p>In Season 1 and earlier of <em>Battlegrounds</em>, committing to rolling for an entire
+turn was a bad move, unless you had multiple pairs you were hoping to triple.
+But now, players can commit to that strategy with a bigger payoff. That perfect
+minion might not always be found, but this can give players an extra edge
+towards piecing together a sweet combo.</p>
+
+<h2 id="intensifying-existing-strategies">Intensifying Existing Strategies</h2>
+<p>Some of the other Quests in the set are powerful, though they serve more to
+empower existing strategies and combos rather than create new player
+experiences.</p>
+
+<p>This isn’t a bad thing; too many complicated Quests can lower the barrier to
+entry that made Battlegrounds so successful. But I think its important for
+designers to consider what future Quests will bring to the game, since expanding
+the experience is what keeps the game fresh.</p>
+
+<figure class="align-center third">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-staff-of-origination.png" alt="Battlegrounds Reward: Staff of Origination" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-friends-along-the-way.png" alt="Battlegrounds Reward: The Friends Along the Way" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-theotars-parasol.png" alt="Battlegrounds Reward: Theotar's Parasol" />
+</figure>
+
+<h3 id="staff-of-origination">Staff of Origination</h3>
+<p>This was the most egregiously powerful-yet-boring card in the new expansion. In
+fact, it was so powerful it got nerfed from giving minions +15/+15 to +12/+12.</p>
+
+<p>At face value, there’s rarely a reason <em>not</em> to choose this card: it gives the
+most amount of stats out of any quest. While, in theory, it falls off compared
+to other Quests once everyone’s minions have been buffed enough, the constant
++12/+12 is enough to get most any build through the midgame, which normally
+means ending up in the top 50%, with a win.</p>
+
+<p>While “Vanilla” cards like this are important for introducing players to the
+power of Quests, I find <strong>Staff of Origination</strong> to be extremely
+one-dimensional. Players aren’t doing much different once this Reward is active.</p>
+
+<h3 id="the-friends-along-the-way">The Friends Along the Way</h3>
+<p>Getting locked into a specific faction is a blessing and a curse with this
+Quest. Most players will likely already be building towards the corresponding
+faction in the Reward, but that could change based on the Quest Goal.</p>
+
+<p>Regardless, though, the Quest offers more of the same, existing <em>Battlegrounds</em>
+experience. The only change in playstyle is the comfort of getting two
+guaranteed cards from a faction each turn (though if you’re <em>not</em> playing to
+that faction, you could treat it as two coins, instead).</p>
+
+<p>Don’t get me wrong, this Quest is still fun to play! And, unlike the first
+iteration of <strong>Staff of Origination</strong>, it isn’t unbalanced, since players might
+not get the specific faction cards they need for their build. But the only
+change in playstyle is forcing players to complete their Quest Goal to get this
+reward.</p>
+
+<h3 id="theotars-parasol">Theotar’s Parasol</h3>
+<p>Another extremely fun idea that mainly serves to empower a few existing cards
+like <strong>Baron Rivendare</strong>, <strong>Soul Juggler</strong>, or any card that doesn’t ever want
+to be attacked.</p>
+
+<figure class="align-center third">
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-baron-rivendare.png" alt="Battlegrounds Minion: Baron Rivendare" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-soul-juggler.png" alt="Battlegrounds Minion: Soul Juggler" />
+  <img src="https://carsonboden.com/assets/img/hearthstone-bg-dread-admiral-eliza.png" alt="Battlegrounds Minion: Dread Admiral Eliza" />
+</figure>
+
+<p>In particular, I’ve found this Quest to amplify the Beasts + <strong>Baron Rivendare</strong>
+build to powerful levels. Though it’s nice that a buffed <strong>Zapp Slywick</strong> can
+still cut through the buff.</p>
+
+<p>While the Quest Reward improves the viability of some builds, it doesn’t force
+the player to change how they’re building the Warband. The Quest itself is fun
+to use, but it doesn’t expand the <em>Battlegrounds</em> experience but rather
+highlights existing strengths.</p>
+
+<h2 id="touching-on-quest-goals">Touching on Quest Goals</h2>
+<p>Since the Quest Goals themselves don’t make players more powerful, they aren’t
+as interesting of a topic to explore on a card-by-card basis.</p>
+
+<p>As a whole, though, I appreciate that the Goals are balanced around the Rewards
+to encourage players to think about how difficult it will be to complete a Goal,
+even if the reward is extremely juicy.</p>
+
+<p>The Goals serve to hinder the player in some ways: Often if you take too long to
+complete a Quest, you’ll quickly fall behind, no matter how good the Reward is.
+(This happened to me in several games.) In this way, the new Quest mechanic
+requires players to commit to their choice, since winning <em>without</em>
+incorporating your Quest is extremely difficult.</p>
+
+<h2 id="the-future-of-quests">The Future of Quests</h2>
+<p>I imagine that the current state of Quests is only the beginning. The developers
+likely have more ideas on Goals and Rewards that will continue to diversify the
+relatively small pool of options, but are seeing how the first wave of Quests
+play out.</p>
+
+<p>Some ways that Quests could change mechanically include:</p>
+<ul>
+  <li>Granting a new / additional Hero Power</li>
+  <li>Awarding special, unique minions</li>
+  <li>Debuffing opponents at the start of Combat</li>
+  <li>Repeatable Goals / Rewards (There’s currently one Quest that does this
+already!)</li>
+</ul>
+
+<p>For Rewards, to keep the system consistent, there will likely be new additions
+that won’t stray far from the script. The Goals need to be completable by all
+heroes (though that could change) which means they can’t rely too much on a
+specific build.</p>
+
+<p>As the Season progresses, I’ll be excited to see if new ideas are introduced or
+if they’ll unveil new Quests in a future Season. In any case, the meta still
+feels fluid thanks to Quests. I’d love to test out the few remaining Quests I
+haven’t seen as well as experiment more with Quests I’ve already tried. Who
+knows what will come out on top? (Though <strong>Poison</strong> still feels very dominant.)</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#collectible-card-game" class="page__taxonomy-item p-category" rel="tag">collectible-card-game</a><span class="sep">, </span>
+    
+      <a href="/tags/#ranked" class="page__taxonomy-item p-category" rel="tag">ranked</a><span class="sep">, </span>
+    
+      <a href="/tags/#strategy" class="page__taxonomy-item p-category" rel="tag">strategy</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#video-games" class="page__taxonomy-item p-category" rel="tag">Video Games</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-09-13T00:00:00-07:00">September 13, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Exploring+Quest+Design+in+%2AHearthstone+Battlegrounds%2A+Season+2%20https%3A%2F%2Fcarsonboden.com%2Fvideo%2520games%2F2022%2F09%2F13%2Fhearthstone-battlegrounds-s2.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fvideo%2520games%2F2022%2F09%2F13%2Fhearthstone-battlegrounds-s2.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fvideo%2520games%2F2022%2F09%2F13%2Fhearthstone-battlegrounds-s2.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/board%20games/programming/2022/08/01/bg-stats.html" class="pagination--pager" title="An Attempt to Analyze Three Years of Board Game Stats
+">Previous</a>
+    
+    
+      <a href="/board%20games/2022/09/22/air-land-sea.html" class="pagination--pager" title="Air, Land, &amp; Sea: An Easy to Learn Game with Incredible Depth
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

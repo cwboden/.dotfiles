@@ -1,0 +1,764 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Easy to use tools for larger codebases - Carson Boden</title>
+<meta name="description" content="I’ve recently started using tools to aid the development of the game I’ve been working on, and I believe CMake, GoogleTest, and Git Hooks are not only incredibly powerful, but also easy to setup and use. I have only just started learning them, but I imagine they will be continuously useful.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="Easy to use tools for larger codebases">
+<meta property="og:url" content="https://carsonboden.com/programming/2018/07/06/easy-to-use-tools-for-larger-codebases.html">
+
+
+  <meta property="og:description" content="I’ve recently started using tools to aid the development of the game I’ve been working on, and I believe CMake, GoogleTest, and Git Hooks are not only incredibly powerful, but also easy to setup and use. I have only just started learning them, but I imagine they will be continuously useful.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2018-07-06T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2022-07-14T00:04:47-07:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/programming/2018/07/06/easy-to-use-tools-for-larger-codebases.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Easy to use tools for larger codebases">
+    <meta itemprop="description" content="I’ve recently started using tools to aid the development of the game I’ve beenworking on, and I believe CMake, GoogleTest, and Git Hooks are not onlyincredibly powerful, but also easy to setup and use. I have only just startedlearning them, but I imagine they will be continuously useful.">
+    <meta itemprop="datePublished" content="2018-07-06T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2022-07-14T00:04:47-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/programming/2018/07/06/easy-to-use-tools-for-larger-codebases.html" class="u-url" itemprop="url">Easy to use tools for larger codebases
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2018-07-06T00:00:00-07:00">July 6, 2018</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          1 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              
+
+            </nav>
+          </aside>
+        
+        <p>I’ve recently started using tools to aid the development of the game I’ve been
+working on, and I believe CMake, GoogleTest, and Git Hooks are not only
+incredibly powerful, but also easy to setup and use. I have only just started
+learning them, but I imagine they will be continuously useful.</p>
+
+<p>CMake was a tool that I’ve heard of many a time, but I was so used to manually
+creating my own Makefiles that I never took the time to learn how to use CMake.
+While I still don’t fully understand the intricacies of the platform, I respect
+the ability for CMake to deploy a build solution regardless of the operating
+system and compiler. Setting it up required me to read through the <a href="https://cmake.org/cmake-tutorial/">basic
+tutorial</a> which mainly introduces concepts,
+but it got me on the right track, and I hope to learn more.</p>
+
+<p>I have always been a proponent of quality testing of code. Not only does it
+ensure that your code works, but more importantly, it shows you where it breaks.
+GoogleTest is a framework that takes tests and presents them in an
+easy-to-visualize way, making problems visible at a glance. Like with CMake, I
+have only scratched the surface with GoogleTest via their
+<a href="https://github.com/google/googletest/blob/master/googletest/README.md">README</a>
+but it was enough to get me started and interested.</p>
+
+<p>I have a bit more experience with Git Hooks, given that I used them last
+semester, but I still believe I have much to learn. The idea behind Git Hooks is
+to integrate a series of scripts that are called whenever a corresponding action
+is called via a contributer (push, commit, etc.). The scripts have a variety of
+uses, but I mainly used them to ensure unit tests are created and working before
+allowing a commit. There are limitless possibilities, though, that can be read
+about on the <a href="https://git-scm.com/book/en/v2/Customizing-Git-Git-Hooks">Git
+Wiki</a>.</p>
+
+<p>Developers have spent tons of time creating frameworks that can provide utility
+to projects large and small. Finding the best of these tools can take work, and
+learning to use them can take more.  But the earlier you start learning, the
+sooner you can learn to use them.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#cmake" class="page__taxonomy-item p-category" rel="tag">cmake</a><span class="sep">, </span>
+    
+      <a href="/tags/#git-hooks" class="page__taxonomy-item p-category" rel="tag">git-hooks</a><span class="sep">, </span>
+    
+      <a href="/tags/#google-test" class="page__taxonomy-item p-category" rel="tag">google-test</a><span class="sep">, </span>
+    
+      <a href="/tags/#tools" class="page__taxonomy-item p-category" rel="tag">tools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-07-14">July 14, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Easy+to+use+tools+for+larger+codebases%20https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2018%2F07%2F06%2Feasy-to-use-tools-for-larger-codebases.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2018%2F07%2F06%2Feasy-to-use-tools-for-larger-codebases.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2018%2F07%2F06%2Feasy-to-use-tools-for-larger-codebases.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="#" class="pagination--pager disabled">Previous</a>
+    
+    
+      <a href="/personal/2018/07/15/sailing-the-belizean-coastline.html" class="pagination--pager" title="Sailing the Belizean coastline
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

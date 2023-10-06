@@ -1,0 +1,1058 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Automating Deployments with BitBucket / GitHub Pipelines - Carson Boden</title>
+<meta name="description" content="A comparison between Monorepos and Multirepos as well as how each can automate deployments in a seamless fashion.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="Automating Deployments with BitBucket / GitHub Pipelines">
+<meta property="og:url" content="https://carsonboden.com/programming/2022/11/20/automating-deployments.html">
+
+
+  <meta property="og:description" content="A comparison between Monorepos and Multirepos as well as how each can automate deployments in a seamless fashion.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-11-20T00:00:00-08:00">
+
+
+
+  <meta property="article:modified_time" content="2022-11-20T15:55:40-08:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/programming/2022/11/20/automating-deployments.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Automating Deployments with BitBucket / GitHub Pipelines">
+    <meta itemprop="description" content="A comparison between Monorepos and Multirepos as well as how each can automate deployments in a seamless fashion.">
+    <meta itemprop="datePublished" content="2022-11-20T00:00:00-08:00">
+    <meta itemprop="dateModified" content="2022-11-20T15:55:40-08:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/programming/2022/11/20/automating-deployments.html" class="u-url" itemprop="url">Automating Deployments with BitBucket / GitHub Pipelines
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-11-20T00:00:00-08:00">November 20, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          10 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#overview-and-goals">Overview and Goals</a><ul><li><a href="#comparing-monorepo-vs-multirepo">Comparing Monorepo vs. Multirepo</a><ul><li><a href="#dependency-management">Dependency Management</a></li><li><a href="#code-reuse--large-scale-refactoring">Code Reuse / Large-Scale Refactoring</a></li><li><a href="#version-information">Version Information</a></li><li><a href="#collaboration-across-teams">Collaboration Across Teams</a></li></ul></li><li><a href="#intended-experience">Intended Experience</a></li><li><a href="#semantic-versioning">Semantic Versioning</a><ul><li><a href="#version-number-components">Version Number Components</a></li></ul></li></ul></li><li><a href="#how-to-split-out-a-maven-package">How to Split Out a Maven Package</a><ul><li><a href="#generating-an-effective-pom">Generating an Effective POM</a></li><li><a href="#understanding-how-snapshots-work">Understanding How SNAPSHOTs Work</a></li><li><a href="#connecting-to-bitbucket">Connecting to BitBucket</a></li><li><a href="#starting-pipelines-from-prs">Starting Pipelines from PRs</a></li><li><a href="#avoiding-a-builddeploy-infinite-loop">Avoiding a Build/Deploy Infinite Loop</a></li></ul></li><li><a href="#how-builds-are-configured-within-dotfiles">How Builds are Configured within .dotfiles</a><ul><li><a href="#using-a-monorepo-for-personal-development">Using a Monorepo for Personal Development</a></li><li><a href="#limiting-scope-during-build--test">Limiting Scope during Build / Test</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>At work, I’ve recently been splitting our many of our services into their own
+repo, migrating from a <a href="https://en.wikipedia.org/wiki/Monorepo">Monorepo</a>-style
+architecture towards an eventual Multirepo-style future.</p>
+
+<p>Since my <code class="language-plaintext highlighter-rouge">.dotfiles</code> repo is a Mono, I wanted to take some time to highlight the
+differences between the types of repos, how to configure automatic deployments,
+and the various challenges between each.</p>
+
+<h1 id="overview-and-goals">Overview and Goals</h1>
+<p>This first section will highlight <em>why</em> someone might want to use a Multirepo
+rather than a Monorepo. I’ll highlight the use case at work compared to my
+personal experience with the <code class="language-plaintext highlighter-rouge">.dotfiles</code> repo and how each makes sense.</p>
+
+<p>In addition, we’ll examine how the developer experience is almost identical for
+both, despite the differences in repository management.</p>
+
+<h2 id="comparing-monorepo-vs-multirepo">Comparing Monorepo vs. Multirepo</h2>
+<p>Both of these terms are used to compare methods of version-control systems, with
+a Monorepo housing multiple different projects or applications and a Multirepo
+splitting independent pieces of code into their on VCS.</p>
+
+<p>Monorepos were first popularized in the early 2000s by tech giants like Google
+and Microsoft, though recently the standard has shifted towards the Multirepo
+approach. Neither is perfect, though the shift (in my opinion) is largely driven
+by the more explicit dependency management and more lightweight management of
+individual Multirepos.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/multirepo-vs-monorepo.png" alt="A comparison between Multirepos and Monorepos" />
+  <figcaption>
+    Monorepos contain multiple projects which are otherwise split in a Multirepo
+    setup.
+  </figcaption>
+</figure>
+
+<p>A Monorepo is also slightly different from a <a href="https://en.wikipedia.org/wiki/Monolithic_application">Monolithic
+application</a>, which
+combines each sub-application into one large project. Monorepos can have
+multiple independent artifacts, they just live under a single version control.</p>
+
+<h3 id="dependency-management">Dependency Management</h3>
+<p>Since Monorepos (often) use only one version of any dependency, builds can be
+easily optimized around the single version in the codebase. However, this can
+sometimes be a challenge if breaking changes to an external library affect only
+part of the codebase. An upgrade can also be limited if <em>any</em> code can’t use the
+latest version, even if other applications are unaffected.</p>
+
+<p>By contrast, Multirepos can each use separate versions of their third-party
+libraries, though this can bloat builds if each application needs to download
+its own version of a dependency. Upgrades can take longer, though, since each
+individual repo will need its dependencies to be updated.</p>
+
+<h3 id="code-reuse--large-scale-refactoring">Code Reuse / Large-Scale Refactoring</h3>
+<p>Monorepos can take advantage of common libraries being easily shared across all
+sub-projects. It’s also simpler to refactor these libraries, as changes must
+propagate across the entire repo in order for the refactor to take effect.</p>
+
+<p>The downside is that refactors must sweep across the entire codebase to take
+effect, while Multirepos can often continue to use old versions of shared
+libraries in order to continue using not-yet-refactored code.</p>
+
+<p>However, the development process for refactors in Multirepos often takes more
+time, since they must wait for refactor changes to be published from the
+common library before they can start  upgrading their existing users.</p>
+
+<h3 id="version-information">Version Information</h3>
+<p>Many Monorepos use a single version across all projects. This is often required
+due to semantic differences updating a Monorepo compared to a Multirepo. For
+example, a refactoring to a common library will update all users across the
+codebase, so in theory the entire Monorepo has been updated.</p>
+
+<p>Within a Multirepo, the common library would be refactored and update it’s
+version, and then dependent libraries can update <em>their</em> versions as they use
+the latest version of the common library.</p>
+
+<p>Per-project versions can provide extra value to users, especially with Semantic
+Versioning (<a href="#semantic-versioning">discussed more below</a>). Though this can be
+lost within a Monorepo if steps are not taken to version sub-modules
+independently.</p>
+
+<h3 id="collaboration-across-teams">Collaboration Across Teams</h3>
+<p>Monorepos enable <em>any</em> teammate to modify <em>any</em> piece of code. That flexible
+code ownership also means teams can improve code “owned” by other teams.</p>
+
+<p>However, a Monorepo also <em>prevents</em> anyone from getting restricted access to the
+repo. It’s all or nothing, which isn’t ideal in a codebase with hundreds or
+thousands of developers.</p>
+
+<p>A Monorepo also means developers will need to download the entire codebase, even
+if they want to make a small, targeted change. When running continuous
+integration / deployment pipelines, this can also increase build times since all
+dependencies need to be re-built and re-tested, even for just a minor change in
+a single application.</p>
+
+<h2 id="intended-experience">Intended Experience</h2>
+<p>Ideally, users of our repos should follow this workflow:</p>
+
+<ol>
+  <li>Developer pushes code in a feature branch to the repo and opens a pull
+request.</li>
+  <li>A CI/CD pipeline is started to verify tests and ensure the code is ready
+to be committed to <code class="language-plaintext highlighter-rouge">main</code>.</li>
+  <li>Developer receives approval from a teammate, their build passes, and they
+merge their branch.</li>
+  <li>
+    <p>Another pipeline is started on <code class="language-plaintext highlighter-rouge">main</code> to publish those changes:</p>
+
+    <ol>
+      <li>Tooling marks it as a stable release, and makes a commit to <code class="language-plaintext highlighter-rouge">git</code> with a
+matching tag.</li>
+      <li>Latest version of the code is compiled into deployable components.</li>
+      <li>Build artifacts are published to corresponding environments</li>
+    </ol>
+  </li>
+  <li>Developer deploys the changes, if manual intervention is needed, or it can
+otherwise be automatically be deployed.</li>
+</ol>
+
+<h2 id="semantic-versioning">Semantic Versioning</h2>
+<p>Semantic versioning is a strategy for assigning version numbers to builds of
+software in such a way that they can properly carry meaning — specifically,
+meaning about how the code changes between versions.</p>
+
+<p>While versions are by design strictly ordered (and therefore can be used as a
+simple sequential version number) they’re most useful for controlling
+interactions between components by defining changes as belonging to one of three
+categories: major, breaking changes; minor, feature adds; and patches or
+bugfixes.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/semantic-versioning.png" alt="The three number values used within Semantic Versioning." />
+  <figcaption>
+    The three number values used within Semantic Versioning. Image courtesy of
+    <a href="https://devopedia.org/images/article/279/7179.1593248779.png">
+      devopedia.org
+    </a>
+  </figcaption>
+</figure>
+
+<p>“Official” documentation is present at <a href="https://semver.org">semver.org</a>, though
+usage may differ as the standard is a well-defined set of guidelines more than an
+explicit set of rules.</p>
+
+<h3 id="version-number-components">Version Number Components</h3>
+<p>Semantic Version numbers (as a baseline) contain three values, separated by
+dots. For example, a valid Semantic Version is <code class="language-plaintext highlighter-rouge">2.14.1</code>. The first value (in
+this case, 2) is the “major” version number, the second (14) is the “minor”
+version, and the final (1) is the “patch” version.</p>
+
+<p>Some versions may contain additional information in a suffix, such as a <code class="language-plaintext highlighter-rouge">git</code>
+commit, though the idea is that the intended <em>code</em> version is the same.</p>
+
+<h1 id="how-to-split-out-a-maven-package">How to Split Out a Maven Package</h1>
+<p>Migrating an existing Maven package from a Monorepo to a Multirepo can be an
+arduous process. This section aims to outline a few helpful steps that can
+simplify the process as well as some concepts about Maven that I learned when
+doing migrations myself.</p>
+
+<h2 id="generating-an-effective-pom">Generating an Effective POM</h2>
+<p>Maven can generate the initial dependencies for a given package into a POM for
+you! This can be a great starting point rather than copy-pasting the existing
+<code class="language-plaintext highlighter-rouge">pom.xml</code> — which likely has more dependencies than you need — or starting from
+scratch.</p>
+
+<p class="notice--info">From IntelliJ, open the context menu (right click, Cmd + click, two-finger
+click, etc.) for the package you want, then navigate to <code class="language-plaintext highlighter-rouge">Maven &gt; Show Effective
+POM</code>.</p>
+
+<p>Alternatively, if you aren’t using IntelliJ, you can create an effective POM
+using the <code class="language-plaintext highlighter-rouge">:effective-pom</code> command. <a href="https://maven.apache.org/plugins/maven-help-plugin/effective-pom-mojo.html">More about it
+here</a>.</p>
+
+<p>Now you can copy that file to use as the starting <code class="language-plaintext highlighter-rouge">pom.xml</code> for the split-off
+package.</p>
+
+<h2 id="understanding-how-snapshots-work">Understanding How SNAPSHOTs Work</h2>
+<p>The <code class="language-plaintext highlighter-rouge">SNAPSHOT</code> suffix on a build version indicates that any built code is
+unstable and could change as the latest version is developed. The suffix is
+appended to the Semantic Version to provide extra context to any users.</p>
+
+<p>During a release, the <code class="language-plaintext highlighter-rouge">SNAPSHOT</code> suffix is removed (e.g. <code class="language-plaintext highlighter-rouge">2.14.1-SNAPSHOT</code>
+becomes <code class="language-plaintext highlighter-rouge">2.14.1</code>) and then the POM is amended to bump up to a <code class="language-plaintext highlighter-rouge">SNAPSHOT</code> release
+of the next version (e.g. <code class="language-plaintext highlighter-rouge">2.14.2-SNAPSHOT</code>).</p>
+
+<p>For more information, Apache has <a href="https://maven.apache.org/guides/getting-started/index.html#What_is_a_SNAPSHOT_version">a guide to how <code class="language-plaintext highlighter-rouge">SNAPSHOT</code>s work
+here</a>.</p>
+
+<h2 id="connecting-to-bitbucket">Connecting to BitBucket</h2>
+<p>There’s an <code class="language-plaintext highlighter-rouge">scm</code> (software configuration management) section in the POM that
+let’s us connect to <code class="language-plaintext highlighter-rouge">git</code> for specific operations. This is needed within the
+BitBucket Pipelines to push out commits or tags with new versions of the code.
+Yours should look something like this:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;scm&gt;</span>
+  <span class="nt">&lt;developerConnection&gt;</span>scm:git:ssh://git@github.com/cwboden/.dotfiles.git<span class="nt">&lt;/developerConnection&gt;</span>
+  <span class="nt">&lt;tag&gt;</span>dotfiles-1.0.0<span class="nt">&lt;/tag&gt;</span>
+<span class="nt">&lt;/scm&gt;</span>
+</code></pre></div></div>
+
+<p>The contents of <code class="language-plaintext highlighter-rouge">developerConnection</code> should (mostly) match the <code class="language-plaintext highlighter-rouge">ssh</code> URI you
+get when cloning the repo; just make sure to add the <code class="language-plaintext highlighter-rouge">scm:</code> prefix!</p>
+
+<h2 id="starting-pipelines-from-prs">Starting Pipelines from PRs</h2>
+<p>BitBucket won’t let you start running Pipelines until you have a
+<code class="language-plaintext highlighter-rouge">bitbucket-pipelines.yml</code> file in the root of the repository. Since you’ll want
+to test the Pipeline changes before committing them, it can be useful to have a
+blank template committed so that pull requests can kick off a Pipeline build.</p>
+
+<p class="notice--info">From the home page of your repository, navigate to <code class="language-plaintext highlighter-rouge">Repository Settings &gt;
+PIPELINES &gt; Settings</code> and follow the instructions to enable Pipelines.
+BitBucket may help you create a blank template, or you can use a copy from
+another repo.</p>
+
+<p>Now, Pipelines should be enabled and can be run on future pull requests. It’s
+worth noting that Pipelines will use the PR’s version of
+<code class="language-plaintext highlighter-rouge">bitbucket-pipelines.yml</code> and you can run any version of a Pipeline using the
+<code class="language-plaintext highlighter-rouge">Run Pipeline</code> button on the Pipelines page of the repo.</p>
+
+<p>For guidance on what a configuration should look like, <a href="https://support.atlassian.com/bitbucket-cloud/docs/configure-bitbucket-pipelinesyml/">their starter
+guide</a>
+is nice for building context. You can then look at the bitbucket-pipeline.yaml
+files in other repos (or even the GitHub Pipelines file in this repo) for a good
+starting point.</p>
+
+<h2 id="avoiding-a-builddeploy-infinite-loop">Avoiding a Build/Deploy Infinite Loop</h2>
+<p>The way Pipelines are configured, we start one on <code class="language-plaintext highlighter-rouge">main</code> anytime a new commit is
+made. This works great when we merge in PRs, but since the <code class="language-plaintext highlighter-rouge">maven-release</code>
+plugin makes commits <strong><em>whenever we run the Pipeline</em></strong> to update the package’s
+version, you can imagine how that can be a problem.</p>
+
+<p>By adding <code class="language-plaintext highlighter-rouge">[skip ci]</code> at the start of those commits, we can ensure this doesn’t
+happen. Add these lines to the maven-release-plugin section of your POM:</p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;plugin&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>maven-release-plugin<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>2.5.3<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;configuration&gt;</span>
+    <span class="c">&lt;!-- Skip JavaDoc processing, since it doesn't support Kotlin code.  --&gt;</span>
+    <span class="nt">&lt;arguments&gt;</span>-Dmaven.javadoc.skip=true<span class="nt">&lt;/arguments&gt;</span>
+    <span class="nt">&lt;scmCommentPrefix&gt;</span>[skip ci] [maven]<span class="nt">&lt;/scmCommentPrefix&gt;</span>
+  <span class="nt">&lt;/configuration&gt;</span>
+<span class="nt">&lt;/plugin&gt;</span>
+</code></pre></div></div>
+
+<p>Optionally, you may want to add the <code class="language-plaintext highlighter-rouge">javadoc</code> disable option if your code is
+having issues building the docs during deployment. If your repo has both Java
+and Kotlin, this is likely the case.</p>
+
+<h1 id="how-builds-are-configured-within-dotfiles">How Builds are Configured within <code class="language-plaintext highlighter-rouge">.dotfiles</code></h1>
+<p>My personal repo (this one, <code class="language-plaintext highlighter-rouge">.dotfiles</code>) has a similar developer experience
+where merged PRs are immediately deployed to the website after passing a GitHub
+pipeline. However, as a Monorepo, there are some differences in why and how it’s
+configured.</p>
+
+<h2 id="using-a-monorepo-for-personal-development">Using a Monorepo for Personal Development</h2>
+<p>Since this repo is for my personal projects (and blog), I don’t need many of
+the advantages of a Multirepo:</p>
+
+<p>As the only one touching the code, I don’t have a need to version it, since
+there aren’t any consumers. I also don’t need to limit access between
+developers, and a Monorepo ensures my wide-sweeping refactors and changes
+propagate across the entire codebase.</p>
+
+<p>And while it would be good practice to split some of my projects into their own
+repo, I’d rather save the time I would be spending maintaining the
+infrastructure for each repo:</p>
+
+<p>For example, I use <code class="language-plaintext highlighter-rouge">git pre-commit</code> hooks to apply style rules, formatting, and
+security checks whenever committing code. It would be expensive to update those
+hooks for every single repo whenever I made a change. As a result, I’ve kept
+everything important in a Monorepo for easy access.</p>
+
+<h2 id="limiting-scope-during-build--test">Limiting Scope during Build / Test</h2>
+<p>To help pare down build and test times, I’ve taken advantage of the
+<code class="language-plaintext highlighter-rouge">dorny/paths-filter</code> Workflow action to determine which files have changed.
+This snippet highlights the important parts:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">detect-changes</span><span class="pi">:</span>
+  <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-latest</span>
+  <span class="na">outputs</span><span class="pi">:</span>
+    <span class="na">bootstrap</span><span class="pi">:</span> <span class="s">${{ steps.filter.outputs.bootstrap }}</span>
+    <span class="na">python</span><span class="pi">:</span> <span class="s">${{ steps.filter.outputs.python }}</span>
+    <span class="na">rust</span><span class="pi">:</span> <span class="s">${{ steps.filter.outputs.rust }}</span>
+    <span class="na">website</span><span class="pi">:</span> <span class="s">${{ steps.filter.outputs.website }}</span>
+  <span class="na">steps</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="na">uses</span><span class="pi">:</span> <span class="s">dorny/paths-filter@v2</span>
+      <span class="na">id</span><span class="pi">:</span> <span class="s">filter</span>
+      <span class="na">with</span><span class="pi">:</span>
+        <span class="na">filters</span><span class="pi">:</span> <span class="pi">|</span>
+          <span class="s">...</span>
+          <span class="s">python:</span>
+            <span class="s">- '*.py'</span>
+          <span class="s">...</span>
+
+<span class="s">...</span>
+
+<span class="na">python</span><span class="pi">:</span>
+  <span class="na">needs</span><span class="pi">:</span> <span class="s">detect-changes</span>
+  <span class="na">if</span><span class="pi">:</span> <span class="s">${{ needs.detect-changes.outputs.python == 'true' }}</span>
+  <span class="s">...</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">outputs</code> section defines variables that can be compared by future steps.
+In the above example, we check if the <code class="language-plaintext highlighter-rouge">python</code> output is <code class="language-plaintext highlighter-rouge">true</code> before running
+the <code class="language-plaintext highlighter-rouge">python</code> build and test Workflow. There are similar definitions for each
+other “application” I have in this repo: <code class="language-plaintext highlighter-rouge">bootstrap</code>, <code class="language-plaintext highlighter-rouge">rust</code>, and <code class="language-plaintext highlighter-rouge">website</code>.</p>
+
+<p>Then, within <code class="language-plaintext highlighter-rouge">filters</code>, we define how to check for changes from <code class="language-plaintext highlighter-rouge">git</code>. For the
+<code class="language-plaintext highlighter-rouge">python</code> output we just see if any <code class="language-plaintext highlighter-rouge">*.py</code> files have changed, though we could
+limit this more explicitly if we want to check for changes within a specific
+directory or project.</p>
+
+<p>As a result, GitHub will only run specific Workflows if changes are actually
+present. No point running our test suite on a project that hasn’t changed!
+(Though be aware of transitive dependencies that won’t be covered by this
+approach.)</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/github-workflow-detect-changes.png" alt="GitHub only runs Workflows when it detects changes." />
+  <figcaption>
+    GitHub only runs Workflows when it detects changes.
+  </figcaption>
+</figure>
+
+<p>In theory, this Workflow could be expanded to update versions of changed
+packages accordingly, though I haven’t had a use for versioning just yet.</p>
+
+<p>For more details about how to use GitHub Workflows, see <a href="https://docs.github.com/en/actions/using-workflows">their
+documentation</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#automation" class="page__taxonomy-item p-category" rel="tag">automation</a><span class="sep">, </span>
+    
+      <a href="/tags/#infrastructure" class="page__taxonomy-item p-category" rel="tag">infrastructure</a><span class="sep">, </span>
+    
+      <a href="/tags/#tools" class="page__taxonomy-item p-category" rel="tag">tools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-11-20">November 20, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Automating+Deployments+with+BitBucket+%2F+GitHub+Pipelines%20https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2022%2F11%2F20%2Fautomating-deployments.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2022%2F11%2F20%2Fautomating-deployments.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2022%2F11%2F20%2Fautomating-deployments.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/board%20games/2022/09/22/air-land-sea.html" class="pagination--pager" title="Air, Land, &amp; Sea: An Easy to Learn Game with Incredible Depth
+">Previous</a>
+    
+    
+      <a href="/video%20games/2023/01/01/my-top-single-player-games.html" class="pagination--pager" title="My Top Single-Player Video Game of each Year
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

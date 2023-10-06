@@ -1,0 +1,1516 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>A Deep Dive into API Design and Auto-Generation - Carson Boden</title>
+<meta name="description" content="How to design and version APIs along with a touch of automated client and server creation.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="A Deep Dive into API Design and Auto-Generation">
+<meta property="og:url" content="https://carsonboden.com/programming/2023/05/03/api-design.html">
+
+
+  <meta property="og:description" content="How to design and version APIs along with a touch of automated client and server creation.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-05-03T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2023-05-05T18:02:43-07:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/programming/2023/05/03/api-design.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="A Deep Dive into API Design and Auto-Generation">
+    <meta itemprop="description" content="How to design and version APIs along with a touch of automated client and server creation.">
+    <meta itemprop="datePublished" content="2023-05-03T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2023-05-05T18:02:43-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/programming/2023/05/03/api-design.html" class="u-url" itemprop="url">A Deep Dive into API Design and Auto-Generation
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#overview">Overview</a><ul><li><a href="#why-its-important">Why it’s Important</a></li><li><a href="#semantic-versioning">Semantic Versioning</a></li><li><a href="#pet-store-sample-api">Pet Store (Sample API)</a></li></ul></li><li><a href="#breaking-api-changes">Breaking API Changes</a><ul><li><a href="#removing-an-operation">Removing an Operation</a></li><li><a href="#adding-a-new-requirement">Adding a New Requirement</a></li><li><a href="#altering-a-parameter--response-field">Altering a Parameter / Response Field</a></li></ul></li><li><a href="#non-breaking-api-changes">Non-Breaking API Changes</a><ul><li><a href="#adding-an-optional-parameter--header">Adding an Optional Parameter / Header</a></li><li><a href="#adding-enum-values">Adding Enum Values</a></li><li><a href="#adding-a-response-field--header">Adding a Response Field / Header</a></li></ul></li><li><a href="#how-to-make-breaking-changes">How to Make Breaking Changes</a><ul><li><a href="#deprecation">Deprecation</a></li><li><a href="#making-major-version-changes">Making Major Version Changes</a></li><li><a href="#versioning-endpoints-and-apis-separately">Versioning Endpoints and APIs Separately</a></li></ul></li><li><a href="#using-openapi">Using OpenAPI</a><ul><li><a href="#language-agnosticism-the-good">Language Agnosticism (the Good)</a></li><li><a href="#language-agnosticism-the-bad">Language Agnosticism (the Bad)</a></li><li><a href="#client-and-server-generation">Client and Server Generation</a></li></ul></li><li><a href="#conclusion">Conclusion</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="overview">Overview</h2>
+<p>An Application Programming Interface (API) is a set of rules that enable
+different applications to communicate with one another. They often expose a list
+of operations and associated types that callers can use to interact with a
+system.</p>
+
+<p>This is much like the <code class="language-plaintext highlighter-rouge">interface</code> pattern in most programming languages. For
+example, imagine this simple API for placing online orders (which we’ll expand
+on later):</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">Order</span> <span class="p">{</span>
+  <span class="n">item_name</span><span class="p">:</span> <span class="nb">String</span><span class="p">,</span>
+  <span class="n">quantity</span><span class="p">:</span> <span class="nb">u32</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c">// The API contract for which users can interact with orders</span>
+<span class="k">trait</span> <span class="n">OrderApi</span> <span class="p">{</span>
+  <span class="c">// Aligns with a POST request to our servers</span>
+  <span class="k">fn</span> <span class="nf">placeOrder</span><span class="p">(</span><span class="n">order</span><span class="p">:</span> <span class="n">Order</span><span class="p">):</span> <span class="n">Order</span>
+
+  <span class="c">// Aligns with a DELETE request to our servers</span>
+  <span class="k">fn</span> <span class="nf">cancelOrder</span><span class="p">(</span><span class="n">order</span><span class="p">:</span> <span class="n">Order</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Any users of our service can write a client which implements <code class="language-plaintext highlighter-rouge">OrderApi</code> to
+interact with and place orders. Although my snippet above is in Rust, there’s
+rarely explicit language limits for APIs.</p>
+
+<p class="notice--info">Most APIs are designed in a <a href="https://en.wikipedia.org/wiki/Representational_state_transfer">RESTful
+way</a>, where
+clients send requests to a specific URL and receive a response from the server,
+indicating the status of their request.
+<br /><br />
+For example, the well-known 404 response indicates that a resource, page, or
+endpoint was not found.</p>
+
+<p>On the backend, our server will also implement <code class="language-plaintext highlighter-rouge">OrderApi</code> so that we can process
+incoming requests from any user’s client.</p>
+
+<p>Because this contract is used externally, our server must <strong><em>always</em></strong> uphold
+the API contract so that anyone who did the work implementing an <code class="language-plaintext highlighter-rouge">OrderApi</code>
+client can continue to call into our service.</p>
+
+<h3 id="why-its-important">Why it’s Important</h3>
+<p>API design is so important because – for external-facing code – we must always
+uphold the contract, otherwise we’ll <strong><em>break</em></strong> all existing users!</p>
+
+<p>To consider things from the other perspective, imagine trying to stand up an
+application using a library that is <strong><em>constantly changing!</em></strong> It’d be
+frustrating having to frequently update your code when the functionality you
+want is largely the same.</p>
+
+<p class="notice--info">For code internal to a single module, we can update both the library and callers
+at once, meaning we don’t have to think about breaking API changes as much.
+<br /><br />
+This is especially true for monorepos, since callers and providers live in one
+place.</p>
+
+<p>As software architecture has largely moved towards microservices (and thus,
+multirepos), caution around API changes has expanded to cover internal APIs,
+too, since code is deployed in more individual units.</p>
+
+<p>For example, consider the differences in these two architectures:</p>
+
+<p><strong>Single Deployment:</strong></p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+flowchart LR
+    M(fooService<br />barService<br />fooBarService)
+    NM(newFooService<br />newBarService<br />newFooBarService)
+    M -..-&gt; NM
+</div>
+
+<p><br />
+<strong>Service-Oriented:</strong></p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+flowchart LR
+    subgraph V0[my-foo-bar-service]
+        F(fooService)
+        B(barService)
+        FB(fooBarService)
+        FB ---&gt; B
+        FB ---&gt; F
+    end
+    subgraph V1[a single service upgrades]
+        NF1(fooService)
+        NB1(newBarService)
+        NFB1(fooBarService)
+        NFB1 ---&gt; NB1
+        NFB1 ---&gt; NF1
+    end
+    subgraph V2[two services upgrade]
+        NF2(newFooService)
+        NB2(barService)
+        NFB2(newFooBarService)
+        NFB2 ---&gt; NB2
+        NFB2 ---&gt; NF2
+    end
+    subgraph V3[all services upgrade]
+        NF3(newFooService)
+        NB3(newBarService)
+        NFB3(newFooBarService)
+        NFB3 ---&gt; NB3
+        NFB3 ---&gt; NF3
+    end
+    V0 -..-&gt; V1
+    V0 -..-&gt; V2
+    V0 -..-&gt; V3
+</div>
+
+<p><br />
+Each of the rounded boxes represents an individually deployed module and how its
+dependencies might change when upgrading. We can see that the fleet of smaller
+deployments has more “state” it must support.</p>
+
+<p>Much of contemporary web architecture has been moving towards making deployment
+units smaller, which can reduce downtime and improve efficiency, especially at
+scale. But we can also see how this architecture has drawbacks without good
+version management.</p>
+
+<p class="notice--info">If we assume that <code class="language-plaintext highlighter-rouge">fooBarService</code> calls into both <code class="language-plaintext highlighter-rouge">fooService</code> and <code class="language-plaintext highlighter-rouge">barService</code>,
+we can better understand how multirepos must respect API contracts more closely.</p>
+
+<p>In the single deployment approach, since we change all of the services
+<em>together</em>, we can make bigger changes, because we know each service will always
+be in alignment. If <code class="language-plaintext highlighter-rouge">fooService</code> changes, we know that <code class="language-plaintext highlighter-rouge">fooBarService</code> will also
+change with it.</p>
+
+<p>By contrast, in a microservice architecture, we have no way of knowing <em>exactly</em>
+which module has been deployed at any given time. If we want to avoid breaking
+changes, we need to handle cases where <em>some</em> of the new services have been
+deployed, but not all.</p>
+
+<p class="notice--warning">This grows with the number of services, since we need to handle <strong><em>any and
+all</em></strong> combinations of deployed services. So how can we easily understand the
+state of any set of deployments?</p>
+
+<h3 id="semantic-versioning">Semantic Versioning</h3>
+<p><a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a> is a way of giving
+meaning to the version of library code to make dependency management more
+digestible. Its core tenants are:</p>
+
+<div class="notice--primary">
+  
+<p>Given a version number <code class="language-plaintext highlighter-rouge">MAJOR.MINOR.PATCH</code>, increment the:</p>
+
+<ol>
+  <li><code class="language-plaintext highlighter-rouge">MAJOR</code> version when you make incompatible API changes</li>
+  <li><code class="language-plaintext highlighter-rouge">MINOR</code> version when you add functionality in a backwards compatible manner</li>
+  <li><code class="language-plaintext highlighter-rouge">PATCH</code> version when you make backwards compatible bug fixes</li>
+</ol>
+
+</div>
+
+<p>A semantic version gives developers better confidence in integration between
+services. A <code class="language-plaintext highlighter-rouge">MINOR</code> or <code class="language-plaintext highlighter-rouge">PATCH</code> version bump won’t impact existing clients,
+though may add new functionality.</p>
+
+<p>It’s only when a <code class="language-plaintext highlighter-rouge">MAJOR</code> version is released that existing clients must adapt to
+breaking changes in the API contract, modifying clients along the way.</p>
+
+<h3 id="pet-store-sample-api">Pet Store (Sample API)</h3>
+<p>To draw some examples, let’s expand on the online order API from above, <a href="https://github.com/OpenAPITools/openapi-generator/tree/master/samples/yaml">taken
+from OpenAPI Generator’ <code class="language-plaintext highlighter-rouge">samples</code>
+library</a>.</p>
+
+<p>This simple API, called <code class="language-plaintext highlighter-rouge">Pet Store</code>, outlines a storefront where users can place
+<code class="language-plaintext highlighter-rouge">Order</code>s for their <code class="language-plaintext highlighter-rouge">Pet</code>s. There are exposed endpoints for most <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD
+operations</a> to
+modify <code class="language-plaintext highlighter-rouge">Pet</code>s and <code class="language-plaintext highlighter-rouge">Order</code>s.</p>
+
+<p class="notice--info">For simplicity, we’re using readable function names <em>(<code class="language-plaintext highlighter-rouge">getPetById()</code>)</em> instead of
+the URI a client would call <em>(<code class="language-plaintext highlighter-rouge">GET /pet/{petId}</code>)</em>.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    Order &lt;|-- OrderStatus
+    Pet &lt;|-- Tag
+    Pet &lt;|-- PetStatus
+    Pet &lt;|-- Category
+    class Order {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        getOrderById(String orderId) Order
+        deleteOrder(String orderId) void
+        placeOrder(Order order) void
+    }
+    class OrderStatus {
+        PLACED
+        APPROVED
+        DELIVERED
+    }
+    class Tag {
+        Int id
+        String name
+    }
+    class Pet {
+        Int id
+        List~Tag~? tags
+        String name
+        PetStatus? status
+        Category? category
+        List~String~? photoUrls
+        getPetById(String petId) Pet
+        deletePet(String petId) void
+        addPet(Pet pet) void
+        updatePet(Pet pet) void
+        findPetsByStatus(Status status) List~Pet~
+        findPetsByTags(List~Tags~ tags) List~Pet~
+    }
+    class Category {
+        Int id
+        String name
+    }
+    class PetStatus {
+        AVAILABLE
+        PENDING
+        SOLD
+    }
+</div>
+
+<p class="notice--warning"><strong><em>Note:</em></strong> I will be using UML-<em>like</em> diagrams in this article. I am not using
+<a href="https://mermaid.js.org/syntax/classDiagram.html#visibility">Mermaid’s explicit class
+syntax</a> for my
+definitions, but rather, leveraging Mermaid as a means of quickly depicting
+examples.</p>
+
+<p>Here is a breakdown of the models and API. We can see some getters/setters for <code class="language-plaintext highlighter-rouge">Order</code> and
+<code class="language-plaintext highlighter-rouge">Pet</code> along with some search capabilities for <code class="language-plaintext highlighter-rouge">Pet</code>s by <code class="language-plaintext highlighter-rouge">Tag</code> or <code class="language-plaintext highlighter-rouge">Category</code>.</p>
+
+<p>Keep a (rough) outline of this application in your head as we outline how the
+contracts can be broken:</p>
+
+<h2 id="breaking-api-changes">Breaking API Changes</h2>
+<p class="notice--success">In general, to consider if a change will be breaking, it can be good to think of
+it from the perspective, <strong>“will an older client be unable to perform existing
+behavior?”</strong></p>
+
+<h3 id="removing-an-operation">Removing an Operation</h3>
+<p>This is probably the most obvious example of a breaking change.</p>
+
+<p>There’s not a good way to deal with a client attempting to call an endpoint that
+no longer exists. The API has changed, so – in the best case – we must make
+that clear with our next semantic version so that users can adapt.</p>
+
+<p class="notice--info">Once functionality has been established in the contract, we must uphold that
+until a new version of the API is cut. (Though <a href="#deprecation">deprecation is an
+option</a>)</p>
+
+<p>For example, let’s say that – for <code class="language-plaintext highlighter-rouge">Pet Store</code> – we realize that we actually
+<em>don’t</em> want users to be able to delete orders <em>(perhaps they’re expecting this
+functionality can cancel their orders, but on our backend, payments are final)</em>.</p>
+
+<p>We would have to declare that as an entirely new, major version of the API,
+which means more pain for users who must adjust each caller:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    Order ..&gt; Removed : BREAKING
+    Order --|&gt; Added : Minor Version
+    class Order {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        getOrderById(String orderId) Order
+        deleteOrder(String orderId) void
+        placeOrder(Order order) void
+    }
+    class Added {
+        getOrdersShippedSince(DateTime date) List~Order~
+    }
+    class Removed {
+        deleteOrder(String orderId) void
+    }
+</div>
+
+<p class="notice--primary">By contrast, <em>adding</em> an operation is not a breaking change, since any existing
+client will not be able to perform functionality that did not yet exist.
+<br /><br />
+For this reason, creating a new version of an API can be a good way to minimize
+the impact of otherwise breaking changes. <em>(<a href="#versioning-endpoints-and-apis-separately">More examples
+below</a>)</em></p>
+
+<h3 id="adding-a-new-requirement">Adding a New Requirement</h3>
+<p>This is another fairly straightforward example. Requirements to existing API
+calls – such as additional parameters – will break the current clients that
+are unaware of such obligations.</p>
+
+<p>Using <code class="language-plaintext highlighter-rouge">Pet Store</code> as an example again, if we were to add a new required field to
+<code class="language-plaintext highlighter-rouge">Order</code>, like <code class="language-plaintext highlighter-rouge">purchaseDate</code>, this would break all existing client calls, since
+they are unaware of this parameter.</p>
+
+<p>We can demote this to a Minor Version change by making the parameter
+<strong>optional</strong>. This is because existing clients can still make a valid version of
+the call.</p>
+
+<p class="notice--danger">When introducing new, optional parameters, it is wise to consider what the
+default value(s) of that field will be, since all existing callers are – by
+contract – able to continue calling the API without it.
+<br /><br />
+ <em>(Just because we <strong>can</strong> add a parameter as an optional field doesn’t mean we
+ <strong>should</strong>.)</em></p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    direction RL
+    BreakingNewOrder &lt;.. Order : BREAKING
+    NonBreakingNewOrder &lt;|-- Order : Minor Version
+    class Order {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+    }
+    class BreakingNewOrder {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        +DateTime purchaseDate
+    }
+    class NonBreakingNewOrder {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        +DateTime? purchaseDate
+    }
+</div>
+
+<p><br />
+We often want parameters to be required in order to reduce the scope of support
+our server needs to provide. As such, it’s important to consider how the surface
+of your models may change over time.</p>
+
+<p class="notice--warning">Another scenario to consider is a new requirement on an already-existing
+parameter. For example, if an incoming <code class="language-plaintext highlighter-rouge">Int</code> parameter, like <code class="language-plaintext highlighter-rouge">id</code>, is now
+required to be <em>positive</em>, that would also be a breaking change.</p>
+
+<h3 id="altering-a-parameter--response-field">Altering a Parameter / Response Field</h3>
+<p>Perhaps the sneakiest of our breaking change examples: even renaming a field is
+a breaking change.</p>
+
+<p>Although the general shape of data in a model may hold for renamed parameters,
+the schema of the models has still changed, so callers must adjust accordingly.</p>
+
+<p class="notice--info">Perhaps <a href="https://en.wiktionary.org/wiki/bikeshedding">bikeshedding</a> on variable
+names <em>is</em> worth it?</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    direction RL
+    AlteredOrder &lt;.. Order : BREAKING
+    class Order {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+    }
+    class AlteredOrder {
+        Int id
+        OrderStatus status
+        Int petId
+        *Int amountOrdered
+        DateTime shipDate
+    }
+</div>
+
+<p><br />
+In this example, we’ve renamed <code class="language-plaintext highlighter-rouge">quantity</code> to <code class="language-plaintext highlighter-rouge">amountOrdered</code> for “readability”,
+<strong>breaking</strong> anyone using the current version of <code class="language-plaintext highlighter-rouge">Pet Store</code>.</p>
+
+<h2 id="non-breaking-api-changes">Non-Breaking API Changes</h2>
+<p>There are ways of introducing changes without breaking the API. However, while
+it may be tempting to use some of these ideas to work around problems with Major
+Version changes, there are – as in much of software engineering – tradeoffs.</p>
+
+<h3 id="adding-an-optional-parameter--header">Adding an Optional Parameter / Header</h3>
+<p>As <a href="#removing-an-operation">mentioned above</a>, we can introduce a new parameter
+without breaking the API by making it optional. In some cases, this is valid,
+but in others it can introduce complexity.</p>
+
+<p>Take this example in <code class="language-plaintext highlighter-rouge">Pet Store</code>:</p>
+
+<p>We add a new, optional <code class="language-plaintext highlighter-rouge">satisfactionRating</code> to users’ <code class="language-plaintext highlighter-rouge">Order</code>s. A <code class="language-plaintext highlighter-rouge">null</code> value
+for this is easy to handle, since we don’t anticipate users to rate every
+<code class="language-plaintext highlighter-rouge">Order</code>, even after introducing this feature.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    direction RL
+    NewOrder &lt;|-- Order : Minor Version
+    class Order {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+    }
+    class NewOrder {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        +Int? satisfactionRating
+    }
+</div>
+
+<p>As a result, this change isn’t so much working around breaking changes, but
+rather a natural evolution of this API.</p>
+
+<p class="notice--danger">Consider, instead, the addition of the <em>optional</em> <code class="language-plaintext highlighter-rouge">purchaseDate</code> field in <a href="#removing-an-operation">the
+example above</a>. It introduces edge behavior because how
+do we handle a <code class="language-plaintext highlighter-rouge">null</code>? We would expect <code class="language-plaintext highlighter-rouge">purchaseDate</code> to be known.</p>
+
+<h3 id="adding-enum-values">Adding Enum Values</h3>
+<p>Adding Enum variants is another way to avoid breaking changes. Existing clients
+will be limited to only the old set of options, but they can still perform any
+operations like they used to.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    RemovedOrderStatus &lt;.. OrderStatus : BREAKING
+    AddedOrderStatus &lt;|-- OrderStatus : Minor Version
+    class OrderStatus {
+        PLACED
+        APPROVED
+        DELIVERED
+    }
+    class RemovedOrderStatus {
+        PLACED
+        APPROVED
+    }
+    class AddedOrderStatus {
+        PLACED
+        APPROVED
+        DELIVERED
+        CANCELLED
+    }
+</div>
+
+<p>Deleting a variant, on the other hand, is a breaking change, since we are
+removing a possible operation. Existing clients will break anytime they send the
+now-removed Enum value.</p>
+
+<p class="notice--primary">Enums can be a great, natural way to vertically iterate on API design without
+needing to cut a new Major Version.
+<br /><br />
+For example, we can add the <code class="language-plaintext highlighter-rouge">CANCELLED</code> variant once we’ve implemented a
+cancellation policy in <code class="language-plaintext highlighter-rouge">Pet Store</code>, all without introducing breaking changes.</p>
+
+<h3 id="adding-a-response-field--header">Adding a Response Field / Header</h3>
+<p>While the client may not understand the information added to the response, it’s
+perfectly valid for a server to return <em>more</em> information than the caller
+expects since response deserializers can drop the extra information.</p>
+
+<p>Since there are no Response-only types in <code class="language-plaintext highlighter-rouge">Pet Store</code> (and thus, any added
+Response field would also change a Request field), in our example, let’s instead
+imagine that we’re adding a new cookie in a header, like so:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">headers:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">'Set-Cookie':</span><span class="w"> </span><span class="err">'myKey=myValue;'</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Any existing client can ignore this cookie (or, depending on the browser, maybe
+still execute it). But there’s no <em>expected</em> behavior from a client based on
+this new Response field.</p>
+
+<p class="notice--info">For this reason, most response fields are considered optional in the API
+contract, since clients should be able to ignore those values when new
+functionality is added.</p>
+
+<h2 id="how-to-make-breaking-changes">How to Make Breaking Changes</h2>
+<p>In some (many) cases, we <em>want</em> to make a breaking change to our API. While we
+should be aware that existing callers must update when migrating to a new
+<code class="language-plaintext highlighter-rouge">MAJOR</code> version, we can take advantage of this larger shift to simplify or
+improve our API surface when forcing users to take on breaking changes.</p>
+
+<p class="notice--info">For example, <a href="#removing-an-operation">as mentioned above</a>, perhaps we <em>want</em> to
+remove the <code class="language-plaintext highlighter-rouge">deleteOrder()</code> behavior from users, as we don’t have the ability to
+cancel orders in our system.</p>
+
+<p>As a reminder, once we’ve exposed an API to users, we must support it for the
+short-term. A new version can remove behavior, though we should give users ample
+time to adapt.</p>
+
+<h3 id="deprecation">Deprecation</h3>
+<p>Deprecation is a step-by-step process to help users prepare for change. In
+general, designers deprecate an endpoint – notifying users that they should
+move away from it – before eventually removing it.</p>
+
+<p>While deprecation is a good way to inform users that an endpoint will no longer
+be supported, it’s also a good way of creating a backlog of items to remove in
+the next <code class="language-plaintext highlighter-rouge">MAJOR</code> version bump.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+flowchart LR
+    V1[[v1.0.0]]
+    V2[[v1.1.0]]
+    V3[[v2.0.0]]
+    V1 -. "deprecation" .-&gt; V2
+    V2 -. "removal" .-&gt; V3
+</div>
+
+<p class="notice--danger">There are many ways to handle deprecation (and eventual removal) of APIs, though
+the key is to respect how existing users may be calling your code.</p>
+
+<p>Typically, endpoints are deprecated for one or more <code class="language-plaintext highlighter-rouge">MINOR</code> versions and are
+then eventually removed in the next <code class="language-plaintext highlighter-rouge">MAJOR</code> version (which can introduce
+breaking changes).</p>
+
+<h3 id="making-major-version-changes">Making Major Version Changes</h3>
+<p>Releasing a new <code class="language-plaintext highlighter-rouge">MAJOR</code> version is a big deal. Existing users must update their
+callers to reflect the new state of the API contract.</p>
+
+<p>As such, it’s important to make our <code class="language-plaintext highlighter-rouge">MAJOR</code> version updates <em>actually</em> major! I
+believe that new <code class="language-plaintext highlighter-rouge">MAJOR</code> versions of APIs should cull deprecated APIs and make
+radical changes as needed, because when else are you going to do it?</p>
+
+<p class="notice--info">A new <code class="language-plaintext highlighter-rouge">MAJOR</code> API version doesn’t <em>need</em> to remove all deprecated APIs, though
+given that Major Version bumps should be performed (relatively) sparingly,
+grouping breaking API changes together is appreciated.</p>
+
+<p>Consider that <code class="language-plaintext highlighter-rouge">MAJOR</code> version bumps will require real, in-depth changes <em>(e.g.
+endpoints may no longer be available)</em>. Thus, since users will already be
+modifying code to support a new major version of the API, grouping breaking
+changes together can make an upgrade more palatable.</p>
+
+<p class="notice--success">Would you rather fix <strong>five</strong> units breaking code of breaking code <em>once</em>, or
+<strong>one</strong> unit of breaking code <em>five</em> times?</p>
+
+<h3 id="versioning-endpoints-and-apis-separately">Versioning Endpoints and APIs Separately</h3>
+<p>Since we want to limit frequency of <code class="language-plaintext highlighter-rouge">MAJOR</code> version bumps, it can sometimes be
+valuable to version endpoints and the API contract itself separately.</p>
+
+<p>For example, since adding a <strong><em>new</em></strong> endpoint is considered a
+backwards-compatible change (and so, only requires a <code class="language-plaintext highlighter-rouge">MINOR</code> version bump), we
+can create an endpoint that <strong><em>extends</em></strong> existing behavior to avoid cutting
+a breaking change to the API contract.</p>
+
+<p>Look at how a new endpoint allows us to add a required <code class="language-plaintext highlighter-rouge">purchaseDate</code> field
+<em>without</em> cutting a breaking change to the API:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    direction RL
+    BreakingNewOrder &lt;.. Order : BREAKING
+    NonBreakingNewOrder &lt;|-- Order : Minor Version
+    class Order {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        getOrderById(String orderId) Order
+        deleteOrder(String orderId) void
+        placeOrder(Order order) void
+    }
+    class BreakingNewOrder {
+        +DateTime purchaseDate
+    }
+    class NonBreakingNewOrder {
+        +placeOrderV2(Order order, DateTime purchaseDate) void
+    }
+</div>
+
+<p><br />
+We can alternatively do this by defining a new, renamed type of the <code class="language-plaintext highlighter-rouge">Order</code>
+model:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    class OrderV2 {
+        Int id
+        OrderStatus status
+        Int petId
+        Int quantity
+        DateTime shipDate
+        +DateTime purchaseDate
+        getOrderById(String orderId) Order
+        deleteOrder(String orderId) void
+        placeOrder(Order order) void
+    }
+</div>
+
+<p><br />
+Existing callers of <code class="language-plaintext highlighter-rouge">Order</code> endpoints should still work as intended (and, to
+recall, <strong><em>must</em></strong> be supported). In the meantime, users can upgrade and use
+<code class="language-plaintext highlighter-rouge">OrderV2</code> to take advantage of new behavior.</p>
+
+<p class="notice--danger">The downside of this approach is that multiple variants of a call must be
+supported at once.
+<br /><br />
+Similar to adding an optional requirement, we must still decide what we do with
+orders that <em>don’t</em> provide a <code class="language-plaintext highlighter-rouge">purchaseDate</code>, since – according to the API
+contract – we <strong><em>must</em></strong> support callers of the old endpoint unless we cut a
+breaking change.</p>
+
+<h2 id="using-openapi">Using OpenAPI</h2>
+<p>OpenAPI <em>(formerly known as Swagger)</em> is a specification for writing APIs for
+both client- and server-side consumption.</p>
+
+<p>Path templates (like <code class="language-plaintext highlighter-rouge">GET /order/{orderId}</code>) and data types (also called models)
+are defined to indicate how providers of the API should respond to callers as
+well as how users should expect the API to behave.</p>
+
+<p>For example, here’s <a href="https://github.com/OpenAPITools/openapi-generator/tree/master/samples/yaml">the complete specification of <code class="language-plaintext highlighter-rouge">Pet
+Store</code></a>.</p>
+
+<h3 id="language-agnosticism-the-good">Language Agnosticism (the Good)</h3>
+<p>The OpenAPI specs are designed to be language agnostic so that any user can
+define a client or server which meets the specification.</p>
+
+<p class="notice--primary">The spec is just a contract – much like an <code class="language-plaintext highlighter-rouge">interface</code> – that can be
+implemented for seamless interaction between server and client.</p>
+
+<p>The advantages are that front- and back-end implementations can be built in any
+type of infrastructure, so long as the contract is respected. This makes it
+easier to grow a userbase by lifting a limit on language.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+flowchart LR
+    S&gt;openapi-spec.yml]
+    C1[[Client.kt]]
+    C2[[Client.rs]]
+    C3[[Client.ts]]
+    S --&gt; C1
+    S --&gt; C2
+    S --&gt; C3
+</div>
+
+<p><br />
+This general-purpose format also encourages auto-generation, like via
+<code class="language-plaintext highlighter-rouge">openapi-generator</code>, since REST clients and server stubs are trivial to
+implement in most cases.  This makes taking on new versions much simpler.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+
+flowchart LR
+    S1&gt;1.0.0-spec.yml]
+    S2&gt;1.1.0-spec.yml]
+    S3&gt;2.0.0-spec.yml]
+    G{{openapi-generator}}
+    S1 --&gt; G
+    S2 --&gt; G
+    S3 --&gt; G
+    C[[ClientLibrary]]
+    G --&gt; C
+
+</div>
+
+<h3 id="language-agnosticism-the-bad">Language Agnosticism (the Bad)</h3>
+<p>Unfortunately, across languages, there may not be the common understanding of
+types that’s present in the OpenAPI spec.</p>
+
+<p>For example, Kotlin and Rust might understand differences between sized,
+numerical values, but TypeScript only sees everything as a <code class="language-plaintext highlighter-rouge">number</code>:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+classDiagram
+    direction LR
+    OrderIdKt .. OrderIdRs
+    OrderIdRs .. OrderIdTs
+    class OrderIdKt {
+        UByte id8
+        UShort id16
+        UInt id32
+        ULong id64
+    }
+    class OrderIdRs {
+        u8 id8
+        u16 id16
+        u32 id32
+        u64 id64
+    }
+    class OrderIdTs {
+        number id8
+        number id16
+        number id32
+        number id64
+    }
+</div>
+
+<p><br />
+Additionally, hand-rolled clients might provide additional semantics due to
+understood behavior by the author.</p>
+
+<p>A common example would be returning <code class="language-plaintext highlighter-rouge">null</code> instead of a 404 error for <code class="language-plaintext highlighter-rouge">GET</code>
+operations, since <code class="language-plaintext highlighter-rouge">null</code> often carries a clearer meaning than an error in code:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+
+flowchart TB
+    H[[HandrolledClient]]
+    C1(Server returns NOT_FOUND)
+    H -. "GET /order/{orderId}" .-&gt; C1
+    C1 --&gt; E1{{ returns NULL }}
+    G[[GeneratedClient]]
+    C2(Server returns NOT_FOUND)
+    G -. "GET /order/{orderId}" .-&gt; C2
+    C2 --&gt; E2{{ raises 404 Exception }}
+
+</div>
+
+<p><br />
+This can add additional cost to supporting auto-generated clients, though
+wrapper types can be used to keep the custom behavior:</p>
+
+<div class="language-rust highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">ClientWrapper</span> <span class="p">{</span>
+  <span class="n">clientApi</span><span class="p">:</span> <span class="n">ClientApi</span>
+<span class="p">}</span>
+
+<span class="k">impl</span> <span class="n">OrderApi</span> <span class="k">for</span> <span class="n">ClientWrapper</span> <span class="p">{</span>
+  <span class="k">pub</span> <span class="k">fn</span> <span class="nf">getOrder</span><span class="p">(</span><span class="k">self</span><span class="p">,</span> <span class="n">orderId</span><span class="p">:</span> <span class="nb">u32</span><span class="p">):</span> <span class="n">Result</span><span class="o">&lt;</span><span class="nb">Option</span><span class="o">&lt;</span><span class="n">Order</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
+    <span class="k">match</span> <span class="p">(</span><span class="k">self</span><span class="py">.clientApi</span><span class="nf">.getOrder</span><span class="p">(</span><span class="n">orderId</span><span class="p">))</span> <span class="p">{</span>
+      <span class="c">// Successful responses are returned</span>
+      <span class="nf">Ok</span><span class="p">(</span><span class="n">response</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="nf">Ok</span><span class="p">(</span><span class="nf">Some</span><span class="p">(</span><span class="n">response</span><span class="py">.order</span><span class="p">)),</span>
+
+      <span class="c">// Cast 404s to an empty `Option`</span>
+      <span class="nf">Err</span><span class="p">(</span><span class="nn">HttpResponse</span><span class="p">::</span><span class="n">NOT_FOUND</span><span class="p">)</span> <span class="k">=&gt;</span> <span class="nf">Ok</span><span class="p">(</span><span class="nb">None</span><span class="p">),</span>
+
+      <span class="c">// Other errors are raised normally</span>
+      <span class="n">error</span> <span class="k">=&gt;</span> <span class="n">error</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="client-and-server-generation">Client and Server Generation</h3>
+<p>We can use <code class="language-plaintext highlighter-rouge">openapi-generator</code> to produce both clients and server stubs based on
+a spec. This can be a powerful way of reducing boilerplate code required by
+engineers to support your endpoints.</p>
+
+<p class="notice--info">A detailed guide on how to setup the generator can be found on <a href="https://github.com/OpenAPITools/openapi-generator#1---installation">their Github
+page, here</a>.</p>
+
+<p>While various generators have mixed support (which is why I hesitate to dive
+deep into a specific generator for this article), hopefully it’s been made clear
+the incentives of generation and why clear definitions of APIs via a spec is
+preferred.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+<p>Regardless of your method of <em>implementing</em> APIs, its important to consider how
+your public interfaces may change over time so that they can be modified in a
+way that minimizes impact on users.</p>
+
+<p>While we can utilize techniques to circumvent the need to create breaking API
+changes, we must be aware of the tradeoffs made to avoid a break. A <code class="language-plaintext highlighter-rouge">null</code> value
+is not always easy to handle in a robust way from the backend.</p>
+
+<p>Once we make a functionality public, we <strong><em>must</em></strong> support its callers until
+cutting a new <code class="language-plaintext highlighter-rouge">MAJOR</code> version. And while breaking API changes can be avoided,
+sometimes it’s important to force users to take on changes to reduce the scope
+of supportability.</p>
+
+<p>Don’t be afraid to cut a new <code class="language-plaintext highlighter-rouge">MAJOR</code> version of your API, but be aware of the
+impact it may have on users, internal and external.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#api" class="page__taxonomy-item p-category" rel="tag">api</a><span class="sep">, </span>
+    
+      <a href="/tags/#infrastructure" class="page__taxonomy-item p-category" rel="tag">infrastructure</a><span class="sep">, </span>
+    
+      <a href="/tags/#open-api" class="page__taxonomy-item p-category" rel="tag">open-api</a><span class="sep">, </span>
+    
+      <a href="/tags/#rust" class="page__taxonomy-item p-category" rel="tag">rust</a><span class="sep">, </span>
+    
+      <a href="/tags/#swagger" class="page__taxonomy-item p-category" rel="tag">swagger</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-05-06">May 6, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=A+Deep+Dive+into+API+Design+and+Auto-Generation%20https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2023%2F05%2F03%2Fapi-design.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2023%2F05%2F03%2Fapi-design.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2023%2F05%2F03%2Fapi-design.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/programming/2023/04/06/jekyll-pages.html" class="pagination--pager" title="A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+">Previous</a>
+    
+    
+      <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" class="pagination--pager" title="Exploring the Souls-like Genre via Death’s Door and TUNIC
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/03/08/neon-white-level-walkthrough.html" rel="permalink">Exploring: The Level Design of <em>Neon White</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-08T00:00:00-08:00">March 8, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

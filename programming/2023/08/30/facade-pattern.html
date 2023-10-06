@@ -1,0 +1,937 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Using the Facade Pattern to Split Tightly-Coupled Services - Carson Boden</title>
+<meta name="description" content="Incrementally transition a monolithic service into multiple, smaller chunks.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="Using the Facade Pattern to Split Tightly-Coupled Services">
+<meta property="og:url" content="https://carsonboden.com/programming/2023/08/30/facade-pattern.html">
+
+
+  <meta property="og:description" content="Incrementally transition a monolithic service into multiple, smaller chunks.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-08-30T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2023-08-29T18:02:43-07:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/programming/2023/08/30/facade-pattern.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Using the Facade Pattern to Split Tightly-Coupled Services">
+    <meta itemprop="description" content="Incrementally transition a monolithic service into multiple, smaller chunks.">
+    <meta itemprop="datePublished" content="2023-08-30T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2023-08-29T18:02:43-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/programming/2023/08/30/facade-pattern.html" class="u-url" itemprop="url">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          3 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#taking-advantage-of-facades">Taking Advantage of Facades</a><ul><li><a href="#first-iteration">First Iteration</a></li><li><a href="#second-iteration">Second Iteration</a></li></ul></li><li><a href="#leveraging-kotlin-delegation">Leveraging Kotlin Delegation</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>As services grow, there are often tendencies to expand existing API surfaces,
+rather than breaking contexts apart. This results in more tightly-coupled
+services which should be broken apart as the bloated system matures into more
+distinct layers.</p>
+
+<h2 id="taking-advantage-of-facades">Taking Advantage of <strong><em>Facades</em></strong></h2>
+
+<p>Let’s take, for example, a persisted <code class="language-plaintext highlighter-rouge">StoreSummary</code> entity which contains a
+myriad of information, though most users only require a small section, like the
+contact information for the manager or the shop’s hours.</p>
+
+<p class="notice--warning">This makes changes to the <code class="language-plaintext highlighter-rouge">StoreSummary</code> class or its associated components
+<em>(like the Provider)</em> expensive, since it forces downstream users to use the
+latest definition of <code class="language-plaintext highlighter-rouge">StoreSummary</code>, even if the data they care about is
+unchanged.</p>
+
+<p>This diagram demonstrates some possible “sub-types” of data that are currently
+part of <code class="language-plaintext highlighter-rouge">StoreSummary</code> but should be split out:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+
+flowchart LR
+    SP{{StoreProvider}}
+    SS&gt;StoreSummary]
+
+    SP --&gt; SS
+
+    SS -.-&gt; SC
+    SS -.-&gt; ST
+    SS -.-&gt; SH
+    SS -.-&gt; SN
+
+    SC&gt;StoreContact]
+    SH&gt;StoreHours]
+    ST&gt;StoreTags]
+    SN&gt;StoreNotes]
+
+</div>
+
+<p>Solving this problem can feel difficult at first, since it seems like we’d need
+a sweeping change to split-out and convert all users of <code class="language-plaintext highlighter-rouge">StoreSummary</code> to
+instead use their sub-type. Plus, how can we make these changes mechanical to
+maintain parity before and after the split?</p>
+
+<p class="notice--success">This is where the <strong><em>Facade Pattern</em></strong> helps us out. By inserting a layer
+between <code class="language-plaintext highlighter-rouge">StoreProvider</code> and its users, we can restrict the API surface as needed
+so that callers can work with only the necessary data.</p>
+
+<p>We do this by:</p>
+
+<ol>
+  <li>Identifying the sub-types of <code class="language-plaintext highlighter-rouge">StoreSummary</code> based on its use-cases elsewhere in
+the code. <em>(This can also be done iteratively, breaking off small chunks as
+needed.)</em></li>
+  <li>Inserting a <strong><em>Facade</em></strong> Provider between <code class="language-plaintext highlighter-rouge">StoreProvider</code> and any sub-types.</li>
+  <li>Converting users of the top-level Provider to use the sub-type-specific
+<strong><em>Facade</em></strong>.</li>
+  <li>Extracting the <strong><em>Facade</em></strong> Provider logic out of the top-level Provider; now
+it can live as a standalone service!</li>
+</ol>
+
+<h3 id="first-iteration">First Iteration</h3>
+<p>Now let’s look at an example. Below, we’ve introduced a <strong><em>Facade</em></strong> for three
+of our sub-types. The <strong><em>Facade</em></strong> Providers can each call into <code class="language-plaintext highlighter-rouge">StoreProvider</code>
+to fetch the data they need, but then only expose the sub-type to callers.</p>
+
+<p>Any user of <code class="language-plaintext highlighter-rouge">StoreContact</code>, for example, is now explicitly using that sub-type,
+rather than fetching a <code class="language-plaintext highlighter-rouge">StoreSummary</code> and then fishing for the data it needs.</p>
+
+<p class="notice--success">This has the added benefit of reducing test setup, since we don’t need an
+<em>entire</em> <code class="language-plaintext highlighter-rouge">StoreSummary</code> to validate our system’s behavior.</p>
+
+<p>We can also see that these chunks can be done iteratively. For example, users of
+any <code class="language-plaintext highlighter-rouge">StoreNotes</code> data still currently rely on <code class="language-plaintext highlighter-rouge">StoreSummary</code> directly:</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+
+flowchart LR
+    SP{{StoreProvider}}
+
+    SP &lt;-.-&gt; SCP
+    SP &lt;-.-&gt; STP
+    SP &lt;-.-&gt; SHP
+
+    subgraph facade
+        direction LR
+        SCP{{StoreContactProvider}}
+        STP{{StoreTagsProvider}}
+        SHP{{StoreHoursProvider}}
+    end
+
+    SC&gt;StoreContact]
+    SCP --&gt; SC
+
+    ST&gt;StoreTags]
+    STP --&gt; ST
+
+    SH&gt;StoreHours]
+    SHP --&gt; SH
+
+    SS&gt;StoreSummary]
+    SP --&gt; SS
+
+    SN&gt;StoreNotes]
+    SS -.-&gt; SN
+
+</div>
+
+<h3 id="second-iteration">Second Iteration</h3>
+<p>In the next snapshot of our development process, described by the following
+diagram, we have since created a <strong><em>Facade</em></strong> for <code class="language-plaintext highlighter-rouge">StoreNotes</code> as well as
+extracted the <code class="language-plaintext highlighter-rouge">StoreContact</code>/<code class="language-plaintext highlighter-rouge">TagsProviders</code> out into their own service.</p>
+
+<p>By this point of development, the <code class="language-plaintext highlighter-rouge">StoreProvider</code> and the associated
+<code class="language-plaintext highlighter-rouge">StoreSummary</code> type are completely enveloped by the <strong><em>Facade</em></strong>. Modifications
+to <code class="language-plaintext highlighter-rouge">StoreSummary</code> are less invasive, as we only need to update their usage in
+the <code class="language-plaintext highlighter-rouge">StoreNotes</code>/<code class="language-plaintext highlighter-rouge">HoursProviders</code>.</p>
+
+<p>Furthermore, the two extracted Providers now own their data and can start
+following best practices, like consuming their own database. By using the
+<strong><em>Facade</em></strong>, it’s easier to stradle the in-between state without breaking any
+existing users.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+
+flowchart LR
+    SP{{StoreProvider}}
+
+    SP &lt;-.-&gt; SHP
+    SP &lt;-.-&gt; SNP
+
+    subgraph facade
+        direction LR
+        SHP{{StoreHoursProvider}}
+        SNP{{StoreNotesProvider}}
+    end
+
+    SCP{{StoreContactProvider}}
+    SC&gt;StoreContact]
+    SCP ---&gt; SC
+
+    STP{{StoreTagsProvider}}
+    ST&gt;StoreTags]
+    STP ---&gt; ST
+
+    SH&gt;StoreHours]
+    SHP --&gt; SH
+
+    SN&gt;StoreNotes]
+    SNP --&gt; SN
+
+</div>
+
+<h2 id="leveraging-kotlin-delegation">Leveraging Kotlin Delegation</h2>
+
+<p>Finally, while it’s often best practice to split these services apart, it can
+also often be necessary to maintain the existing, tightly-coupled endpoints that
+are used by legacy systems.</p>
+
+<p>Thankfully, Kotlin’s delegation pattern can make this a breeze by allowing us to
+extend the old top-level Provider class by delegating to our newly-extracted
+Providers. Let’s use our <code class="language-plaintext highlighter-rouge">StoreProvider</code> as an example once more:</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">IStoreHoursProvider</span> <span class="p">{</span>
+  <span class="k">fun</span> <span class="nf">getStoreHours</span><span class="p">(</span><span class="n">storeId</span><span class="p">:</span> <span class="nc">StoreId</span><span class="p">):</span> <span class="nc">StoreHours</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ## OLD IMPLEMENTATION ##</span>
+<span class="nd">@Service</span>
+<span class="kd">class</span> <span class="nc">StoreProvider</span> <span class="p">:</span> <span class="nc">IStoreHoursProvider</span> <span class="p">{</span>
+  <span class="k">override</span> <span class="k">fun</span> <span class="nf">getStoreHours</span><span class="p">(</span><span class="n">storeId</span><span class="p">:</span> <span class="nc">StoreId</span><span class="p">):</span> <span class="nc">StoreHours</span> <span class="p">{</span>
+    <span class="c1">// pseudo-implementation</span>
+    <span class="n">dbAccessor</span><span class="p">.</span><span class="n">masterConnection</span><span class="p">.</span><span class="nf">useWith</span> <span class="p">{</span> <span class="n">conn</span> <span class="p">-&gt;</span>
+      <span class="nc">FluentStatement</span><span class="p">.</span><span class="nf">fromSql</span><span class="p">(</span><span class="nc">SOME_ACCESS_STATEMENT</span><span class="p">)</span>
+          <span class="p">.</span><span class="nf">onConnection</span><span class="p">(</span><span class="n">conn</span><span class="p">).</span><span class="nf">useWith</span> <span class="p">{</span>
+        <span class="n">it</span><span class="p">.</span><span class="nf">executeQuery</span><span class="p">().</span><span class="nf">toStoreHours</span><span class="p">()</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// ## NEW IMPLEMENTATION ##</span>
+<span class="nd">@Service</span>
+<span class="kd">class</span> <span class="nc">StoreProvider</span><span class="p">(</span>
+  <span class="k">private</span> <span class="kd">val</span> <span class="py">storeHoursProvider</span><span class="p">:</span> <span class="nc">StoreHoursProvider</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">:</span> <span class="nc">IStoreHoursProvider</span> <span class="k">by</span> <span class="n">storeHoursProvider</span> <span class="c1">// exposes getStoreHours()</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">StoreProvider</code> uses the given <code class="language-plaintext highlighter-rouge">StoreHoursProvider</code> as its delegate to
+implement <code class="language-plaintext highlighter-rouge">IStoreHoursProvider</code>. Legacy calls to <code class="language-plaintext highlighter-rouge">StoreProvider</code> will continue
+to function, calling through to the sub-service, though any users that only need
+<code class="language-plaintext highlighter-rouge">StoreStatus</code> can be migrated to depend directly on <code class="language-plaintext highlighter-rouge">StoreHoursProvider</code>
+instead.</p>
+
+<div class="notice--success">
+  
+<p>To sum things up, the <strong><em>Facade</em></strong> Pattern is helpful for:</p>
+<ul>
+  <li>Splitting large, tightly-coupled services into smaller chunks incrementally.</li>
+  <li>Easily maintaining backwards compatibility with existing callers.</li>
+  <li>Shoring up Providers to take advantage of modern best practices.</li>
+</ul>
+
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#api" class="page__taxonomy-item p-category" rel="tag">api</a><span class="sep">, </span>
+    
+      <a href="/tags/#architecture" class="page__taxonomy-item p-category" rel="tag">architecture</a><span class="sep">, </span>
+    
+      <a href="/tags/#design-patterns" class="page__taxonomy-item p-category" rel="tag">design-patterns</a><span class="sep">, </span>
+    
+      <a href="/tags/#facade" class="page__taxonomy-item p-category" rel="tag">facade</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-08-30">August 30, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Using+the+%2A%2A%2AFacade%2A%2A%2A+Pattern+to+Split+Tightly-Coupled+Services%20https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2023%2F08%2F30%2Ffacade-pattern.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2023%2F08%2F30%2Ffacade-pattern.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2023%2F08%2F30%2Ffacade-pattern.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" class="pagination--pager" title="Exploring the Souls-like Genre via Death’s Door and TUNIC
+">Previous</a>
+    
+    
+      <a href="#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          19 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          17 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          7 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/03/08/neon-white-level-walkthrough.html" rel="permalink">Exploring: The Level Design of <em>Neon White</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-08T00:00:00-08:00">March 8, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

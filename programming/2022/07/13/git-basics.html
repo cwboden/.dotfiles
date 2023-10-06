@@ -1,0 +1,919 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>How git works (from a work presentation) - Carson Boden</title>
+<meta name="description" content="A text-only version of a talk I gave at work outlining its basic workflows and core technical concepts.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="How git works (from a work presentation)">
+<meta property="og:url" content="https://carsonboden.com/programming/2022/07/13/git-basics.html">
+
+
+  <meta property="og:description" content="A text-only version of a talk I gave at work outlining its basic workflows and core technical concepts.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-07-13T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2022-07-14T00:14:56-07:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/programming/2022/07/13/git-basics.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="How git works (from a work presentation)">
+    <meta itemprop="description" content="A text-only version of a talk I gave at work outlining its basic workflows and core technical concepts.">
+    <meta itemprop="datePublished" content="2022-07-13T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2022-07-14T00:14:56-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/programming/2022/07/13/git-basics.html" class="u-url" itemprop="url">How <code class="language-plaintext highlighter-rouge">git</code> works <em>(from a work presentation)</em>
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-07-13T00:00:00-07:00">July 13, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          6 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#common-workflows">Common Workflows</a><ul><li><a href="#gitflow">Gitflow</a></li><li><a href="#feature-branches-preferred">Feature Branches (Preferred)</a></li><li><a href="#forking">Forking</a></li></ul></li><li><a href="#other-important-concepts">Other Important Concepts</a><ul><li><a href="#branches">Branches</a></li><li><a href="#merging">Merging</a></li><li><a href="#merge-commits">Merge Commits</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p>There are plenty of guides to using <code class="language-plaintext highlighter-rouge">git</code> all around the web. Why should I add
+another drop to a vast ocean of resources?</p>
+
+<p>Well, as someone who’s professional experience with
+<a href="https://en.wikipedia.org/wiki/Version_control">VCS</a> has only involved
+<a href="https://www.mercurial-scm.org/">Mercurial</a>, I wanted to give myself a deeper
+understand of a tool I was going to be using daily. Furthermore, <a href="https://onlinelibrary.wiley.com/doi/abs/10.1002/acp.3410">research
+shows</a> that teaching
+others improves one’s understanding of the taught material.</p>
+
+<p>When I was offered the chance to give a presentation on <code class="language-plaintext highlighter-rouge">git</code> at work, I took it
+to build my own understanding, and, hopefully, my colleagues’ as well. While
+this won’t be the <em>most</em> comprehensive guide on <code class="language-plaintext highlighter-rouge">git</code>, I wanted to highlight my
+learnings to myself and to you, dear reader.</p>
+
+<p class="notice--info">This guide will assume you have basic understandings of <em>why</em> developers use
+<code class="language-plaintext highlighter-rouge">git</code>, though will still dive into “basic” topics that I find interesting from a
+technical or usability standpoint.</p>
+
+<h2 id="common-workflows">Common Workflows</h2>
+<p>Most developers use a single, centralized repository that all individuals <code class="language-plaintext highlighter-rouge">push</code>
+and <code class="language-plaintext highlighter-rouge">pull</code> from. But aside from that, there’s rarely a “one size fits all”
+solution to <code class="language-plaintext highlighter-rouge">git</code>. Here are some basic approaches that I found in my research:</p>
+
+<h3 id="gitflow">Gitflow</h3>
+<p>The Gitflow approach was pioneered in 2010 by <a href="https://nvie.com/posts/a-successful-git-branching-model/">Vincent Driessen at
+nvie</a> and has
+wormed its way into enterprise software globally. The idea revolves around two
+core branches in your repo: <code class="language-plaintext highlighter-rouge">main</code> (or <code class="language-plaintext highlighter-rouge">master</code>) and some <code class="language-plaintext highlighter-rouge">development</code> branch.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/git-workflow-gitflow.png" alt="Git Workflow: Gitflow" />
+</figure>
+
+<p>The <code class="language-plaintext highlighter-rouge">development</code> branch is where <em>all</em> branches diverge from and are eventually
+re-merged. Then, whenever a new version of the software should be cut, the
+<code class="language-plaintext highlighter-rouge">development</code> branch is merged into <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>Effectively, <code class="language-plaintext highlighter-rouge">main</code> is <em>only</em> ever touched by <code class="language-plaintext highlighter-rouge">development</code>. This prevents any
+incomplete code from being checked into <code class="language-plaintext highlighter-rouge">main</code> and makes the commit history
+(ideally) easier to parse, since each commit represents a new version of the
+product.</p>
+
+<p>As mentioned in Driessen’s 2020 reflection about Gitflow, in the 10 years since,
+most software is continuously released, rather than released version-by-version.
+Subsequently, a simpler workflow can accomplish the same result.</p>
+
+<h3 id="feature-branches-preferred">Feature Branches <em>(Preferred)</em></h3>
+<p>Feature branches are, for the most part, identical to the Gitflow approach, with
+one major difference: There isn’t a <code class="language-plaintext highlighter-rouge">development</code> branch. By gating merge
+commits to <code class="language-plaintext highlighter-rouge">main</code> with tests, developers can prevent broken code from ever
+making it into <code class="language-plaintext highlighter-rouge">main</code>, which is a huge advantage for continuous integration and
+deployment environments.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/git-workflow-feature-branches.png" alt="Git Workflow: Feature Branches" />
+</figure>
+
+<p>Rather than merging from <code class="language-plaintext highlighter-rouge">development</code> into <code class="language-plaintext highlighter-rouge">main</code> whenever a release is
+necessary, commits in <code class="language-plaintext highlighter-rouge">main</code> can be <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging">tagged as a
+release</a>. This still provides
+the rigid versioning structure necessary for some releases without requiring the
+overhead of additional branches and special rules.</p>
+
+<h3 id="forking">Forking</h3>
+<p>The forking approach breaks the single-remote mold. Each developer has their
+<em>own</em> remote that they are able to write to at their leisure (even pushing to
+<code class="language-plaintext highlighter-rouge">main</code>!) This is often used for free and open-source
+(<a href="https://itsfoss.com/what-is-foss/">FOSS</a>) projects, so that the maintainer
+doesn’t need to meddle around with permissions for contributers.</p>
+
+<p>To understand forking, it’s first important to understand how remotes work. This
+was something I learned while researching this presentation:</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/git-concept-remotes.png" alt="Git Concept: Remotes" />
+</figure>
+
+<p>Remotes are, true to their name, remote repositories to synchronize your changes
+with. While most developers use only one, typically hosted on something like
+GitHub or BitBucket, multiple remotes can split the management of a codebase
+more than just a branch can – by allowing completely different commit trees
+entirely!</p>
+
+<p>With the forking workflow, developers create their own copy of the source repo
+to work in. They can always pull in changes from the source repo to their own
+copy, that way they’ll stay in sync with new features.</p>
+
+<p>When they’re ready to commit a change upstream, they make a pull request (PR)
+where they can discuss their changes before merging in. In most cases, the
+maintainer of the source repo is the only one with write access and is therefore
+the “keeper” of features making it into the mainline.</p>
+
+<h2 id="other-important-concepts">Other Important Concepts</h2>
+<p>There were a few other topics that I learned along my journey from a “how does
+<code class="language-plaintext highlighter-rouge">git</code> implement this” standpoint, even if I was already familiar with the terms
+and – in the case of branches, at least – how to use them.</p>
+
+<h3 id="branches">Branches</h3>
+<p>These became a bit easier to visualize once I had a mappable concept in my head.
+Branches are nothing more than pointers to a specific hash in the commit tree.
+They move as you make commits, but they aren’t doing anything special, they just
+mark your progress.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/git-concept-branches.png" alt="Git Concept: Branches" />
+</figure>
+
+<p>In the above diagram, we can see a <code class="language-plaintext highlighter-rouge">foo</code> branch based on commit <code class="language-plaintext highlighter-rouge">B</code> and then with
+some work in <code class="language-plaintext highlighter-rouge">W</code> added on top of it. When we create a new branch from <code class="language-plaintext highlighter-rouge">main</code>,
+(also located at <code class="language-plaintext highlighter-rouge">HEAD</code>, our currently checked-out branch) we are instantiating
+a new pointer to the same commit, and moving <code class="language-plaintext highlighter-rouge">HEAD</code> to show we’ve checked it
+out.</p>
+
+<p>Once we commit some more work to the <code class="language-plaintext highlighter-rouge">bar</code> branch, we can see a new node in the
+tree, and both <code class="language-plaintext highlighter-rouge">bar</code> and <code class="language-plaintext highlighter-rouge">HEAD</code> have advanced to this new point in history. In
+this way, branches “grow”, much like those on a tree.</p>
+
+<p class="notice--info">It can also be useful to run <code class="language-plaintext highlighter-rouge">git</code> commands using <code class="language-plaintext highlighter-rouge">HEAD</code>. Appending <code class="language-plaintext highlighter-rouge">~&lt;number&gt;</code>
+will run on a commit relative that number to <code class="language-plaintext highlighter-rouge">HEAD</code>.
+<br /><br />
+For example, <code class="language-plaintext highlighter-rouge">git
+diff HEAD~1</code> can show you the differences between your staged files and those
+already committed.</p>
+
+<h3 id="merging">Merging</h3>
+<p>While merging is a common practice, how does it actually work inside of <code class="language-plaintext highlighter-rouge">git</code>?
+There are a few different types of merges, some simple, some more complex.</p>
+
+<p>The first is a <code class="language-plaintext highlighter-rouge">fast-forward</code> merge. This is the simplest type of merge, since
+it happens when there is been no divergence between the two branches. If you
+attempted to merge the <code class="language-plaintext highlighter-rouge">bar</code> branch from the diagram above into <code class="language-plaintext highlighter-rouge">main</code>, the
+<code class="language-plaintext highlighter-rouge">main</code> pointer could just be shifted forward, since there hasn’t been any
+committed work to <code class="language-plaintext highlighter-rouge">main</code>.</p>
+
+<p>A three-way merge is more complex. We can see an example of one in action below:</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/git-concept-merging.png" alt="Git Concept: Merging" />
+</figure>
+
+<p>In this example, there has been some work committed to <code class="language-plaintext highlighter-rouge">main</code> while we have
+been working on <code class="language-plaintext highlighter-rouge">feat</code>. Since we want to pull in those changes while we keep
+working on <code class="language-plaintext highlighter-rouge">feat</code>, this is called “a merge of <code class="language-plaintext highlighter-rouge">main</code> into <code class="language-plaintext highlighter-rouge">feat</code>”.</p>
+
+<p>Because the latest commit of the branch you’re on isn’t a direct ancestor of the
+branch you’re merging in, <code class="language-plaintext highlighter-rouge">git</code> has to do some work. In this case, it examines
+the latest snapshot of each branch tip (<code class="language-plaintext highlighter-rouge">C</code> and <code class="language-plaintext highlighter-rouge">Z</code>) and their common ancestor
+– where they diverged in the tree – <code class="language-plaintext highlighter-rouge">B</code>. <code class="language-plaintext highlighter-rouge">git</code> then tries to determine what’s
+<em>actually</em> changed using a variety of <a href="https://git-scm.com/docs/merge-strategies">merge
+strategies</a>.</p>
+
+<p>In some cases, <code class="language-plaintext highlighter-rouge">git</code> can’t figure this out, and you have to resolve a merge
+conflict. But regardless, any changes to <code class="language-plaintext highlighter-rouge">feat</code> are stored in new merge commit
+on the branch (<code class="language-plaintext highlighter-rouge">M</code>). Future patches can still be applied onto <code class="language-plaintext highlighter-rouge">feat</code>, as seen by
+patch <code class="language-plaintext highlighter-rouge">N</code>.</p>
+
+<p class="notice--info">It is also possible to apply work between branches using <code class="language-plaintext highlighter-rouge">git rebase</code>, though
+its main benefit is creating a cleaner, more linear <code class="language-plaintext highlighter-rouge">git</code> history. In my
+experience, being proficient with <code class="language-plaintext highlighter-rouge">git merge</code> will get you by and is a great
+place to start.</p>
+
+<h3 id="merge-commits">Merge Commits</h3>
+<p>Once you decide to <em>perform</em> a merge, now you have a choice of how you’d like
+<code class="language-plaintext highlighter-rouge">git</code> to do it for you.</p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/git-merge-vs-squash-commit.png" alt="Merge vs. Squash commit" />
+</figure>
+
+<p>Merge commits provide granular, in-depth history, since they preserve the work
+from each commit in <code class="language-plaintext highlighter-rouge">feat</code> when joined into <code class="language-plaintext highlighter-rouge">main</code>. They are best used for
+bug-prone logic changes where bisecting commits can expedite detection.</p>
+
+<p>Squash commits combine all of the work from <code class="language-plaintext highlighter-rouge">feat</code> into a <em>single</em> commit onto
+<code class="language-plaintext highlighter-rouge">main</code>. This means the history is much simpler – one big pile of changes – but
+can be harder to sift through. It’s best used for a series of like patches, such
+as style fixes or refactors.</p>
+
+<p>Although there’s a big trade-off between each, I’ve heard Squashes favored more
+often than not. It may be that, like rebasing, a better <code class="language-plaintext highlighter-rouge">git</code> history is rarely
+appreciated. Though, when it’s needed, it can be nice to have done the work and
+made your life easier.</p>
+
+<hr />
+
+<p>There’s still a lot more I have to learn with <code class="language-plaintext highlighter-rouge">git</code>. Maybe another presentation
+and subsequent post are in order? All I know is that I look forward to
+deepening my knowledge of <code class="language-plaintext highlighter-rouge">git</code> as I use it more both professionally and
+personally.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#education" class="page__taxonomy-item p-category" rel="tag">education</a><span class="sep">, </span>
+    
+      <a href="/tags/#git" class="page__taxonomy-item p-category" rel="tag">git</a><span class="sep">, </span>
+    
+      <a href="/tags/#tools" class="page__taxonomy-item p-category" rel="tag">tools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-07-14">July 14, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=How+%60git%60+works+%2A%28from+a+work+presentation%29%2A%20https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2022%2F07%2F13%2Fgit-basics.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2022%2F07%2F13%2Fgit-basics.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fprogramming%2F2022%2F07%2F13%2Fgit-basics.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/video%20games/2022/06/20/spiritfarer.html" class="pagination--pager" title="Spiritfarer uses breathtaking illustrations and satisfying gameplay to reduce grind
+">Previous</a>
+    
+    
+      <a href="/video%20games/2022/07/18/quarantine-quick-reviews.html" class="pagination--pager" title="Quarantine Quick Reviews: Thoughts on the games I played while sick with CoViD.
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

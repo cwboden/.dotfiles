@@ -1,0 +1,927 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>An Attempt to Analyze Three Years of Board Game Stats - Carson Boden</title>
+<meta name="description" content="A learning experience about crunching data on board game plays tracked since August of 2019 and visualizing them in Grafana.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="An Attempt to Analyze Three Years of Board Game Stats">
+<meta property="og:url" content="https://carsonboden.com/board%20games/programming/2022/08/01/bg-stats.html">
+
+
+  <meta property="og:description" content="A learning experience about crunching data on board game plays tracked since August of 2019 and visualizing them in Grafana.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2022-08-01T00:00:00-07:00">
+
+
+
+  <meta property="article:modified_time" content="2022-09-08T01:05:15-07:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/board%20games/programming/2022/08/01/bg-stats.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="An Attempt to Analyze Three Years of Board Game Stats">
+    <meta itemprop="description" content="A learning experience about crunching data on board game plays tracked since August of 2019 and visualizing them in Grafana.">
+    <meta itemprop="datePublished" content="2022-08-01T00:00:00-07:00">
+    <meta itemprop="dateModified" content="2022-09-08T01:05:15-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/board%20games/programming/2022/08/01/bg-stats.html" class="u-url" itemprop="url">An Attempt to Analyze Three Years of Board Game Stats
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2022-08-01T00:00:00-07:00">August 1, 2022</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#the-spark">The Spark</a></li><li><a href="#python-wrapper">Python Wrapper</a><ul><li><a href="#strong-typing-in-dataclasses">Strong Typing in dataclasses</a></li><li><a href="#ingesting-data-to-mysql">Ingesting Data to MySQL</a></li></ul></li><li><a href="#grafana-dashboard">Grafana Dashboard</a></li><li><a href="#learnings--takeaways">Learnings + Takeaways</a></li></ul>
+
+            </nav>
+          </aside>
+        
+        <p class="btn btn--light-outline"><a href="https://github.com/cwboden/.dotfiles/tree/main/bg_stats">Source Code</a></p>
+
+<figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/bg-shelf.jpg" alt="A collection of board games on a shelf" />
+</figure>
+
+<h2 id="the-spark">The Spark</h2>
+
+<p>Three years ago, during a summer in Chicago, I decided that, with all of the
+board games I’d been playing, it would be fun to track them and see trends,
+average scores, and time spent playing games. While it’s fun to nerd out about
+personal statistics, it could also be useful to see which games were actually
+getting played or if asymmetry between playable characters or factions was
+balanced.</p>
+
+<p>I found an app called <a href="https://www.bgstatsapp.com/">BGStats</a> and have watched
+the app grow with my number of plays. It now encompasses board game expansions,
+deeper statistics, synchronization with Board Game Geek, and it’s own cloud
+backup, if you’re willing to pay a subscription.</p>
+
+<p class="notice--info">This is not a paid sponsorship. I am not affiliated with <em>BGStats</em> or <em>Apps by
+Eerko</em>. Though I do recommend the app!</p>
+
+<p>Since then, I have recorded a <em>lot</em> of games:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: right">Plays</th>
+      <th style="text-align: right">Players</th>
+      <th style="text-align: right">Games</th>
+      <th style="text-align: right">Time</th>
+      <th style="text-align: right">H-Index</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: right">1380</td>
+      <td style="text-align: right">180</td>
+      <td style="text-align: right">154</td>
+      <td style="text-align: right">~1014h</td>
+      <td style="text-align: right">19x19</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The pandemic was a great time for board games, so it was fun to hit my 1000th
+play during the quarantine. Now, at another milestone of three years of recorded
+plays, I wanted to see if I could glean anything more using so much aggregated
+data.</p>
+
+<h2 id="python-wrapper">Python Wrapper</h2>
+<p><em>BGStats</em> enables users to export their data to a JSON file, though the file is
+fairly reminiscing of a database. The file is broken into a few “tables” (arrays
+in JSON) of Players, Games, Plays, and Locations.</p>
+
+<p>Plays links together many of these values using IDs. For example, a Play might
+include a list of 3 Player IDs, an ID for the Game, and an ID for the Location.
+Each ID can then be looked up in the corresponding table, very similar to a
+<a href="https://en.wikipedia.org/wiki/Foreign_key">Foreign Key</a>!</p>
+
+<p>As a result, I wanted to create a wrapper that could move data from
+<code class="language-plaintext highlighter-rouge">BGStatsExport.json</code> into a database. And tada, the <code class="language-plaintext highlighter-rouge">bg_stats</code> library was born!
+<em>(See <code class="language-plaintext highlighter-rouge">bg_stats/</code> for more details.)</em></p>
+
+<h3 id="strong-typing-in-dataclasses">Strong Typing in <code class="language-plaintext highlighter-rouge">dataclass</code>es</h3>
+<p>As a fervent believer in typing, I wanted the Python wrapper to reflect the
+types of their JSON companions. This would also make serialization and, more
+importantly, deserialization simpler by providing a 1:1 mapping to a Python
+class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">BgStats</span><span class="p">:</span>
+    <span class="n">games</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Game</span><span class="p">]</span>
+    <span class="n">locations</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Location</span><span class="p">]</span>
+    <span class="n">players</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Player</span><span class="p">]</span>
+    <span class="n">plays</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Play</span><span class="p">]</span>
+
+    <span class="o">@</span><span class="nb">staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s">"BgStats"</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">raw_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">from_dict</span><span class="p">(</span><span class="n">BgStats</span><span class="p">,</span> <span class="n">json</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="n">raw_data</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">dacite</code>’s <code class="language-plaintext highlighter-rouge">from_dict()</code> method made short work of the JSON to Python
+conversions, which made it easy to work with native Python objects. The next
+step was getting that object formatted into a database.</p>
+
+<h3 id="ingesting-data-to-mysql">Ingesting Data to MySQL</h3>
+<p>First, I had to initialize the table so that each Game, Play, etc. could be
+inserted with the corresponding fields. I used a base class, <code class="language-plaintext highlighter-rouge">SqlTableEntry</code> to
+define a few key member variables and function that would convert each object
+into valid SQL:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">SqlTableEntry</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
+    <span class="n">TABLE_NAME</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">SQL_SCHEMA</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">def</span> <span class="nf">into_schema</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="nb">NotImplementedError</span>
+</code></pre></div></div>
+
+<p>The corresponding classes would then define their “shape” in the database:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">dataclass</span>
+<span class="k">class</span> <span class="nc">Player</span><span class="p">(</span><span class="n">SqlTableEntry</span><span class="p">):</span>
+    <span class="n">bggUsername</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+    <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">isAnonymous</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">modificationDate</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">uuid</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="n">TABLE_NAME</span> <span class="o">=</span> <span class="s">"players"</span>
+    <span class="n">SQL_SCHEMA</span> <span class="o">=</span> <span class="n">textwrap</span><span class="p">.</span><span class="n">dedent</span><span class="p">(</span>
+        <span class="s">"""
+        bgg_username VARCHAR(64),
+        id INT PRIMARY KEY,
+        is_anonymous BOOL,
+        modification_date DATETIME,
+        name VARCHAR(128),
+        uuid VARCHAR(64)
+    """</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>At this point, my objects knew how they looked in SQL, so it was straightforward
+to create a query that would insert each of my <code class="language-plaintext highlighter-rouge">bg_stats.api</code> objects into a
+table, locally:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">cook_insert_entry_query</span><span class="p">(</span><span class="n">entry</span><span class="p">:</span> <span class="n">SqlTableEntry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="n">textwrap</span><span class="p">.</span><span class="n">dedent</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s">"""
+            INSERT INTO </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">).</span><span class="n">TABLE_NAME</span><span class="si">}</span><span class="s">
+            (</span><span class="si">{</span><span class="n">extract_fields</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">).</span><span class="n">SQL_SCHEMA</span><span class="p">)</span><span class="si">}</span><span class="s">)
+            VALUES </span><span class="si">{</span><span class="n">entry</span><span class="p">.</span><span class="n">into_schema</span><span class="p">()</span><span class="si">}</span><span class="s">
+        """</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now, by running the script, I could populate the database with my exported board
+game data!</p>
+
+<p>In theory, this design could be adapted to ingest a variety of data by defining
+a programmatic way to implement <code class="language-plaintext highlighter-rouge">into_schema()</code> for each class as well as the
+corresponding <code class="language-plaintext highlighter-rouge">SQL_SCHEMA</code> property. This is left as an exercise to the reader
+or maybe I’ll get to it one day.</p>
+
+<h2 id="grafana-dashboard">Grafana Dashboard</h2>
+<p>I had recently been using Grafana for work, so I decided to take the plunge and
+also do some query practice using it to visualize some stats!</p>
+
+<figure class="align-right">
+  <img src="https://carsonboden.com/assets/img/bg-stats-top-games-by-play.png" alt="Grafana Dashboard: Top Games by Play" />
+</figure>
+
+<p>I’m still learning SQL, but some experimenting led to some fun visualizations.
+This dashboard shows a simple query to show the top 10 games sorted by play:</p>
+
+<p>Below is the query used. We count the number of plays associated with each game
+and then sort by the number of plays.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">SELECT</span>
+  <span class="n">games</span><span class="p">.</span><span class="n">name</span> <span class="k">AS</span> <span class="n">game_name</span><span class="p">,</span>
+  <span class="k">COUNT</span><span class="p">(</span><span class="n">plays</span><span class="p">.</span><span class="n">id</span><span class="p">)</span> <span class="k">AS</span> <span class="n">num_plays</span>
+<span class="k">FROM</span> <span class="n">games</span> <span class="k">LEFT</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">plays</span>
+  <span class="k">ON</span> <span class="n">games</span><span class="p">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">plays</span><span class="p">.</span><span class="n">game_ref_id</span>
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">games</span><span class="p">.</span><span class="n">id</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">num_plays</span> <span class="k">DESC</span>
+</code></pre></div></div>
+
+<p>By now, I felt I had gotten some decent practice piecing together a dashboard
+using a database. The deeper queries I was hoping to explore had been cast into
+the backlog of making a Python wrapper and Grafana dashboard that a month had
+passed with no results about the board games themselves. So what <em>had</em> I
+learned?</p>
+
+<h2 id="learnings--takeaways">Learnings + Takeaways</h2>
+<p>For starters, I learned that there’s probably not much more information to draw
+from board games and their scores. It’s a fun mechanism to track plays in the
+same way that I like tracking runs or bike rides on a fitness watch. But I
+couldn’t think of many in-depth queries that would answer any burning questions.</p>
+
+<p>For visualization, I tried plotting things using <code class="language-plaintext highlighter-rouge">matplotlib</code>, a powerful Python
+library for graphing, but I wanted practice with Grafana for professional
+reasons. I would still recommend exploring <code class="language-plaintext highlighter-rouge">matplotlib</code> for your usecase, though
+I did find it easier to tinker with Grafana’s queries through a UI that would
+update live, though perhaps there’s a way to do that with <code class="language-plaintext highlighter-rouge">matplotlib</code>?</p>
+
+<p>From a technical perspective, I learned to appreciate the quicker, dirtier
+solution to accomplish a task. I think long-term longevity is extremely
+important, but don’t let perfect be the enemy of done. Some solutions could have
+been made more generic, but I didn’t <em>need</em> them to be yet.</p>
+
+<p>While I didn’t learn more about my playing habits, I <em>did</em> learn more
+about SQL and Grafana. For reference, <a href="https://github.com/cwboden/.dotfiles/tree/main/bg_stats">check out the source code,
+here</a>.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#grafana" class="page__taxonomy-item p-category" rel="tag">grafana</a><span class="sep">, </span>
+    
+      <a href="/tags/#statistics" class="page__taxonomy-item p-category" rel="tag">statistics</a><span class="sep">, </span>
+    
+      <a href="/tags/#tools" class="page__taxonomy-item p-category" rel="tag">tools</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#board-games" class="page__taxonomy-item p-category" rel="tag">Board Games</a><span class="sep">, </span>
+    
+      <a href="/categories/#programming" class="page__taxonomy-item p-category" rel="tag">Programming</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2022-09-08">September 8, 2022</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=An+Attempt+to+Analyze+Three+Years+of+Board+Game+Stats%20https%3A%2F%2Fcarsonboden.com%2Fboard%2520games%2Fprogramming%2F2022%2F08%2F01%2Fbg-stats.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fboard%2520games%2Fprogramming%2F2022%2F08%2F01%2Fbg-stats.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fboard%2520games%2Fprogramming%2F2022%2F08%2F01%2Fbg-stats.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/video%20games/2022/07/18/quarantine-quick-reviews.html" class="pagination--pager" title="Quarantine Quick Reviews: Thoughts on the games I played while sick with CoViD.
+">Previous</a>
+    
+    
+      <a href="/video%20games/2022/09/13/hearthstone-battlegrounds-s2.html" class="pagination--pager" title="Exploring Quest Design in Hearthstone Battlegrounds Season 2
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>

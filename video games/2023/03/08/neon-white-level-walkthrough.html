@@ -1,0 +1,1122 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Exploring: The Level Design of Neon White - Carson Boden</title>
+<meta name="description" content="Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization.">
+
+
+  <meta name="author" content="Carson Boden">
+  
+  <meta property="article:author" content="Carson Boden">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Carson Boden">
+<meta property="og:title" content="Exploring: The Level Design of Neon White">
+<meta property="og:url" content="https://carsonboden.com/video%20games/2023/03/08/neon-white-level-walkthrough.html">
+
+
+  <meta property="og:description" content="Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization.">
+
+
+
+
+
+
+
+  <meta property="article:published_time" content="2023-03-08T00:00:00-08:00">
+
+
+
+  <meta property="article:modified_time" content="2023-04-06T19:59:33-07:00">
+
+
+
+
+<link rel="canonical" href="https://carsonboden.com/video%20games/2023/03/08/neon-white-level-walkthrough.html">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Carson Boden",
+      "url": "https://carsonboden.com/"
+    
+  }
+</script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Carson Boden Feed">
+
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/"><img src="/assets/vector/personal-logo.png" alt="Carson Boden"></a>
+        
+        <a class="site-title" href="/">
+          Carson Boden
+          <span class="site-subtitle">My personal portfolio / blog</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/portfolio/">Portfolio</a>
+            </li><li class="masthead__menu-item">
+              <a href="/arcade/">Arcade</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">Toggle search</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person" class="h-card">
+
+  
+    <div class="author__avatar">
+      <a href="https://carsonboden.com/">
+        <img src="/assets/img/me.png" alt="Carson Boden" itemprop="image" class="u-photo">
+      </a>
+    </div>
+  
+
+  <div class="author__content">
+    <h3 class="author__name p-name" itemprop="name">
+      <a class="u-url" rel="me" href="https://carsonboden.com/" itemprop="url">Carson Boden</a>
+    </h3>
+    
+      <div class="author__bio p-note" itemprop="description">
+        <p>Developer, Game Addict, Earth Lover</p>
+
+      </div>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name" class="p-locality">Seattle, WA</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-github" aria-hidden="true"></i><span class="label">GitHub</span></a></li>
+          
+        
+          
+            <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span class="label">LinkedIn</span></a></li>
+          
+        
+          
+            <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i><span class="label">Spotify</span></a></li>
+          
+        
+          
+            <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fab fa-fw fa-steam" aria-hidden="true"></i><span class="label">Steam</span></a></li>
+          
+        
+          
+            <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer me" itemprop="sameAs"><i class="fas fa-fw fa-dice" aria-hidden="true"></i><span class="label">BGG</span></a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer me">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+
+  <article class="page h-entry" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Exploring: The Level Design of Neon White">
+    <meta itemprop="description" content="Join me on a closer look at a level and see how it naturally encourages speedrunning and optimization.">
+    <meta itemprop="datePublished" content="2023-03-08T00:00:00-08:00">
+    <meta itemprop="dateModified" content="2023-04-06T19:59:33-07:00">
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title p-name" itemprop="headline">
+            <a href="https://carsonboden.com/video%20games/2023/03/08/neon-white-level-walkthrough.html" class="u-url" itemprop="url">Exploring: The Level Design of <em>Neon White</em>
+</a>
+          </h1>
+          
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-03-08T00:00:00-08:00">March 8, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-clock" aria-hidden="true"></i>
+        
+          12 minute read
+        
+      </span>
+    
+  </p>
+
+
+        </header>
+      
+
+      <section class="page__content e-content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On this page</h4></header>
+              <ul class="toc__menu"><li><a href="#overview">Overview</a><ul><li><a href="#neon-white-brief">Neon White Brief</a></li><li><a href="#an-extra-dimension-of-speed">An Extra Dimension of Speed</a></li></ul></li><li><a href="#the-first-pass">The First Pass</a><ul><li><a href="#introducing-the-laser-traps">Introducing the Laser Traps</a></li><li><a href="#giving-the-player-a-view">Giving the Player a View</a></li><li><a href="#finishing-out-the-level">Finishing out the Level</a></li></ul></li><li><a href="#my-optimized-route">My Optimized Route</a><ul><li><a href="#through-the-looking-glass">Through the Looking Glass</a></li><li><a href="#bypassing-the-elevate-room">Bypassing the Elevate Room</a></li><li><a href="#clearing-your-heads">Clearing Your Heads</a></li></ul></li><li><a href="#final-analysis">Final Analysis</a><ul><li><a href="#decision-tree">Decision Tree</a></li><li><a href="#conclusion">Conclusion</a></li></ul></li></ul>
+
+            </nav>
+          </aside>
+        
+        <figure class="align-center">
+  <img src="https://carsonboden.com/assets/img/neon-white-splash.jpg" alt="Neon White splash art" />
+</figure>
+
+<table class="notice--info">
+  <tbody>
+    <tr>
+      <td><strong>Release Date:</strong></td>
+      <td>16 Jun 2022 <em>(PC)</em></td>
+    </tr>
+    <tr>
+      <td><strong>Developer:</strong></td>
+      <td>Angel Matrix</td>
+    </tr>
+    <tr>
+      <td><strong>Publisher:</strong></td>
+      <td>Annapurna Interactive</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="overview">Overview</h2>
+<p>That’s not a typo in the title. While the baseline routes through each of <em>Neon
+White</em>’s ninety-seven levels are challenging and zippy, they are designed to be
+both carefully explored and naturally discovered, with multiple speedrunning
+optimizations baked into every level.</p>
+
+<p>Let’s dive into one of them to highlight the choreographed nature of the game’s
+design. We’ll be looking at <em>Covenant: Hanging Gardens</em>, the first level of the
+sixth mission. But first, here’s a quick explanation of the game for the
+uninitiated:</p>
+
+<h3 id="neon-white-brief"><em>Neon White</em> Brief</h3>
+<p>As a demon slayer in Heaven, you must complete each level by killing every demon
+and making it to the Finish. The player can pick up weapon cards to shoot at
+demons, though they can also discard those weapons for powerful movement
+abilities.</p>
+
+<figure class="align-left">
+  <img src="/assets/img/neon-white/balloon-demon.webp" alt="A balloon demon" />
+</figure>
+
+<p>The movement abilities – which are also used to vanquish enemies – lead to an
+exciting, fluid, parkour-like experience. This is further <strong>demon</strong>strated by
+the fact that some of them are deliberately designed to be jumped on, such as
+the Balloon Demon <em>(pictured here)</em>.</p>
+
+<p>While there are, sadly, no balloon demons in this level, it does contain the
+following cards, for reference:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Card</th>
+      <th>Weapon</th>
+      <th>Effect</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Elevate</code></td>
+      <td>Pistol</td>
+      <td>Double jump</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Purify</code></td>
+      <td>Machine Gun</td>
+      <td>Launch an explosive bomb</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Godspeed</code></td>
+      <td>Rifle</td>
+      <td>Dash forward, destroying enemies</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Slam</code></td>
+      <td>Uzi</td>
+      <td>Slam down, releasing a shockwave</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>In addition, many of the demons are “infused” with a particular card, so they’ll
+always drop them when slain. Demons have characteristics based on their card,
+but for the purposes of this walkthrough, we need only understand which card
+they drop.</p>
+
+<h3 id="an-extra-dimension-of-speed">An Extra Dimension of Speed</h3>
+<p>It’s important to call out that while the levels are each <em>designed</em> for speed,
+with players finding the fastest combination of firing and discarding their
+weapon cards, there’s no maximum time for any level. It’s possible to complete
+most levels at your own pace (including this one).</p>
+
+<p>There’s not a ton to explore with this dimension of playing through the game,
+but it makes the game much more approachable, regardless of whether someone is a
+speedrunner. And while we will see how different routes are baked into each
+level, we can also appreciate that max times were not set.</p>
+
+<p>Now we can jump into how someone would naturally progress through the level, if
+they were tackling the intended route:</p>
+
+<h2 id="the-first-pass">The First Pass</h2>
+<p>Although each level has shortcuts hiding in many places, there is also an
+intentional route that, while slower, is still quite snappy once understanding
+when to use the movement abilities. This gives players a chance to learn new
+mechanics and the level’s themes but still practice more advanced skills or look
+for shorter paths.</p>
+
+<p>This will be the default route for the level, which – along with shortcut
+revealed by the game’s mystic Hand, <em>(discussed later)</em> – is enough to pull the
+coveted Platinum time for the level.</p>
+
+<h3 id="introducing-the-laser-traps">Introducing the Laser Traps</h3>
+<p>Immediately out of the gate, first-time players at <em>Covenant: Hanging Gardens</em>
+are informed of a new mechanic – Laser Traps – that they will be learning
+about over the course of the level. Fresh eyes will use their <code class="language-plaintext highlighter-rouge">Katana</code> on it,
+quickly learning that the Laser Traps have 1HP and can destroy breakable
+objects, like the door you need to move through.</p>
+
+<figure class="">
+  <img src="/assets/img/neon-white/hanging-gardens-first-room.jpg" alt="The first room in the level" /><figcaption>
+      The starting room, which requires the player to trigger a Laser
+        Trap with their <code class="language-plaintext highlighter-rouge">Katana</code> in order to move forward.
+
+    </figcaption></figure>
+
+<p>Next, the player turns the corner, picking up a <code class="language-plaintext highlighter-rouge">Godspeed</code> card and encountering
+a new problem: Laser Traps pointing at them! The model design and placement of
+the lasers prompts the player to jump the beams, shooting the two traps on the
+way over. With the traps taken care of, the player can then continue into the
+next room, discarding <code class="language-plaintext highlighter-rouge">Godspeed</code> to break through a door and continue to the
+next section.</p>
+
+<p>In the hallway with the lasers, the player learns another dimension of the new
+Laser Traps: it can also instantly kill them! Players can test it out by walking
+into the demonic beams instead of hopping over them – though their appearance
+(and that the beam in the first room counts as a demon) – already invites
+players to avoid and destroy them.</p>
+
+<p>The following leisurely walkaround to the door after destroying the traps gives
+new players a chance to breathe, processing the mechanic a bit more, while more
+experienced speed-runners might already be thinking about how to optimize away
+the slow walk.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-first-enemy.jpg" alt="The first real enemy encountered within the level." />
+</figure>
+
+<p>After dashing through the wall with <code class="language-plaintext highlighter-rouge">Godspeed</code>, we are met with a familiar idea:
+a Laser Trap pointing at a destroyable object. By striking it with <code class="language-plaintext highlighter-rouge">Katana</code>, the
+player confirms what they may have already inferred, that the traps can also
+kill enemies.</p>
+
+<p>They’ll then move onto some waterfall paths (which speed up player movement)
+and repeat the process on the <code class="language-plaintext highlighter-rouge">Godspeed</code> demon. This teaches them another
+important concept, since it takes two Laser Traps to kill the heftier <code class="language-plaintext highlighter-rouge">Godspeed</code>
+demon.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-second-enemy.jpg" alt="The second enemy, which requires both Laser Traps to kill." />
+</figure>
+
+<p>Moving forward, the player can collect the <code class="language-plaintext highlighter-rouge">Godspeed</code> card from the now-fallen
+demon and use it to dash through a door into a room. There, aligned in a series,
+is a Rube Goldberg machine of Laser Traps, ending in the door you need to move
+through.</p>
+
+<p>Since the door is on a high platform, you’ll need to grab and discard <code class="language-plaintext highlighter-rouge">Elevate</code>
+to reach the top, making sure to shoot the start of the Laser Trap chain.</p>
+
+<p>The framing of the first Laser Trap in this room, similar to the spawn point,
+draws the player’s eye, which they then follow like a path of dominoes. Despite
+it being the first level with a Laser Trap, players can piece together a variety
+of mechanics using the building blocks established earlier.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-elevate-room.jpg" alt="The room with Elevate and a chain of Laser Traps." />
+</figure>
+
+<p>These ideas are then expanded further in later levels. For example, in
+<em>Covenant: Race</em>, the player must run faster than a huge string of Laser Traps
+to reach the end before being cut-off by the traps. Or how some of Neon Yellow’s
+signature levels – where the player is unable to use the cards’ movement
+abilities – use the Laser Traps as gates to different sections.</p>
+
+<h3 id="giving-the-player-a-view">Giving the Player a View</h3>
+<p>Following the <code class="language-plaintext highlighter-rouge">Elevate</code> room is a straightforward waterfall path with two
+enemies, pointed at again by the Laser Traps. Weaponless, the player must use
+their <code class="language-plaintext highlighter-rouge">Katana</code> to destroy the traps and slay the two demons, with the second one
+providing a <code class="language-plaintext highlighter-rouge">Slam</code> card.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Slam</code> is then immediately discarded, killing another <code class="language-plaintext highlighter-rouge">Slam</code> demon below and
+continuing on a waterfall path, picking up two <code class="language-plaintext highlighter-rouge">Purify</code> cards along the way.
+Here is where the player arrives at a vista with the final section of the level
+before them – a perfect place to contemplate route improvements.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-ramp-before-drop.jpg" alt="The edge of a waterfall path, right before the doorway to the remainder of the level" />
+</figure>
+
+<p>After receiving a Gold Medal on a level in <em>Neon White</em>, the game will reward
+you with a hint shaped like a hand, hidden somewhere in the level. Once touching
+the Hand, it will trace a path showing you a faster way to travel. The
+difficulty, though, can often be figuring out <em>how</em> to move that way while still
+taking care of the other demons.</p>
+
+<p>We can see that this hint is placed where the player has full vision of the rest
+of the level. It prompts the player to jump down directly to the goal, skipping
+the next section, but doesn’t explain how they can skip it. The player must
+think – from their well-placed vantage point – about their next move.</p>
+
+<p>The Hand inspires players to start thinking intricately about what parts of the
+level they can zoom through by providing guidance, but not completely
+demonstrating how they can skip the last section. But to round things out,
+let’s walkthrough the final, skippable section, for completion’s sake.</p>
+
+<h3 id="finishing-out-the-level">Finishing out the Level</h3>
+<p>As seen from the vista, the first <code class="language-plaintext highlighter-rouge">Purify</code> is used to break down the door. The
+player must avoid some lasers on their way into the structure, similar to the
+first section of the level. This time, however, they’re attached in a chain,
+too.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-head-room-1.jpg" alt="A room with Laser Traps to dodge and some demons near a door." />
+</figure>
+
+<p>Next, the second <code class="language-plaintext highlighter-rouge">Purify</code> is discarded to destroy the demons, door, and start of
+the Laser Trap chain at the end of the hallway. The player then collects a
+<code class="language-plaintext highlighter-rouge">Stomp</code> from one of the demolished demons, quickly discarding it to crush
+another demon, door, and laser chain group.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-final-stomp.jpg" alt="The final dash, down to the end of the level." />
+</figure>
+
+<p>Finally, the player collects another <code class="language-plaintext highlighter-rouge">Stomp</code> from the fallen demons and discards
+it to dive below to the Finish, destroying the surrounding nearby demons and
+completing the level. There’s not a ton to learn in this section, as it was
+meant to be optimized out, as evidenced by the Hand.</p>
+
+<p>To sum it up, here is a diagram and corresponding path through the level. You
+may need to download this image if you want zoom in. Opening it in another tab
+also works.</p>
+
+<figure class="align-center">
+  <a href="/assets/img/neon-white/hanging-gardens-first-path.png">
+    <img src="/assets/img/neon-white/hanging-gardens-first-path.png" alt="A diagram of the first route throught the level." />
+  </a>
+</figure>
+
+<h2 id="my-optimized-route">My Optimized Route</h2>
+<p>I’ll now walk through my theoretical maximum. There are probably further
+improvements to be made, including niche mechanics like deflecting bullets with
+<code class="language-plaintext highlighter-rouge">Katana</code>, but this will cover what I believe are the intentionally designed
+improvements.</p>
+
+<p>Throughout the game, many of these discovered optimizations are, in reality,
+baked into the level and hidden for the player to explore within their
+attempts. This keeps levels exciting and encourages the player to find shortcuts
+of their own. Let’s see what I found:</p>
+
+<h3 id="through-the-looking-glass">Through the Looking Glass</h3>
+<p>The first key route improvement is made once the player realizes that the
+foliage-covered windows near the first <code class="language-plaintext highlighter-rouge">Godspeed</code> are actually open for you to
+jump out of. This enables you to shoot the two Laser Traps you otherwise would
+have dodged, then hop out the window onto some well-placed water paths.</p>
+
+<p>One problem remains, though: the Laser Trap and demon below. Luckily, since the
+player didn’t use <code class="language-plaintext highlighter-rouge">Godspeed</code> on a door, they can deal with the trap from a
+distance with a well-placed shot.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-sniper-shortcut-1.jpg" alt="Just beyond the window of the first section, gazing out at the next part of the level." />
+  <figcaption>
+    A view from just beyond the windows. The Laser Trap and demon are visible
+    for the last shot before moving onto dealing with the Godspeed demon.
+  </figcaption>
+</figure>
+
+<p>Note that each <code class="language-plaintext highlighter-rouge">Godspeed</code> card has four bullets, so the player is challenged to
+shoot each of the three Laser Traps with accuracy, since they’ll need <code class="language-plaintext highlighter-rouge">Godspeed</code>
+to cross a gap later in the route. The first section has been crafted to enable
+the player to smuggle out a <code class="language-plaintext highlighter-rouge">Godspeed</code> card but also with speed.</p>
+
+<h3 id="bypassing-the-elevate-room">Bypassing the <code class="language-plaintext highlighter-rouge">Elevate</code> Room</h3>
+<p>They’ll then swap back to <code class="language-plaintext highlighter-rouge">Katana</code> to destroy the Laser Traps and killing the
+<code class="language-plaintext highlighter-rouge">Godspeed</code> demon, just like in the other path. With a second <code class="language-plaintext highlighter-rouge">Godspeed</code>, in
+hand, we have the ability to dash twice, jumping over the gap and skipping the
+next room – but just like with the first shortcut, we have to figure out how to
+destroy the demons we’re avoiding.</p>
+
+<p>In this case, we can consider the fact that the <code class="language-plaintext highlighter-rouge">Elevate</code> room only had a Laser
+Trap chain. As a result, we can clear the room with just a single shot through
+the window. Again, the player is given the choice to discover how they may
+optimize the route, but many of these are built into the level’s design.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-sniper-shortcut-2.jpg" alt="The target inside of the elevate room" />
+  <figcaption>
+    With two Godspeeds in hand, the player can dash over the gap to their
+    right. But first, they'll need to target the Laser Trap chain inside.
+  </figcaption>
+</figure>
+
+<p>We then continue on the same waterfall path – killing a few demons – until we
+end up at the intersection with the game’s mystical Hand, hinting us towards a
+shortcut.</p>
+
+<figure class="align-center">
+  <img src="/assets/img/neon-white/hanging-gardens-ramp-before-drop.jpg" alt="The ramp next to the Hand where the player can Slam to the end of the level" />
+</figure>
+
+<h3 id="clearing-your-heads">Clearing Your Heads</h3>
+<p>This is the game-hinted optimization, noted by the Hand in the diagram and
+screenshot.  In good form, the hint shows you <em>where</em> to go but not how to get
+there. In this case, touching the hint shows the player they can immediately
+drop onto the goal to complete the level.</p>
+
+<p>Examining the two <code class="language-plaintext highlighter-rouge">Purify</code>s in our hand, it’s a relatively quick jump to think
+of discarding <code class="language-plaintext highlighter-rouge">Purify</code> to destroy clusters of enemies, rather than to break down
+doors. With the windows into each room, the player can fire each <code class="language-plaintext highlighter-rouge">Purify</code> to
+deal with a group of a Head demon, <code class="language-plaintext highlighter-rouge">Stomp</code> demon, and Laser Trap chain.</p>
+
+<p>Then, using the remaining <code class="language-plaintext highlighter-rouge">Stomp</code>, it’s a quick rush to the end, with the
+shockwave cleaning up the last demons at the end of the level very nicely.
+Here’s a final diagram of the path:</p>
+
+<figure class="align-center">
+  <a href="/assets/img/neon-white/hanging-gardens-fast-path.png">
+    <img src="/assets/img/neon-white/hanging-gardens-fast-path.png" alt="My optimized path through the level" />
+  </a>
+</figure>
+
+<p>The layout of the level further cements the idea that specific sections are
+unable to be cut out (like most of the waterfall path sections) while other
+parts of the level, with their clustered demons or Laser Trap chains, are
+designed to be dealt with quickly.</p>
+
+<h2 id="final-analysis">Final Analysis</h2>
+<p>Hopefully, from this walkthrough of a single level, it’s apparent the careful
+craft that was put into the feel of <em>Neon White</em>’s exploration and optimization.</p>
+
+<p>Each mission feels fast and fun from start to finish, yet after taking a closer
+look at each level, players will be rewarded with hidden paths and alternate
+ways to deal with the same challenges.</p>
+
+<h3 id="decision-tree">Decision Tree</h3>
+<p>Here is an (albeit too detailed) decision tree of the path through the level.
+There are likely other options missing, but it is enough to illustrate my
+point that many optimizations are sectioned off. So, when playing each level,
+these “Aha!” moments happens in different places and a different order based on
+what’s discovered first.</p>
+
+<script type="module">import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';mermaid.initialize({startOnLoad: true,theme: 'dark'});</script>
+<div class="mermaid">
+flowchart TD
+    1[Katana Laser Trap<br />Use Godspeed on Laser Traps]
+    1--&gt;2a[Discard Godspeed through door<br />Use Katana on Laser Trap, killing demon]
+    1-.-&gt;2b[Jump out window<br />Shoot Laser Trap, killing demon]
+    2a--&gt;3
+    2b-.-&gt;3[Use Katana on Laser Traps, killing demon]
+    3--&gt;4a[Discard Godspeed through door<br />Use Elevate on Laser Traps, then discard]
+    3-.-&gt;4b[Use Godspeed on Laser Trap chain<br />Discard Godspeeds to reach platform]
+    4a--&gt;5
+    4b-.-&gt;5[Use Katana on Laser Traps, killing demons<br />Discard Stomp, killing demon]
+    5--&gt;6a[Discard Purify through door<br />Discard Purify and Stomp, killing demons]
+    5-.-&gt;6b["Discard Purify, killing room of demons (x2)"]
+    6a--&gt;7
+    6b-.-&gt;7[Discard Stomp, killing demons below<br />Finish!]
+</div>
+
+<p>There is already a push towards speedrunning with the game’s medal system as
+well as Gold/Platinum medal requirements for some story progression. But
+designing quicker paths in the level to be discovered by players makes exploring
+exiting.</p>
+
+<p>And this is why the game is so much fun. It’s feels amazing to rush through
+levels quickly with the weapon cards’ playful movement abities (especially with
+the clubby soundtrack by Machine Girl), but then, players will be encouraged by
+the built-in shortcuts they find to each level and be inspired to find shortcuts
+of their own!</p>
+
+<h3 id="conclusion">Conclusion</h3>
+<p><em>Neon White</em> makes for an excellent speedrunner – especially to those new to
+the scene – by adopting the concepts of optimization and exploration. The
+levels are designed to be mastered many times over, as players discover new,
+shorter routes.</p>
+
+<p>Exceptional amounts of these shortcuts are carefully placed into each level, as
+we saw in <em>Covenant: Hanging Gardens</em>. Demons are often clustered together or
+made to be dealt with in an entirely different way than the “standard” route.</p>
+
+<p>The continuous cycle of exploration and optimization makes it so players can’t
+help but want to try and improve their time. There’s always something new to
+explore in each level as you perfect your theoretical best path.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/tags/#shooter" class="page__taxonomy-item p-category" rel="tag">shooter</a><span class="sep">, </span>
+    
+      <a href="/tags/#speed-running" class="page__taxonomy-item p-category" rel="tag">speed-running</a>
+    
+    </span>
+  </p>
+
+
+
+
+  
+
+
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> Categories: </strong>
+    <span itemprop="keywords">
+    
+      <a href="/categories/#video-games" class="page__taxonomy-item p-category" rel="tag">Video Games</a>
+    
+    </span>
+  </p>
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time class="dt-published" datetime="2023-04-07">April 7, 2023</time></p>
+
+      </footer>
+
+      <section class="page__share">
+  
+
+  <a href="https://twitter.com/intent/tweet?text=Exploring%3A+The+Level+Design+of+%2ANeon+White%2A%20https%3A%2F%2Fcarsonboden.com%2Fvideo%2520games%2F2023%2F03%2F08%2Fneon-white-level-walkthrough.html" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcarsonboden.com%2Fvideo%2520games%2F2023%2F03%2F08%2Fneon-white-level-walkthrough.html" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fcarsonboden.com%2Fvideo%2520games%2F2023%2F03%2F08%2Fneon-white-level-walkthrough.html" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+  <nav class="pagination">
+    
+      <a href="/video%20games/2023/01/01/my-top-single-player-games.html" class="pagination--pager" title="My Top Single-Player Video Game of each Year
+">Previous</a>
+    
+    
+      <a href="/programming/2023/04/06/jekyll-pages.html" class="pagination--pager" title="A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="utterances-comments"></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+    <div class="page__related">
+      <h2 class="page__related-title">You May Also Enjoy</h2>
+      <div class="grid__wrapper">
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/08/30/facade-pattern.html" rel="permalink">Using the <strong><em>Facade</em></strong> Pattern to Split Tightly-Coupled Services
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-08-30T00:00:00-07:00">August 30, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          4 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Incrementally transition a monolithic service into multiple, smaller chunks.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/video%20games/2023/05/07/comparing-deaths-door-and-tunic.html" rel="permalink">Exploring the <em>Souls</em>-like Genre via <em>Death’s Door</em> and <em>TUNIC</em>
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-07T00:00:00-07:00">May 7, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          20 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">Comparing the small differences in experience, art, and design which can add up to drastically different games in the same genre.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/05/03/api-design.html" rel="permalink">A Deep Dive into API Design and Auto-Generation
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-05-03T00:00:00-07:00">May 3, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          15 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How to design and version APIs along with a touch of automated client and server creation.
+</p>
+  </article>
+</div>
+
+        
+          
+
+
+
+<div class="grid__item">
+  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
+    
+    <h2 class="archive__item-title no_toc" itemprop="headline">
+      
+        <a href="/programming/2023/04/06/jekyll-pages.html" rel="permalink">A Guide to Hosting Static Content via Jekyll &amp; GitHub Pages
+</a>
+      
+    </h2>
+    
+
+  <p class="page__meta">
+    
+      
+      <span class="page__meta-date">
+        <i class="far fa-fw fa-calendar-alt" aria-hidden="true"></i>
+        
+        <time datetime="2023-04-06T00:00:00-07:00">April 6, 2023</time>
+      </span>
+    
+
+    <span class="page__meta-sep"></span>
+
+    
+      
+      
+
+      <span class="page__meta-readtime">
+        <i class="far fa-fw fa-clock" aria-hidden="true"></i>
+        
+          8 minute read
+        
+      </span>
+    
+  </p>
+
+
+    <p class="archive__item-excerpt" itemprop="description">How the simple-but-powerful technology behind this site works, and how to make deeper customizations with manual deployments.
+</p>
+  </article>
+</div>
+
+        
+      </div>
+    </div>
+  
+  
+</div>
+
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      Enter your search term...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+      
+        
+          <li><a href="https://github.com/cwboden" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+          <li><a href="https://linkedin.com/in/carson-boden/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://open.spotify.com/user/l92w5wicgopkq6tge6osg5ibm?si=gxgGieMbS1K-mrlHXzC38A" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-spotify" aria-hidden="true"></i> Spotify</a></li>
+        
+      
+        
+          <li><a href="https://steamcommunity.com/id/xenonn11" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-steam" aria-hidden="true"></i> Steam</a></li>
+        
+      
+        
+          <li><a href="https://boardgamegeek.com/user/xenonn11" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-dice" aria-hidden="true"></i> BGG</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2023 Carson Boden. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6Y67R83K7M"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6Y67R83K7M', { 'anonymize_ip': false});
+</script>
+
+
+
+
+
+
+    <script>
+  'use strict';
+
+  (function() {
+    var commentContainer = document.querySelector('#utterances-comments');
+
+    if (!commentContainer) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.setAttribute('src', 'https://utteranc.es/client.js');
+    script.setAttribute('repo', 'cwboden/.dotfiles');
+    script.setAttribute('issue-term', 'title');
+    script.setAttribute('label', 'comment');
+    script.setAttribute('theme', 'dark-blue');
+    script.setAttribute('crossorigin', 'anonymous');
+
+    commentContainer.appendChild(script);
+  })();
+</script>
+
+  
+
+
+
+
+
+  </body>
+</html>
