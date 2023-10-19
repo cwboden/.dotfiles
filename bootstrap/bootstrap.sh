@@ -3,6 +3,8 @@
 # CI ONLY / HACK:
 # Override username / homeDirectory
 if [ -n "$CI" ]; then
+    echo 'Running in CI environment; overriding home.nix. See bootstrap.sh for more information.'
+
     # Home Manager expects USER to be `runner` in the CI pipeline
     sed -i 's/cwboden/runner/g' home-manager/home.nix
 
@@ -26,7 +28,7 @@ nix-env -if https://install.devenv.sh/latest
 
 # Link the Home Manager config to this repository
 mkdir -p ~/.config/home-manager/
-ln -s $(pwd)/home-manager/home.nix ~/.config/home-manager/home.nix
+ln -s $(pwd)/config/home.nix ~/.config/home-manager/home.nix
 
 # Download and install Home Manager
 nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
